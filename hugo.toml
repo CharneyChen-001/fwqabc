@@ -27,6 +27,7 @@ pagination.pagerSize = 10
   homeTitle = "出海服务器，少踩坑少花钱"
   description = "出海ABC旗下服务器指南：国外VPS真实价格、线路实测与优惠汇总，帮站长、外贸和出海新手少踩坑少花钱。价格以官网为准。"
   tagline = "真实价格、线路实测、优惠汇总，选对一台不纠结"
+  images = ["/brand/og-default-1200x630.png"]
   keywords = ["国外VPS", "VPS优惠", "外贸建站服务器", "出海服务器", "CN2 GIA", "双11 VPS"]
   ShowBreadCrumbs = true
   ShowReadingTime = true
@@ -41,9 +42,15 @@ pagination.pagerSize = 10
 
   [params.label]
     text = "出海ABC · 服务器"
-    iconSVG = '<svg class="wm" width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0f766e"/><text x="16" y="21.5" font-size="14" font-weight="700" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif">ABC</text></svg>'
+    icon = "/brand/logo-64.png"
+    iconHeight = 32
   [params.assets]
-    favicon = "/favicon.svg"
+    favicon = "/favicon.ico"
+    favicon16x16 = "/favicon-32x32.png"
+    favicon32x32 = "/favicon-32x32.png"
+    apple_touch_icon = "/apple-touch-icon.png"
+    safari_pinned_tab = "/android-chrome-512x512.png"
+    theme_color = "#F24615"
   [params.footer]
     text = "出海ABC · 服务器 —— 出海服务器，少踩坑少花钱。本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 [推广披露](/disclosure/)。价格以官网为准。"
 
