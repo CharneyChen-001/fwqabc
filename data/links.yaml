@@ -36,7 +36,14 @@ racknerd:
   cta: 查看 RackNerd 特价页
   landing: https://www.racknerd.com/specials/
   aff: ""
-  # WHMCS 格式 my.racknerd.com/aff.php?aff=ID&pid=PID 直达产品（社区公开链接可见），落到 specials 页的参数待核实
+  # 旧优惠文章保留官方普通入口；商家目录使用下方独立推广入口及已核实的产品深链。
+  aff_template: https://my.racknerd.com/aff.php?aff={aff}
+
+racknerd-standard:
+  cta: 通过推广链接访问 RackNerd
+  landing: https://www.racknerd.com/
+  aff: "21792"
+  # 官方推广后台已核实普通入口；产品目录使用 aff + pid，地区和周期在配置页选择。
   aff_template: https://my.racknerd.com/aff.php?aff={aff}
 
 vultr:

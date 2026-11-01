@@ -2,6 +2,14 @@
   "checked_on": "2026-11-01",
   "programs": [
     {
+      "id": "racknerd-standard", "merchant": "RackNerd", "name": "普通推广", "affiliate_id": "21792",
+      "url": "https://my.racknerd.com/aff.php?aff=21792", "official_url": "https://www.racknerd.com/",
+      "link_scope": "支持 pid 产品预选；地区、系统及付款周期需在配置页选择", "status": "官方后台产品链接已核实，未进行计佣交易实测",
+      "reward": "VPS、共享主机、分销主机与混合服务器为15%循环佣金；独立服务器、托管、灾难恢复及私有云为10%循环佣金。",
+      "conditions": "有效客户服务需活跃超过30天；后台最低提现50美元，可用PayPal或账户余额。Cookie至少30天，后点击的推广链接覆盖之前归属。Flash/Exclusive等指定产品可能不计佣；优惠券、返现或折扣码导向的推广页面须核对官方广告条款。",
+      "source_url": "https://www.racknerd.com/affiliates-terms-of-service", "checked_on": "2026-11-01"
+    },
+    {
       "id": "bandwagonhost-standard", "merchant": "搬瓦工", "name": "普通推广", "affiliate_id": "85446",
       "url": "https://bandwagonhost.com/aff.php?aff=85446", "official_url": "https://bandwagonhost.com/",
       "link_scope": "支持产品、机房与付款周期预选", "status": "后台链接及目录参数已核实",

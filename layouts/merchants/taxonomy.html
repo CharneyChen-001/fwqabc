@@ -36,4 +36,16 @@
   <p class="vultr-source">核对日期：{{ .checked_on }} · 推广入口用于注册，登录后选择套餐与地区</p>
 </section>
 {{- end }}
+{{- with hugo.Data.racknerd_catalog }}
+<section class="racknerd-directory-entry" aria-labelledby="racknerd-directory-title">
+  <p class="racknerd-eyebrow">当前推荐产品目录</p>
+  <h2 id="racknerd-directory-title">RackNerd</h2>
+  <p>{{ .product_count }} 款产品 · {{ .offer_count }} 条周期报价 · 查看 VPS、共享主机与分销主机的配置、地区和付款周期。</p>
+  <nav class="racknerd-series-nav" aria-label="RackNerd 产品系列">
+    {{ range .series }}<a href="{{ printf "/merchants/racknerd/#racknerd-%s" .id | relURL }}"><strong>{{ .label }}</strong><span>{{ .product_count }} 款产品</span></a>{{ end }}
+  </nav>
+  <a class="go-btn" href="{{ "/merchants/racknerd/#products" | relURL }}">查看 RackNerd 产品目录</a>
+  <p class="racknerd-source">核对日期：{{ .checked_on }} · 推广链接指定产品，地区与付款周期需在官网选择</p>
+</section>
+{{- end }}
 {{- end }}

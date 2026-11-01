@@ -1,25 +1,31 @@
 ---
 title: "RackNerd"
-description: "RackNerd 商家页：美国多机房的低价 VPS，促销款集中在官方 specials 页；官方说明默认不退款，购买前须知与当前活动状态。"
+description: "RackNerd 产品目录：按 KVM VPS、共享主机与分销主机查看配置、地区、付款周期和美元价格，附产品入口及使用说明。"
 merchant: "racknerd"
+keywords: ["RackNerd", "KVM VPS", "共享主机", "分销主机", "产品目录"]
 ---
 
-> 本页含推广链接，详见[推广披露](/disclosure/)。信息于 2026-11-01（北京时间）核对，以官网为准。
+> 本页含推广链接，详见[推广披露](/disclosure/)。信息于 2026-11-01 核对；价格、地区与库存以官网配置页为准。
 
 ## 商家简介
 
-RackNerd 提供 VPS、独立服务器等产品，官网列出的机房包括洛杉矶、圣何塞、犹他、芝加哥、达拉斯、纽约、亚特兰大、阿什本、多伦多等（来源：[racknerd.com](https://www.racknerd.com/)）。促销款集中发布在官方 [specials 页](https://www.racknerd.com/specials/)。
+RackNerd 提供 VPS、共享主机、分销主机、独立服务器和机房托管等服务。下方收录当前官方推广门户推荐的 11 款产品，按系列整理配置与已确认的付款周期，不代表全站全部产品。官网机房布局不等于每款产品的可选地区，购买时需核对实际配置菜单。
 
-## 当前优惠
+{{< racknerd-catalog >}}
 
-2026 黑五专场**尚未公布**，公布后我们会更新到[双11 VPS 优惠汇总](/deals/2026-double11-vps-deals/)。往年价格只作历史参考，不代表今年。
+## 其他产品系列
 
-{{< dealbox slug="racknerd" merchant="RackNerd 特价页" price="黑五价格待公布" validity="以官网活动页为准" limits="美国机房为主 · 普通线路" thumb="none" >}}
+- [常规 KVM VPS](https://www.racknerd.com/kvm-vps)、[AMD Ryzen VPS](https://www.racknerd.com/ryzen-vps)、[Windows VPS](https://www.racknerd.com/windows-vps)：配置、价格和地区与上方推荐产品不同，按对应官网页面确认。
+- [AI VPS](https://www.racknerd.com/ai-vps)：主要提供 KVM VPS 配合一键应用安装，不代表包含 GPU 或模型调用额度；一键安装会重装系统并清空原有数据。
+- [混合服务器](https://www.racknerd.com/hybrid-dedicated-servers)、[独立服务器](https://www.racknerd.com/dedicated-servers)、[Ryzen 独立服务器](https://www.racknerd.com/amd-ryzen-dedicated-servers)、[机房托管](https://www.racknerd.com/colocation)：具体配置、地区与交付时间以官网为准。
 
-## 退款要点（买前必看）
+## 使用与购买说明
 
-- 官方 FAQ 写明：**按服务条款不提供退款，也没有退款保证**；申请立即取消也不退款（来源：[racknerd.com FAQ](https://www.racknerd.com/)）。
-- 官方知识库：默认收款后不退款，个别情况逐案处理（来源：[RackNerd 知识库](https://my.racknerd.com/index.php?rp=/knowledgebase)）。
-- 建议先买月付或低价款试用，确认合适再买年付。
+- VPS 和独立服务器默认非托管，系统维护、安全配置与应用管理需自行负责；VPS 默认不包含托管备份，应另外保存重要数据。
+- VPS 的 CPU 与磁盘 I/O 受公平共享规则约束，vCPU 数量不等于可以无限持续跑满的独享物理核心。
+- 当前条款默认付款后不退款，官方保留个案处理权；不提供保证退款的承诺。购买前先确认产品、地区与整个付款周期的总价。
+- 共享主机和分销主机用于网站托管，不应当作通用云盘、备份仓库或流媒体存储。
+
+来源：[官方服务条款](https://www.racknerd.com/terms-of-service)、[官方机房目录](https://www.racknerd.com/datacenters)。
 
 ## 相关文章

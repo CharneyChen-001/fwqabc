@@ -19,6 +19,7 @@ def export():
     bwh = read("bandwagonhost_catalog.json")
     vultr = read("vultr_catalog.json")
     services = read("vultr_services.json")
+    racknerd = read("racknerd_catalog.json")
     programs = read("affiliate_programs.json")["programs"]
     normal = next(x for x in programs if x["id"] == "vultr-standard")
     rows, checks = [], []
@@ -74,12 +75,43 @@ def export():
                      "official_url":service["official_url"], "purchase_url":"", "affiliate_url":normal["url"], "program":"普通推广", "link_scope":normal["link_scope"],
                      "availability":service["status"], "checked_on":services["checked_on"], "source_url":"\n".join(service["source_urls"]),
                      "notes":" ".join(filter(None, [service["description"], service["price_note"], service["region_note"], service.get("note", "")]))})
+    racknerd_series = {s["id"]: s["label"] for s in racknerd["series"]}
+    racknerd_start = len(rows)
+    for product in racknerd["products"]:
+        details = [product["storage_type"], "流量：" + product["bandwidth_label"], product["region_note"], product["notes"]]
+        if product.get("domain_limit") is not None:
+            details.append("可托管域名：" + str(product["domain_limit"]))
+        if product.get("cpanel_accounts") is not None:
+            details.append(f"cPanel 账号数：{product['cpanel_accounts']}")
+        for offer in product["offers"]:
+            params = urllib.parse.parse_qs(urllib.parse.urlparse(offer["affiliate_url"]).query)
+            assert params == {"aff": [racknerd["affiliate_id"]], "pid": [product["product_id"]]}, "RackNerd 推广链接参数异常"
+            rows.append({"record_id": f"racknerd:{product['product_id']}:{offer['period']}",
+                         "merchant": "RackNerd", "category": product["category"], "series": racknerd_series[product["series_id"]],
+                         "product_id": product["product_id"], "name": product["name"],
+                         "country": "美国" if product["regions"] else "待核实", "city": "、".join(r["label"] for r in product["regions"]) or "待核实",
+                         "region_id": "", "datacenter": "配置页选择" if product["regions"] else "待核实",
+                         "vcpu_count": product["vcpu_count"], "ram_mb": product["ram_mb"], "disk_gb": product["storage_gb"], "disk_count": None,
+                         "bandwidth_gb": product["bandwidth_gb"] if product["bandwidth_period"] == "月" else None,
+                         "gpu_type": "", "gpu_count": None, "gpu_vram_gb": None,
+                         "currency": "USD", "billing_mode": "固定周期", "period": offer["label"], "period_price": offer["amount_cents"] / 100,
+                         "price_hourly": None, "price_monthly": None, "unit_price": None, "unit": offer["label"],
+                         "official_url": product["official_url"], "purchase_url": product["purchase_url"], "affiliate_url": offer["affiliate_url"],
+                         "program": "普通推广", "link_scope": racknerd["link_scope"], "availability": product["availability"],
+                         "checked_on": product["checked_on"], "source_url": "\n".join(product["source_urls"]),
+                         "notes": " ".join(details)})
+    assert len(rows) - racknerd_start == racknerd["offer_count"]
+    assert len(racknerd["products"]) == racknerd["product_count"]
     assert len({r["record_id"] for r in rows}) == len(rows), "重复记录编号"
     campaign = next(p for p in programs if p["id"] == "vultr-credit")
     promotions = [{"merchant":"Vultr", "name":campaign["name"], "category":"推广活动", "billing_mode":"测试赠金", "price_monthly":None, "price_hourly":None, "unit_price":None, "unit":"额度，非现金", "credit_usd":300, "credit_days":30, "conditions":campaign["conditions"], "status":campaign["status"], "affiliate_url":campaign["url"], "source_url":campaign["source_url"], "checked_on":campaign["checked_on"], "notes":"活动截止日期未公布；不可把普通推广链接替换成活动链接后仍沿用旧条件。"}]
     for s in services["services"]:
         if s["category"] in ("附加费用", "附加服务"):
             promotions.append({"merchant":"Vultr", "name":s["name"], "category":s["category"], "billing_mode":s["pricing_model"], "price_monthly":s.get("price_monthly"), "price_hourly":s.get("price_hourly"), "unit_price":s.get("unit_price"), "unit":s.get("unit", ""), "conditions":s["price_note"], "status":s["status"], "affiliate_url":normal["url"], "source_url":"\n".join(s["source_urls"]), "checked_on":services["checked_on"], "notes":s.get("note", "")})
+    promotions.append({"merchant": "RackNerd", "name": "推荐 KVM VPS 安装费", "category": "附加费用", "billing_mode": "一次性费用",
+                       "unit_price": 0, "unit": "实例", "conditions": "仅核实 PID 952–956 五款 VPS；配置页安装费均为 0 美元。",
+                       "status": "配置页已核实", "affiliate_url": racknerd["affiliate_url"], "source_url": "\n".join(p["purchase_url"] for p in racknerd["products"] if p["series_id"] == "vps"),
+                       "checked_on": racknerd["checked_on"], "notes": "此处为安装费，套餐价格另列；未验证其他系列安装费。"})
     checks.extend([
         {"merchant":"搬瓦工", "item":"已有购买组合", "status":"通过", "detail":f"{bwh['product_count']}款产品、{bwh['datacenter_count']}个机房、{bwh['offer_count']}条周期组合；保留完整原始推广链接。", "source_url":bwh["source_url"], "checked_on":bwh["checked_on"]},
         {"merchant":"搬瓦工", "item":"内存字段", "status":"待核实", "detail":"产品92、165–169的官方内存MB值非整GiB，保留原值并标注，不擅自纠正。", "source_url":bwh["source_url"], "checked_on":bwh["checked_on"]},
@@ -93,8 +125,14 @@ def export():
     for service in services["services"]:
         if service["status"] != "已核实":
             checks.append({"merchant":"Vultr", "item":service["name"], "status":service["status"], "detail":service["price_note"], "source_url":"\n".join(service["source_urls"]), "checked_on":services["checked_on"]})
+    checks.extend([
+        {"merchant": "RackNerd", "item": "当前推荐产品范围", "status": "已核实", "detail": f"{racknerd['product_count']}款产品、{racknerd['offer_count']}条付款周期报价。5款VPS年付及两年付，另6款共享/分销主机年付；不代表全站全部SKU。", "source_url": "\n".join(racknerd["source_urls"]), "checked_on": racknerd["checked_on"]},
+        {"merchant": "RackNerd", "item": "推广链接预选范围", "status": "仅指定产品", "detail": "官方后台已生成 aff=21792 与 pid 的产品链接。地区、系统和付款周期须在配置页选择；不同周期可以使用相同产品推广链接，未实施计佣交易测试。", "source_url": "https://my.racknerd.com/index.php?m=affiliate_center", "checked_on": racknerd["checked_on"]},
+        {"merchant": "RackNerd", "item": "地区、流量周期与交付库存", "status": "部分待核实", "detail": "5款VPS配置页列纽约、洛杉矶DC03、达拉斯、西雅图，交付库存未实测。共享/分销地区及流量统计周期未逐项核实，月流量栏留空并在备注保留官方流量原值。", "source_url": "\n".join(p["purchase_url"] for p in racknerd["products"] if p["series_id"] == "vps"), "checked_on": racknerd["checked_on"]},
+        {"merchant": "RackNerd", "item": "活动年份与推广条款", "status": "已注明限制", "detail": "共享933及分销936仍指向blackfriday2025路径，不标为2026新品。官方联盟条款对优惠码、返现等引流页面有限制，相关页面发布前须核对条款。", "source_url": "https://www.racknerd.com/affiliates-terms-of-service", "checked_on": racknerd["checked_on"]},
+    ])
     return {"checked_on":vultr["checked_on"], "products":rows, "programs":programs, "promotions":promotions, "checks":checks,
-            "counts":{"bandwagonhost_offers":bwh["offer_count"], "vultr_offers":vultr["offer_count"], "vultr_services":len(services["services"]), "total_rows":len(rows)}}
+            "counts":{"bandwagonhost_offers":bwh["offer_count"], "vultr_offers":vultr["offer_count"], "vultr_services":len(services["services"]), "racknerd_products":racknerd["product_count"], "racknerd_offers":racknerd["offer_count"], "total_rows":len(rows)}}
 
 
 if __name__ == "__main__":

@@ -10,6 +10,8 @@ fwqabc.com {
 	redir /go/namesilo/ https://www.namesilo.com/ 302
 	redir /go/racknerd https://www.racknerd.com/specials/ 302
 	redir /go/racknerd/ https://www.racknerd.com/specials/ 302
+	redir /go/racknerd-standard https://my.racknerd.com/aff.php?aff=21792 302
+	redir /go/racknerd-standard/ https://my.racknerd.com/aff.php?aff=21792 302
 	redir /go/raksmart https://www.raksmart.com/activity/index/page/activitypage_25.html 302
 	redir /go/raksmart/ https://www.raksmart.com/activity/index/page/activitypage_25.html 302
 	redir /go/vultr https://www.vultr.com/?ref=9932591 302

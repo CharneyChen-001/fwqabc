@@ -1,0 +1,41 @@
+.main:has(.racknerd-catalog){max-width:calc(1180px + var(--gap)*2)}
+.racknerd-catalog,.racknerd-directory-entry{--racknerd-accent:#235b75;--racknerd-muted:#475569;--racknerd-tint:#f1f5f9;--racknerd-border:#d8dee7}
+[data-theme=dark] :is(.racknerd-catalog,.racknerd-directory-entry){--racknerd-accent:#9ccfe8;--racknerd-muted:#cbd5e1;--racknerd-tint:#263241;--racknerd-border:#465162}
+@media(prefers-color-scheme:dark){[data-theme=auto] :is(.racknerd-catalog,.racknerd-directory-entry){--racknerd-accent:#9ccfe8;--racknerd-muted:#cbd5e1;--racknerd-tint:#263241;--racknerd-border:#465162}}
+.racknerd-catalog{margin:2em 0;scroll-margin-top:6em}
+.racknerd-heading{display:flex;align-items:baseline;justify-content:space-between;gap:1em;flex-wrap:wrap}
+.post-content .racknerd-catalog :is(h2,h3){margin:0}
+.racknerd-eyebrow{font-size:.8em;font-weight:600;color:var(--racknerd-accent);margin:0 0 .35em!important}
+.racknerd-meta,.racknerd-source{font-size:.8em;color:var(--racknerd-muted)}
+.post-content .racknerd-source{margin:.8em 0 1.2em}
+.racknerd-source a,.racknerd-source-link{color:var(--racknerd-accent)!important}
+.racknerd-link-note,.racknerd-region-note{padding:.8em 1em;background:var(--racknerd-tint);border-left:3px solid var(--racknerd-accent);font-size:.85em;color:var(--primary)}
+.racknerd-series-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65em;margin:1.2em 0 1.7em}
+.racknerd-series-nav a{display:flex;flex-direction:column;gap:.25em;padding:.8em;border:1px solid var(--racknerd-border);border-radius:8px;background:var(--entry);color:var(--primary)!important;box-shadow:none!important;text-decoration:none;overflow-wrap:anywhere}
+.racknerd-series-nav a:hover{background:var(--racknerd-tint);border-color:var(--racknerd-accent)}
+.racknerd-series-nav span{font-size:.75em;color:var(--racknerd-muted)}
+.racknerd-series{margin:2em 0;scroll-margin-top:6em}
+.post-content .racknerd-description{font-size:.9em;margin:.6em 0}
+.racknerd-products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1em}
+.racknerd-product{display:flex;flex-direction:column;padding:1.1em;border:1px solid var(--racknerd-border);border-radius:10px;background:var(--entry);color:var(--primary);min-width:0;overflow-wrap:anywhere;scroll-margin-top:6em}
+.post-content .racknerd-product h4{margin:0 0 .6em;font-size:1.1em}
+.post-content .racknerd-product .racknerd-meta{margin:0 0 .25em}
+.post-content .racknerd-specs,.post-content .racknerd-prices{display:block;margin:0}
+.post-content .racknerd-product dt,.post-content .racknerd-product dd{width:auto;max-width:100%;margin:0}
+.post-content .racknerd-product dt{white-space:nowrap}
+.racknerd-specs>div,.racknerd-prices>div{display:flex;justify-content:space-between;gap:.6em;padding:.35em 0}
+.post-content .racknerd-specs{font-size:.85em;margin-bottom:1em;flex:1}
+.racknerd-specs dt{color:var(--racknerd-muted);flex-shrink:0}
+.racknerd-specs dd,.racknerd-prices dd{margin:0;text-align:right}
+.racknerd-prices{padding:.6em .8em;border-radius:7px;background:var(--racknerd-tint);font-size:.9em}
+.racknerd-prices dd{font-weight:700;font-variant-numeric:tabular-nums}
+.post-content .racknerd-status{font-size:.75em;color:var(--racknerd-muted);margin:.8em 0 .3em}
+.racknerd-product .go-btn{font-size:.85em;text-align:center;white-space:normal}
+.racknerd-source-link{font-size:.75em;align-self:center;margin-top:.4em}
+.racknerd-catalog a:focus-visible,.racknerd-directory-entry a:focus-visible{outline:2px solid var(--racknerd-accent);outline-offset:3px}
+.racknerd-directory-entry{margin:2em 0;padding:1.3em;border:1px solid var(--border);border-radius:10px;background:var(--entry)}
+.racknerd-directory-entry h2{font-size:1.35em;margin:.3em 0}
+.racknerd-directory-entry>p:not(.racknerd-eyebrow){font-size:.9em;color:var(--racknerd-muted)}
+.racknerd-directory-entry .racknerd-source{font-size:.75em!important;margin-top:.65em}
+@media(max-width:900px){.racknerd-products{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.racknerd-products{grid-template-columns:1fr}.racknerd-series-nav{grid-template-columns:1fr}.racknerd-heading{gap:.25em}.racknerd-product,.racknerd-directory-entry{padding:1em}.racknerd-directory-entry .go-btn{display:block;text-align:center;white-space:normal}}

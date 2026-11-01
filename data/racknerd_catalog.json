@@ -1,0 +1,560 @@
+{
+  "checked_on": "2026-11-01",
+  "affiliate_id": "21792",
+  "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792",
+  "product_count": 11,
+  "offer_count": 16,
+  "link_scope": "仅指定产品，不预选地区、操作系统或付款周期",
+  "source_urls": [
+    "https://my.racknerd.com/index.php?m=affiliate_center",
+    "https://www.racknerd.com/specials/"
+  ],
+  "scope_note": "当前官方推广门户推荐的11款产品，不代表全站所有产品。",
+  "series": [
+    {
+      "id": "vps",
+      "label": "KVM VPS",
+      "product_count": 5,
+      "description": "Linux VPS，完整 root 权限；1 Gbps 端口、1 个独立 IPv4、ctrl 控制面板。",
+      "region_note": "五款配置页当前均列出美国纽约、洛杉矶 DC03、达拉斯、西雅图。安装费为 0 美元，交付库存未实测。"
+    },
+    {
+      "id": "shared",
+      "label": "共享主机",
+      "product_count": 3,
+      "description": "通过 cPanel 管理网站，按套餐提供可托管域名数量。",
+      "region_note": "以下三款的地区及其他付款周期尚未逐项核实，请在官网配置页确认。"
+    },
+    {
+      "id": "reseller",
+      "label": "分销主机",
+      "product_count": 3,
+      "description": "通过 cPanel / WHM 管理多个主机账号，适合分别托管客户网站。",
+      "region_note": "以下三款的地区及其他付款周期尚未逐项核实，请在官网配置页确认。"
+    }
+  ],
+  "products": [
+    {
+      "product_id": "952",
+      "series_id": "vps",
+      "category": "VPS",
+      "name": "1 GB KVM VPS",
+      "vcpu_count": 1,
+      "ram_mb": 1024,
+      "storage_gb": 20,
+      "storage_type": "RAID-10 SSD",
+      "bandwidth_gb": 3000,
+      "bandwidth_period": "月",
+      "bandwidth_label": "3 TB/月",
+      "domain_limit": null,
+      "cpanel_accounts": null,
+      "port_mbps": 1000,
+      "ipv4_count": 1,
+      "setup_amount_cents": 0,
+      "regions": [
+        {
+          "id": "new-york",
+          "label": "纽约"
+        },
+        {
+          "id": "los-angeles-dc03",
+          "label": "洛杉矶 DC03"
+        },
+        {
+          "id": "dallas",
+          "label": "达拉斯"
+        },
+        {
+          "id": "seattle",
+          "label": "西雅图"
+        }
+      ],
+      "region_note": "五款配置页当前均列出美国纽约、洛杉矶 DC03、达拉斯、西雅图。安装费为 0 美元，交付库存未实测。",
+      "availability": "配置页可选，交付库存未实测",
+      "official_url": "https://www.racknerd.com/specials/",
+      "purchase_url": "https://my.racknerd.com/cart.php?a=add&pid=952",
+      "source_urls": [
+        "https://www.racknerd.com/specials/",
+        "https://my.racknerd.com/cart.php?a=add&pid=952"
+      ],
+      "checked_on": "2026-11-01",
+      "notes": "官方说明本批套餐可按同价续费；两年付为年付价格的两倍。推广链接只指定产品，地区与付款周期需手动选择。",
+      "offers": [
+        {
+          "period": "annually",
+          "label": "年付",
+          "amount_cents": 2199,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=952"
+        },
+        {
+          "period": "biennially",
+          "label": "两年付",
+          "amount_cents": 4398,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=952"
+        }
+      ]
+    },
+    {
+      "product_id": "953",
+      "series_id": "vps",
+      "category": "VPS",
+      "name": "2 GB KVM VPS",
+      "vcpu_count": 2,
+      "ram_mb": 2048,
+      "storage_gb": 35,
+      "storage_type": "RAID-10 SSD",
+      "bandwidth_gb": 5000,
+      "bandwidth_period": "月",
+      "bandwidth_label": "5 TB/月",
+      "domain_limit": null,
+      "cpanel_accounts": null,
+      "port_mbps": 1000,
+      "ipv4_count": 1,
+      "setup_amount_cents": 0,
+      "regions": [
+        {
+          "id": "new-york",
+          "label": "纽约"
+        },
+        {
+          "id": "los-angeles-dc03",
+          "label": "洛杉矶 DC03"
+        },
+        {
+          "id": "dallas",
+          "label": "达拉斯"
+        },
+        {
+          "id": "seattle",
+          "label": "西雅图"
+        }
+      ],
+      "region_note": "五款配置页当前均列出美国纽约、洛杉矶 DC03、达拉斯、西雅图。安装费为 0 美元，交付库存未实测。",
+      "availability": "配置页可选，交付库存未实测",
+      "official_url": "https://www.racknerd.com/specials/",
+      "purchase_url": "https://my.racknerd.com/cart.php?a=add&pid=953",
+      "source_urls": [
+        "https://www.racknerd.com/specials/",
+        "https://my.racknerd.com/cart.php?a=add&pid=953"
+      ],
+      "checked_on": "2026-11-01",
+      "notes": "官方说明本批套餐可按同价续费；两年付为年付价格的两倍。推广链接只指定产品，地区与付款周期需手动选择。",
+      "offers": [
+        {
+          "period": "annually",
+          "label": "年付",
+          "amount_cents": 3599,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=953"
+        },
+        {
+          "period": "biennially",
+          "label": "两年付",
+          "amount_cents": 7198,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=953"
+        }
+      ]
+    },
+    {
+      "product_id": "954",
+      "series_id": "vps",
+      "category": "VPS",
+      "name": "4 GB KVM VPS",
+      "vcpu_count": 3,
+      "ram_mb": 4096,
+      "storage_gb": 60,
+      "storage_type": "RAID-10 SSD",
+      "bandwidth_gb": 7000,
+      "bandwidth_period": "月",
+      "bandwidth_label": "7 TB/月",
+      "domain_limit": null,
+      "cpanel_accounts": null,
+      "port_mbps": 1000,
+      "ipv4_count": 1,
+      "setup_amount_cents": 0,
+      "regions": [
+        {
+          "id": "new-york",
+          "label": "纽约"
+        },
+        {
+          "id": "los-angeles-dc03",
+          "label": "洛杉矶 DC03"
+        },
+        {
+          "id": "dallas",
+          "label": "达拉斯"
+        },
+        {
+          "id": "seattle",
+          "label": "西雅图"
+        }
+      ],
+      "region_note": "五款配置页当前均列出美国纽约、洛杉矶 DC03、达拉斯、西雅图。安装费为 0 美元，交付库存未实测。",
+      "availability": "配置页可选，交付库存未实测",
+      "official_url": "https://www.racknerd.com/specials/",
+      "purchase_url": "https://my.racknerd.com/cart.php?a=add&pid=954",
+      "source_urls": [
+        "https://www.racknerd.com/specials/",
+        "https://my.racknerd.com/cart.php?a=add&pid=954"
+      ],
+      "checked_on": "2026-11-01",
+      "notes": "官方说明本批套餐可按同价续费；两年付为年付价格的两倍。推广链接只指定产品，地区与付款周期需手动选择。",
+      "offers": [
+        {
+          "period": "annually",
+          "label": "年付",
+          "amount_cents": 5999,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=954"
+        },
+        {
+          "period": "biennially",
+          "label": "两年付",
+          "amount_cents": 11998,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=954"
+        }
+      ]
+    },
+    {
+      "product_id": "955",
+      "series_id": "vps",
+      "category": "VPS",
+      "name": "6 GB KVM VPS",
+      "vcpu_count": 6,
+      "ram_mb": 6144,
+      "storage_gb": 100,
+      "storage_type": "RAID-10 SSD",
+      "bandwidth_gb": 12000,
+      "bandwidth_period": "月",
+      "bandwidth_label": "12 TB/月",
+      "domain_limit": null,
+      "cpanel_accounts": null,
+      "port_mbps": 1000,
+      "ipv4_count": 1,
+      "setup_amount_cents": 0,
+      "regions": [
+        {
+          "id": "new-york",
+          "label": "纽约"
+        },
+        {
+          "id": "los-angeles-dc03",
+          "label": "洛杉矶 DC03"
+        },
+        {
+          "id": "dallas",
+          "label": "达拉斯"
+        },
+        {
+          "id": "seattle",
+          "label": "西雅图"
+        }
+      ],
+      "region_note": "五款配置页当前均列出美国纽约、洛杉矶 DC03、达拉斯、西雅图。安装费为 0 美元，交付库存未实测。",
+      "availability": "配置页可选，交付库存未实测",
+      "official_url": "https://www.racknerd.com/specials/",
+      "purchase_url": "https://my.racknerd.com/cart.php?a=add&pid=955",
+      "source_urls": [
+        "https://www.racknerd.com/specials/",
+        "https://my.racknerd.com/cart.php?a=add&pid=955"
+      ],
+      "checked_on": "2026-11-01",
+      "notes": "官方说明本批套餐可按同价续费；两年付为年付价格的两倍。推广链接只指定产品，地区与付款周期需手动选择。",
+      "offers": [
+        {
+          "period": "annually",
+          "label": "年付",
+          "amount_cents": 8999,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=955"
+        },
+        {
+          "period": "biennially",
+          "label": "两年付",
+          "amount_cents": 17998,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=955"
+        }
+      ]
+    },
+    {
+      "product_id": "956",
+      "series_id": "vps",
+      "category": "VPS",
+      "name": "8 GB KVM VPS",
+      "vcpu_count": 7,
+      "ram_mb": 8192,
+      "storage_gb": 150,
+      "storage_type": "RAID-10 SSD",
+      "bandwidth_gb": 20000,
+      "bandwidth_period": "月",
+      "bandwidth_label": "20 TB/月",
+      "domain_limit": null,
+      "cpanel_accounts": null,
+      "port_mbps": 1000,
+      "ipv4_count": 1,
+      "setup_amount_cents": 0,
+      "regions": [
+        {
+          "id": "new-york",
+          "label": "纽约"
+        },
+        {
+          "id": "los-angeles-dc03",
+          "label": "洛杉矶 DC03"
+        },
+        {
+          "id": "dallas",
+          "label": "达拉斯"
+        },
+        {
+          "id": "seattle",
+          "label": "西雅图"
+        }
+      ],
+      "region_note": "五款配置页当前均列出美国纽约、洛杉矶 DC03、达拉斯、西雅图。安装费为 0 美元，交付库存未实测。",
+      "availability": "配置页可选，交付库存未实测",
+      "official_url": "https://www.racknerd.com/specials/",
+      "purchase_url": "https://my.racknerd.com/cart.php?a=add&pid=956",
+      "source_urls": [
+        "https://www.racknerd.com/specials/",
+        "https://my.racknerd.com/cart.php?a=add&pid=956"
+      ],
+      "checked_on": "2026-11-01",
+      "notes": "官方说明本批套餐可按同价续费；两年付为年付价格的两倍。推广链接只指定产品，地区与付款周期需手动选择。",
+      "offers": [
+        {
+          "period": "annually",
+          "label": "年付",
+          "amount_cents": 11999,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=956"
+        },
+        {
+          "period": "biennially",
+          "label": "两年付",
+          "amount_cents": 23998,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=956"
+        }
+      ]
+    },
+    {
+      "product_id": "933",
+      "series_id": "shared",
+      "category": "共享主机",
+      "name": "30 GB 共享主机",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": 30,
+      "storage_type": "NVMe",
+      "bandwidth_gb": 3000,
+      "bandwidth_period": "后台未注明",
+      "bandwidth_label": "3 TB（周期待核实）",
+      "domain_limit": 2,
+      "cpanel_accounts": null,
+      "port_mbps": null,
+      "ipv4_count": null,
+      "setup_amount_cents": null,
+      "regions": [],
+      "region_note": "地区及其他付款周期待核实",
+      "availability": "推广后台列出，地区与库存待核实",
+      "official_url": "https://www.racknerd.com/shared-hosting",
+      "purchase_url": "https://my.racknerd.com/cart.php?a=add&pid=933",
+      "source_urls": [
+        "https://my.racknerd.com/index.php?m=affiliate_center",
+        "https://my.racknerd.com/cart.php?a=add&pid=933"
+      ],
+      "checked_on": "2026-11-01",
+      "notes": "当前推广后台推荐产品；抽查 PID 933、936 入口仍沿用 2025 黑五路径，不标作 2026 新活动。流量周期、地区及交付库存待核实。仅展示已确认的年付报价。",
+      "offers": [
+        {
+          "period": "annually",
+          "label": "年付",
+          "amount_cents": 1049,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=933"
+        }
+      ]
+    },
+    {
+      "product_id": "934",
+      "series_id": "shared",
+      "category": "共享主机",
+      "name": "85 GB 共享主机",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": 85,
+      "storage_type": "NVMe",
+      "bandwidth_gb": 10000,
+      "bandwidth_period": "后台未注明",
+      "bandwidth_label": "10 TB（周期待核实）",
+      "domain_limit": 10,
+      "cpanel_accounts": null,
+      "port_mbps": null,
+      "ipv4_count": null,
+      "setup_amount_cents": null,
+      "regions": [],
+      "region_note": "地区及其他付款周期待核实",
+      "availability": "推广后台列出，地区与库存待核实",
+      "official_url": "https://www.racknerd.com/shared-hosting",
+      "purchase_url": "https://my.racknerd.com/cart.php?a=add&pid=934",
+      "source_urls": [
+        "https://my.racknerd.com/index.php?m=affiliate_center",
+        "https://my.racknerd.com/cart.php?a=add&pid=934"
+      ],
+      "checked_on": "2026-11-01",
+      "notes": "当前推广后台推荐产品；抽查 PID 933、936 入口仍沿用 2025 黑五路径，不标作 2026 新活动。流量周期、地区及交付库存待核实。仅展示已确认的年付报价。",
+      "offers": [
+        {
+          "period": "annually",
+          "label": "年付",
+          "amount_cents": 2499,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=934"
+        }
+      ]
+    },
+    {
+      "product_id": "935",
+      "series_id": "shared",
+      "category": "共享主机",
+      "name": "200 GB 共享主机",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": 200,
+      "storage_type": "NVMe",
+      "bandwidth_gb": 30000,
+      "bandwidth_period": "后台未注明",
+      "bandwidth_label": "30 TB（周期待核实）",
+      "domain_limit": "不限",
+      "cpanel_accounts": null,
+      "port_mbps": null,
+      "ipv4_count": null,
+      "setup_amount_cents": null,
+      "regions": [],
+      "region_note": "地区及其他付款周期待核实",
+      "availability": "推广后台列出，地区与库存待核实",
+      "official_url": "https://www.racknerd.com/shared-hosting",
+      "purchase_url": "https://my.racknerd.com/cart.php?a=add&pid=935",
+      "source_urls": [
+        "https://my.racknerd.com/index.php?m=affiliate_center",
+        "https://my.racknerd.com/cart.php?a=add&pid=935"
+      ],
+      "checked_on": "2026-11-01",
+      "notes": "当前推广后台推荐产品；抽查 PID 933、936 入口仍沿用 2025 黑五路径，不标作 2026 新活动。流量周期、地区及交付库存待核实。仅展示已确认的年付报价。",
+      "offers": [
+        {
+          "period": "annually",
+          "label": "年付",
+          "amount_cents": 5900,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=935"
+        }
+      ]
+    },
+    {
+      "product_id": "936",
+      "series_id": "reseller",
+      "category": "分销主机",
+      "name": "75 GB 分销主机",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": 75,
+      "storage_type": "NVMe",
+      "bandwidth_gb": 2500,
+      "bandwidth_period": "后台未注明",
+      "bandwidth_label": "2.5 TB（周期待核实）",
+      "domain_limit": null,
+      "cpanel_accounts": 3,
+      "port_mbps": null,
+      "ipv4_count": null,
+      "setup_amount_cents": null,
+      "regions": [],
+      "region_note": "地区及其他付款周期待核实",
+      "availability": "推广后台列出，地区与库存待核实",
+      "official_url": "https://www.racknerd.com/reseller-hosting",
+      "purchase_url": "https://my.racknerd.com/cart.php?a=add&pid=936",
+      "source_urls": [
+        "https://my.racknerd.com/index.php?m=affiliate_center",
+        "https://my.racknerd.com/cart.php?a=add&pid=936"
+      ],
+      "checked_on": "2026-11-01",
+      "notes": "当前推广后台推荐产品；抽查 PID 933、936 入口仍沿用 2025 黑五路径，不标作 2026 新活动。流量周期、地区及交付库存待核实。仅展示已确认的年付报价。",
+      "offers": [
+        {
+          "period": "annually",
+          "label": "年付",
+          "amount_cents": 3488,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=936"
+        }
+      ]
+    },
+    {
+      "product_id": "937",
+      "series_id": "reseller",
+      "category": "分销主机",
+      "name": "110 GB 分销主机",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": 110,
+      "storage_type": "NVMe",
+      "bandwidth_gb": 5000,
+      "bandwidth_period": "后台未注明",
+      "bandwidth_label": "5 TB（周期待核实）",
+      "domain_limit": null,
+      "cpanel_accounts": 7,
+      "port_mbps": null,
+      "ipv4_count": null,
+      "setup_amount_cents": null,
+      "regions": [],
+      "region_note": "地区及其他付款周期待核实",
+      "availability": "推广后台列出，地区与库存待核实",
+      "official_url": "https://www.racknerd.com/reseller-hosting",
+      "purchase_url": "https://my.racknerd.com/cart.php?a=add&pid=937",
+      "source_urls": [
+        "https://my.racknerd.com/index.php?m=affiliate_center",
+        "https://my.racknerd.com/cart.php?a=add&pid=937"
+      ],
+      "checked_on": "2026-11-01",
+      "notes": "当前推广后台推荐产品；抽查 PID 933、936 入口仍沿用 2025 黑五路径，不标作 2026 新活动。流量周期、地区及交付库存待核实。仅展示已确认的年付报价。",
+      "offers": [
+        {
+          "period": "annually",
+          "label": "年付",
+          "amount_cents": 6488,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=937"
+        }
+      ]
+    },
+    {
+      "product_id": "938",
+      "series_id": "reseller",
+      "category": "分销主机",
+      "name": "180 GB 分销主机",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": 180,
+      "storage_type": "NVMe",
+      "bandwidth_gb": 9000,
+      "bandwidth_period": "后台未注明",
+      "bandwidth_label": "9 TB（周期待核实）",
+      "domain_limit": null,
+      "cpanel_accounts": 12,
+      "port_mbps": null,
+      "ipv4_count": null,
+      "setup_amount_cents": null,
+      "regions": [],
+      "region_note": "地区及其他付款周期待核实",
+      "availability": "推广后台列出，地区与库存待核实",
+      "official_url": "https://www.racknerd.com/reseller-hosting",
+      "purchase_url": "https://my.racknerd.com/cart.php?a=add&pid=938",
+      "source_urls": [
+        "https://my.racknerd.com/index.php?m=affiliate_center",
+        "https://my.racknerd.com/cart.php?a=add&pid=938"
+      ],
+      "checked_on": "2026-11-01",
+      "notes": "当前推广后台推荐产品；抽查 PID 933、936 入口仍沿用 2025 黑五路径，不标作 2026 新活动。流量周期、地区及交付库存待核实。仅展示已确认的年付报价。",
+      "offers": [
+        {
+          "period": "annually",
+          "label": "年付",
+          "amount_cents": 9488,
+          "affiliate_url": "https://my.racknerd.com/aff.php?aff=21792&pid=938"
+        }
+      ]
+    }
+  ]
+}

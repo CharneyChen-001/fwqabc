@@ -5,3 +5,6 @@ resources/_gen/
 *.key
 .env
 id_*
+# 商家推广总表仅保留本地，不纳入代码同步。
+docs/*.xlsx
+docs/~$*.xlsx

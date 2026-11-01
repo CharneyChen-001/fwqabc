@@ -1,0 +1,44 @@
+{{- $catalog := hugo.Data.racknerd_catalog -}}
+{{- with $catalog }}
+<section class="racknerd-catalog" id="products" aria-labelledby="racknerd-products-title">
+  <div class="racknerd-heading">
+    <div><p class="racknerd-eyebrow">按产品系列查看</p><h2 id="racknerd-products-title">RackNerd 产品目录</h2></div>
+    <p class="racknerd-meta">{{ .product_count }} 款推荐产品 · {{ .offer_count }} 条周期报价</p>
+  </div>
+  <p>{{ .scope_note }}价格单位为美元，下方价格为整个付款周期总价，库存与最终费用以官网配置页为准。</p>
+  <p class="racknerd-source">核对日期：<time datetime="{{ .checked_on }}">{{ .checked_on }}</time> · <a href="https://www.racknerd.com/specials/" target="_blank" rel="noopener">官方产品页面</a> · <a href="{{ "/disclosure/" | relURL }}">推广披露</a></p>
+  <div class="racknerd-link-note">推广链接只指定产品。进入官网后，请手动选择地区、操作系统及付款周期；下方报价不代表这些选项已经预选。</div>
+  <nav class="racknerd-series-nav" aria-label="RackNerd 产品系列">
+    {{- range .series }}<a href="#racknerd-{{ .id }}"><strong>{{ .label }}</strong><span>{{ .product_count }} 款产品</span></a>{{ end }}
+  </nav>
+  {{- range .series }}
+  <section class="racknerd-series" id="racknerd-{{ .id }}" aria-labelledby="racknerd-title-{{ .id }}">
+    <div class="racknerd-heading"><h3 id="racknerd-title-{{ .id }}">{{ .label }}</h3><span class="racknerd-meta">{{ .product_count }} 款产品</span></div>
+    <p class="racknerd-description">{{ .description }}</p>
+    <p class="racknerd-region-note">{{ .region_note }}</p>
+    <div class="racknerd-products">
+      {{- range where $catalog.products "series_id" .id }}
+      <article class="racknerd-product" id="racknerd-product-{{ .product_id }}" aria-labelledby="racknerd-name-{{ .product_id }}" data-product="{{ .product_id }}">
+        <header><p class="racknerd-meta">产品编号 {{ .product_id }}</p><h4 id="racknerd-name-{{ .product_id }}">{{ .name }}</h4></header>
+        <dl class="racknerd-specs">
+          {{- with .vcpu_count }}<div><dt>处理器</dt><dd>{{ . }} vCPU</dd></div>{{ end }}
+          {{- with .ram_mb }}<div><dt>内存</dt><dd>{{ div (int .) 1024 }} GB</dd></div>{{ end }}
+          <div><dt>存储</dt><dd>{{ .storage_gb }} GB {{ .storage_type }}</dd></div>
+          <div><dt>流量</dt><dd>{{ .bandwidth_label }}</dd></div>
+          {{- with .domain_limit }}<div><dt>托管域名</dt><dd>{{ if eq (printf "%v" .) "不限" }}不限数量{{ else }}{{ . }} 个{{ end }}</dd></div>{{ end }}
+          {{- with .cpanel_accounts }}<div><dt>cPanel 账号</dt><dd>{{ . }} 个</dd></div>{{ end }}
+        </dl>
+        <dl class="racknerd-prices" aria-label="美元周期总价">
+          {{- range .offers }}<div data-period="{{ .period }}"><dt>{{ .label }}</dt><dd>${{ printf "%.2f" (div (float .amount_cents) 100) }}</dd></div>{{ end }}
+        </dl>
+        <p class="racknerd-status">{{ .availability }}</p>
+        <a class="go-btn" href="{{ (index .offers 0).affiliate_url }}" target="_blank" rel="sponsored nofollow noopener" aria-label="通过推广链接配置 {{ .name }}，产品编号 {{ .product_id }}">去官网配置</a>
+        <a class="racknerd-source-link" href="{{ .purchase_url }}" target="_blank" rel="noopener">查看原始配置页</a>
+      </article>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+  <p class="racknerd-source">共享与分销主机的报价来自<a href="https://my.racknerd.com/index.php?m=affiliate_center" target="_blank" rel="noopener">官方推广门户（需登录）</a>。抽查的产品 933、936 仍沿用 2025 活动路径，本目录不将其标为 2026 新活动；未核实的地区、流量周期与其他付款周期不作推断。</p>
+</section>
+{{- end }}
