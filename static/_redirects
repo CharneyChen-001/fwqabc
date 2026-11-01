@@ -1,0 +1,11 @@
+# 自动生成：python3 scripts/gen-redirects.py（Cloudflare Pages / Netlify 格式）
+/go/bandwagonhost https://bandwagonhost.com/aff.php?aff=REPLACE_ME 302
+/go/bandwagonhost/ https://bandwagonhost.com/aff.php?aff=REPLACE_ME 302
+/go/namesilo https://www.namesilo.com/?rid=REPLACE_ME 302
+/go/namesilo/ https://www.namesilo.com/?rid=REPLACE_ME 302
+/go/racknerd https://my.racknerd.com/aff.php?aff=REPLACE_ME 302
+/go/racknerd/ https://my.racknerd.com/aff.php?aff=REPLACE_ME 302
+/go/raksmart https://www.raksmart.com/?aff=REPLACE_ME 302
+/go/raksmart/ https://www.raksmart.com/?aff=REPLACE_ME 302
+/go/vultr https://www.vultr.com/?ref=REPLACE_ME 302
+/go/vultr/ https://www.vultr.com/?ref=REPLACE_ME 302

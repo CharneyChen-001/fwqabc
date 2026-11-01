@@ -1,0 +1,69 @@
+baseURL = "https://fwqabc.com/"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
+hasCJKLanguage = true
+title = "服务器ABC"
+theme = "PaperMod"
+enableRobotsTXT = true
+pagination.pagerSize = 10
+
+[taxonomies]
+  tag = "tags"
+  merchant = "merchants"
+  route = "routes"
+  datacenter = "datacenters"
+
+[permalinks]
+  [permalinks.page]
+    deals = "/deals/:slug/"
+    review = "/review/:slug/"
+    guides = "/guides/:slug/"
+    tutorials = "/tutorials/:slug/"
+    tools = "/tools/:slug/"
+
+[params]
+  env = "production"
+  description = "国外VPS优惠与真实实测"
+  tagline = "国外VPS优惠与真实实测"
+  ShowBreadCrumbs = true
+  ShowReadingTime = true
+  ShowToc = true
+  ShowPostNavLinks = true
+  umami = ""          # Umami 统计脚本地址，如 https://analytics.example.com/script.js；留空=不启用
+  umamiWebsiteId = ""
+  double11 = "2026-11-11T00:00:00+08:00"
+  blackFridayStart = "2026-11-25T00:00:00+08:00"
+  blackFridayEnd = "2026-11-30T23:59:59+08:00"
+
+[menus]
+  [[menus.main]]
+    name = "优惠促销"
+    url = "/deals/"
+    weight = 10
+  [[menus.main]]
+    name = "实测评测"
+    url = "/review/"
+    weight = 20
+  [[menus.main]]
+    name = "线路专题"
+    url = "/routes/"
+    weight = 30
+  [[menus.main]]
+    name = "按用途选"
+    url = "/guides/"
+    weight = 40
+  [[menus.main]]
+    name = "商家目录"
+    url = "/merchants/"
+    weight = 50
+  [[menus.main]]
+    name = "工具"
+    url = "/tools/"
+    weight = 60
+  [[menus.main]]
+    name = "教程"
+    url = "/tutorials/"
+    weight = 70
+
+[markup.goldmark.renderer]
+  unsafe = false

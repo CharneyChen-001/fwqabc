@@ -1,0 +1,30 @@
+name: Deploy
+# 默认仅手动触发。确认服务器与 Secrets 就绪后，可加入 push: branches: [main]
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: latest
+          extended: true
+      - run: python3 scripts/gen-redirects.py
+      - run: hugo --gc --minify
+      - name: Rsync to server
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_deploy && chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          rsync -az --delete -e "ssh -i ~/.ssh/id_deploy" public/ "$SSH_USER@$SSH_HOST:/var/www/fwqabc/"
+          rsync -az -e "ssh -i ~/.ssh/id_deploy" deploy/Caddyfile "$SSH_USER@$SSH_HOST:/tmp/fwqabc.Caddyfile"

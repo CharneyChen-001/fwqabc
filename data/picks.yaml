@@ -1,0 +1,21 @@
+# 首页精选对比表。价格/配置未经实测核实前保持 TODO。
+- name: 搬瓦工 BandwagonHost
+  slug: bandwagonhost
+  routes: CN2 GIA
+  price: TODO
+  best_for: TODO
+- name: RackNerd
+  slug: racknerd
+  routes: TODO
+  price: TODO
+  best_for: TODO
+- name: RakSmart
+  slug: raksmart
+  routes: CN2 GIA / 9929 / CMIN2（以官网为准）
+  price: TODO
+  best_for: TODO
+- name: Vultr
+  slug: vultr
+  routes: TODO
+  price: TODO
+  best_for: TODO

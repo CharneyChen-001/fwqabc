@@ -1,0 +1,42 @@
+{{- define "main" }}
+<header class="page-header"><h1>{{ site.Title }}</h1><p>{{ site.Params.tagline }}</p></header>
+
+<section class="home-sec countdown" id="countdown">
+  <div class="cd"><div>双11（北京时间 11月11日 00:00）</div><b data-target="{{ site.Params.double11 }}">--</b></div>
+  <div class="cd"><div>黑色星期五（北京时间 11月25日–30日）</div><b data-target="{{ site.Params.blackFridayStart }}" data-end="{{ site.Params.blackFridayEnd }}">--</b></div>
+</section>
+<script>
+(function(){function f(){document.querySelectorAll('#countdown b[data-target]').forEach(function(el){var t=new Date(el.dataset.target),e=el.dataset.end?new Date(el.dataset.end):null,n=new Date(),d=t-n;
+if(d<=0){el.textContent=(e&&n<e)?'进行中':(e?'已结束':'已开始');return}
+var D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24,M=Math.floor(d/6e4)%60,S=Math.floor(d/1e3)%60;el.textContent=D+' 天 '+H+' 时 '+M+' 分 '+S+' 秒'})}f();setInterval(f,1000)})();
+</script>
+
+<section class="home-sec">
+  <h2>当前优惠 <a href="/deals/" style="font-size:.6em">全部 »</a></h2>
+  <ul>
+  {{- range first 8 (where site.RegularPages "Section" "deals") }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <small>{{ .Date.Format "2006-01-02" }}</small></li>
+  {{- else }}<li>暂无</li>{{ end }}
+  </ul>
+</section>
+
+<section class="home-sec">
+  <h2>精选对比</h2>
+  <table class="picks"><thead><tr><th>商家</th><th>线路</th><th>起步价</th><th>适合</th><th></th></tr></thead><tbody>
+  {{- range hugo.Data.picks }}
+    <tr><td>{{ .name }}</td><td>{{ .routes }}</td><td>{{ .price }}</td><td>{{ .best_for }}</td>
+    <td><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">查看</a></td></tr>
+  {{- end }}
+  </tbody></table>
+  {{ partial "affiliate-notice.html" . }}
+</section>
+
+<section class="home-sec">
+  <h2>最新评测 <a href="/review/" style="font-size:.6em">全部 »</a></h2>
+  {{- range first 10 (where site.RegularPages "Section" "review") }}
+  <article class="post-entry"><header class="entry-header"><h2>{{ .Title }}</h2></header>
+  <div class="entry-content"><p>{{ .Summary | plainify | truncate 120 }}</p></div>
+  <a class="entry-link" href="{{ .RelPermalink }}" aria-label="{{ .Title }}"></a></article>
+  {{- else }}<p>暂无评测</p>{{ end }}
+</section>
+{{- end }}

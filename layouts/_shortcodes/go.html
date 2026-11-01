@@ -1,0 +1,3 @@
+{{- $slug := .Get 0 -}}{{- $text := .Get 1 | default "立即购买" -}}
+{{- if not (index hugo.Data.links $slug) }}{{ errorf "go shortcode: unknown slug %q in %s" $slug .Position }}{{ end -}}
+<a class="go-btn" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ $text }}</a>

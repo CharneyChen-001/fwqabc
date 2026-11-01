@@ -1,0 +1,12 @@
+{{- with site.Params.umami }}{{ if site.Params.umamiWebsiteId }}
+<script defer src="{{ . }}" data-website-id="{{ site.Params.umamiWebsiteId }}"></script>
+{{- end }}{{ end }}
+<style>
+.go-btn{display:inline-block;padding:.5em 1.2em;margin:.3em 0;background:#e4572e;color:#fff!important;border-radius:6px;font-weight:600;text-decoration:none!important;box-shadow:none!important}
+.aff-notice{font-size:.85em;color:var(--secondary);margin-bottom:1em}
+.countdown{display:flex;gap:1em;flex-wrap:wrap;margin:1em 0}
+.countdown .cd{flex:1;min-width:220px;padding:1em;border-radius:var(--radius);background:var(--entry);border:1px solid var(--border)}
+.countdown .cd b{font-size:1.4em}
+.picks{width:100%;font-size:.95em}
+.home-sec{margin:2em 0}
+</style>

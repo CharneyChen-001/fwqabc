@@ -1,0 +1,7 @@
+# 推广链接：slug -> 目标地址。REPLACE_ME 替换为真实推广 ID。
+# 修改后运行 python3 scripts/gen-redirects.py 生成 Caddyfile 与 _redirects
+bandwagonhost: https://bandwagonhost.com/aff.php?aff=REPLACE_ME
+racknerd: https://my.racknerd.com/aff.php?aff=REPLACE_ME
+raksmart: https://www.raksmart.com/?aff=REPLACE_ME
+vultr: https://www.vultr.com/?ref=REPLACE_ME
+namesilo: https://www.namesilo.com/?rid=REPLACE_ME

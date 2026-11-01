@@ -1,0 +1,31 @@
+# 自动生成：python3 scripts/gen-redirects.py（勿手改 /go/ 部分）
+fwqabc.com {
+	redir https://www.fwqabc.com{uri} 0
+	root * /var/www/fwqabc
+	encode zstd gzip
+	redir /go/bandwagonhost https://bandwagonhost.com/aff.php?aff=REPLACE_ME 302
+	redir /go/bandwagonhost/ https://bandwagonhost.com/aff.php?aff=REPLACE_ME 302
+	redir /go/namesilo https://www.namesilo.com/?rid=REPLACE_ME 302
+	redir /go/namesilo/ https://www.namesilo.com/?rid=REPLACE_ME 302
+	redir /go/racknerd https://my.racknerd.com/aff.php?aff=REPLACE_ME 302
+	redir /go/racknerd/ https://my.racknerd.com/aff.php?aff=REPLACE_ME 302
+	redir /go/raksmart https://www.raksmart.com/?aff=REPLACE_ME 302
+	redir /go/raksmart/ https://www.raksmart.com/?aff=REPLACE_ME 302
+	redir /go/vultr https://www.vultr.com/?ref=REPLACE_ME 302
+	redir /go/vultr/ https://www.vultr.com/?ref=REPLACE_ME 302
+	header /go/* X-Robots-Tag "noindex, nofollow"
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+	}
+	file_server
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+}
+
+www.fwqabc.com {
+	redir https://fwqabc.com{uri} 301
+}
