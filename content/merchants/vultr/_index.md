@@ -1,25 +1,32 @@
 ---
 title: "Vultr"
-description: "Vultr 商家页：按小时计费的云服务器，Regular Cloud Compute $5/月起；新用户码 VULTRMATCH 首充 1:1 返赠最高 $100，付款要求与计费要点（附官方来源）。"
+description: "Vultr 产品与服务目录：按系列和地区查看云服务器、GPU、裸金属配置与价格，整理存储、数据库及网络服务计费，并提供普通推广与限时新用户赠金入口。"
 merchant: "vultr"
 ---
 
-> 本页含推广链接，详见[推广披露](/disclosure/)。信息于 2026-11-01（北京时间）在官网核对，以官网为准。
+> 本页含推广链接，详见[推广披露](/disclosure/)。价格与可用性为核对时的快照，具体来源与日期见下方目录。
 
 ## 商家简介
 
-Vultr 是按小时计费的云服务器平台，适合开发测试、短期项目：开机即计费，删除实例后停止计费。官方价格页的 **Regular Cloud Compute** 1 vCPU / 1 GB / 25 GB SSD / 1 TB 流量为 **$5.00/月（$0.007/小时）**，另有仅 IPv6 的 $2.50/月款（来源：[vultr.com/pricing](https://www.vultr.com/pricing/)）。
+Vultr 提供云服务器、GPU、裸金属、存储、托管数据库和网络等服务。不同系列的配置、地区价格与计费方式不同，下方按系列和地区整理，便于核对后选购。
 
-## 当前优惠：新用户首充返赠
+## 注册与新用户赠金
 
-- 优惠码 **VULTRMATCH**：新账户首次充值 1:1 返赠，**最高 $100**。
-- 需绑定信用卡或 PayPal；每个用户只能用一个优惠码；赠送额度会过期、不可转让（来源：[vultr.com/coupons](https://www.vultr.com/coupons/)）。
+- **普通推广入口**：用于注册 Vultr 账户，不代表自动获得赠金，也不会预选套餐、地区或计费方式。
+- **限时赠金入口**：官方推广后台于 2026-11-01 展示新用户可获 **$300 测试额度**。需绑定有效信用卡或 PayPal，不适用于重复账户；未使用的额度在 **30 天后过期**。官方未公布具体活动结束日期，领取资格及适用范围以注册时显示的条款为准。
 
-{{< dealbox slug="vultr" merchant="Vultr 新用户" price="首充 1:1 返赠，最高 $100" validity="长期（以官方页面为准）" limits="需新账户 · 码 VULTRMATCH" thumb="none" >}}
+{{< go "vultr" "通过普通推广链接注册" >}}
+
+{{< go "vultr-credit" "查看新用户 $300 限时赠金" >}}
+
+来源：[普通推广计划](https://console.vultr.com/referral/)、[限时赠金计划](https://console.vultr.com/referral/special/)、[推广条款](https://console.vultr.com/referral/tos/)（后台页面可能需要登录）。
+
+{{< vultr-catalog >}}
 
 ## 计费要点
 
-- 官方说明：开启自动备份会让实例基础费用 **高 20%**；快照存储 **$0.05/GB/月**；超出流量 **$0.01/GB**；DDoS 防护 **+$10/月**；部分机房价格可能不同，以控制台为准（来源：[vultr.com/pricing](https://www.vultr.com/pricing/) FAQ）。
-- 退款政策：本站尚未在官方页面找到明确条款{{< tbc >}}，充值前请先阅读官方服务条款。
+- 目录分别保留官方小时价和月价，不统一用固定小时数换算。GPU 等产品的月费口径需结合具体规则确认，详见[官方计费说明](https://docs.vultr.com/support/platform/billing/how-am-i-billed-for-my-servers)。
+- 实例、存储、备份、快照、网络等资源可能分别计费。停止实例不等于删除资源，购买和释放资源前请核对[官方价格说明](https://www.vultr.com/pricing/)。
+- 注册链接不会直接创建服务器或锁定价格。请在控制台确认地区、配置、计费方式及总费用后再部署。
 
 ## 相关文章

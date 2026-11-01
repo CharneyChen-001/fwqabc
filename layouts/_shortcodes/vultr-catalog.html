@@ -1,0 +1,108 @@
+{{- $catalog := hugo.Data.vultr_catalog -}}
+{{- $services := hugo.Data.vultr_services -}}
+{{- with $catalog }}
+<section class="vultr-catalog" id="products" aria-labelledby="vultr-products-title">
+  <div class="vultr-heading">
+    <div><p class="vultr-eyebrow">按系列与地区查看</p><h2 id="vultr-products-title">Vultr 产品目录</h2></div>
+    <p class="vultr-count">{{ .plan_count }} 条计算与裸金属套餐记录 · {{ .verified_region_count }} 个已列地区</p>
+  </div>
+  <p class="vultr-note">价格单位为美元。小时价和官方月价分别列出，月价的适用条件因产品而异；不代表存在两个付款周期。地区价格、可用性与附加费用以部署时官网显示为准。</p>
+  {{ with .unconfirmed_region_count }}<p class="vultr-note">套餐记录另含 {{ . }} 个尚未列入官方地区清单的地区代码，已保留并标注待核实。</p>{{ end }}
+  <p class="vultr-source">核对日期：<time datetime="{{ .checked_on }}">{{ .checked_on }}</time> · <a href="https://www.vultr.com/pricing/" target="_blank" rel="noopener">官方价格说明</a> · <a href="{{ "/disclosure/" | relURL }}">推广披露</a></p>
+  <div class="vultr-referral-note">推广链接进入注册页面，不会预选套餐或地区。注册登录后，请按下方的套餐编号、地区和计费类型选择配置。</div>
+  <nav class="vultr-series-nav" aria-label="Vultr 产品分类">
+    {{- range .series }}<a href="#vultr-{{ .id }}"><strong>{{ .label }}</strong><span>{{ .plan_count }} 条套餐记录</span></a>{{ end }}
+    <a href="#vultr-services"><strong>存储、数据库与其他服务</strong><span>查看计费方式与官方说明</span></a>
+  </nav>
+  {{- range $seriesIndex, $series := .series }}
+  <section class="vultr-series" id="vultr-{{ .id }}" aria-labelledby="vultr-title-{{ .id }}">
+    <div class="vultr-heading"><h3 id="vultr-title-{{ .id }}">{{ .label }}</h3><span class="vultr-count">{{ .plan_count }} 条套餐记录</span></div>
+    <p class="vultr-description">{{ .description }}</p>
+    {{- range $regionIndex, $region := .regions }}
+    <details class="vultr-region"{{ if and (eq $seriesIndex 0) (eq $regionIndex 0) }} open{{ end }}>
+      <summary><strong>{{ .country_label }} · {{ .city }}</strong><span>{{ .id }} · {{ len .plans }} 个配置与计费组合</span></summary>
+      <div class="vultr-region-content">
+        <table class="vultr-table">
+          <caption class="vultr-sr-only">{{ $series.label }}，{{ .country_label }} {{ .city }} 的配置和美元价格</caption>
+          <thead><tr><th scope="col">配置与计费类型</th><th scope="col">每小时</th><th scope="col">官方月价</th><th scope="col">核对时可用性</th></tr></thead>
+          <tbody>
+          {{- range .plans }}
+            <tr data-plan="{{ .id }}" data-region="{{ $region.id }}" data-deployment="{{ .deployment_type }}">
+              <th scope="row" class="vultr-specs">
+                <strong>{{ .vcpu_count }} {{ .cpu_kind }} · {{ if eq (mod (int .ram_mb) 1024) 0 }}{{ div (int .ram_mb) 1024 }} GB{{ else }}{{ .ram_mb }} MB{{ end }} 内存</strong>
+                {{ if eq .cpu_kind "物理核心" }}<span>{{ .cpu_model }}{{ with .cpu_threads }} · {{ . }} 线程{{ end }}</span>{{ end }}
+                <span>{{ if gt (int (default 1 .disk_count)) 1 }}{{ .disk_count }} × {{ end }}{{ .disk_gb }} GB 硬盘{{ if gt (float (default 0 .bandwidth_gb)) 0 }} · {{ .bandwidth_gb }} GB 流量{{ end }}</span>
+                {{ if gt (int (default 0 .gpu_count)) 0 }}<span>{{ .gpu_count }} × {{ .gpu_type }}{{ with .gpu_vram_gb }} · {{ . }} GB 显存{{ end }}</span>{{ end }}
+                <small>{{ .id }} · {{ .deployment_type }}</small>
+                {{ with .notes }}<small class="vultr-plan-note">{{ . }}</small>{{ end }}
+                {{ with .official_url }}<a class="vultr-detail-link" href="{{ . }}" target="_blank" rel="noopener">官方价格页</a>{{ end }}
+              </th>
+              <td class="vultr-price" data-label="每小时">{{ if and (isset . "price_hourly") (ne .price_hourly nil) }}<strong>${{ printf "%g" (float .price_hourly) }}</strong>{{ else }}<span>待核实</span>{{ end }}</td>
+              <td class="vultr-price" data-label="官方月价">{{ if and (isset . "price_monthly") (ne .price_monthly nil) }}<strong>${{ printf "%.2f" (float .price_monthly) }}</strong>{{ else }}<span>待核实</span>{{ end }}</td>
+              <td class="vultr-availability" data-label="核对时可用性"><span{{ if eq .availability "可部署" }} class="vultr-available"{{ end }}>{{ .availability }}</span>{{ with .price_source }}<small>{{ . }}</small>{{ end }}</td>
+            </tr>
+          {{- end }}
+          </tbody>
+        </table>
+        <div class="vultr-region-actions"><a href="{{ $catalog.affiliate_url }}" class="go-btn" target="_blank" rel="sponsored nofollow noopener">通过推广链接注册</a><span>登录后选择 {{ .city }}（{{ .id }}）及所需套餐；暂缺货的配置需等待补货。</span></div>
+      </div>
+    </details>
+    {{- else }}<p class="vultr-description">本系列暂未确认可用地区。</p>{{ end }}
+  </section>
+  {{- end }}
+  {{- with .unlisted_plans }}
+  <details class="vultr-region vultr-unlisted">
+    <summary><strong>暂未确认可用地区</strong><span>{{ len . }} 条记录 · 不计入当前可部署配置</span></summary>
+    <div class="vultr-region-content">
+      <p class="vultr-note">以下套餐在官方目录中有记录，但尚未确认可部署地区或购买资格。</p>
+      <table class="vultr-table">
+        <caption class="vultr-sr-only">暂未确认可用地区的套餐配置、美元价格与核验状态</caption>
+        <thead><tr><th scope="col">配置与计费类型</th><th scope="col">每小时</th><th scope="col">官方月价</th><th scope="col">核对时可用性</th></tr></thead>
+        <tbody>
+        {{- range . }}
+          <tr data-plan="{{ .id }}" data-region="unconfirmed" data-deployment="{{ .deployment_type }}">
+            <th scope="row" class="vultr-specs">
+              <strong>{{ .vcpu_count }} {{ .cpu_kind }} · {{ if eq (mod (int .ram_mb) 1024) 0 }}{{ div (int .ram_mb) 1024 }} GB{{ else }}{{ .ram_mb }} MB{{ end }} 内存</strong>
+              {{ if eq .cpu_kind "物理核心" }}<span>{{ .cpu_model }}{{ with .cpu_threads }} · {{ . }} 线程{{ end }}</span>{{ end }}
+              <span>{{ if gt (int (default 1 .disk_count)) 1 }}{{ .disk_count }} × {{ end }}{{ .disk_gb }} GB 硬盘{{ if gt (float (default 0 .bandwidth_gb)) 0 }} · {{ .bandwidth_gb }} GB 流量{{ end }}</span>
+              {{ if gt (int (default 0 .gpu_count)) 0 }}<span>{{ .gpu_count }} × {{ .gpu_type }}{{ with .gpu_vram_gb }} · {{ . }} GB 显存{{ end }}</span>{{ end }}
+              <small>{{ .series_label }} · {{ .id }} · {{ .deployment_type }}</small>
+              {{ with .notes }}<small class="vultr-plan-note">{{ . }}</small>{{ end }}
+              {{ with .official_url }}<a class="vultr-detail-link" href="{{ . }}" target="_blank" rel="noopener">官方价格页</a>{{ end }}
+            </th>
+            <td class="vultr-price" data-label="每小时">{{ if and (isset . "price_hourly") (ne .price_hourly nil) }}<strong>${{ printf "%g" (float .price_hourly) }}</strong>{{ else }}<span>待核实</span>{{ end }}</td>
+            <td class="vultr-price" data-label="官方月价">{{ if and (isset . "price_monthly") (ne .price_monthly nil) }}<strong>${{ printf "%.2f" (float .price_monthly) }}</strong>{{ else }}<span>待核实</span>{{ end }}</td>
+            <td class="vultr-availability" data-label="核对时可用性"><span>{{ .availability }}</span>{{ with .price_source }}<small>{{ . }}</small>{{ end }}</td>
+          </tr>
+        {{- end }}
+        </tbody>
+      </table>
+    </div>
+  </details>
+  {{- end }}
+  {{- with $services }}
+  <section class="vultr-services" id="vultr-services" aria-labelledby="vultr-services-title">
+    <div class="vultr-heading"><h3 id="vultr-services-title">存储、数据库与其他服务</h3></div>
+    <p class="vultr-description">按容量、用量或组合资源计费的服务单独列出。未公开或未确认的价格保留为待核实，免费项目的范围以对应说明为准。</p>
+    {{- $categories := slice }}
+    {{- range .services }}{{ if not (in $categories .category) }}{{ $categories = $categories | append .category }}{{ end }}{{ end }}
+    {{- range $category := $categories }}
+    <details class="vultr-region">
+      <summary><strong>{{ . }}</strong><span>{{ len (where $services.services "category" .) }} 项服务与计费项目</span></summary>
+      <div class="vultr-service-grid">
+        {{- range where $services.services "category" $category }}
+        <article class="vultr-service-card" id="vultr-service-{{ .id }}">
+          <h4>{{ .name }}</h4><p>{{ .description }}</p>
+          <p class="vultr-service-price">{{ if and (isset . "price_monthly") (ne .price_monthly nil) }}${{ printf "%g" (float .price_monthly) }}/月{{ else if and (isset . "price_hourly") (ne .price_hourly nil) }}${{ printf "%g" (float .price_hourly) }}/小时{{ else if and (isset . "unit_price") (ne .unit_price nil) }}{{ if eq .currency "USD" }}${{ end }}{{ printf "%g" (float .unit_price) }}{{ with .unit }} / {{ . }}{{ end }}{{ else }}{{ .status }}{{ end }}</p>
+          <p>{{ .price_note }}</p><p class="vultr-service-meta">{{ .pricing_model }}{{ with .region_note }} · {{ . }}{{ end }}</p>
+          {{ with .note }}<p class="vultr-service-meta">{{ . }}</p>{{ end }}
+          <a href="{{ .official_url }}" target="_blank" rel="noopener">查看官方说明</a>
+        </article>
+        {{- end }}
+      </div>
+    </details>
+    {{- end }}
+  </section>
+  {{- end }}
+</section>
+{{- end }}

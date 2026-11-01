@@ -24,4 +24,17 @@
   <p class="bwh-catalog-source">核对日期：{{ .checked_on }} · 价格与库存以官网结算页为准</p>
 </section>
 {{- end }}
+{{- with hugo.Data.vultr_catalog }}
+<section class="vultr-directory-entry" aria-labelledby="vultr-directory-title">
+  <p class="vultr-eyebrow">产品与服务目录</p>
+  <h2 id="vultr-directory-title">Vultr</h2>
+  <p>{{ .plan_count }} 条计算与裸金属套餐记录 · {{ .verified_region_count }} 个已列地区{{ with .unconfirmed_region_count }}，另 {{ . }} 个地区代码待核实{{ end }} · 按系列与地区查看配置、价格和可用性。</p>
+  <nav class="vultr-series-nav" aria-label="Vultr 产品系列">
+    {{ range .series }}<a href="{{ printf "/merchants/vultr/#vultr-%s" .id | relURL }}"><strong>{{ .label }}</strong><span>{{ .plan_count }} 条套餐记录</span></a>{{ end }}
+    <a href="{{ "/merchants/vultr/#vultr-services" | relURL }}"><strong>存储、数据库与其他服务</strong><span>用量计费与附加费用</span></a>
+  </nav>
+  <a class="go-btn" href="{{ "/merchants/vultr/#products" | relURL }}">查看 Vultr 产品目录</a>
+  <p class="vultr-source">核对日期：{{ .checked_on }} · 推广入口用于注册，登录后选择套餐与地区</p>
+</section>
+{{- end }}
 {{- end }}

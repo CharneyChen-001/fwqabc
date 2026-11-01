@@ -1,5 +1,10 @@
 {{- define "main" }}
 {{- $now := now.Unix -}}
+{{- $promos := slice -}}
+{{- range sort hugo.Data.promos "start" "desc" -}}
+  {{- $end := time.AsTime (.end | default "2099-01-01T00:00:00+08:00") -}}
+  {{- if gt $end.Unix $now }}{{ $promos = $promos | append . }}{{ end -}}
+{{- end -}}
 <div class="home-wrap"></div>
 <section class="hero hero-brand">
   {{- $mc := len (site.GetPage "/merchants").Pages -}}
@@ -35,9 +40,9 @@
 </section>
 
 <section class="home-sec band band-deals" id="deals">
-  <h2><span class="sec-ico ico-red">⚡</span>正在进行 / 即将开始 <a href="/deals/">全部优惠 »</a></h2>
+  <h2><span class="sec-ico ico-red" aria-hidden="true">惠</span>正在进行 / 即将开始 <a href="/deals/">全部优惠 »</a></h2>
   <div class="promos">
-  {{- range sort hugo.Data.promos "start" "desc" }}
+  {{- range $promos }}
     {{- $s := time.AsTime .start }}{{ $e := cond (ne (.end | default "") "") (time.AsTime (.end | default "2099-01-01T00:00:00+08:00")) (time.AsTime "2099-01-01T00:00:00+08:00") }}
     {{- if gt $e.Unix $now }}
     <div class="promo" data-start="{{ $s.Format "2006-01-02T15:04:05-07:00" }}" data-end="{{ $e.Format "2006-01-02T15:04:05-07:00" }}">
@@ -46,8 +51,8 @@
       <span class="t">{{ .merchant }}</span>
       {{- with .price }}<span class="promo-price">{{ . }}</span>{{ end }}
       <span class="promo-title">{{ .title }}</span>
-      {{- with .next }}<span class="promo-cd" data-cd="{{ . }}">⏱ 开抢倒计时</span>{{ end }}
-      <small>{{ $s.Format "1/2 15:04" }}{{ with .end }} – {{ (time.AsTime .).Format "1/2 15:04" }}{{ else }} 起 · 长期{{ end }}（北京时间）</small>
+      {{- with .next }}<span class="promo-cd" data-cd="{{ . }}">开抢倒计时</span>{{ end }}
+      <small>{{ with .date_label }}{{ . }}{{ else }}{{ $s.Format "1/2 15:04" }}{{ with .end }} – {{ (time.AsTime .).Format "1/2 15:04" }}{{ else }} 起 · 长期{{ end }}（北京时间）{{ end }}</small>
       {{- with .note }}<small class="promo-note">{{ . }}</small>{{ end }}
       <a class="go-btn go-btn-lg" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去官方活动页 →</a>
       <small class="cta-note">{{ i18n "ctaNote" }}{{ if .post }} · <a href="{{ .post }}">看规则与限制</a>{{ end }}</small>
@@ -58,13 +63,14 @@
 </section>
 
 <section class="home-sec band band-picks">
-  <div class="sec-head"><span class="sec-ico">◎</span><div><h2 id="picks">按预算和用途选</h2><p>价格均为官网核对价，点按钮直达官方页面</p></div></div>
+  <div class="sec-head"><span class="sec-ico" aria-hidden="true">选</span><div><h2 id="picks">按预算和用途选</h2><p>价格均为官网核对价，点按钮直达官方页面</p></div></div>
   {{- $useC := dict "建站入门" "blue" "月付建站" "teal" "外贸独立站" "purple" "大陆优化线路" "red" "亚洲低延迟" "green" "开发测试" "slate" }}
   {{- $mono := dict "搬瓦工" "BWH" "RakSmart" "RS" "Vultr" "V" "RackNerd" "RN" }}
   <div class="pk-list">
   {{- range $i, $p := hugo.Data.picks }}
     {{- $c := index $useC $p.use | default "slate" }}
-    {{- $promo := findRE "（[^）]*）" $p.price 1 }}{{ $price := replaceRE "（[^）]*）" "" $p.price }}
+    {{- $priceNote := findRE "（[^）]*）" $p.price 1 }}{{ $price := replaceRE "（[^）]*）" "" $p.price }}
+    {{- $promo := and $priceNote (not (in $p.price "/小时")) }}
     {{- $num := index (findRE `^\$[0-9.]+` $price 1) 0 | default $price }}{{ $unit := strings.TrimPrefix $num $price }}
     {{- $rc := "gray" }}{{ if in $p.route "CN2 GIA" }}{{ $rc = "gold" }}{{ else if in $p.route "CN2" }}{{ $rc = "cn2" }}{{ else if in $p.route "BGP" }}{{ $rc = "bgp" }}{{ end }}
     {{- $bc := "mid" }}{{ if hasPrefix $p.budget "极低" }}{{ $bc = "xlow" }}{{ else if hasPrefix $p.budget "低" }}{{ $bc = "low" }}{{ else if hasPrefix $p.budget "高" }}{{ $bc = "high" }}{{ else if hasPrefix $p.budget "按" }}{{ $bc = "hour" }}{{ end }}
@@ -72,7 +78,7 @@
       <div class="pk-use"><span class="use-chip">{{ $p.use }}</span><span class="bud bud-{{ $bc }}">{{ $p.budget }}</span></div>
       <div class="pk-m"><span class="mono mono-{{ index $mono $p.merchant | default "X" | lower }}">{{ index $mono $p.merchant | default (substr $p.merchant 0 1) }}</span><div><b>{{ $p.merchant }}</b><small>{{ $p.plan }}</small></div></div>
       <div class="pk-route"><span class="rt rt-{{ $rc }}">{{ $p.route }}</span></div>
-      <div class="pk-price"><span class="num">{{ $num }}</span><span class="unit">{{ $unit }}</span>{{ with $promo }}<span class="hot-badge">限时 · {{ index . 0 | replaceRE "[（）]" "" }}</span>{{ end }}</div>
+      <div class="pk-price"><span class="num">{{ $num }}</span><span class="unit">{{ $unit }}</span>{{ with $priceNote }}<span class="{{ if $promo }}hot-badge{{ else }}price-note{{ end }}">{{ index . 0 | replaceRE "[（）]" "" }}</span>{{ end }}</div>
       <div class="pk-cta"><a class="go-btn {{ if $promo }}btn-hot{{ else }}btn-grad{{ end }}" href="/go/{{ $p.slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ $p.cta | default (i18n "ctaPick") }} →</a></div>
     </div>
   {{- end }}
@@ -82,7 +88,7 @@
 </section>
 
 <section class="home-sec band band-latest">
-  <h2><span class="sec-ico ico-blue">✦</span>最新优惠 <a href="/deals/">更多 »</a></h2>
+  <h2><span class="sec-ico ico-blue" aria-hidden="true">新</span>最新优惠 <a href="/deals/">更多 »</a></h2>
   <ul class="short-list">
   {{- range first 6 (where site.RegularPages "Section" "deals") }}
     <li><a href="{{ .RelPermalink }}"><span>{{ .Title }}</span><small>{{ .Lastmod.Format "01-02" }}</small></a></li>
@@ -91,7 +97,7 @@
 </section>
 
 <section class="home-sec band band-free">
-  <h2><span class="sec-ico ico-green">☁</span>免费服务器 / 新用户赠金 <a href="/free/">更多 »</a></h2>
+  <h2><span class="sec-ico ico-green" aria-hidden="true">免</span>免费服务器 / 新用户赠金 <a href="/free/">更多 »</a></h2>
   <ul class="short-list">
   {{- range first 5 (where site.RegularPages "Section" "free") }}
     <li><a href="{{ .RelPermalink }}"><span>{{ .Title }}</span><small>{{ .Lastmod.Format "01-02" }}</small></a></li>
@@ -101,8 +107,8 @@
 
 {{ partial "tg-subscribe.html" . }}
 {{ partial "follow-box.html" . }}
-{{- with index (sort hugo.Data.promos "start" "desc") 0 }}
-<div class="sticky-cta sticky-home"><span>{{ .merchant }} {{ .price }}</span><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去官方活动页</a></div>
+{{- range first 1 $promos }}
+<div class="sticky-cta sticky-home"{{ with .end }} data-promo-end="{{ . }}"{{ end }}><span>{{ .merchant }} {{ .price }}</span><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去官方活动页</a></div>
 {{- end }}
 
 <script>
@@ -115,9 +121,9 @@ if(isNaN(t))return;var d=t-n;
 if(d<=0){el.textContent=(!isNaN(e)&&n<e)?'进行中':(!isNaN(e)?'已结束':'进行中');return}
 var D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24,M=Math.floor(d/6e4)%60,S=Math.floor(d/1e3)%60;el.textContent=D+'天 '+H+'时 '+M+'分 '+S+'秒'})}
 function pr(){var n=Date.now();document.querySelectorAll('.promo').forEach(function(el){var s=pd(el.dataset.start),e=pd(el.dataset.end),tag=el.querySelector('.tag');
-if(!isNaN(e)&&n>e){el.style.display='none';return}
+if(!isNaN(e)&&n>=e){el.style.display='none';return}
 if(!isNaN(s)&&n>=s){tag.className='tag live';tag.textContent='进行中'}})}
-function pc(){document.querySelectorAll('[data-cd]').forEach(function(el){var d=pd(el.dataset.cd)-Date.now();if(isNaN(d))return;if(d<=0){el.textContent='⏱ 已开抢';return}el.textContent='⏱ 距开抢 '+Math.floor(d/864e5)+'天 '+Math.floor(d/36e5)%24+'时 '+Math.floor(d/6e4)%60+'分'})}
+function pc(){document.querySelectorAll('[data-cd]').forEach(function(el){var d=pd(el.dataset.cd)-Date.now();if(isNaN(d))return;if(d<=0){el.textContent='已开抢';return}el.textContent='距开抢 '+Math.floor(d/864e5)+'天 '+Math.floor(d/36e5)%24+'时 '+Math.floor(d/6e4)%60+'分'})}
 cd();pr();pc();setInterval(pc,30000);setInterval(cd,1000);setInterval(pr,60000)})();
 </script>
 {{- end }}

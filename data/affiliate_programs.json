@@ -1,0 +1,28 @@
+{
+  "checked_on": "2026-11-01",
+  "programs": [
+    {
+      "id": "bandwagonhost-standard", "merchant": "搬瓦工", "name": "普通推广", "affiliate_id": "85446",
+      "url": "https://bandwagonhost.com/aff.php?aff=85446", "official_url": "https://bandwagonhost.com/",
+      "link_scope": "支持产品、机房与付款周期预选", "status": "后台链接及目录参数已核实",
+      "reward": "本表未核实佣金比例", "conditions": "产品链接保留 aff、pid、billingcycle 与机房配置参数。",
+      "source_url": "https://bandwagonhost.com/affiliates.php", "checked_on": "2026-11-01"
+    },
+    {
+      "id": "vultr-standard", "merchant": "Vultr", "name": "普通推广", "affiliate_id": "9932591",
+      "url": "https://www.vultr.com/?ref=9932591", "official_url": "https://www.vultr.com/",
+      "link_scope": "官网注册入口，不预选套餐或地区", "status": "账户后台链接已核实，未进行计佣实测",
+      "reward": "符合条件的每位新付费用户奖励推荐人 10 美元", "conditions": "新用户须活跃超过 30 天，并达到后台要求的至少 10 美元付款使用额。",
+      "source_url": "https://console.vultr.com/referral/", "checked_on": "2026-11-01"
+    },
+    {
+      "id": "vultr-credit", "merchant": "Vultr", "name": "限时新用户赠金", "affiliate_id": "9932592-9J",
+      "url": "https://www.vultr.com/?ref=9932592-9J", "official_url": "https://www.vultr.com/",
+      "link_scope": "活动注册入口，不预选套餐或地区", "status": "账户后台显示活动，结束日期未公布",
+      "reward": "新用户 300 美元测试额度；符合条件的推荐人奖励 100 美元",
+      "conditions": "新用户须绑定有效信用卡或 PayPal，重复账户不适用；未用额度 30 天后过期。推荐奖励另须用户活跃超过 30 天并达到至少 100 美元付款使用额。",
+      "source_url": "https://console.vultr.com/referral/special/", "checked_on": "2026-11-01",
+      "expires_on": null, "credit_days": 30, "credit_usd": 300
+    }
+  ]
+}

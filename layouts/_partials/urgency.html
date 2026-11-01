@@ -5,4 +5,4 @@
   {{- else if lt $now $e.Unix }}{{ $txt = printf "进行中 · %s 结束（北京时间）" ($e.Format "1月2日 15:04") }}{{ $state = "live" }}{{ end -}}
 {{- end }}{{ end -}}
 {{- if not $txt }}{{ $txt = "本轮活动已结束，以官网最新活动为准" }}{{ $state = "over" }}{{ end -}}
-<p class="urg urg-{{ $state }}" data-when="{{ . }}">⏱ <span>{{ $txt }}</span></p>
+<p class="urg urg-{{ $state }}" data-when="{{ . }}"><span>{{ $txt }}</span></p>

@@ -78,13 +78,14 @@ tags: ["双11", "黑五", "优惠汇总"]
 
 ## Vultr
 
-**来源：** Vultr 官方优惠码页（[vultr.com/coupons](https://www.vultr.com/coupons/)）与官方文档（[docs.vultr.com](https://docs.vultr.com/support/platform/billing/how-can-i-add-a-promotional-code)），核对 2026-11-01。
+**来源：** Vultr [官方限时推广后台](https://console.vultr.com/referral/special/)（需登录），核对 2026-11-01。
 
 - 黑五专场：截至核对日未发现官方黑五活动。
-- 长期新用户优惠：码 **VULTRMATCH**，新账户首次充值 1:1 返赠，最高 $100。
-- 限制：需绑定信用卡或 PayPal；每个用户只能用一个优惠码；赠送额度会过期、不可转让。
+- 新用户限时推广活动：通过活动链接注册可获得 **$300 测试额度**，未用额度在 30 天后过期，活动截止日期未公布。
+- 限制：需绑定有效信用卡或 PayPal；重复账户不适用。实际资格与规则以注册页面为准。
+- 普通推广与活动使用不同链接；完整规格和地区价格见 [Vultr 产品目录](/merchants/vultr/#products)。
 
-{{< go "vultr" >}}
+{{< go "vultr-credit" "查看新用户限时赠金" >}}
 
 ## 其他商家
 

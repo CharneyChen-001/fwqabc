@@ -1,6 +1,6 @@
 # 首页“正在进行 / 即将开始”。时间一律北京时间（+08:00）。
-# 只填写已在官方页面核实的活动；end 留空表示长期有效。过期条目构建时与浏览器端都会自动隐藏。
-# price/badge 为卡片大字价格与角标（只写官方核实过的）；next 为卡片倒计时目标（可选）。
+# 只填写已在官方页面核实的活动；未公布截止时间时 end 留空，并用 date_label 说明。过期条目构建时与浏览器端都会自动隐藏。
+# price/badge 为卡片大字价格与角标；next 为卡片倒计时目标（可选）。
 # slug 必须存在于 data/links.yaml；post 为站内详情文章（可选）。
 - merchant: RakSmart
   title: 双11/黑五 VPS 秒杀 $1.99/月起 · 预充值赠送金
@@ -13,10 +13,12 @@
   post: /deals/raksmart-2026-double11-black-friday/
   note: 秒杀两波：11/11–11/17、11/25–11/30；限量 · HDD · 不可叠加优惠券；赠送金仅限月付新购（官方博客，2026-11-01 核对）
 - merchant: Vultr
-  title: 新用户首充 1:1 返赠，最高 $100（码 VULTRMATCH）
-  start: "2026-10-01T00:00:00+08:00"
+  title: 新用户 $300 测试额度 · 限时推广活动
+  start: "2026-11-01T00:00:00+08:00"
   end: ""
-  slug: vultr
-  price: 赠金最高 $100
-  badge: 新用户返赠
-  note: 需绑定信用卡或 PayPal，每用户限一个码（vultr.com/coupons，2026-11-01 核对）
+  date_label: "2026-11-01 核对 · 截止时间未公布"
+  slug: vultr-credit
+  price: $300 测试额度
+  badge: 新用户限时赠金
+  post: /merchants/vultr/
+  note: 新账户须绑定有效信用卡或 PayPal；未用额度 30 天后过期；不适用重复账户（官方推广后台核对）

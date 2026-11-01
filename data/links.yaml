@@ -10,7 +10,7 @@
 bandwagonhost:
   cta: 查看 CN2 GIA-E 方案
   landing: https://bandwagonhost.com/cart.php?a=add&pid=88
-  aff: ""
+  aff: "85446"
   # 官方 KB 说明支持 aff.php?aff=ID&pid=PID 直达产品（pid 88 = CN2 GIA-E 2G），可信度高
   aff_template: https://bandwagonhost.com/aff.php?aff={aff}&pid=88
   thumb: /img/promos/bandwagonhost-cn2-gia-e.webp
@@ -40,10 +40,16 @@ racknerd:
   aff_template: https://my.racknerd.com/aff.php?aff={aff}
 
 vultr:
-  cta: 领首充返赠（最高 $100）
+  cta: 通过推广链接注册
   landing: https://www.vultr.com/
-  aff: ""
+  aff: "9932591"
   # 官方推广格式 https://www.vultr.com/?ref=ID
+  aff_template: https://www.vultr.com/?ref={aff}
+
+vultr-credit:
+  cta: 查看新用户 $300 限时赠金
+  landing: https://www.vultr.com/
+  aff: "9932592-9J"
   aff_template: https://www.vultr.com/?ref={aff}
 
 namesilo:

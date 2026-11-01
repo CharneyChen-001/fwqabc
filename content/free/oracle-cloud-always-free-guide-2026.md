@@ -152,7 +152,7 @@ sudo firewall-cmd --reload
 
 {{< dealbox slug="bandwagonhost" merchant="搬瓦工 CN2 GIA-E" price="$89.99/季起" validity="常规方案，长期有效" limits="价格以结算页为准" >}}
 
-{{< dealbox slug="vultr" merchant="Vultr" price="新用户首充 1:1 返赠，最高 $100" validity="长期（以官方页面为准）" limits="需新账户 · 码 VULTRMATCH" >}}
+{{< dealbox slug="vultr-credit" merchant="Vultr" price="新用户 $300 测试额度" validity="限时活动，截止日期未公布" limits="新账户 · 有效信用卡或 PayPal · 未用额度 30 天后过期" >}}
 
 更多：[双11 VPS 优惠汇总](/deals/2026-double11-vps-deals/) · [免费/新用户赠金服务器汇总](/free/free-cloud-credits-2026/)
 

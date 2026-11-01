@@ -2,8 +2,8 @@
 fwqabc.com {
 	root * /var/www/fwqabc
 	encode zstd gzip
-	redir /go/bandwagonhost https://bandwagonhost.com/cart.php?a=add&pid=88 302
-	redir /go/bandwagonhost/ https://bandwagonhost.com/cart.php?a=add&pid=88 302
+	redir /go/bandwagonhost https://bandwagonhost.com/aff.php?aff=85446&pid=88 302
+	redir /go/bandwagonhost/ https://bandwagonhost.com/aff.php?aff=85446&pid=88 302
 	redir /go/bandwagonhost-basic-4g-la2-monthly https://bandwagonhost.com/aff.php?aff=85446&a=add&pid=46&billingcycle=monthly&configoption%5B10%5D=35 302
 	redir /go/bandwagonhost-basic-4g-la2-monthly/ https://bandwagonhost.com/aff.php?aff=85446&a=add&pid=46&billingcycle=monthly&configoption%5B10%5D=35 302
 	redir /go/namesilo https://www.namesilo.com/ 302
@@ -12,8 +12,10 @@ fwqabc.com {
 	redir /go/racknerd/ https://www.racknerd.com/specials/ 302
 	redir /go/raksmart https://www.raksmart.com/activity/index/page/activitypage_25.html 302
 	redir /go/raksmart/ https://www.raksmart.com/activity/index/page/activitypage_25.html 302
-	redir /go/vultr https://www.vultr.com/ 302
-	redir /go/vultr/ https://www.vultr.com/ 302
+	redir /go/vultr https://www.vultr.com/?ref=9932591 302
+	redir /go/vultr/ https://www.vultr.com/?ref=9932591 302
+	redir /go/vultr-credit https://www.vultr.com/?ref=9932592-9J 302
+	redir /go/vultr-credit/ https://www.vultr.com/?ref=9932592-9J 302
 	header /go/* X-Robots-Tag "noindex, nofollow"
 	header {
 		Strict-Transport-Security "max-age=31536000"

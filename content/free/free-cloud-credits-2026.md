@@ -3,7 +3,7 @@ title: "免费服务器与新用户赠金汇总 2026：甲骨文、谷歌云、A
 date: 2026-11-01T13:40:00+08:00
 lastmod: 2026-11-01T13:40:00+08:00
 draft: false
-description: "2026 免费云服务器与新用户赠金汇总：Oracle Always Free、Google Cloud e2-micro 与 $300 试用金、AWS 新版 Free Plan（最多 $200 赠金、6 个月）、Azure 免费账户 $200 与 12 个月 B1s，以及 Vultr VULTRMATCH，每条标注官方来源与核实日期。"
+description: "2026 免费云服务器与新用户赠金汇总：Oracle Always Free、Google Cloud e2-micro 与 $300 试用金、AWS 新版 Free Plan（最多 $200 赠金、6 个月）、Azure 免费账户 $200 与 12 个月 B1s，以及 Vultr 新用户限时测试额度，每条标注官方来源与核实日期。"
 keywords: ["免费服务器", "免费云服务器 2026", "新用户赠金", "AWS Free Tier 2026", "谷歌云免费", "Azure 免费账户", "甲骨文免费"]
 tags: ["免费服务器", "赠金"]
 merchants: ["vultr"]
@@ -11,9 +11,9 @@ merchants: ["vultr"]
 
 > 以下信息都来自各家**官方页面**，核实日期 2026-11-01（北京时间）。活动规则经常变，以官网为准。用途建议：建站练手、学习 Linux、跑小工具、搭测试环境。
 
-**一句话结论：** 想长期白嫖选甲骨文 Always Free（开机看运气）；想稳定少折腾，用 Vultr 新用户返赠或直接买低价 VPS。
+**一句话结论：** 想长期白嫖选甲骨文 Always Free（开机看运气）；短期测试可以了解 Vultr 新用户赠金或低价 VPS。
 
-{{< cta slug="vultr" text="Vultr 新用户首充 1:1 返赠，最高 $100（码 VULTRMATCH）" >}}
+{{< cta slug="vultr-credit" text="Vultr 新用户 $300 测试额度，未用额度 30 天后过期" >}}
 
 ## 一表看懂
 
@@ -25,13 +25,13 @@ merchants: ["vultr"]
 | **Google Cloud** | 长期免费额度 + 试用金 | 每月 1 台 e2-micro（仅 us-west1 / us-central1 / us-east1）、30 GB 标准持久化磁盘（standard persistent disk）、每月 1 GB 北美出站流量（不含到中国、澳大利亚）；新用户 $300 赠金 | 免费额度长期；赠金 90 天 | [官方文档](https://cloud.google.com/free/docs/free-cloud-features) |
 | **AWS** | 新版 Free Plan（赠金制） | 新用户注册即得 $100，探索指定服务最多再得 $100，合计最多 $200；Free plan 账户 6 个月后或赠金用完自动关闭，不升级不扣费；另有 30+ 项服务长期免费额度 | 6 个月 | [aws.amazon.com/free](https://aws.amazon.com/free/) |
 | **Microsoft Azure** | 免费账户 | $200 赠金（30 天）；新用户 12 个月内每月各 750 小时 B1s、B2pts v2（Arm）、B2ats v2（AMD）虚拟机；65+ 项服务长期免费额度 | 赠金 30 天；VM 12 个月 | [免费服务](https://azure.microsoft.com/en-us/pricing/free-services)、[账户](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account) |
-| **Vultr** | 新用户充值返赠 | 码 VULTRMATCH：新账户首次充值 1:1 返赠，最高 $100 | 以官方页面为准 | [vultr.com/coupons](https://www.vultr.com/coupons/) |
+| **Vultr** | 新用户限时赠金 | 活动链接注册获 $300 测试额度；需绑定有效信用卡或 PayPal，重复账户不适用 | 未用额度 30 天后过期，活动截止未公布 | [官方推广后台](https://console.vultr.com/referral/special/)（需登录） |
 
 ## 各家要点
 
 ### 甲骨文 Oracle Cloud：长期免费额度里规格较高的一家
 
-它的长期免费额度里包含 2 OCPU / 12 GB 的 Arm 机型。代价也很明显：主区域创建后不能改、热门区域经常 out of capacity、闲置实例可能被回收、只用 Always Free 时没有工单支持。完整申请步骤和常见失败见 👉 [甲骨文 Oracle Cloud Always Free 申请指南](/free/oracle-cloud-always-free-guide-2026/)。
+它的长期免费额度里包含 2 OCPU / 12 GB 的 Arm 机型。代价也很明显：主区域创建后不能改、热门区域经常 out of capacity、闲置实例可能被回收、只用 Always Free 时没有工单支持。完整申请步骤和常见失败见 [甲骨文 Oracle Cloud Always Free 申请指南](/free/oracle-cloud-always-free-guide-2026/)。
 
 ### Google Cloud：e2-micro 够跑小工具
 
@@ -49,11 +49,11 @@ merchants: ["vultr"]
 - 新用户 12 个月内每月可用 750 小时 B1s、B2pts v2（Arm）、B2ats v2（AMD）。
 - 官方注明：想继续享受 12 个月免费服务，需要在 30 天内转为即用即付（Pay as you go）。
 
-### Vultr：不送机器，送充值返赠
+### Vultr：新用户限时测试额度
 
-Vultr 没有长期免费机，新用户用码 **VULTRMATCH**，首次充值享受 1:1 返赠，**最高 $100**（以官方页面为准）。适合想要按小时计费、随开随删的测试场景。
+通过对应的限时活动链接注册，新用户可获得 **$300 测试额度**。须绑定有效信用卡或 PayPal，重复账户不适用；未用额度 30 天后过期。活动截止日期未公布，资格以注册页面为准。此活动与普通推广使用不同入口，规格与地区价格见 [Vultr 产品目录](/merchants/vultr/#products)。
 
-{{< dealbox slug="vultr" merchant="Vultr 新用户" price="首充 1:1 返赠，最高 $100" validity="长期（以官方页面为准）" limits="需新账户 · 码 VULTRMATCH" >}}
+{{< dealbox slug="vultr-credit" merchant="Vultr 新用户" price="$300 测试额度" validity="限时活动，截止日期未公布" limits="新账户 · 有效信用卡或 PayPal · 未用额度 30 天后过期" >}}
 
 ## 使用免费额度的几条底线
 
