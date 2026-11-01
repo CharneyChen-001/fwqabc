@@ -1,0 +1,4 @@
+{{- /* 文中轻量 CTA：{{< cta slug="raksmart" text="说明文字" btn="按钮文案（可选）" >}} */ -}}
+{{- $slug := .Get "slug" -}}{{ $link := index hugo.Data.links $slug -}}
+{{- if not $link }}{{ errorf "cta: unknown slug %q in %s" $slug .Position }}{{ end -}}
+<div class="inline-cta"><p>{{ .Get "text" | markdownify }}</p><div><a class="go-btn" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ .Get "btn" | default $link.cta | default (i18n "ctaPromo") }}</a><small class="cta-note">{{ i18n "ctaNote" }}</small></div></div>

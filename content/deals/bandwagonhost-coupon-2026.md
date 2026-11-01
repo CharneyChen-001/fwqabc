@@ -2,7 +2,18 @@
 title: "搬瓦工 2026 最新优惠码与方案对比"
 date: 2026-11-01T12:00:00+08:00
 lastmod: 2026-11-01T13:30:00+08:00
-draft: true
+draft: false
+faq:
+  - q: "BWHCGLUKKB 还能用吗？"
+    a: "不能。第三方在官方购物车验证已返回过期提示。目前没有可确认的公开优惠码。"
+  - q: "双11会有优惠码吗？"
+    a: "尚未公布。往年 11 月多次出现 10%–11% 循环码，年付用户可以等到 11月11日前后再决定。"
+  - q: "已经买了，之后出码能补折扣吗？"
+    a: "一般不能，优惠码只在下单时生效。"
+  - q: "CN2 GIA-E 和香港 CN2 GIA 选哪个？"
+    a: "大多数建站需求选 CN2 GIA-E 就够，价格约为香港的 1/3、流量多 4 倍；只有对延迟极敏感才考虑香港。"
+  - q: "可以换机房吗？"
+    a: "可以，在 KiwiVM 面板免费迁移，可选范围取决于方案（见上表）。"
 description: "搬瓦工 BandwagonHost 2026 最新优惠码状态与全部方案价格对比：KVM 入门、CN2 GIA-E、香港/东京/大阪/新加坡 CN2 GIA、洛杉矶 E-Commerce SLA（CN2 GIA/9929/CMIN2），机房列表、按线路选择、付款与退款说明，价格来自官网产品目录。"
 keywords: ["搬瓦工优惠码", "搬瓦工 2026", "BandwagonHost 优惠码", "搬瓦工 CN2 GIA-E", "搬瓦工方案", "搬瓦工 双11", "BWHCGLUKKB"]
 merchant: "bandwagonhost"
@@ -96,7 +107,7 @@ tags: ["优惠码", "搬瓦工"]
 | 亚洲低延迟 | 大阪 / 新加坡 CN2 GIA | 比香港便宜，延迟低；流量仅 500GB |
 | 预算充足、要更低延迟 | 香港 CN2 GIA | 价格较高，流量少 |
 
-线路区别详见 [CN2 GIA、9929、CMIN2 有什么区别](/guides/cn2-gia-vs-9929-vs-cmin2/)。
+线路说明见 [CN2 GIA](/routes/cn2-gia/)、[9929](/routes/9929/)、[CMIN2](/routes/cmin2/) 专题页。
 
 ## 付款方式
 
@@ -104,24 +115,11 @@ tags: ["优惠码", "搬瓦工"]
 
 ## 退款政策
 
-- 搬瓦工长期有 **30 天退款保证**（在一定流量/条件内），来源为第三方转述（[vps-craft.com](https://vps-craft.com/compare/bandwagon-double11-2026-preview)），具体条款请以官方 [Terms of Service](https://bandwagonhost.com/terms-of-service.php) 为准，**待核实**。
+- 搬瓦工长期有 **30 天退款保证**（在一定流量/条件内），来源为第三方转述（[vps-craft.com](https://vps-craft.com/compare/bandwagon-double11-2026-preview)），具体条款请以官方 [Terms of Service](https://bandwagonhost.com/terms-of-service.php) 为准，{{< tbc >}}。
 
 ## 常见问题
 
-**Q：BWHCGLUKKB 还能用吗？**
-A：不能。第三方在官方购物车验证已返回过期提示。目前没有可确认的公开优惠码。
-
-**Q：双11会有优惠码吗？**
-A：尚未公布。往年 11 月多次出现 10%–11% 循环码，年付用户可以等到 11月11日前后再决定。
-
-**Q：已经买了，之后出码能补折扣吗？**
-A：一般不能，优惠码只在下单时生效。
-
-**Q：CN2 GIA-E 和香港 CN2 GIA 选哪个？**
-A：大多数建站需求选 CN2 GIA-E 就够，价格约为香港的 1/3、流量多 4 倍；只有对延迟极敏感才考虑香港。
-
-**Q：可以换机房吗？**
-A：可以，在 KiwiVM 面板免费迁移，可选范围取决于方案（见上表）。
+{{< faq >}}
 
 ## 更新日志
 

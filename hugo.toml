@@ -27,7 +27,7 @@ pagination.pagerSize = 10
   homeTitle = "出海服务器，少踩坑少花钱"
   description = "出海ABC旗下服务器指南：国外VPS真实价格、线路实测与优惠汇总，帮站长、外贸和出海新手少踩坑少花钱。价格以官网为准。"
   tagline = "真实价格、线路实测、优惠汇总，选对一台不纠结"
-  images = ["/brand/og-default-1200x630.png"]
+  images = ["/brand/og-default-1200x630.jpg"]
   keywords = ["国外VPS", "VPS优惠", "外贸建站服务器", "出海服务器", "CN2 GIA", "双11 VPS"]
   ShowBreadCrumbs = true
   ShowReadingTime = true
@@ -39,6 +39,10 @@ pagination.pagerSize = 10
   double11 = "2026-11-11T00:00:00+08:00"
   blackFridayStart = "2026-11-25T00:00:00+08:00"
   blackFridayEnd = "2026-11-30T23:59:59+08:00"
+
+  DateFormat = "2006年1月2日"
+  contactEmail = ""   # 纠错/合作邮箱，如 hi@fwqabc.com；留空则不显示
+  lastUpdated = ""    # 可选：首页“最近更新”日期覆盖；留空则取全站最新文章的 lastmod
 
   [params.label]
     text = "出海ABC · 服务器"
@@ -60,33 +64,20 @@ pagination.pagerSize = 10
     url = "/deals/"
     weight = 10
   [[menus.main]]
-    name = "免费服务器"
+    name = "免费服务器 / 赠金"
     url = "/free/"
     weight = 15
-  [[menus.main]]
-    name = "实测评测"
-    url = "/review/"
-    weight = 20
   [[menus.main]]
     name = "线路专题"
     url = "/routes/"
     weight = 30
   [[menus.main]]
-    name = "按用途选"
-    url = "/guides/"
-    weight = 40
-  [[menus.main]]
     name = "商家目录"
     url = "/merchants/"
     weight = 50
-  [[menus.main]]
-    name = "工具"
-    url = "/tools/"
-    weight = 60
-  [[menus.main]]
-    name = "教程"
-    url = "/tutorials/"
-    weight = 70
+
+[sitemap]
+  changeFreq = "daily"
 
 [markup.goldmark.renderer]
   unsafe = false

@@ -2,7 +2,12 @@
 {{- $now := now.Unix -}}
 <div class="home-wrap"></div>
 <section class="hero">
-  <div class="hero-txt"><h1>{{ site.Params.homeTitle }}</h1><p>{{ site.Params.tagline }}</p></div>
+  {{- $mc := len hugo.Data.links -}}
+  {{- $pages := where site.RegularPages "Section" "in" (slice "deals" "free" "review" "guides") -}}
+  {{- $last := time.AsTime "2000-01-01T00:00:00+08:00" -}}{{ range $pages }}{{ if .Lastmod.After $last }}{{ $last = .Lastmod }}{{ end }}{{ end -}}
+  {{- with site.Params.lastUpdated }}{{ $last = time.AsTime . }}{{ end -}}
+  <div class="hero-txt"><h1>{{ site.Params.homeTitle }}</h1><p>{{ site.Params.tagline }}</p>
+    <ul class="hero-stats"><li><b>{{ $mc }}</b> 家商家已收录</li><li><b>{{ len $pages }}</b> 篇优惠与指南</li><li>最近更新 <b>{{ $last.Format "2006年1月2日" }}</b></li></ul></div>
   <div class="hero-cta"><a class="hbtn hbtn-p" href="/deals/2026-double11-vps-deals/">看双11优惠汇总</a><a class="hbtn hbtn-s" href="#picks">按预算选</a></div>
 </section>
 <ul class="usp">
@@ -11,7 +16,7 @@
   <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg><div><b>按预算直接给推荐</b><span>不堆参数，按用途和预算选</span></div></li>
 </ul>
 
-<a class="free-entry" href="/free/"><div><b>免费服务器专栏 · 0元上手</b><br><span>甲骨文 Always Free 申请指南、各大云新用户赠金汇总，先免费练手再决定买不买</span></div><span class="hbtn hbtn-s">进入专栏</span></a>
+<a class="free-entry" href="/free/"><div><b>免费服务器 / 新用户赠金</b><br><span>甲骨文 Always Free 申请指南、各大云新用户赠金汇总，先免费练手再决定买不买</span></div><span class="hbtn hbtn-s">进入专栏</span></a>
 
 <section class="home-sec countdown" id="countdown">
   <div class="cd"><div>双11 · 11/11 00:00 北京时间</div><b data-target="{{ site.Params.double11 | default "2026-11-11T00:00:00+08:00" }}">11/11 00:00</b></div>
@@ -48,6 +53,7 @@
     <td><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ i18n "ctaPick" }}</a></td></tr>
   {{- end }}
   </tbody></table></div>
+  <p class="src-note">价格于 2026年11月1日 在各家官网核对（搬瓦工产品目录、RakSmart 官方活动说明、Vultr 价格页），{{ i18n "ctaNote" }}。</p>
   {{ partial "affiliate-notice.html" . }}
 </section>
 
@@ -61,9 +67,9 @@
 </section>
 
 <section class="home-sec">
-  <h2>最新指南 <a href="/guides/">更多 »</a></h2>
+  <h2>免费服务器 / 新用户赠金 <a href="/free/">更多 »</a></h2>
   <ul class="short-list">
-  {{- range first 5 (where site.RegularPages "Section" "in" (slice "guides" "review")) }}
+  {{- range first 5 (where site.RegularPages "Section" "free") }}
     <li><a href="{{ .RelPermalink }}"><span>{{ .Title }}</span><small>{{ .Lastmod.Format "01-02" }}</small></a></li>
   {{- else }}<li>暂无</li>{{ end }}
   </ul>

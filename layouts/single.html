@@ -44,6 +44,22 @@
 
   {{- partial "extend_post_content.html" . }}
 
+  {{- if in .Content "class=\"tbc\"" }}
+  <aside class="tbc-note" id="tbc-note"><b>关于「待核实」</b>：文中带 <sup class="tbc">待核实</sup> 角标的内容，截至最后更新时尚未在商家官方页面直接确认（多为第三方转述或官方尚未公布），仅供参考，请以官网结算页为准。核实后我们会更新并去掉角标；发现错误可通过<a href="/contact/">联系与纠错</a>告诉我们。</aside>
+  {{- end }}
+
+  {{- if in (slice "deals" "review" "guides" "tutorials" "tools" "free") .Section }}
+  {{- $rel := first 4 (site.RegularPages.Related .) }}
+  {{- if lt (len $rel) 2 }}{{ $rel = first 4 (where (where site.RegularPages "Section" "in" (slice "deals" "free")) "Permalink" "ne" .Permalink) }}{{ end }}
+  {{- with $rel }}
+  <nav class="related" aria-label="相关文章">
+    <h2>相关文章</h2>
+    <ul>{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a><small>{{ .Lastmod.Format "1月2日更新" }}</small></li>{{ end }}</ul>
+    <p class="back-picks"><a href="/#picks">« 回到首页「按预算和用途选」</a> · <a href="/deals/">全部优惠</a> · <a href="/free/">免费服务器 / 新用户赠金</a></p>
+  </nav>
+  {{- end }}
+  {{- end }}
+
   <footer class="post-footer">
     {{- partial "affiliate-notice.html" . }}
     {{- if in (slice "deals" "review" "guides" "tutorials" "tools" "free") .Section }}{{ partial "tg-subscribe.html" . }}{{ end }}

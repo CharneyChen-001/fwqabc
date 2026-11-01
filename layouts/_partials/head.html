@@ -18,7 +18,9 @@
     {{- range $i, $e := .Params.keywords }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- else }}
     {{- range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- end -}}">
 {{- end }}
-<meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- if or .IsPage .IsSection}}
+<meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- if eq .Kind "term" }}
+    {{- printf "%s：%s相关的国外 VPS 优惠、价格与指南共 %d 篇，每条标注来源与核实日期，价格以官网为准。" .Title .Title (len .Pages) }}{{- else if eq .Kind "taxonomy" }}
+    {{- printf "%s索引：按%s浏览出海ABC的国外 VPS 优惠、价格与指南。" .Title .Title }}{{- else if or .IsPage .IsSection}}
     {{- .Summary | default (printf "%s - %s" .Title  site.Title) }}{{- else }}
     {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
 <meta name="author" content="{{ (partial "author.html" . ) }}">

@@ -1,0 +1,8 @@
+{{- /* 输入："start/end,start/end"（ISO 8601，+08:00）。构建时先算出静态文案，浏览器端脚本（extend_footer）再实时更新。 */ -}}
+{{- $now := now.Unix -}}{{ $txt := "" }}{{ $state := "" -}}
+{{- range split . "," }}{{ if not $txt }}{{ $p := split (trim . " ") "/" }}{{ $s := time.AsTime (index $p 0) }}{{ $e := time.AsTime (index $p 1) -}}
+  {{- if lt $now $s.Unix }}{{ $txt = printf "%s 开始（北京时间）" ($s.Format "1月2日 15:04") }}{{ $state = "soon" -}}
+  {{- else if lt $now $e.Unix }}{{ $txt = printf "进行中 · %s 结束（北京时间）" ($e.Format "1月2日 15:04") }}{{ $state = "live" }}{{ end -}}
+{{- end }}{{ end -}}
+{{- if not $txt }}{{ $txt = "本轮活动已结束，以官网最新活动为准" }}{{ $state = "over" }}{{ end -}}
+<p class="urg urg-{{ $state }}" data-when="{{ . }}">⏱ <span>{{ $txt }}</span></p>

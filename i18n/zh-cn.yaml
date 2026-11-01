@@ -3,3 +3,30 @@
   translation: 去官方活动页
 - id: ctaPick
   translation: 官方活动页
+- id: ctaNote
+  translation: 跳转官方页面 · 价格以官网为准
+# PaperMod 界面中文
+- id: prev_page
+  translation: "上一页"
+- id: next_page
+  translation: "下一页"
+- id: read_time
+  translation:
+    one: "约 1 分钟阅读"
+    other: "约 {{ .Count }} 分钟阅读"
+- id: words
+  translation:
+    one: "1 字"
+    other: "{{ .Count }} 字"
+- id: toc
+  translation: "目录"
+- id: translations
+  translation: "语言"
+- id: home
+  translation: "首页"
+- id: edit_post
+  translation: "编辑"
+- id: code_copy
+  translation: "复制"
+- id: code_copied
+  translation: "已复制！"

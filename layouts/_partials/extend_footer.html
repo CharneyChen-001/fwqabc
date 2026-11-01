@@ -1,0 +1,16 @@
+{{- /* dealbox 紧迫感提示：与首页倒计时相同的稳健解析，解析失败时保留构建时文案 */ -}}
+<script>
+(function(){
+var u=document.querySelectorAll('.urg[data-when]');if(!u.length)return;
+function pd(v){if(!v)return NaN;var m=/^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})(?::(\d{2}))?(Z|([+-])(\d{2}):?(\d{2}))?$/.exec(String(v).trim());
+if(!m){var t=Date.parse(v);return isNaN(t)?NaN:t}
+var x=Date.UTC(+m[1],m[2]-1,+m[3],+m[4],+m[5],+(m[6]||0)),o=8*60;if(m[7]==='Z')o=0;else if(m[8])o=(m[8]==='-'?-1:1)*(m[9]*60+ +m[10]);return x-o*6e4}
+function fm(ms){var d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),mi=Math.floor(ms%36e5/6e4);return (d?d+' 天 ':'')+h+' 小时 '+(d?'':mi+' 分')}
+function run(){var n=Date.now();u.forEach(function(el){var ws=el.dataset.when.split(','),txt='',st='';
+for(var i=0;i<ws.length&&!txt;i++){var p=ws[i].trim().split('/'),s=pd(p[0]),e=pd(p[1]);if(isNaN(s)||isNaN(e))return;
+if(n<s){txt='距开始还有 '+fm(s-n)+'（北京时间 '+p[0].slice(5,10).replace('-','/')+' '+p[0].slice(11,16)+'）';st='soon'}
+else if(n<e){txt='进行中 · 距结束还剩 '+fm(e-n);st='live'}}
+if(!txt){txt='本轮活动已结束，以官网最新活动为准';st='over'}
+el.className='urg urg-'+st;el.querySelector('span').textContent=txt})}
+run();setInterval(run,6e4)})();
+</script>

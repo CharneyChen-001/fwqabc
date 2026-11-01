@@ -2,14 +2,23 @@
 title: "甲骨文 Oracle Cloud Always Free 申请指南 2026：注册、选区、开 A1 实例与常见失败"
 date: 2026-11-01T13:30:00+08:00
 lastmod: 2026-11-01T13:30:00+08:00
-draft: true
+draft: false
+faq:
+  - q: "甲骨文 Always Free 需要信用卡吗？"
+    a: "需要。官方不接受带 PIN 的借记卡、虚拟卡、一次性卡和预付卡，建议用本人实体信用卡，信息与账单一致。"
+  - q: "开机提示 Out of capacity 怎么办？"
+    a: "这是主区域临时缺少 Always Free 机型，可以换可用域或隔段时间再试；急用就直接买低价 VPS。"
+  - q: "免费实例会被回收吗？"
+    a: "官方说明：连续 7 天内 CPU 第 95 百分位、网络、内存（仅 A1）使用率都低于 20% 的实例可能被回收。"
+  - q: "升级为 Pay As You Go 后还免费吗？"
+    a: "官方说明升级后 Always Free 资源仍然免费，只对超出部分计费，且升级后不能降级。建议先设预算提醒。"
 description: "2026 甲骨文 Oracle Cloud 免费服务器申请指南：Always Free 资源（Ampere A1 2 OCPU/12GB、2 台 AMD Micro、200GB 块存储、每月 10TB 出站流量）、主区域不可更改、闲置回收规则、信用卡验证、out of capacity 应对，全部引用官方文档。"
 keywords: ["甲骨文免费服务器", "Oracle Cloud Always Free", "甲骨文云申请", "Ampere A1", "免费VPS", "甲骨文注册"]
 tags: ["免费服务器", "甲骨文", "Oracle Cloud"]
 merchants: ["raksmart", "bandwagonhost", "racknerd", "vultr"]
 ---
 
-> **说明：** 本文的注册和控制台步骤是**根据 Oracle 官方文档与公开页面整理**的，本文作者没有在本文中实际注册或开机测试。资源额度和规则核实于 2026-11-01（北京时间），以官方最新页面为准。标为「经验分享·待核实」的内容来自论坛和第三方，未经官方确认。
+> **说明：** 本文的注册和控制台步骤是**根据 Oracle 官方文档与公开页面整理**的，本文作者没有在本文中实际注册或开机测试。资源额度和规则核实于 2026-11-01（北京时间），以官方最新页面为准。标为「经验分享{{< tbc >}}」的内容来自论坛和第三方，未经官方确认。
 
 ## 先说结论：适合谁、不适合谁
 
@@ -75,7 +84,7 @@ merchants: ["raksmart", "bandwagonhost", "racknerd", "vultr"]
 官方文档写得很清楚：主区域保存账户信息和身份资源，**租户创建后不能更改**（[Managing Regions](https://docs.oracle.com/en-us/iaas/Content/Identity/regions/managingregions.htm)）。Always Free 计算实例也**只能建在主区域**，所以选区等于选你免费机的机房。
 
 - **按访客位置选。** 访客在海外（外贸站、海外用户），选靠近目标市场的区域；访客在国内，选离中国大陆较近的亚太区域。各区域到国内的线路本站**待实测**，不在这里下结论。
-- **热门区域经常「Out of capacity」。** 官方 FAQ 承认，「out of host capacity」表示主区域暂时缺少 Always Free 机型，**补充容量可能需要几天**。经验分享·待核实：论坛普遍反映东京、首尔、新加坡等亚太热门区域更难开出 A1。
+- **热门区域经常「Out of capacity」。** 官方 FAQ 承认，「out of host capacity」表示主区域暂时缺少 Always Free 机型，**补充容量可能需要几天**。经验分享{{< tbc >}}：论坛普遍反映东京、首尔、新加坡等亚太热门区域更难开出 A1。
 - **多可用域更灵活。** 主区域有多个可用域（AD）时，开不出机可以换一个 AD 再试（官方建议）。
 - 想用免费 Autonomous Database，先确认主区域是否支持（官方说明部分区域不支持）。
 
@@ -91,13 +100,13 @@ merchants: ["raksmart", "bandwagonhost", "racknerd", "vultr"]
 6. **Boot volume**：默认约 50 GB，计入 200 GB 免费块存储。
 7. 点击 Create，状态变成 Running 后用 `ssh ubuntu@公网IP`（Ubuntu 镜像）或 `ssh opc@公网IP`（Oracle Linux 镜像）登录。
 
-> 如果报「Out of host capacity」：按官方建议换个可用域，或者过一段时间再试。经验分享·待核实：有人用脚本反复调用 API 抢机，这可能触发频率限制，也可能违反服务条款，本站**不推荐**。
+> 如果报「Out of host capacity」：按官方建议换个可用域，或者过一段时间再试。经验分享{{< tbc >}}：有人用脚本反复调用 API 抢机，这可能触发频率限制，也可能违反服务条款，本站**不推荐**。
 
 ## 安全列表与防火墙：网站打不开先查这两层
 
 Oracle 的流量要过**两层**：
 1. **VCN 安全列表（Security List）或网络安全组（NSG）**：在 Networking → Virtual Cloud Networks → 子网 → Security List 里添加入站规则，比如 TCP 80、443（[官方文档：Security Lists](https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/securitylists.htm)）。**只放行你需要的端口**，SSH 22 端口最好限制来源 IP。
-2. **系统内防火墙**：Oracle 官方镜像默认启用了系统防火墙。Oracle Linux 用 `firewall-cmd`，Ubuntu 镜像需要检查 iptables 规则。经验分享·待核实：不少用户反映安全列表放行了，网页还是打不开，原因就是镜像自带的 iptables 规则。
+2. **系统内防火墙**：Oracle 官方镜像默认启用了系统防火墙。Oracle Linux 用 `firewall-cmd`，Ubuntu 镜像需要检查 iptables 规则。经验分享{{< tbc >}}：不少用户反映安全列表放行了，网页还是打不开，原因就是镜像自带的 iptables 规则。
 
 示例（Oracle Linux，放行 80/443）：
 
@@ -117,7 +126,13 @@ sudo firewall-cmd --reload
 | **实例被回收** | 官方：连续 7 天内 CPU 第 95 百分位使用率 < 20%、网络使用率 < 20%、内存使用率 < 20%（仅 A1）的实例**可能被回收** | 不要开了不用；认真跑项目，或者干脆删掉 |
 | **试用期后机器没了** | 试用金开的付费资源到期回收；A1 总量超出免费额度会被禁用，30 天后删除 | 试用期结束前把 A1 总量控制在 2 OCPU / 12 GB 以内 |
 
-关于**升级为 Pay As You Go**：官方说明升级后 **Always Free 资源仍然免费**，只对超出部分计费，而且**升级后不能降级**（[官方 FAQ](https://www.oracle.com/cloud/free/faq/)）。经验分享·待核实：有用户认为升级后开机更容易、账户也更不容易被清理，官方没有这样承诺。升级前务必设好预算提醒，避免误开付费资源。
+{{< cta slug="raksmart" text="开不出机、怕被回收？低价付费款更省心：RakSmart 双11 秒杀 $1.99/月起" >}}
+
+关于**升级为 Pay As You Go**：官方说明升级后 **Always Free 资源仍然免费**，只对超出部分计费，而且**升级后不能降级**（[官方 FAQ](https://www.oracle.com/cloud/free/faq/)）。经验分享{{< tbc >}}：有用户认为升级后开机更容易、账户也更不容易被清理，官方没有这样承诺。升级前务必设好预算提醒，避免误开付费资源。
+
+## 常见问题
+
+{{< faq >}}
 
 ## 免费不等于稳定
 
@@ -133,7 +148,7 @@ sudo firewall-cmd --reload
 
 {{< dealbox slug="racknerd" merchant="RackNerd" price="黑五价格待公布" validity="以官网活动页为准" limits="美国机房为主 · 普通线路" >}}
 
-{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" >}}
+{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" when="2026-11-11T00:00:00+08:00/2026-11-17T23:59:59+08:00,2026-11-25T00:00:00+08:00/2026-11-30T23:59:59+08:00" >}}
 
 {{< dealbox slug="bandwagonhost" merchant="搬瓦工 CN2 GIA-E" price="$89.99/季起" validity="常规方案，长期有效" limits="价格以结算页为准" >}}
 

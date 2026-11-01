@@ -1,9 +1,9 @@
-{{- /* 用法：{{< dealbox slug="raksmart" merchant="RakSmart" price="$1.99/月起" validity="..." limits="..." btn="（可选，默认 i18n ctaPromo）" sticky="true" thumb="/img/promos/x.webp" thumb_alt="..." >}}
+{{- /* 用法：{{< dealbox slug="raksmart" merchant="RakSmart" price="$1.99/月起" validity="..." limits="..." btn="（可选，默认 links.yaml 的 cta，再退回 i18n ctaPromo）" when="开始/结束,开始/结束（ISO+08:00，可选，用于紧迫感提示）" sticky="true" thumb="/img/promos/x.webp" thumb_alt="..." >}}
      thumb 省略时读取 data/links.yaml 中该 slug 的 thumb；thumb="none" 不显示 */ -}}
 {{- $slug := .Get "slug" -}}
 {{- $link := index hugo.Data.links $slug -}}
 {{- if not $link }}{{ errorf "dealbox: unknown slug %q in %s" $slug .Position }}{{ end -}}
-{{- $btn := .Get "btn" | default (i18n "ctaPromo") -}}
+{{- $btn := .Get "btn" | default $link.cta | default (i18n "ctaPromo") -}}
 {{- $thumb := .Get "thumb" | default $link.thumb -}}{{ if eq $thumb "none" }}{{ $thumb = "" }}{{ end -}}
 {{- $alt := .Get "thumb_alt" | default $link.thumb_alt | default (printf "%s 官方活动页截图" (.Get "merchant")) -}}
 <div class="dealbox{{ if $thumb }} has-thumb{{ end }}">
@@ -15,11 +15,13 @@
   {{- end }}
   <div class="dealbox-body">
     <div class="dealbox-head"><span class="dealbox-m">{{ .Get "merchant" }}</span>{{ with .Get "price" }}<span class="dealbox-p">{{ . }}</span>{{ end }}</div>
+    {{- with .Get "when" }}{{ partial "urgency.html" . }}{{ end }}
     <ul class="dealbox-meta">
       {{- with .Get "validity" }}<li><b>有效期</b>{{ . }}</li>{{ end }}
       {{- with .Get "limits" }}<li><b>限制</b>{{ . }}</li>{{ end }}
     </ul>
     <a class="go-btn go-btn-lg" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ $btn }}</a>
+    <small class="cta-note">{{ i18n "ctaNote" }}</small>
   </div>
 </div>
 {{- if eq (.Get "sticky") "true" }}

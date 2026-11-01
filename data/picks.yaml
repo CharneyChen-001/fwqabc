@@ -1,4 +1,4 @@
-# 首页“按预算和用途选”。只填写已核实的官方价格；未核实写 TODO。
+# 首页“按预算和用途选”。只填写已在官方页面核实的价格；未核实的方案不要放进来。
 # 字段：use 用途 / budget 预算档 / merchant / plan / price / route / slug（data/links.yaml）
 - use: 建站入门
   budget: 低（≈$100/年）
@@ -38,14 +38,7 @@
 - use: 开发测试
   budget: 按小时计费
   merchant: Vultr
-  plan: Cloud Compute（TODO 型号）
-  price: TODO
+  plan: Regular Cloud Compute 1核 / 1G / 25G SSD / 1TB
+  price: $5.00/月（$0.007/小时）
   route: 普通国际线路
   slug: vultr
-- use: 低价年付小鸡
-  budget: 极低
-  merchant: RackNerd
-  plan: TODO（黑五款尚未公布）
-  price: TODO
-  route: 普通线路
-  slug: racknerd

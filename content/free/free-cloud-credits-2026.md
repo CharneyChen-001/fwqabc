@@ -2,7 +2,7 @@
 title: "免费服务器与新用户赠金汇总 2026：甲骨文、谷歌云、AWS、Azure、Vultr"
 date: 2026-11-01T13:40:00+08:00
 lastmod: 2026-11-01T13:40:00+08:00
-draft: true
+draft: false
 description: "2026 免费云服务器与新用户赠金汇总：Oracle Always Free、Google Cloud e2-micro 与 $300 试用金、AWS 新版 Free Plan（最多 $200 赠金、6 个月）、Azure 免费账户 $200 与 12 个月 B1s，以及 Vultr VULTRMATCH，每条标注官方来源与核实日期。"
 keywords: ["免费服务器", "免费云服务器 2026", "新用户赠金", "AWS Free Tier 2026", "谷歌云免费", "Azure 免费账户", "甲骨文免费"]
 tags: ["免费服务器", "赠金"]
@@ -10,6 +10,10 @@ merchants: ["vultr"]
 ---
 
 > 以下信息都来自各家**官方页面**，核实日期 2026-11-01（北京时间）。活动规则经常变，以官网为准。用途建议：建站练手、学习 Linux、跑小工具、搭测试环境。
+
+**一句话结论：** 想长期白嫖选甲骨文 Always Free（开机看运气）；想稳定少折腾，用 Vultr 新用户返赠或直接买低价 VPS。
+
+{{< cta slug="vultr" text="Vultr 新用户首充 1:1 返赠，最高 $100（码 VULTRMATCH）" >}}
 
 ## 一表看懂
 
@@ -22,7 +26,6 @@ merchants: ["vultr"]
 | **AWS** | 新版 Free Plan（赠金制） | 新用户注册即得 $100，探索指定服务最多再得 $100，合计最多 $200；Free plan 账户 6 个月后或赠金用完自动关闭，不升级不扣费；另有 30+ 项服务长期免费额度 | 6 个月 | [aws.amazon.com/free](https://aws.amazon.com/free/) |
 | **Microsoft Azure** | 免费账户 | $200 赠金（30 天）；新用户 12 个月内每月各 750 小时 B1s、B2pts v2（Arm）、B2ats v2（AMD）虚拟机；65+ 项服务长期免费额度 | 赠金 30 天；VM 12 个月 | [免费服务](https://azure.microsoft.com/en-us/pricing/free-services)、[账户](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account) |
 | **Vultr** | 新用户充值返赠 | 码 VULTRMATCH：新账户首次充值 1:1 返赠，最高 $100 | 以官方页面为准 | [vultr.com/coupons](https://www.vultr.com/coupons/) |
-| DigitalOcean | 新用户赠金 | 待核实 | — | 待核实 |
 
 ## 各家要点
 
@@ -38,7 +41,7 @@ merchants: ["vultr"]
 
 ### AWS：2025 年起改为赠金制 Free Plan
 
-官方页面现在的说法是：新账户注册即得 **$100**，完成指定服务探索**最多再得 $100**；**Free plan 账户在开户 6 个月后或赠金用完时自动关闭**（以先到者为准），不转为付费计划不会扣费。另有 30+ 项服务按月长期免费。过去常见的「12 个月 t2.micro/t3.micro 750 小时」说法，新账户请以当前官方页面为准（旧规则是否仍适用于老账户**待核实**）。
+官方页面现在的说法是：新账户注册即得 **$100**，完成指定服务探索**最多再得 $100**；**Free plan 账户在开户 6 个月后或赠金用完时自动关闭**（以先到者为准），不转为付费计划不会扣费。另有 30+ 项服务按月长期免费。过去常见的「12 个月 t2.micro/t3.micro 750 小时」说法，新账户请以当前官方页面为准（旧规则是否仍适用于老账户{{< tbc >}}）。
 
 ### Azure：$200 赠金 + 12 个月小规格 VM
 
@@ -65,7 +68,7 @@ Vultr 没有长期免费机，新用户用码 **VULTRMATCH**，首次充值享�
 
 {{< dealbox slug="racknerd" merchant="RackNerd" price="黑五价格待公布" validity="以官网活动页为准" limits="美国机房为主 · 普通线路" >}}
 
-{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" >}}
+{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" when="2026-11-11T00:00:00+08:00/2026-11-17T23:59:59+08:00,2026-11-25T00:00:00+08:00/2026-11-30T23:59:59+08:00" >}}
 
 {{< dealbox slug="bandwagonhost" merchant="搬瓦工 CN2 GIA-E" price="$89.99/季起" validity="常规方案，长期有效" limits="价格以结算页为准" >}}
 

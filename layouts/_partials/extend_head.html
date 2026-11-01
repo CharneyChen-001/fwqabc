@@ -92,3 +92,33 @@
  body:has(.sticky-cta) .footer{padding-bottom:5em}
 }
 </style>
+{{- with .Params.faq }}
+<script type="application/ld+json">{{ $m := slice }}{{ range . }}{{ $m = $m | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" (.a | plainify))) }}{{ end }}{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $m | jsonify | safeJS }}</script>
+{{- end }}
+<style>
+.hero-stats{list-style:none;padding:0;display:flex;gap:1.2em;flex-wrap:wrap;font-size:.85em;color:var(--secondary);margin:.4em 0 0}.hero-stats b{color:var(--primary)}
+.hero-stats li{margin:0}
+.cta-note{display:block;font-size:.75em;color:var(--secondary);margin-top:.2em}
+.urg{font-size:.85em;font-weight:600;margin:.3em 0}.urg-live{color:#C2380F}.urg-soon{color:#B26A00}.urg-over{color:var(--secondary)}
+.inline-cta{margin:1.2em 0;padding:1em;border-radius:var(--radius);border:1px dashed #C2380F;background:rgba(242,70,21,.05)}
+.inline-cta p{margin:0 0 .5em}
+.faq details{border:1px solid var(--border);border-radius:8px;padding:.6em .9em;margin:.5em 0}.faq summary{font-weight:600;cursor:pointer}.faq details p{margin:.5em 0 0}
+sup.tbc{font-size:.65em;color:var(--secondary);font-weight:400}sup.tbc a{box-shadow:none!important;color:var(--secondary)}
+.tbc-note{font-size:.85em;color:var(--secondary);border-top:1px solid var(--border);margin-top:1.5em;padding-top:.8em}
+.related{margin-top:1.5em;padding:1em;border-radius:var(--radius);background:var(--entry);border:1px solid var(--border)}.related h2{font-size:1.1em;margin:0 0 .5em}.related ul{margin:0;padding-left:1.2em}
+.back-picks{display:flex;gap:1em;flex-wrap:wrap;font-size:.9em;margin-top:.8em}
+.src-note{font-size:.8em;color:var(--secondary);margin-top:.4em}
+.foot-links a{margin:0 .4em}
+@media (max-width:768px){
+ .nav{flex-wrap:nowrap;flex-direction:column;align-items:stretch}
+ .nav .logo{justify-content:space-between}
+ #menu{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0;padding-right:2em;
+  -webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+ #menu::-webkit-scrollbar{display:none}
+ #menu li + li{margin-inline-start:14px}
+ .toc{margin:0 0 1em}.toc details summary{padding:.4em 0}.toc .inner{font-size:.9em}
+ .post-description{font-size:.95em}
+ .aff-notice{font-size:.78em;margin-bottom:.6em}
+ .post-content blockquote{font-size:.9em;padding:.4em .8em}
+}
+</style>

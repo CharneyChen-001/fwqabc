@@ -2,11 +2,13 @@
 #   landing:       官方落地页（优惠/活动/方案页），aff 为空时 /go/<slug> 直接 302 到这里
 #   aff:           推广 ID（留空 = 尚未开通，跳转到 landing，不带推广参数）
 #   aff_template:  填入 aff 后使用的目标模板，占位符 {aff} {landing} {landing_enc}
+#   cta:           dealbox 默认按钮文案（具体利益点）；dealbox 的 btn 参数可覆盖
 #   thumb/thumb_alt: dealbox 缩略图（官方页面截图，存放 static/img/promos/）
 # 修改后运行：python3 scripts/gen-redirects.py （生成 deploy/Caddyfile 与 static/_redirects）
 # 注意：有些商家只在首页/特定入口记录推广，上线前务必用联盟后台给的真实链接点一次，确认后台有点击记录。
 
 bandwagonhost:
+  cta: 查看 CN2 GIA-E 方案
   landing: https://bandwagonhost.com/cart.php?a=add&pid=88
   aff: ""
   # 官方 KB 说明支持 aff.php?aff=ID&pid=PID 直达产品（pid 88 = CN2 GIA-E 2G），可信度高
@@ -15,6 +17,7 @@ bandwagonhost:
   thumb_alt: 搬瓦工官网 CN2 GIA-E 方案购物车页面截图
 
 raksmart:
+  cta: 查看 $1.99/月秒杀款
   landing: https://www.raksmart.com/activity/index/page/activitypage_25.html
   aff: ""
   # WHMCS 推广链接 billing.raksmart.com/whmcs/aff.php?aff=ID，只能落到默认首页；
@@ -24,18 +27,21 @@ raksmart:
   thumb_alt: RakSmart 官方 11.11 年度大促活动页截图
 
 racknerd:
+  cta: 查看 RackNerd 特价页
   landing: https://www.racknerd.com/specials/
   aff: ""
   # WHMCS 格式 my.racknerd.com/aff.php?aff=ID&pid=PID 直达产品（社区公开链接可见），落到 specials 页的参数待核实
   aff_template: https://my.racknerd.com/aff.php?aff={aff}
 
 vultr:
+  cta: 领首充返赠（最高 $100）
   landing: https://www.vultr.com/
   aff: ""
   # 官方推广格式 https://www.vultr.com/?ref=ID
   aff_template: https://www.vultr.com/?ref={aff}
 
 namesilo:
+  cta: 查看 NameSilo 域名价格
   landing: https://www.namesilo.com/
   aff: ""
   # 官方推广格式 https://www.namesilo.com/?rid=ID
