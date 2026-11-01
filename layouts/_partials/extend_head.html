@@ -9,7 +9,19 @@
 .home-sec{margin:1.6em 0}
 .home-sec h2{font-size:1.25em;margin-bottom:.6em;display:flex;justify-content:space-between;align-items:baseline}
 .home-sec h2 a{font-size:.7em;font-weight:400}
-.hero{margin:.5em 0 1em}.hero h1{font-size:1.6em;margin:0}.hero p{color:var(--secondary);margin:.2em 0 0}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:1.2em;margin:.4em 0 .8em;padding:1.1em 1.4em;border-radius:12px;background:linear-gradient(120deg,rgba(15,118,110,.12),rgba(15,118,110,.03));border:1px solid var(--border);max-height:200px}
+.hero h1{font-size:1.75em;margin:0;line-height:1.25}.hero p{color:var(--secondary);margin:.35em 0 0}
+.hero-cta{display:flex;gap:.6em;flex-shrink:0}
+.hbtn{display:inline-block;padding:.55em 1.1em;border-radius:8px;font-weight:600;text-align:center;box-shadow:none!important;white-space:nowrap}
+.hbtn-p{background:#0f766e;color:#fff!important}.hbtn-p:hover{background:#115e59}
+.hbtn-s{border:1px solid #0f766e;color:#0f766e!important}.dark .hbtn-s{color:#5eead4!important;border-color:#5eead4}
+.usp{display:grid;grid-template-columns:repeat(3,1fr);gap:.8em;list-style:none;padding:0;margin:0 0 1em}
+.usp li{display:flex;gap:.6em;align-items:center;padding:.6em .8em;border:1px solid var(--border);border-radius:10px;margin:0}
+.usp svg{width:26px;height:26px;flex-shrink:0;fill:none;stroke:#0f766e;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.usp b{display:block;font-size:.95em}.usp span{font-size:.8em;color:var(--secondary)}
+.logo .wm{vertical-align:middle;margin-inline-end:6px}
+#picks{scroll-margin-top:1em}
+@media (max-width:768px){.hero{flex-direction:column;align-items:stretch;max-height:none;padding:1em}.hero h1{font-size:1.4em}.hero-cta{flex-direction:column}.hbtn{display:block;width:100%}.usp{grid-template-columns:1fr}}
 .countdown{display:flex;gap:.6em;flex-wrap:wrap}
 .countdown .cd{flex:1;min-width:150px;padding:.8em 1em;border-radius:var(--radius);background:var(--entry);border:1px solid var(--border)}
 .countdown .cd div{font-size:.85em;color:var(--secondary)}.countdown .cd b{font-size:1.3em}
