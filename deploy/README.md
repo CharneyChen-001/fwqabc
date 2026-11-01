@@ -30,7 +30,7 @@ Caddy 会自动申请 Let's Encrypt 证书（HTTPS）。
 
 ## 4. GitHub Actions 自动部署
 
-`.github/workflows/deploy.yml` 默认只能手动运行（workflow_dispatch）。在仓库 Settings → Secrets 添加：
+`deploy/github-workflow-deploy.yml（启用时移到 .github/workflows/deploy.yml）` 默认只能手动运行（workflow_dispatch）。在仓库 Settings → Secrets 添加：
 
 - `SSH_HOST`：服务器 IP/域名
 - `SSH_USER`：部署用户（对 /var/www/fwqabc 有写权限）

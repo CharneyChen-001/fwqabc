@@ -31,7 +31,7 @@ data/picks.yaml  首页精选对比表
 layouts/         主题覆盖：首页、文章页（推广提示）、go 短代码、robots.txt
 scripts/gen-redirects.py  生成 deploy/Caddyfile 与 static/_redirects
 deploy/          Caddyfile 与部署说明
-.github/workflows/deploy.yml  手动触发的部署工作流
+deploy/github-workflow-deploy.yml（启用时移到 .github/workflows/deploy.yml）  手动触发的部署工作流
 ```
 
 分类法：`merchants`（商家）、`routes`（线路）、`datacenters`（机房）、`tags`。
