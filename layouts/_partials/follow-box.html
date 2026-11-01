@@ -1,0 +1,4 @@
+{{- if or site.Params.telegram site.Params.xHandle }}
+<div class="follow-box"><div><b>关注出海ABC，优惠上线及时知道</b><span>补货 / 秒杀 / 优惠码更新提醒</span></div>
+<div class="follow-btns">{{ with site.Params.telegram }}<a class="hbtn hbtn-s" href="{{ . }}" target="_blank" rel="noopener">Telegram</a>{{ end }}{{ with site.Params.xHandle }}<a class="hbtn hbtn-s" href="https://x.com/{{ . }}" target="_blank" rel="noopener">X @{{ . }}</a>{{ end }}</div></div>
+{{- end }}

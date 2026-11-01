@@ -49,6 +49,18 @@
   {{- end }}
 
   {{- if in (slice "deals" "review" "guides" "tutorials" "tools" "free") .Section }}
+  {{- if in (slice "deals" "free") .Section }}
+  <aside class="rec-box" aria-label="本站推荐">
+    <h2>看完了？这些活动正在进行</h2>
+    <div class="rec-grid">
+    {{- range first 2 (sort hugo.Data.promos "start" "desc") }}
+      <div class="rec-item"><span class="rec-m">{{ .merchant }}{{ with .badge }} <em>{{ . }}</em>{{ end }}</span>{{ with .price }}<b class="rec-p">{{ . }}</b>{{ end }}<small>{{ .title }}</small>
+      <a class="go-btn go-btn-lg" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去官方活动页 →</a></div>
+    {{- end }}
+    </div>
+    <p class="aff-notice">含推广链接，详见 <a href="/disclosure/">推广披露</a>。{{ i18n "ctaNote" }}</p>
+  </aside>
+  {{- end }}
   {{- $rel := first 4 (site.RegularPages.Related .) }}
   {{- if lt (len $rel) 2 }}{{ $rel = first 4 (where (where site.RegularPages "Section" "in" (slice "deals" "free")) "Permalink" "ne" .Permalink) }}{{ end }}
   {{- with $rel }}

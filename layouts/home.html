@@ -1,15 +1,26 @@
 {{- define "main" }}
 {{- $now := now.Unix -}}
 <div class="home-wrap"></div>
-<section class="hero">
+<section class="hero hero-brand">
   {{- $mc := len (site.GetPage "/merchants").Pages -}}
   {{- $pages := where site.RegularPages "Section" "in" (slice "deals" "free" "review" "guides") -}}
   {{- $last := time.AsTime "2000-01-01T00:00:00+08:00" -}}{{ range $pages }}{{ if .Lastmod.After $last }}{{ $last = .Lastmod }}{{ end }}{{ end -}}
   {{- with site.Params.lastUpdated }}{{ $last = time.AsTime . }}{{ end -}}
-  <div class="hero-txt"><h1>{{ site.Params.homeTitle }}</h1><p>{{ site.Params.tagline }}</p>
-    <ul class="hero-stats"><li><b>{{ $mc }}</b> 家商家已收录</li><li><b>{{ len $pages }}</b> 篇优惠与指南</li><li>最近更新 <b>{{ $last.Format "2006年1月2日" }}</b></li></ul></div>
-  <div class="hero-cta"><a class="hbtn hbtn-p" href="/deals/2026-double11-vps-deals/">看双11优惠汇总</a><a class="hbtn hbtn-s" href="#picks">按预算选</a></div>
+  <img class="hero-globe" src="/brand/hero-globe.webp" alt="" width="410" height="340" fetchpriority="high">
+  <div class="hero-txt">
+    <p class="hero-kicker">fwqabc.com · 出海ABC</p>
+    <h1>{{ site.Params.homeTitle }}</h1>
+    <p class="hero-sub">VPS优惠 · 线路科普 · 免费服务器指南</p>
+    <div class="hero-cta"><a class="hbtn hbtn-w" href="#deals">看双11优惠 →</a><a class="hbtn hbtn-o" href="/free/">免费服务器指南</a></div>
+    <ul class="hero-chips"><li>✓ 价格可核实</li><li>✓ 线路讲清楚</li><li>✓ 按预算直接给推荐</li></ul>
+    <ul class="hero-stats"><li><b>{{ $mc }}</b> 家商家已收录</li><li><b>{{ len $pages }}</b> 篇优惠与指南</li><li>最近更新 <b>{{ $last.Format "2006年1月2日" }}</b></li></ul>
+  </div>
 </section>
+<nav class="quick-pick" aria-label="按预算快速选">
+  <span class="qp-l">按预算选：</span>
+  {{- $seen := slice }}{{ range $i, $p := hugo.Data.picks }}{{ if not (in $seen $p.use) }}{{ $seen = $seen | append $p.use }}<a href="#pick-{{ $i }}">{{ $p.use }}<small>{{ $p.price | replaceRE "（.*）" "" }}</small></a>{{ end }}{{ end }}
+  <a href="/free/">免费服务器<small>0 元起步</small></a>
+</nav>
 <ul class="usp">
   <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 12.5l3.2 3L17 9"/></svg><div><b>价格可核实</b><span>每条标来源和核实日期</span></div></li>
   <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18l5-6 4 3 6-8 3 3"/></svg><div><b>线路讲清楚</b><span>回程线路按官方和 AS 信息标注，实测数据陆续更新</span></div></li>
@@ -23,20 +34,23 @@
   <div class="cd"><div>黑五 · 11/25–11/30 北京时间</div><b data-target="{{ site.Params.blackFridayStart | default "2026-11-25T00:00:00+08:00" }}" data-end="{{ site.Params.blackFridayEnd | default "2026-11-30T23:59:59+08:00" }}">11/25–11/30</b></div>
 </section>
 
-<section class="home-sec">
+<section class="home-sec" id="deals">
   <h2>正在进行 / 即将开始 <a href="/deals/">全部优惠 »</a></h2>
   <div class="promos">
-  {{- range sort hugo.Data.promos "start" }}
+  {{- range sort hugo.Data.promos "start" "desc" }}
     {{- $s := time.AsTime .start }}{{ $e := cond (ne (.end | default "") "") (time.AsTime (.end | default "2099-01-01T00:00:00+08:00")) (time.AsTime "2099-01-01T00:00:00+08:00") }}
     {{- if gt $e.Unix $now }}
     <div class="promo" data-start="{{ $s.Format "2006-01-02T15:04:05-07:00" }}" data-end="{{ $e.Format "2006-01-02T15:04:05-07:00" }}">
       {{- $slug := .slug }}{{ $l := index hugo.Data.links $slug }}{{ with $l.thumb }}<a class="promo-thumb" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank"><img src="{{ . }}" alt="{{ $l.thumb_alt }}" width="640" height="400" loading="lazy" decoding="async"></a>{{ else }}<a class="promo-thumb promo-ph" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank" aria-hidden="true" tabindex="-1"><span>{{ .merchant }}</span></a>{{ end }}
-      <span class="tag {{ if le $s.Unix $now }}live{{ else }}soon{{ end }}">{{ if le $s.Unix $now }}进行中{{ else }}即将开始{{ end }}</span>
-      <span class="t">{{ .merchant }} · {{ .title }}</span>
+      <div class="promo-top"><span class="tag {{ if le $s.Unix $now }}live{{ else }}soon{{ end }}">{{ if le $s.Unix $now }}进行中{{ else }}即将开始{{ end }}</span>{{ with .badge }}<span class="badge">{{ . }}</span>{{ end }}</div>
+      <span class="t">{{ .merchant }}</span>
+      {{- with .price }}<span class="promo-price">{{ . }}</span>{{ end }}
+      <span class="promo-title">{{ .title }}</span>
+      {{- with .next }}<span class="promo-cd" data-cd="{{ . }}">⏱ 开抢倒计时</span>{{ end }}
       <small>{{ $s.Format "1/2 15:04" }}{{ with .end }} – {{ (time.AsTime .).Format "1/2 15:04" }}{{ else }} 起 · 长期{{ end }}（北京时间）</small>
-      {{- with .note }}<small>{{ . }}</small>{{ end }}
-      {{- if .post }}<a href="{{ .post }}">看规则与限制 »</a>{{ end }}
-      <a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ i18n "ctaPromo" }}</a>
+      {{- with .note }}<small class="promo-note">{{ . }}</small>{{ end }}
+      <a class="go-btn go-btn-lg" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去官方活动页 →</a>
+      <small class="cta-note">{{ i18n "ctaNote" }}{{ if .post }} · <a href="{{ .post }}">看规则与限制</a>{{ end }}</small>
     </div>
     {{- end }}
   {{- end }}
@@ -47,11 +61,11 @@
   <h2 id="picks">按预算和用途选</h2>
   <div class="tbl-wrap"><table class="picks">
   <thead><tr><th>用途 / 预算</th><th>商家 / 方案</th><th>价格</th><th>线路</th><th></th></tr></thead><tbody>
-  {{- range hugo.Data.picks }}
-    <tr><td data-l="用途"><b>{{ .use }}</b><small class="sub">{{ .budget }}</small></td><td data-l="方案"><b>{{ .merchant }}</b><small class="sub">{{ .plan }}</small></td>
+  {{- range $i, $_ := hugo.Data.picks }}{{ with $_ }}
+    <tr id="pick-{{ $i }}"><td data-l="用途"><b>{{ .use }}</b><small class="sub">{{ .budget }}</small></td><td data-l="方案"><b>{{ .merchant }}</b><small class="sub">{{ .plan }}</small></td>
     <td class="p" data-l="价格">{{ .price }}</td><td data-l="线路">{{ .route }}</td>
     <td><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ .cta | default (i18n "ctaPick") }}</a></td></tr>
-  {{- end }}
+  {{- end }}{{- end }}
   </tbody></table></div>
   <p class="src-note">价格于 2026年11月1日 在各家官网核对（搬瓦工产品目录、RakSmart 官方活动说明、Vultr 价格页），{{ i18n "ctaNote" }}。</p>
   {{ partial "affiliate-notice.html" . }}
@@ -76,6 +90,10 @@
 </section>
 
 {{ partial "tg-subscribe.html" . }}
+{{ partial "follow-box.html" . }}
+{{- with index (sort hugo.Data.promos "start" "desc") 0 }}
+<div class="sticky-cta sticky-home"><span>{{ .merchant }} {{ .price }}</span><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去官方活动页</a></div>
+{{- end }}
 
 <script>
 (function(){
@@ -89,6 +107,7 @@ var D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24,M=Math.floor(d/6e4)%60,S=Math.
 function pr(){var n=Date.now();document.querySelectorAll('.promo').forEach(function(el){var s=pd(el.dataset.start),e=pd(el.dataset.end),tag=el.querySelector('.tag');
 if(!isNaN(e)&&n>e){el.style.display='none';return}
 if(!isNaN(s)&&n>=s){tag.className='tag live';tag.textContent='进行中'}})}
-cd();pr();setInterval(cd,1000);setInterval(pr,60000)})();
+function pc(){document.querySelectorAll('[data-cd]').forEach(function(el){var d=pd(el.dataset.cd)-Date.now();if(isNaN(d))return;if(d<=0){el.textContent='⏱ 已开抢';return}el.textContent='⏱ 距开抢 '+Math.floor(d/864e5)+'天 '+Math.floor(d/36e5)%24+'时 '+Math.floor(d/6e4)%60+'分'})}
+cd();pr();pc();setInterval(pc,30000);setInterval(cd,1000);setInterval(pr,60000)})();
 </script>
 {{- end }}

@@ -33,6 +33,7 @@ pagination.pagerSize = 10
   ShowReadingTime = true
   ShowToc = true
   ShowPostNavLinks = true
+  xHandle = ""       # X 账号（如 chuhaiabc，不带 @）；留空则不显示
   telegram = ""      # Telegram 频道链接，如 https://t.me/fwqabc；留空则不显示订阅框
   umami = ""          # Umami 统计脚本地址，如 https://analytics.example.com/script.js；留空=不启用
   umamiWebsiteId = ""
@@ -45,7 +46,7 @@ pagination.pagerSize = 10
   lastUpdated = ""    # 可选：首页“最近更新”日期覆盖；留空则取全站最新文章的 lastmod
 
   [params.label]
-    text = "出海ABC · 服务器"
+    text = "出海ABC"
     icon = "/brand/logo-64.png"
     iconHeight = 32
   [params.assets]
@@ -56,7 +57,7 @@ pagination.pagerSize = 10
     safari_pinned_tab = "/android-chrome-512x512.png"
     theme_color = "#F24615"
   [params.footer]
-    text = "出海ABC · 服务器 —— 出海服务器，少踩坑少花钱。本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 [推广披露](/disclosure/)。价格以官网为准。"
+    text = "出海ABC —— 出海服务器，少踩坑少花钱。本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 [推广披露](/disclosure/)。价格以官网为准。"
 
 [menus]
   [[menus.main]]
