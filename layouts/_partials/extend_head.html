@@ -21,14 +21,19 @@
 .promo .go-btn{text-align:center;margin-top:auto}
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .picks{width:100%;font-size:.92em;border-collapse:collapse}
-.picks th,.picks td{padding:.55em .6em;border-bottom:1px solid var(--border);white-space:nowrap}
-.picks td.p{color:#e4572e;font-weight:600}
+.main:has(.home-wrap){max-width:calc(1180px + var(--gap) * 2)}
+.picks{table-layout:auto}
+.picks th,.picks td{padding:.55em .6em;border-bottom:1px solid var(--border);vertical-align:middle;text-align:left;white-space:normal;word-break:break-word}
+.picks .sub{display:block;color:var(--secondary);font-size:.85em;font-weight:400}
+.picks td.p{color:#e4572e;font-weight:600;min-width:7.5em}
+.picks td:last-child{white-space:nowrap;width:1%}
+@media (min-width:1024px){.tbl-wrap{overflow-x:visible}}
 @media (max-width:640px){
  .picks thead{display:none}
  .picks,.picks tbody,.picks tr,.picks td{display:block;width:100%;white-space:normal}
  .picks tr{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:.7em;padding:.5em .8em;background:var(--entry)}
  .picks td{border:0;padding:.2em 0}
- .picks td[data-l]::before{content:attr(data-l)"：";color:var(--secondary)}
+ .picks td[data-l=价格]::before,.picks td[data-l=线路]::before{content:attr(data-l)"：";color:var(--secondary)}
  .picks td .go-btn{display:block;text-align:center}
 }
 .short-list{list-style:none;padding:0;margin:0}

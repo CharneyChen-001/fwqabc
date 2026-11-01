@@ -1,5 +1,6 @@
 {{- define "main" }}
 {{- $now := now.Unix -}}
+<div class="home-wrap"></div>
 <div class="hero"><h1>{{ site.Title }}</h1><p>{{ site.Params.tagline }}</p></div>
 
 <section class="home-sec countdown" id="countdown">
@@ -29,9 +30,9 @@
 <section class="home-sec">
   <h2>按预算和用途选</h2>
   <div class="tbl-wrap"><table class="picks">
-  <thead><tr><th>用途</th><th>预算</th><th>商家 / 方案</th><th>价格</th><th>线路</th><th></th></tr></thead><tbody>
+  <thead><tr><th>用途 / 预算</th><th>商家 / 方案</th><th>价格</th><th>线路</th><th></th></tr></thead><tbody>
   {{- range hugo.Data.picks }}
-    <tr><td data-l="用途"><b>{{ .use }}</b></td><td data-l="预算">{{ .budget }}</td><td data-l="方案">{{ .merchant }} · {{ .plan }}</td>
+    <tr><td data-l="用途"><b>{{ .use }}</b><small class="sub">{{ .budget }}</small></td><td data-l="方案"><b>{{ .merchant }}</b><small class="sub">{{ .plan }}</small></td>
     <td class="p" data-l="价格">{{ .price }}</td><td data-l="线路">{{ .route }}</td>
     <td><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去购买</a></td></tr>
   {{- end }}
