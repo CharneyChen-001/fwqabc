@@ -1,8 +1,7 @@
 ---
-title: "RackNerd"
+title: "NameSilo"
 draft: true
-merchant: "racknerd"
-merchants: ["racknerd"]
+merchant: "namesilo"
 ---
 
 > TODO：商家介绍待补充。
@@ -25,4 +24,4 @@ TODO
 
 ## 购买
 
-{{< go "racknerd" "访问 RackNerd 官网" >}}
+{{< go "namesilo" "访问 NameSilo 官网" >}}

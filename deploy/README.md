@@ -24,7 +24,7 @@ Caddy 会自动申请 Let's Encrypt 证书（HTTPS）。
 ## 3. Cloudflare
 
 1. DNS 添加 `fwqabc.com` 与 `www` 的 A 记录指向服务器 IP。
-2. 首次签证书时可先设为“仅 DNS”（灰云），证书签好后再开启代理（橙云）。
+2. 首次签证书时可先设为“仅 DNS”（灰云），证书签好后再切换为橙云。
 3. SSL/TLS 模式设为 **Full (strict)**。
 4. 可选：缓存规则对 `/go/*` 设为绕过缓存。
 

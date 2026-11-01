@@ -1,8 +1,7 @@
 ---
-title: "NameSilo"
+title: "搬瓦工 BandwagonHost"
 draft: true
-merchant: "namesilo"
-merchants: ["namesilo"]
+merchant: "bandwagonhost"
 ---
 
 > TODO：商家介绍待补充。
@@ -25,4 +24,4 @@ TODO
 
 ## 购买
 
-{{< go "namesilo" "访问 NameSilo 官网" >}}
+{{< go "bandwagonhost" "访问 搬瓦工 BandwagonHost 官网" >}}

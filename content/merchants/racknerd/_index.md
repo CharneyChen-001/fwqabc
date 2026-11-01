@@ -1,8 +1,7 @@
 ---
-title: "RakSmart"
+title: "RackNerd"
 draft: true
-merchant: "raksmart"
-merchants: ["raksmart"]
+merchant: "racknerd"
 ---
 
 > TODO：商家介绍待补充。
@@ -25,4 +24,4 @@ TODO
 
 ## 购买
 
-{{< go "raksmart" "访问 RakSmart 官网" >}}
+{{< go "racknerd" "访问 RackNerd 官网" >}}

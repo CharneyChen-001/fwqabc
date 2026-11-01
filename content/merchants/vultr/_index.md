@@ -1,8 +1,7 @@
 ---
-title: "搬瓦工 BandwagonHost"
+title: "Vultr"
 draft: true
-merchant: "bandwagonhost"
-merchants: ["bandwagonhost"]
+merchant: "vultr"
 ---
 
 > TODO：商家介绍待补充。
@@ -25,4 +24,4 @@ TODO
 
 ## 购买
 
-{{< go "bandwagonhost" "访问 搬瓦工 BandwagonHost 官网" >}}
+{{< go "vultr" "访问 Vultr 官网" >}}

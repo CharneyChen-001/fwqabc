@@ -1,8 +1,7 @@
 ---
-title: "Vultr"
+title: "RakSmart"
 draft: true
-merchant: "vultr"
-merchants: ["vultr"]
+merchant: "raksmart"
 ---
 
 > TODO：商家介绍待补充。
@@ -25,4 +24,4 @@ TODO
 
 ## 购买
 
-{{< go "vultr" "访问 Vultr 官网" >}}
+{{< go "raksmart" "访问 RakSmart 官网" >}}
