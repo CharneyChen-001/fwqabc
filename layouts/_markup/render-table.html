@@ -1,0 +1,7 @@
+{{- /* 文章表格：自动换行；手机端按行堆叠，每格带列名 */ -}}
+{{- $heads := slice -}}
+{{- range .THead }}{{ range . }}{{ $heads = $heads | append (.Text | plainify) }}{{ end }}{{ end -}}
+<div class="art-tbl"><table class="art-table">
+  <thead>{{ range .THead }}<tr>{{ range . }}<th{{ with .Alignment }} style="text-align:{{ . }}"{{ end }}>{{ .Text }}</th>{{ end }}</tr>{{ end }}</thead>
+  <tbody>{{ range .TBody }}<tr>{{ range $i, $c := . }}<td data-label="{{ index $heads $i }}"{{ with $c.Alignment }} style="text-align:{{ . }}"{{ end }}>{{ $c.Text }}</td>{{ end }}</tr>{{ end }}</tbody>
+</table></div>

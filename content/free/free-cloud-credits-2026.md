@@ -13,14 +13,16 @@ merchants: ["vultr"]
 
 ## 一表看懂
 
-| 厂商 | 类型 | 免费内容（官方口径） | 期限 | 来源 / 核实日期 |
+来源均核实于 2026-11-01（北京时间）。
+
+| 厂商 | 类型 | 免费内容（官方口径） | 期限 | 来源 |
 |---|---|---|---|---|
-| **甲骨文 Oracle Cloud** | 长期免费 + 试用金 | Always Free：A1 相当于 2 OCPU + 12 GB、2 台 AMD Micro、200 GB 块存储、每月 10 TB 出站；另有 US$300 试用金 | Always Free 长期；试用金 30 天 | [官方文档](https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm)、[FAQ](https://www.oracle.com/cloud/free/faq/) · 2026-11-01 |
-| **Google Cloud** | 长期免费额度 + 试用金 | 每月 1 台 e2-micro（仅 us-west1 / us-central1 / us-east1）、30 GB 标准持久化磁盘（standard persistent disk）、每月 1 GB 北美出站流量（不含到中国、澳大利亚）；新用户 $300 赠金 | 免费额度长期；赠金 90 天 | [官方 Free Tier 文档](https://cloud.google.com/free/docs/free-cloud-features) · 2026-11-01 |
-| **AWS** | 新版 Free Plan（赠金制） | 新用户注册即得 $100，探索指定服务最多再得 $100，合计最多 $200；Free plan 账户 6 个月后或赠金用完自动关闭，不升级不扣费；另有 30+ 项服务长期免费额度 | 6 个月 | [aws.amazon.com/free](https://aws.amazon.com/free/) · 2026-11-01 |
-| **Microsoft Azure** | 免费账户 | $200 赠金（30 天）；新用户 12 个月内每月各 750 小时 B1s、B2pts v2（Arm）、B2ats v2（AMD）虚拟机；65+ 项服务长期免费额度 | 赠金 30 天；VM 12 个月 | [Azure 免费服务](https://azure.microsoft.com/en-us/pricing/free-services)、[Azure 账户](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account) · 2026-11-01 |
-| **Vultr** | 新用户充值返赠 | 码 VULTRMATCH：新账户首次充值 1:1 返赠，最高 $100 | 以官方页面为准 | [vultr.com/coupons](https://www.vultr.com/coupons/) · 2026-11-01 |
-| DigitalOcean | 新用户赠金 | 本次未能在官方页面核实公开赠金金额 | — | **待核实** |
+| **甲骨文 Oracle Cloud** | 长期免费 + 试用金 | Always Free：A1 相当于 2 OCPU + 12 GB、2 台 AMD Micro、200 GB 块存储、每月 10 TB 出站；另有 US$300 试用金 | Always Free 长期；试用金 30 天 | [官方文档](https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm)、[FAQ](https://www.oracle.com/cloud/free/faq/) |
+| **Google Cloud** | 长期免费额度 + 试用金 | 每月 1 台 e2-micro（仅 us-west1 / us-central1 / us-east1）、30 GB 标准持久化磁盘（standard persistent disk）、每月 1 GB 北美出站流量（不含到中国、澳大利亚）；新用户 $300 赠金 | 免费额度长期；赠金 90 天 | [官方文档](https://cloud.google.com/free/docs/free-cloud-features) |
+| **AWS** | 新版 Free Plan（赠金制） | 新用户注册即得 $100，探索指定服务最多再得 $100，合计最多 $200；Free plan 账户 6 个月后或赠金用完自动关闭，不升级不扣费；另有 30+ 项服务长期免费额度 | 6 个月 | [aws.amazon.com/free](https://aws.amazon.com/free/) |
+| **Microsoft Azure** | 免费账户 | $200 赠金（30 天）；新用户 12 个月内每月各 750 小时 B1s、B2pts v2（Arm）、B2ats v2（AMD）虚拟机；65+ 项服务长期免费额度 | 赠金 30 天；VM 12 个月 | [免费服务](https://azure.microsoft.com/en-us/pricing/free-services)、[账户](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account) |
+| **Vultr** | 新用户充值返赠 | 码 VULTRMATCH：新账户首次充值 1:1 返赠，最高 $100 | 以官方页面为准 | [vultr.com/coupons](https://www.vultr.com/coupons/) |
+| DigitalOcean | 新用户赠金 | 待核实 | — | 待核实 |
 
 ## 各家要点
 
