@@ -21,7 +21,7 @@
       <small>{{ $s.Format "1/2 15:04" }}{{ with .end }} – {{ (time.AsTime .).Format "1/2 15:04" }}{{ else }} 起 · 长期{{ end }}（北京时间）</small>
       {{- with .note }}<small>{{ . }}</small>{{ end }}
       {{- if .post }}<a href="{{ .post }}">看规则与限制 »</a>{{ end }}
-      <a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去活动页</a>
+      <a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ i18n "ctaPromo" }}</a>
     </div>
     {{- end }}
   {{- end }}
@@ -35,7 +35,7 @@
   {{- range hugo.Data.picks }}
     <tr><td data-l="用途"><b>{{ .use }}</b><small class="sub">{{ .budget }}</small></td><td data-l="方案"><b>{{ .merchant }}</b><small class="sub">{{ .plan }}</small></td>
     <td class="p" data-l="价格">{{ .price }}</td><td data-l="线路">{{ .route }}</td>
-    <td><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去购买</a></td></tr>
+    <td><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ i18n "ctaPick" }}</a></td></tr>
   {{- end }}
   </tbody></table></div>
   {{ partial "affiliate-notice.html" . }}

@@ -1,9 +1,9 @@
-{{- /* 用法：{{< dealbox slug="raksmart" merchant="RakSmart" price="$1.99/月起" validity="..." limits="..." btn="去活动页" sticky="true" thumb="/img/promos/x.webp" thumb_alt="..." >}}
+{{- /* 用法：{{< dealbox slug="raksmart" merchant="RakSmart" price="$1.99/月起" validity="..." limits="..." btn="（可选，默认 i18n ctaPromo）" sticky="true" thumb="/img/promos/x.webp" thumb_alt="..." >}}
      thumb 省略时读取 data/links.yaml 中该 slug 的 thumb；thumb="none" 不显示 */ -}}
 {{- $slug := .Get "slug" -}}
 {{- $link := index hugo.Data.links $slug -}}
 {{- if not $link }}{{ errorf "dealbox: unknown slug %q in %s" $slug .Position }}{{ end -}}
-{{- $btn := .Get "btn" | default "查看优惠" -}}
+{{- $btn := .Get "btn" | default (i18n "ctaPromo") -}}
 {{- $thumb := .Get "thumb" | default $link.thumb -}}{{ if eq $thumb "none" }}{{ $thumb = "" }}{{ end -}}
 {{- $alt := .Get "thumb_alt" | default $link.thumb_alt | default (printf "%s 官方活动页截图" (.Get "merchant")) -}}
 <div class="dealbox{{ if $thumb }} has-thumb{{ end }}">

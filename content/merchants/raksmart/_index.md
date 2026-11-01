@@ -24,4 +24,4 @@ TODO
 
 ## 购买
 
-{{< go "raksmart" "访问 RakSmart 官网" >}}
+{{< go "raksmart" >}}

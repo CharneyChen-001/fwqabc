@@ -24,4 +24,4 @@ TODO
 
 ## 购买
 
-{{< go "bandwagonhost" "访问 搬瓦工 BandwagonHost 官网" >}}
+{{< go "bandwagonhost" >}}

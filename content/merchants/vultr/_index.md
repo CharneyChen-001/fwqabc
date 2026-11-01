@@ -24,4 +24,4 @@ TODO
 
 ## 购买
 
-{{< go "vultr" "访问 Vultr 官网" >}}
+{{< go "vultr" >}}

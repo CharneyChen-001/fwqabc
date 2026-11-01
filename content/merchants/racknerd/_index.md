@@ -24,4 +24,4 @@ TODO
 
 ## 购买
 
-{{< go "racknerd" "访问 RackNerd 官网" >}}
+{{< go "racknerd" >}}

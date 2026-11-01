@@ -19,7 +19,7 @@ tags: ["优惠码", "搬瓦工"]
 - 面向国内访客、要稳：**CN2 GIA-E**（$89.99/季起）。预算低、访客在海外：**KVM 入门**（$99.99/年）。要亚洲低延迟：**大阪/新加坡 CN2 GIA**（$49.99/月起）。
 - 不急的年付用户，可以等 11月11日前后看双11是否出循环折扣码（尚未公布）。
 
-{{< dealbox slug="bandwagonhost" merchant="搬瓦工 CN2 GIA-E" price="$89.99/季起" validity="常规方案，长期有效" limits="目前无可用优惠码 · 价格以结算页为准" btn="去搬瓦工官网" sticky="true" >}}
+{{< dealbox slug="bandwagonhost" merchant="搬瓦工 CN2 GIA-E" price="$89.99/季起" validity="常规方案，长期有效" limits="目前无可用优惠码 · 价格以结算页为准" sticky="true" >}}
 
 ## 优惠码现状
 
@@ -44,7 +44,7 @@ tags: ["优惠码", "搬瓦工"]
 
 可选机房：CABC_1（加拿大）、EUNL_2（荷兰）、USCA_2、USCA_FMT（弗里蒙特）、USNY_6（纽约）。
 
-{{< go "bandwagonhost" "去搬瓦工官网" >}}
+{{< go "bandwagonhost" >}}
 
 ### CN2 GIA-E（E-Commerce，最常选）
 
@@ -59,7 +59,7 @@ tags: ["优惠码", "搬瓦工"]
 
 > 注：部分第三方文章仍列出 1G 内存版 CN2 GIA-E（$49.99/季、$169.99/年），官网当前目录中未见该配置，入门档为 2G 版。
 
-{{< go "bandwagonhost" "去搬瓦工官网" >}}
+{{< go "bandwagonhost" >}}
 
 ### 亚洲 CN2 GIA（香港 / 东京 / 大阪 / 新加坡）
 
@@ -70,7 +70,7 @@ tags: ["优惠码", "搬瓦工"]
 | 大阪 JPOS_6 | 2核 / 2G / 40G | 500GB / 1.5Gbps | $49.99/月 · $499.99/年 |
 | 新加坡 SG_8 | 2核 / 2G / 40G | 500GB / 1.5Gbps | $49.99/月 · $499.99/年 |
 
-{{< go "bandwagonhost" "去搬瓦工官网" >}}
+{{< go "bandwagonhost" >}}
 
 ### 洛杉矶 E-Commerce SLA（三网高端线路 + 99.99% SLA）
 
@@ -82,7 +82,7 @@ tags: ["优惠码", "搬瓦工"]
 | 4核 / 4G / 80G | 3TB / 2.5Gbps | $69.99/月 · $699.99/年 |
 | 6核 / 8G / 160G | 5TB / 5Gbps | $109.99/月 · $1099.99/年 |
 
-{{< go "bandwagonhost" "去搬瓦工官网" >}}
+{{< go "bandwagonhost" >}}
 
 **限量版（THE PLAN 等）：** 官网当前目录中没有限量版方案，补货不定时，有补货再更新。
 

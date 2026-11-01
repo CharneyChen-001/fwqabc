@@ -14,7 +14,7 @@ tags: ["双11", "黑五", "优惠汇总"]
 
 > 持续更新。所有时间为**北京时间**；价格以商家结算页为准。每条都注明来源与核对日期，「尚未公布」表示截至核对日官方没有发布，公布后更新。最后核对：2026-11-01。
 
-{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" btn="去 RakSmart 活动页" sticky="true" >}}
+{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" sticky="true" >}}
 
 ## 总表
 
@@ -44,7 +44,7 @@ tags: ["双11", "黑五", "优惠汇总"]
 | 硅谷 | 2核 / 2G | 50G HDD | 精品 CN2 | 1Gbps / 1TB | $3.99/月 |
 | 硅谷独服 | E3-1230 / 16G | 1T HDD | 大陆优化 VIP | 100Mbps / 不限 | $29.9/月 |
 
-{{< go "raksmart" "去 RakSmart 活动页" >}}
+{{< go "raksmart" >}}
 
 **限制：** 限量售完即止；秒杀不可叠加折扣券、满减券、预充值赠送金；HDD 硬盘；退款与续费规则待核实（详见专文）。
 
@@ -63,7 +63,7 @@ tags: ["双11", "黑五", "优惠汇总"]
 | 大阪 CN2 GIA | 2核 / 2G / 40G / 500GB / 1.5Gbps | CN2 GIA | $49.99/月 · $499.99/年 |
 | 香港 CN2 GIA | 2核 / 2G / 40G / 500GB / 1Gbps | CN2 GIA | $89.99/月 · $899.99/年 |
 
-{{< go "bandwagonhost" "去搬瓦工官网" >}}
+{{< go "bandwagonhost" >}}
 
 方案详解与选择建议见 [搬瓦工 2026 最新优惠码与方案对比](/deals/bandwagonhost-coupon-2026/)。
 
@@ -72,7 +72,7 @@ tags: ["双11", "黑五", "优惠汇总"]
 - 2026 双11/黑五：**尚未公布，公布后更新**（截至 2026-11-01 官网未见黑五页面）。
 - 参考：2025 年黑五 VPS 年付款 1G 内存约 $10.60/年起（第三方库存监控 [racknerdtracker.com](https://racknerdtracker.com/sales/black-friday) 记录，仅作历史参考，不代表今年价格）。
 
-{{< go "racknerd" "去 RackNerd 官网" >}}
+{{< go "racknerd" >}}
 
 ## Vultr
 
@@ -82,7 +82,7 @@ tags: ["双11", "黑五", "优惠汇总"]
 - 长期新用户优惠：码 **VULTRMATCH**，新账户首次充值 1:1 返赠，最高 $100。
 - 限制：需绑定信用卡或 PayPal；每个用户只能用一个优惠码；赠送额度会过期、不可转让。
 
-{{< go "vultr" "去 Vultr 官网" >}}
+{{< go "vultr" >}}
 
 ## 其他商家
 

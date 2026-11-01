@@ -24,4 +24,4 @@ TODO
 
 ## 购买
 
-{{< go "namesilo" "访问 NameSilo 官网" >}}
+{{< go "namesilo" >}}

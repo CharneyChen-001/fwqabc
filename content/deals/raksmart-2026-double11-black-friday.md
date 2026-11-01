@@ -22,7 +22,7 @@ tags: ["双11", "黑五", "秒杀", "RakSmart"]
 
 **不适合谁：** 对磁盘 IO 有要求（数据库、频繁读写）的业务；买前想“先试再退”的人（秒杀产品通常不支持退款，见下文）；需要长期稳定低价续费但不愿核对续费价的人。
 
-{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" btn="去 RakSmart 活动页" sticky="true" >}}
+{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" sticky="true" >}}
 
 ## 活动时间表（北京时间）
 
@@ -52,7 +52,7 @@ tags: ["双11", "黑五", "秒杀", "RakSmart"]
 | 香港 HK | 1核 / 1G / 1 IP | 50G **HDD** | 国际 BGP | 1Gbps / 3TB | $2.99/月 | **$1.99/月** |
 | 硅谷 SV | 2核 / 2G / 1 IP | 50G **HDD** | 精品 CN2 | 1Gbps / 1TB | $4.99/月 | **$3.99/月** |
 
-{{< go "raksmart" "去 RakSmart 活动页" >}}
+{{< go "raksmart" >}}
 
 ### VPS 年付
 
@@ -78,7 +78,7 @@ tags: ["双11", "黑五", "秒杀", "RakSmart"]
 
 独服 $29.9 起、香港 E5 $49.9 起、裸机云 $45.9 起，与官方博客（p=12652）一致。
 
-{{< go "raksmart" "去 RakSmart 活动页" >}}
+{{< go "raksmart" >}}
 
 ## 编辑点评
 
