@@ -2,21 +2,39 @@
 """从 data/links.yaml 生成 deploy/Caddyfile 和 static/_redirects。无第三方依赖。"""
 import pathlib, re
 root = pathlib.Path(__file__).resolve().parent.parent
+def parse(text):
+    """极简 YAML 解析：顶层 slug + 两空格缩进的 key: value（无第三方依赖）。"""
+    data, cur = {}, None
+    for raw in text.splitlines():
+        if not raw.strip() or raw.lstrip().startswith("#"):
+            continue
+        line = re.sub(r"\s+#.*$", "", raw.rstrip())
+        if not raw.startswith(" "):
+            cur = line.rstrip(":").strip()
+            if not re.fullmatch(r"[a-z0-9-]+", cur):
+                raise SystemExit(f"bad slug: {cur}")
+            data[cur] = {}
+        else:
+            k, v = line.strip().split(":", 1)
+            data[cur][k.strip()] = v.strip().strip('"\'')
+    return data
+
+from urllib.parse import quote
 links = {}
-for line in (root / "data/links.yaml").read_text(encoding="utf-8").splitlines():
-    line = line.split(" #")[0].strip()
-    if not line or line.startswith("#"):
-        continue
-    k, v = line.split(":", 1)
-    k, v = k.strip(), v.strip().strip('"\'')
-    if not re.fullmatch(r"[a-z0-9-]+", k):
-        raise SystemExit(f"bad slug: {k}")
-    links[k] = v
+for slug, c in parse((root / "data/links.yaml").read_text(encoding="utf-8")).items():
+    landing, aff = c.get("landing", ""), c.get("aff", "")
+    if not landing:
+        raise SystemExit(f"{slug}: landing is required")
+    if aff:
+        tpl = c.get("aff_template") or landing
+        target = tpl.format(aff=aff, landing=landing, landing_enc=quote(landing, safe=""))
+    else:
+        target = landing
+    links[slug] = target
 
 redir = "\n".join(f"\tredir /go/{k} {v} 302\n\tredir /go/{k}/ {v} 302" for k, v in sorted(links.items()))
 caddy = f"""# 自动生成：python3 scripts/gen-redirects.py（勿手改 /go/ 部分）
 fwqabc.com {{
-\tredir https://www.fwqabc.com{{uri}} 0
 \troot * /var/www/fwqabc
 \tencode zstd gzip
 {redir}

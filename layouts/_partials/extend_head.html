@@ -48,6 +48,16 @@
 .dealbox-m{font-weight:700;font-size:1.15em}.dealbox-p{color:#e4572e;font-weight:700;font-size:1.3em}
 .dealbox-meta{list-style:none;padding:0;margin:.5em 0}.dealbox-meta li{margin:.2em 0;font-size:.92em}
 .dealbox-meta b{display:inline-block;min-width:4em;color:var(--secondary);font-weight:400}
+.dealbox.has-thumb{display:flex;flex-direction:column;gap:1em}
+.dealbox-thumb{margin:0}
+.dealbox-thumb a{display:block;box-shadow:none!important;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.dealbox-thumb img{display:block;width:100%;height:auto;margin:0;transition:opacity .2s}
+.dealbox-thumb a:hover img{opacity:.85}
+.dealbox-thumb figcaption{font-size:.75em;color:var(--secondary);margin-top:.3em;text-align:center}
+.dealbox-body{flex:1;min-width:0}
+@media (min-width:769px){.dealbox.has-thumb{flex-direction:row;align-items:flex-start}.dealbox-thumb{flex:0 0 42%}}
+.promo-thumb{display:block;box-shadow:none!important;border-radius:6px;overflow:hidden;border:1px solid var(--border)}
+.promo-thumb img{display:block;width:100%;height:auto;margin:0}
 .sticky-cta{display:none}
 @media (max-width:768px){
  .sticky-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:99;gap:.6em;align-items:center;justify-content:space-between;padding:.5em 1em calc(.5em + env(safe-area-inset-bottom));background:var(--theme);border-top:1px solid var(--border);box-shadow:0 -2px 8px rgba(0,0,0,.08)}

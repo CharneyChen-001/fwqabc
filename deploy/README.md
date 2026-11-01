@@ -41,3 +41,9 @@ Caddy 会自动申请 Let's Encrypt 证书（HTTPS）。
 ## 备选：Cloudflare Pages
 
 构建命令 `hugo --gc --minify`，输出目录 `public`；`static/_redirects` 提供 `/go/` 跳转。
+
+## 推广链接与落地页（/go/）
+
+- `data/links.yaml` 每个商家填 `landing`（官方活动/方案页）、`aff`（推广 ID）、`aff_template`。`aff` 为空时 /go/ 直接跳官方落地页（无推广参数）；填入后按模板生成。改完运行 `python3 scripts/gen-redirects.py` 再部署。
+- **注意：部分商家的推广只在首页或特定入口记录（如 WHMCS 的 aff.php 只跳首页），带落地页的深链不一定计佣。每个推广链接上线前都要用联盟后台核实：点一次 /go/<slug>，确认后台出现点击记录、cookie 已写入。**
+- 缩略图为官方页面实拍截图（static/img/promos/），活动变化后需重新截图。

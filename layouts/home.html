@@ -15,6 +15,7 @@
     {{- $s := time.AsTime .start }}{{ $e := cond (ne (.end | default "") "") (time.AsTime (.end | default "2099-01-01T00:00:00+08:00")) (time.AsTime "2099-01-01T00:00:00+08:00") }}
     {{- if gt $e.Unix $now }}
     <div class="promo" data-start="{{ $s.Format "2006-01-02T15:04:05-07:00" }}" data-end="{{ $e.Format "2006-01-02T15:04:05-07:00" }}">
+      {{- $slug := .slug }}{{ $l := index hugo.Data.links $slug }}{{ with $l.thumb }}<a class="promo-thumb" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank"><img src="{{ . }}" alt="{{ $l.thumb_alt }}" width="640" height="400" loading="lazy" decoding="async"></a>{{ end }}
       <span class="tag {{ if le $s.Unix $now }}live{{ else }}soon{{ end }}">{{ if le $s.Unix $now }}进行中{{ else }}即将开始{{ end }}</span>
       <span class="t">{{ .merchant }} · {{ .title }}</span>
       <small>{{ $s.Format "1/2 15:04" }}{{ with .end }} – {{ (time.AsTime .).Format "1/2 15:04" }}{{ else }} 起 · 长期{{ end }}（北京时间）</small>
