@@ -25,8 +25,8 @@ pagination.pagerSize = 10
 [params]
   env = "production"
   homeTitle = "出海服务器，少踩坑少花钱"
-  description = "出海ABC旗下服务器指南：国外VPS真实价格、线路实测与优惠汇总，帮站长、外贸和出海新手少踩坑少花钱。价格以官网为准。"
-  tagline = "真实价格、线路实测、优惠汇总，选对一台不纠结"
+  description = "出海ABC旗下服务器指南：国外VPS真实价格、线路科普与优惠汇总，帮站长、外贸和出海新手少踩坑少花钱。价格以官网为准。"
+  tagline = "真实价格、线路科普、优惠汇总，选对一台不纠结"
   images = ["/brand/og-default-1200x630.jpg"]
   keywords = ["国外VPS", "VPS优惠", "外贸建站服务器", "出海服务器", "CN2 GIA", "双11 VPS"]
   ShowBreadCrumbs = true
