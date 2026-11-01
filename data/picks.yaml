@@ -1,21 +1,51 @@
-# 首页精选对比表。价格/配置未经实测核实前保持 TODO。
-- name: 搬瓦工 BandwagonHost
+# 首页“按预算和用途选”。只填写已核实的官方价格；未核实写 TODO。
+# 字段：use 用途 / budget 预算档 / merchant / plan / price / route / slug（data/links.yaml）
+- use: 建站入门
+  budget: 低（≈$100/年）
+  merchant: 搬瓦工
+  plan: KVM 2G / 40G / 2TB
+  price: $99.99/年
+  route: 普通线路（多机房可切换）
   slug: bandwagonhost
-  routes: CN2 GIA
-  price: TODO
-  best_for: TODO
-- name: RackNerd
-  slug: racknerd
-  routes: TODO
-  price: TODO
-  best_for: TODO
-- name: RakSmart
+- use: 外贸独立站
+  budget: 极低
+  merchant: RakSmart
+  plan: 硅谷 2核2G / 50G HDD / 10TB
+  price: $1.99/月（双11/黑五周秒杀）
+  route: 国际 BGP
   slug: raksmart
-  routes: CN2 GIA / 9929 / CMIN2（以官网为准）
+- use: 大陆优化线路
+  budget: 中（≈$300/年）
+  merchant: 搬瓦工
+  plan: CN2 GIA-E 2G / 40G / 2TB
+  price: $89.99/季 · $299.99/年
+  route: CN2 GIA（DC6/DC9 等可切换）
+  slug: bandwagonhost
+- use: 大陆优化线路
+  budget: 极低
+  merchant: RakSmart
+  plan: 硅谷精品 CN2 2核2G / 50G HDD
+  price: $3.99/月（双11/黑五周秒杀）
+  route: 精品 CN2
+  slug: raksmart
+- use: 亚洲低延迟
+  budget: 高
+  merchant: 搬瓦工
+  plan: 大阪 CN2 GIA 2G / 40G
+  price: $49.99/月 · $499.99/年
+  route: CN2 GIA
+  slug: bandwagonhost
+- use: 开发测试
+  budget: 按小时计费
+  merchant: Vultr
+  plan: Cloud Compute（TODO 型号）
   price: TODO
-  best_for: TODO
-- name: Vultr
+  route: 普通国际线路
   slug: vultr
-  routes: TODO
+- use: 低价年付小鸡
+  budget: 极低
+  merchant: RackNerd
+  plan: TODO（黑五款尚未公布）
   price: TODO
-  best_for: TODO
+  route: 普通线路
+  slug: racknerd

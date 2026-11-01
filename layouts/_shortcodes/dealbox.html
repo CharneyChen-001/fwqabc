@@ -1,0 +1,15 @@
+{{- /* 用法：{{< dealbox slug="raksmart" merchant="RakSmart" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量、HDD、不叠加优惠券" btn="去活动页" sticky="true" >}} */ -}}
+{{- $slug := .Get "slug" -}}
+{{- if not (index hugo.Data.links $slug) }}{{ errorf "dealbox: unknown slug %q in %s" $slug .Position }}{{ end -}}
+{{- $btn := .Get "btn" | default "查看优惠" -}}
+<div class="dealbox">
+  <div class="dealbox-head"><span class="dealbox-m">{{ .Get "merchant" }}</span>{{ with .Get "price" }}<span class="dealbox-p">{{ . }}</span>{{ end }}</div>
+  <ul class="dealbox-meta">
+    {{- with .Get "validity" }}<li><b>有效期</b>{{ . }}</li>{{ end }}
+    {{- with .Get "limits" }}<li><b>限制</b>{{ . }}</li>{{ end }}
+  </ul>
+  <a class="go-btn go-btn-lg" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ $btn }}</a>
+</div>
+{{- if eq (.Get "sticky") "true" }}
+<div class="sticky-cta"><span>{{ .Get "merchant" }} {{ .Get "price" }}</span><a class="go-btn" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ $btn }}</a></div>
+{{- end }}

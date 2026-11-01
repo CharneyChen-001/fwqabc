@@ -46,6 +46,7 @@
 
   <footer class="post-footer">
     {{- partial "affiliate-notice.html" . }}
+    {{- if in (slice "deals" "review" "guides" "tutorials" "tools") .Section }}{{ partial "tg-subscribe.html" . }}{{ end }}
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
     <ul class="post-tags">
       {{- range ($.GetTerms $tags) }}

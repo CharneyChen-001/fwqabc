@@ -29,6 +29,7 @@ pagination.pagerSize = 10
   ShowReadingTime = true
   ShowToc = true
   ShowPostNavLinks = true
+  telegram = ""      # Telegram 频道链接，如 https://t.me/fwqabc；留空则不显示订阅框
   umami = ""          # Umami 统计脚本地址，如 https://analytics.example.com/script.js；留空=不启用
   umamiWebsiteId = ""
   double11 = "2026-11-11T00:00:00+08:00"

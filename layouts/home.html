@@ -1,42 +1,72 @@
 {{- define "main" }}
-<header class="page-header"><h1>{{ site.Title }}</h1><p>{{ site.Params.tagline }}</p></header>
+{{- $now := now.Unix -}}
+<div class="hero"><h1>{{ site.Title }}</h1><p>{{ site.Params.tagline }}</p></div>
 
 <section class="home-sec countdown" id="countdown">
-  <div class="cd"><div>双11（北京时间 11月11日 00:00）</div><b data-target="{{ site.Params.double11 }}">--</b></div>
-  <div class="cd"><div>黑色星期五（北京时间 11月25日–30日）</div><b data-target="{{ site.Params.blackFridayStart }}" data-end="{{ site.Params.blackFridayEnd }}">--</b></div>
+  <div class="cd"><div>双11 · 11/11 00:00 北京时间</div><b data-target="{{ site.Params.double11 }}">--</b></div>
+  <div class="cd"><div>黑五 · 11/25–11/30 北京时间</div><b data-target="{{ site.Params.blackFridayStart }}" data-end="{{ site.Params.blackFridayEnd }}">--</b></div>
 </section>
-<script>
-(function(){function f(){document.querySelectorAll('#countdown b[data-target]').forEach(function(el){var t=new Date(el.dataset.target),e=el.dataset.end?new Date(el.dataset.end):null,n=new Date(),d=t-n;
-if(d<=0){el.textContent=(e&&n<e)?'进行中':(e?'已结束':'已开始');return}
-var D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24,M=Math.floor(d/6e4)%60,S=Math.floor(d/1e3)%60;el.textContent=D+' 天 '+H+' 时 '+M+' 分 '+S+' 秒'})}f();setInterval(f,1000)})();
-</script>
 
 <section class="home-sec">
-  <h2>当前优惠 <a href="/deals/" style="font-size:.6em">全部 »</a></h2>
-  <ul>
-  {{- range first 8 (where site.RegularPages "Section" "deals") }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <small>{{ .Date.Format "2006-01-02" }}</small></li>
+  <h2>正在进行 / 即将开始 <a href="/deals/">全部优惠 »</a></h2>
+  <div class="promos">
+  {{- range sort hugo.Data.promos "start" }}
+    {{- $s := time.AsTime .start }}{{ $e := cond (ne (.end | default "") "") (time.AsTime (.end | default "2099-01-01T00:00:00+08:00")) (time.AsTime "2099-01-01T00:00:00+08:00") }}
+    {{- if gt $e.Unix $now }}
+    <div class="promo" data-start="{{ $s.Format "2006-01-02T15:04:05-07:00" }}" data-end="{{ $e.Format "2006-01-02T15:04:05-07:00" }}">
+      <span class="tag {{ if le $s.Unix $now }}live{{ else }}soon{{ end }}">{{ if le $s.Unix $now }}进行中{{ else }}即将开始{{ end }}</span>
+      <span class="t">{{ .merchant }} · {{ .title }}</span>
+      <small>{{ $s.Format "1/2 15:04" }}{{ with .end }} – {{ (time.AsTime .).Format "1/2 15:04" }}{{ else }} 起 · 长期{{ end }}（北京时间）</small>
+      {{- with .note }}<small>{{ . }}</small>{{ end }}
+      {{- if .post }}<a href="{{ .post }}">看规则与限制 »</a>{{ end }}
+      <a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去活动页</a>
+    </div>
+    {{- end }}
+  {{- end }}
+  </div>
+</section>
+
+<section class="home-sec">
+  <h2>按预算和用途选</h2>
+  <div class="tbl-wrap"><table class="picks">
+  <thead><tr><th>用途</th><th>预算</th><th>商家 / 方案</th><th>价格</th><th>线路</th><th></th></tr></thead><tbody>
+  {{- range hugo.Data.picks }}
+    <tr><td data-l="用途"><b>{{ .use }}</b></td><td data-l="预算">{{ .budget }}</td><td data-l="方案">{{ .merchant }} · {{ .plan }}</td>
+    <td class="p" data-l="价格">{{ .price }}</td><td data-l="线路">{{ .route }}</td>
+    <td><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去购买</a></td></tr>
+  {{- end }}
+  </tbody></table></div>
+  {{ partial "affiliate-notice.html" . }}
+</section>
+
+<section class="home-sec">
+  <h2>最新优惠 <a href="/deals/">更多 »</a></h2>
+  <ul class="short-list">
+  {{- range first 6 (where site.RegularPages "Section" "deals") }}
+    <li><a href="{{ .RelPermalink }}"><span>{{ .Title }}</span><small>{{ .Lastmod.Format "01-02" }}</small></a></li>
   {{- else }}<li>暂无</li>{{ end }}
   </ul>
 </section>
 
 <section class="home-sec">
-  <h2>精选对比</h2>
-  <table class="picks"><thead><tr><th>商家</th><th>线路</th><th>起步价</th><th>适合</th><th></th></tr></thead><tbody>
-  {{- range hugo.Data.picks }}
-    <tr><td>{{ .name }}</td><td>{{ .routes }}</td><td>{{ .price }}</td><td>{{ .best_for }}</td>
-    <td><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">查看</a></td></tr>
-  {{- end }}
-  </tbody></table>
-  {{ partial "affiliate-notice.html" . }}
+  <h2>最新指南 <a href="/guides/">更多 »</a></h2>
+  <ul class="short-list">
+  {{- range first 5 (where site.RegularPages "Section" "in" (slice "guides" "review")) }}
+    <li><a href="{{ .RelPermalink }}"><span>{{ .Title }}</span><small>{{ .Lastmod.Format "01-02" }}</small></a></li>
+  {{- else }}<li>暂无</li>{{ end }}
+  </ul>
 </section>
 
-<section class="home-sec">
-  <h2>最新评测 <a href="/review/" style="font-size:.6em">全部 »</a></h2>
-  {{- range first 10 (where site.RegularPages "Section" "review") }}
-  <article class="post-entry"><header class="entry-header"><h2>{{ .Title }}</h2></header>
-  <div class="entry-content"><p>{{ .Summary | plainify | truncate 120 }}</p></div>
-  <a class="entry-link" href="{{ .RelPermalink }}" aria-label="{{ .Title }}"></a></article>
-  {{- else }}<p>暂无评测</p>{{ end }}
-</section>
+{{ partial "tg-subscribe.html" . }}
+
+<script>
+(function(){
+function cd(){document.querySelectorAll('#countdown b[data-target]').forEach(function(el){var t=new Date(el.dataset.target),e=el.dataset.end?new Date(el.dataset.end):null,n=new Date(),d=t-n;
+if(d<=0){el.textContent=(e&&n<e)?'进行中':(e?'已结束':'已开始');return}
+var D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24,M=Math.floor(d/6e4)%60,S=Math.floor(d/1e3)%60;el.textContent=D+'天 '+H+'时 '+M+'分 '+S+'秒'})}
+function pr(){var n=new Date();document.querySelectorAll('.promo').forEach(function(el){var s=new Date(el.dataset.start),e=new Date(el.dataset.end),tag=el.querySelector('.tag');
+if(n>e){el.style.display='none';return}
+if(n>=s){tag.className='tag live';tag.textContent='进行中'}})}
+cd();pr();setInterval(cd,1000);setInterval(pr,60000)})();
+</script>
 {{- end }}

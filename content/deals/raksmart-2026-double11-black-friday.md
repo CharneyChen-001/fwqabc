@@ -22,7 +22,7 @@ tags: ["双11", "黑五", "秒杀", "RakSmart"]
 
 **不适合谁：** 对磁盘 IO 有要求（数据库、频繁读写）的业务；买前想“先试再退”的人（秒杀产品通常不支持退款，见下文）；需要长期稳定低价续费但不愿核对续费价的人。
 
-{{< go "raksmart" "去 RakSmart 活动页" >}}
+{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" btn="去 RakSmart 活动页" sticky="true" >}}
 
 ## 活动时间表（北京时间）
 

@@ -56,6 +56,17 @@ hugo new content review/racknerd-2026-black-friday-review.md
 
 `/go/` 已在 robots.txt 中禁止抓取。使用未知 slug 时构建会报错。
 
+## 首页数据
+
+- `data/promos.yaml`：首页“正在进行 / 即将开始”活动卡片（北京时间 start/end，过期自动隐藏；只填官方已核实活动）
+- `data/picks.yaml`：首页“按预算和用途选”对比表（use/budget/merchant/plan/price/route/slug）
+- `hugo.toml` 中 `params.telegram` 填 Telegram 频道链接后，首页与每篇文章底部显示订阅框；留空则隐藏
+
+## 文章组件
+
+- 购买按钮：`{{</* go "slug" "按钮文字" */>}}`，每个表格后放一个
+- 优惠卡片：`{{</* dealbox slug="raksmart" merchant="RakSmart" price="$1.99/月起" validity="..." limits="..." btn="去活动页" sticky="true" */>}}`；`sticky="true"` 时手机端底部固定显示购买条
+
 ## 内容规范
 
 - 不编造测试数据与价格，未核实写 TODO；时间统一用北京时间。
