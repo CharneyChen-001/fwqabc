@@ -1,8 +1,10 @@
 {{- define "main" }}
 
 <article class="post-single">
-  <header class="post-header">
+  <header class="post-header post-band">
     {{ partial "breadcrumbs.html" . }}
+    {{- $secN := dict "deals" "优惠促销" "free" "免费服务器 / 赠金" "guides" "指南" "review" "评测" }}
+    {{- with index $secN .Section }}<div class="post-chips"><span class="cat-chip sec-{{ $.Section }}">{{ . }}</span>{{ range $.Params.tags }}<a class="tag-chip" href="{{ printf "/tags/%s/" (urlize .) }}">#{{ . }}</a>{{ end }}</div>{{ end }}
     <h1 class="post-title entry-hint-parent">
       {{ .Title }}
       {{- if .Draft }}
