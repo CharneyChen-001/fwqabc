@@ -55,7 +55,9 @@ tags: ["优惠码", "搬瓦工"]
 
 可选机房：CABC_1（加拿大）、EUNL_2（荷兰）、USCA_2、USCA_FMT（弗里蒙特）、USNY_6（纽约）。
 
-{{< go "bandwagonhost" >}}
+下方按钮对应洛杉矶 **USCA_2（Coresite LA2）** 的 **4核 / 4GB / 80GB RAID-10 SSD** 方案，每月 3TB 流量、1Gbps 端口，按月支付 **$19.99**。来源：[官方订购页](https://bandwagonhost.com/order/basic/Los%20Angeles)，价格以结算页为准。
+
+{{< go "bandwagonhost-basic-4g-la2-monthly" "查看洛杉矶 4G 月付方案" >}}
 
 ### CN2 GIA-E（E-Commerce，最常选）
 

@@ -1,5 +1,5 @@
 # 首页“按预算和用途选”。只填写已在官方页面核实的价格；未核实的方案不要放进来。
-# 字段：use 用途 / budget 预算档 / merchant / plan / price / route / slug（data/links.yaml）
+# 字段：use 用途 / budget 预算档 / merchant / plan / price / route / slug（data/links.yaml）/ cta（可选按钮文案）
 - use: 建站入门
   budget: 低（≈$100/年）
   merchant: 搬瓦工
@@ -7,6 +7,14 @@
   price: $99.99/年
   route: 普通线路（多机房可切换）
   slug: bandwagonhost
+- use: 月付建站
+  budget: ≈$20/月
+  merchant: 搬瓦工
+  plan: 4核 / 4GB / 80GB RAID-10 SSD / 3TB月流量
+  price: $19.99/月
+  route: 普通线路 · 洛杉矶 USCA_2 · 1Gbps
+  slug: bandwagonhost-basic-4g-la2-monthly
+  cta: 查看月付方案
 - use: 外贸独立站
   budget: 极低
   merchant: RakSmart

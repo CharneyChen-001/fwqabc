@@ -1,0 +1,77 @@
+{{- $catalog := hugo.Data.bandwagonhost_catalog -}}
+<section class="bwh-catalog" id="products" aria-labelledby="bwh-products-title">
+  <div class="bwh-catalog-heading">
+    <div>
+      <p class="bwh-eyebrow">按系列与地区选购</p>
+      <h2 id="bwh-products-title">搬瓦工产品目录</h2>
+    </div>
+    <p class="bwh-count">{{ $catalog.product_count }} 款产品 · {{ $catalog.datacenter_count }} 个机房</p>
+  </div>
+  <p class="bwh-catalog-note">以下均为美元原价，按完整付款周期计费。点击价格前往对应方案的官方订购页；价格与库存以结算页为准。</p>
+  <p class="bwh-catalog-source">核对日期：<time datetime="{{ $catalog.checked_on }}">{{ $catalog.checked_on }}</time> · <a href="{{ $catalog.source_url }}" target="_blank" rel="noopener">官方产品目录</a> · <a href="/disclosure/">推广披露</a></p>
+  <nav class="bwh-series-nav" aria-label="选择产品系列">
+    {{- range $catalog.series }}
+    <a href="#bwh-{{ .id }}"><strong>{{ .label }}</strong><span>{{ .name }} · {{ .product_count }} 款</span></a>
+    {{- end }}
+  </nav>
+  {{- range $seriesIndex, $series := $catalog.series }}
+  <section class="bwh-series" id="bwh-{{ .id }}" aria-labelledby="bwh-title-{{ .id }}">
+    <div class="bwh-series-heading">
+      <h3 id="bwh-title-{{ .id }}">{{ .label }} <span>{{ .name }}</span></h3>
+      <span class="bwh-count">{{ .product_count }} 款 · {{ .datacenter_count }} 个机房</span>
+    </div>
+    <p class="bwh-series-description">{{ .description }}</p>
+    {{- range $regionIndex, $region := .regions }}
+    <details class="bwh-region"{{ if and (eq $seriesIndex 0) (eq $regionIndex 0) }} open{{ end }}>
+      <summary><strong>{{ .label }}</strong><span>{{ len .datacenters }} 个机房 · 展开查看方案</span></summary>
+      {{- range .datacenters }}
+      {{- $dc := . }}
+      <section class="bwh-datacenter" data-datacenter="{{ .id }}">
+        <h4>{{ .city }} <span>{{ .id }} · {{ .name }}</span></h4>
+        <table class="bwh-table">
+          <caption class="bwh-sr-only">{{ $series.label }}，{{ $region.label }}，{{ .city }} {{ .id }} 的配置和各周期美元价格</caption>
+          <thead><tr><th scope="col">产品配置</th>{{ range $catalog.periods }}<th scope="col">{{ .label }}</th>{{ end }}</tr></thead>
+          <tbody>
+            {{- range .plans }}
+            {{- $plan := . }}
+            {{- $product := index $catalog.products (string .product_id) }}
+            <tr data-product-id="{{ .product_id }}">
+              <th scope="row" class="bwh-specs">
+                {{- if eq (mod (int $product.ram_mb) 1024) 0 }}
+                <strong>{{ div (int $product.ram_mb) 1024 }}GB 内存 · {{ $product.storage_gb }}GB 硬盘</strong>
+                {{- else }}
+                <strong>{{ $product.storage_gb }}GB 硬盘 · 内存待核实</strong>
+                <span class="bwh-ram-note">官方目录标注 {{ $product.ram_mb }}MB 内存</span>
+                {{- end }}
+                <span>{{ $product.vcpu_count }} 核 CPU · {{ $product.port_speed_mbps }}Mbps 端口</span>
+                <span>每月 {{ $product.transfer_gb_per_month }}GB 流量</span>
+                <small>产品编号 {{ .product_id }}</small>
+              </th>
+              {{- range $catalog.periods }}
+              {{- $period := . }}
+              {{- $offers := where $plan.offers "period" .id }}
+              <td>
+                {{- if $offers }}
+                  {{- range $offers }}
+                    {{- if .available }}
+                    <a class="bwh-price" href="{{ .url }}" target="_blank" rel="sponsored nofollow noopener" data-period="{{ $period.id }}" aria-label="{{ $dc.city }} {{ $dc.id }}，产品 {{ $plan.product_id }}，{{ $period.label }} {{ printf "%.2f" (div (float .amount_cents) 100) }} 美元，前往官方订购"><strong>${{ printf "%.2f" (div (float .amount_cents) 100) }}</strong><span>{{ $period.label }} · 去官网</span></a>
+                    {{- else }}
+                    <span class="bwh-unavailable">{{ $period.label }}暂缺货</span>
+                    {{- end }}
+                  {{- end }}
+                {{- else }}
+                <span class="bwh-unavailable">不提供{{ .label }}</span>
+                {{- end }}
+              </td>
+              {{- end }}
+            </tr>
+            {{- end }}
+          </tbody>
+        </table>
+      </section>
+      {{- end }}
+    </details>
+    {{- end }}
+  </section>
+  {{- end }}
+</section>

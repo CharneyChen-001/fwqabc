@@ -16,6 +16,12 @@ bandwagonhost:
   thumb: /img/promos/bandwagonhost-cn2-gia-e.webp
   thumb_alt: 搬瓦工官网 CN2 GIA-E 方案购物车页面截图
 
+bandwagonhost-basic-4g-la2-monthly:
+  cta: 查看洛杉矶 4G 月付方案
+  landing: https://bandwagonhost.com/cart.php?a=add&pid=46&billingcycle=monthly&configoption%5B10%5D=35
+  aff: "85446"
+  aff_template: https://bandwagonhost.com/aff.php?aff={aff}&a=add&pid=46&billingcycle=monthly&configoption%5B10%5D=35
+
 raksmart:
   cta: 查看 $1.99/月秒杀款
   landing: https://www.raksmart.com/activity/index/page/activitypage_25.html

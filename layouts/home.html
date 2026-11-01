@@ -2,7 +2,7 @@
 {{- $now := now.Unix -}}
 <div class="home-wrap"></div>
 <section class="hero">
-  {{- $mc := len hugo.Data.links -}}
+  {{- $mc := len (site.GetPage "/merchants").Pages -}}
   {{- $pages := where site.RegularPages "Section" "in" (slice "deals" "free" "review" "guides") -}}
   {{- $last := time.AsTime "2000-01-01T00:00:00+08:00" -}}{{ range $pages }}{{ if .Lastmod.After $last }}{{ $last = .Lastmod }}{{ end }}{{ end -}}
   {{- with site.Params.lastUpdated }}{{ $last = time.AsTime . }}{{ end -}}
@@ -50,7 +50,7 @@
   {{- range hugo.Data.picks }}
     <tr><td data-l="用途"><b>{{ .use }}</b><small class="sub">{{ .budget }}</small></td><td data-l="方案"><b>{{ .merchant }}</b><small class="sub">{{ .plan }}</small></td>
     <td class="p" data-l="价格">{{ .price }}</td><td data-l="线路">{{ .route }}</td>
-    <td><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ i18n "ctaPick" }}</a></td></tr>
+    <td><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ .cta | default (i18n "ctaPick") }}</a></td></tr>
   {{- end }}
   </tbody></table></div>
   <p class="src-note">价格于 2026年11月1日 在各家官网核对（搬瓦工产品目录、RakSmart 官方活动说明、Vultr 价格页），{{ i18n "ctaNote" }}。</p>

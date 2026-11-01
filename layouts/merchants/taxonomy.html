@@ -1,0 +1,27 @@
+{{- define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+</header>
+<ul class="terms-tags">
+  {{- $type := .Type }}
+  {{- range .Data.Terms.Alphabetical }}
+    {{- $count := .Count }}
+    {{- with site.GetPage (printf "/%s/%s" $type .Name) }}
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }} <sup><strong><sup>{{ $count }}</sup></strong></sup></a></li>
+    {{- end }}
+  {{- end }}
+</ul>
+{{- with hugo.Data.bandwagonhost_catalog }}
+<section class="bwh-directory-entry" aria-labelledby="bwh-directory-title">
+  <p class="bwh-eyebrow">完整产品目录</p>
+  <h2 id="bwh-directory-title">搬瓦工 BandwagonHost</h2>
+  <p>{{ .product_count }} 款产品 · {{ .datacenter_count }} 个机房 · 按系列和地区查看配置、价格与付款周期。</p>
+  <nav class="bwh-series-nav" aria-label="搬瓦工产品系列">
+    {{ range .series }}<a href="{{ printf "/merchants/bandwagonhost/#bwh-%s" .id | relURL }}"><strong>{{ .label }}</strong><span>{{ .name }} · {{ .product_count }} 款</span></a>{{ end }}
+  </nav>
+  <a class="go-btn" href="{{ "/merchants/bandwagonhost/#products" | relURL }}">查看搬瓦工全部产品</a>
+  <p class="bwh-catalog-source">核对日期：{{ .checked_on }} · 价格与库存以官网结算页为准</p>
+</section>
+{{- end }}
+{{- end }}
