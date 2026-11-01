@@ -12,8 +12,8 @@
 </ul>
 
 <section class="home-sec countdown" id="countdown">
-  <div class="cd"><div>双11 · 11/11 00:00 北京时间</div><b data-target="{{ site.Params.double11 }}">--</b></div>
-  <div class="cd"><div>黑五 · 11/25–11/30 北京时间</div><b data-target="{{ site.Params.blackFridayStart }}" data-end="{{ site.Params.blackFridayEnd }}">--</b></div>
+  <div class="cd"><div>双11 · 11/11 00:00 北京时间</div><b data-target="{{ site.Params.double11 | default "2026-11-11T00:00:00+08:00" }}">11/11 00:00</b></div>
+  <div class="cd"><div>黑五 · 11/25–11/30 北京时间</div><b data-target="{{ site.Params.blackFridayStart | default "2026-11-25T00:00:00+08:00" }}" data-end="{{ site.Params.blackFridayEnd | default "2026-11-30T23:59:59+08:00" }}">11/25–11/30</b></div>
 </section>
 
 <section class="home-sec">
@@ -23,7 +23,7 @@
     {{- $s := time.AsTime .start }}{{ $e := cond (ne (.end | default "") "") (time.AsTime (.end | default "2099-01-01T00:00:00+08:00")) (time.AsTime "2099-01-01T00:00:00+08:00") }}
     {{- if gt $e.Unix $now }}
     <div class="promo" data-start="{{ $s.Format "2006-01-02T15:04:05-07:00" }}" data-end="{{ $e.Format "2006-01-02T15:04:05-07:00" }}">
-      {{- $slug := .slug }}{{ $l := index hugo.Data.links $slug }}{{ with $l.thumb }}<a class="promo-thumb" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank"><img src="{{ . }}" alt="{{ $l.thumb_alt }}" width="640" height="400" loading="lazy" decoding="async"></a>{{ end }}
+      {{- $slug := .slug }}{{ $l := index hugo.Data.links $slug }}{{ with $l.thumb }}<a class="promo-thumb" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank"><img src="{{ . }}" alt="{{ $l.thumb_alt }}" width="640" height="400" loading="lazy" decoding="async"></a>{{ else }}<a class="promo-thumb promo-ph" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank" aria-hidden="true" tabindex="-1"><span>{{ .merchant }}</span></a>{{ end }}
       <span class="tag {{ if le $s.Unix $now }}live{{ else }}soon{{ end }}">{{ if le $s.Unix $now }}进行中{{ else }}即将开始{{ end }}</span>
       <span class="t">{{ .merchant }} · {{ .title }}</span>
       <small>{{ $s.Format "1/2 15:04" }}{{ with .end }} – {{ (time.AsTime .).Format "1/2 15:04" }}{{ else }} 起 · 长期{{ end }}（北京时间）</small>
@@ -71,12 +71,16 @@
 
 <script>
 (function(){
-function cd(){document.querySelectorAll('#countdown b[data-target]').forEach(function(el){var t=new Date(el.dataset.target),e=el.dataset.end?new Date(el.dataset.end):null,n=new Date(),d=t-n;
-if(d<=0){el.textContent=(e&&n<e)?'进行中':(e?'已结束':'已开始');return}
+function pd(v){if(!v)return NaN;var m=/^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})(?::(\d{2}))?(Z|([+-])(\d{2}):?(\d{2}))?$/.exec(String(v).trim());
+if(!m){var t=Date.parse(v);return isNaN(t)?NaN:t}
+var u=Date.UTC(+m[1],m[2]-1,+m[3],+m[4],+m[5],+(m[6]||0)),o=8*60;if(m[7]==='Z')o=0;else if(m[8])o=(m[8]==='-'?-1:1)*(m[9]*60+ +m[10]);return u-o*6e4}
+function cd(){document.querySelectorAll('#countdown b[data-target]').forEach(function(el){var t=pd(el.dataset.target),e=el.dataset.end?pd(el.dataset.end):NaN,n=Date.now();
+if(isNaN(t))return;var d=t-n;
+if(d<=0){el.textContent=(!isNaN(e)&&n<e)?'进行中':(!isNaN(e)?'已结束':'进行中');return}
 var D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24,M=Math.floor(d/6e4)%60,S=Math.floor(d/1e3)%60;el.textContent=D+'天 '+H+'时 '+M+'分 '+S+'秒'})}
-function pr(){var n=new Date();document.querySelectorAll('.promo').forEach(function(el){var s=new Date(el.dataset.start),e=new Date(el.dataset.end),tag=el.querySelector('.tag');
-if(n>e){el.style.display='none';return}
-if(n>=s){tag.className='tag live';tag.textContent='进行中'}})}
+function pr(){var n=Date.now();document.querySelectorAll('.promo').forEach(function(el){var s=pd(el.dataset.start),e=pd(el.dataset.end),tag=el.querySelector('.tag');
+if(!isNaN(e)&&n>e){el.style.display='none';return}
+if(!isNaN(s)&&n>=s){tag.className='tag live';tag.textContent='进行中'}})}
 cd();pr();setInterval(cd,1000);setInterval(pr,60000)})();
 </script>
 {{- end }}
