@@ -1,0 +1,2 @@
+{{- /* 非推广外链：{{< extlink "https://..." "文字" >}} → rel=nofollow noopener */ -}}
+<a href="{{ .Get 0 }}" rel="nofollow noopener" target="_blank">{{ .Get 1 | default (.Get 0) }}</a>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 240" font-family="'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<rect width="960" height="240" fill="#f8fafc"/>
+<text x="480" y="34" font-size="20" font-weight="700" text-anchor="middle" fill="#0f172a">甲骨文 Oracle Cloud Free Tier 注册流程（依据官方文档整理）</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#0f766e"/></marker></defs>
+<g font-size="15" text-anchor="middle">
+<rect x="20" y="80" width="160" height="80" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="100" y="114" fill="#0f172a">① 填国家/姓名</text><text x="100" y="138" fill="#475569">邮箱验证</text>
+<rect x="210" y="80" width="160" height="80" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="290" y="114" fill="#0f172a">② 设置密码</text><text x="290" y="138" fill="#475569">账户名（租户名）</text>
+<rect x="400" y="80" width="160" height="80" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/><text x="480" y="114" fill="#0f172a">③ 选主区域</text><text x="480" y="138" fill="#b45309">创建后不可更改</text>
+<rect x="590" y="80" width="160" height="80" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="670" y="114" fill="#0f172a">④ 地址与手机</text><text x="670" y="138" fill="#475569">信息需真实准确</text>
+<rect x="780" y="80" width="160" height="80" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="860" y="114" fill="#0f172a">⑤ 信用卡验证</text><text x="860" y="138" fill="#475569">临时预授权，非扣款</text>
+</g>
+<g stroke="#0f766e" stroke-width="2" marker-end="url(#a)"><line x1="180" y1="120" x2="206" y2="120"/><line x1="370" y1="120" x2="396" y2="120"/><line x1="560" y1="120" x2="586" y2="120"/><line x1="750" y1="120" x2="776" y2="120"/></g>
+<text x="480" y="205" font-size="14" text-anchor="middle" fill="#64748b">不接受带 PIN 的借记卡、虚拟卡、一次性卡、预付卡；每人仅限一个免费账户 · 来源：oracle.com/cloud/free/faq · fwqabc.com</text>
+</svg>

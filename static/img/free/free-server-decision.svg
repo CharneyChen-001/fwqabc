@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<rect width="960" height="420" fill="#f8fafc"/>
+<text x="480" y="34" font-size="20" font-weight="700" text-anchor="middle" fill="#0f172a">免费机还是低价付费机？一张图快速判断</text>
+<defs><marker id="b" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#475569"/></marker></defs>
+<g font-size="15" text-anchor="middle">
+<rect x="330" y="60" width="300" height="56" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="480" y="94" fill="#0f172a">要跑正式业务（客户网站/外贸站）吗？</text>
+<rect x="60" y="170" width="300" height="56" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="210" y="196" fill="#0f172a">有可用的实体信用卡，</text><text x="210" y="216" fill="#0f172a">能接受开不出机、被回收？</text>
+<rect x="600" y="170" width="300" height="56" rx="10" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/><text x="750" y="196" fill="#166534">选低价付费 VPS</text><text x="750" y="216" fill="#166534">有工单支持、可按线路挑</text>
+<rect x="20" y="300" width="250" height="70" rx="10" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/><text x="145" y="328" fill="#166534">试甲骨文 Always Free</text><text x="145" y="350" fill="#166534">学 Linux / 测试环境 / 小工具</text>
+<rect x="300" y="300" width="250" height="70" rx="10" fill="#fff7ed" stroke="#d97706" stroke-width="2"/><text x="425" y="328" fill="#9a3412">用大厂赠金短期试用</text><text x="425" y="350" fill="#9a3412">到期前删资源，或换低价 VPS</text>
+</g>
+<g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#b)"><path d="M400 116 L260 166"/><path d="M560 116 L700 166"/><path d="M160 226 L145 296"/><path d="M260 226 L400 296"/></g>
+<g font-size="13" fill="#475569"><text x="300" y="138">否</text><text x="640" y="138">是</text><text x="120" y="268">是</text><text x="340" y="262">否 / 不确定</text></g>
+<text x="480" y="405" font-size="13" text-anchor="middle" fill="#64748b">原创示意图 · fwqabc.com 出海ABC</text>
+</svg>

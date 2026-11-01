@@ -1,0 +1,2 @@
+{{- /* 截图/示意图：{{< shot src="/img/..." alt="..." cap="..." >}} */ -}}
+<figure class="shot"><img src="{{ .Get "src" }}" alt="{{ .Get "alt" }}" loading="lazy" decoding="async"{{ with .Get "w" }} width="{{ . }}"{{ end }}{{ with .Get "h" }} height="{{ . }}"{{ end }}><figcaption>{{ .Get "cap" | default "官方页面截图，截于 2026-11-01" }}</figcaption></figure>

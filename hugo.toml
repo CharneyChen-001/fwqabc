@@ -20,6 +20,7 @@ pagination.pagerSize = 10
     guides = "/guides/:contentbasename/"
     tutorials = "/tutorials/:contentbasename/"
     tools = "/tools/:contentbasename/"
+    free = "/free/:contentbasename/"
 
 [params]
   env = "production"
@@ -51,6 +52,10 @@ pagination.pagerSize = 10
     name = "优惠促销"
     url = "/deals/"
     weight = 10
+  [[menus.main]]
+    name = "免费服务器"
+    url = "/free/"
+    weight = 15
   [[menus.main]]
     name = "实测评测"
     url = "/review/"
