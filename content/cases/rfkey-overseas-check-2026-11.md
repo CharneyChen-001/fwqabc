@@ -2,7 +2,7 @@
 title: "实测：用 $19.99/月搬瓦工美西 VPS 做外贸站海外访问体检（RFKEY 案例）"
 date: 2026-11-02T15:30:00+08:00
 lastmod: 2026-11-02T15:30:00+08:00
-draft: true
+draft: false
 description: "我们在自购的搬瓦工 $19.99/月 洛杉矶 USCA_2 月付方案（4核4G）上，直接从美国加州访问射频器件商城 RFKEY（www.rfkey.cn），做了一次公开页面的海外访问体检：15/15 次 HTTPS 返回 200，首页冷加载 LCP 中位 2.16 秒，热加载 1.00 秒，并给出图片体积、英文页金额、HTTPS 跳转等优化建议。"
 keywords: ["外贸网站海外访问测试", "搬瓦工实测", "搬瓦工 洛杉矶 USCA_2", "外贸站体检", "LCP 实测", "RFKEY"]
 merchant: "bandwagonhost"
