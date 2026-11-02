@@ -1,0 +1,6 @@
+{{- $p := .Get "prio" -}}
+{{- $lbl := dict "high" "优先级：高" "mid" "优先级：中" "info" "参考" -}}
+<div class="adv adv-{{ $p }}">
+  <div class="adv-head"><span class="adv-n">{{ .Get "n" }}</span><h3>{{ .Get "title" }}</h3><span class="adv-p">{{ index $lbl $p }}</span></div>
+  <div class="adv-body">{{ .Inner | .Page.RenderString (dict "display" "block") }}</div>
+</div>
