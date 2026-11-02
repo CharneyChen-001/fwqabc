@@ -1,0 +1,138 @@
+{{- $merchantID := .Get "merchant" -}}
+{{- $catalog := index hugo.Data (printf "%s_catalog" $merchantID) -}}
+{{- with $catalog }}
+<section class="merchant-catalog" id="products" aria-labelledby="{{ $merchantID }}-products-title">
+  <div class="merchant-catalog-heading">
+    <div><p class="merchant-catalog-eyebrow">按系列与地区查看</p><h2 id="{{ $merchantID }}-products-title">{{ .merchant }} 产品与服务目录</h2></div>
+    <p class="merchant-catalog-meta">{{ .product_count }} 个产品与服务条目 · {{ .priced_product_count }} 个有明确价格</p>
+  </div>
+  <p>{{ .scope_note }}</p>
+  <p class="merchant-catalog-source">核对日期：<time datetime="{{ .checked_on }}">{{ .checked_on }}</time> · 价格单位为美元 · <a href="{{ "/disclosure/" | relURL }}">推广披露</a></p>
+  <div class="merchant-catalog-notice">
+    <p>下方保留官方计费周期。年付金额为整年总价，小时计费的官方月价单独列出；未明确的账期和费用以官网确认为准。库存与最终费用以配置页为准。</p>
+    <p>{{ .link_scope }}推广佣金不等于购买者折扣或赠金。</p>
+    <div class="merchant-catalog-affiliates">
+      {{- range where hugo.Data.affiliate_programs.programs "merchant" $catalog.merchant }}
+      <a href="{{ .url }}" target="_blank" rel="sponsored nofollow noopener">{{ if eq $merchantID "raksmart" }}{{ .name }}入口{{ else }}通过推广入口访问官网{{ end }}</a>
+      {{- range .landing_links }}<a href="{{ .url }}" target="_blank" rel="sponsored nofollow noopener">{{ .name }}</a>{{ end }}
+      {{- end }}
+    </div>
+  </div>
+  <nav class="merchant-catalog-nav" aria-label="{{ .merchant }} 产品系列">
+    {{- range .series }}<a href="#{{ $merchantID }}-{{ .id }}"><strong>{{ .label }}</strong><span>{{ .product_count }} 个产品与服务条目</span></a>{{ end }}
+  </nav>
+  {{- range $seriesIndex, $series := .series }}
+  {{- $seriesID := .id }}
+  {{- $products := where $catalog.products "series_id" $seriesID }}
+  <section class="merchant-catalog-series" id="{{ $merchantID }}-{{ $seriesID }}" aria-labelledby="{{ $merchantID }}-title-{{ $seriesID }}">
+    <div class="merchant-catalog-heading"><h3 id="{{ $merchantID }}-title-{{ $seriesID }}">{{ .label }}</h3><span class="merchant-catalog-meta">{{ .product_count }} 个条目</span></div>
+    <p class="merchant-catalog-description">{{ .description }}</p>
+    {{- with .region_note }}<p class="merchant-catalog-region-note">{{ . }}</p>{{ end }}
+    {{- $regions := slice }}
+    {{- range $products }}{{ $regions = $regions | append (.city | default "地区待核实") }}{{ end }}
+    {{- range $regionIndex, $region := $regions | uniq }}
+    {{- $regionProducts := where $products "city" $region }}
+    {{- $columns := slice }}
+    {{- $columnIDs := slice }}
+    {{- $columnOrder := dict "hourly" 10 "official-monthly" 20 "monthly" 30 "quarterly" 40 "semiannually" 50 "annually" 60 "biennially" 70 "registration-annually" 72 "renewal-annually" 74 "other" 80 }}
+    {{- $regionOffers := slice }}
+    {{- range $regionProducts }}
+      {{- range .offers }}
+        {{- $regionOffers = $regionOffers | append . }}
+        {{- $key := .period }}{{ $label := .label }}
+        {{- if ne .price_hourly nil }}{{ $key = "hourly" }}{{ $label = "每小时" }}
+        {{- else if in (slice "quote" "unknown" "percentage" "unit-monthly") .period }}{{ $key = "other" }}{{ $label = "计费标准" }}{{ end }}
+        {{- if not (in $columnIDs $key) }}
+          {{- $columns = $columns | append (dict "id" $key "label" $label "order" (index $columnOrder $key | default 99)) }}
+          {{- $columnIDs = $columnIDs | append $key }}
+        {{- end }}
+        {{- if and (ne .price_monthly nil) (not (in $columnIDs "official-monthly")) }}
+          {{- $columns = $columns | append (dict "id" "official-monthly" "label" "官方月价" "order" 20) }}
+          {{- $columnIDs = $columnIDs | append "official-monthly" }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    {{- $columns = sort $columns "order" }}
+    {{- $commonNotes := slice }}
+    {{- $firstProduct := index $regionProducts 0 }}
+    {{- range slice "region_note" "notes" "availability" }}
+      {{- $value := index $firstProduct . }}
+      {{- if and $value (eq (len (where $regionProducts . $value)) (len $regionProducts)) }}{{ $commonNotes = $commonNotes | append $value }}{{ end }}
+    {{- end }}
+    {{- with (index $regionOffers 0).price_note }}
+      {{- if eq (len (where $regionOffers "price_note" .)) (len $regionOffers) }}{{ $commonNotes = $commonNotes | append . }}{{ end }}
+    {{- end }}
+    <details class="merchant-catalog-region"{{ if and (eq $seriesIndex 0) (eq $regionIndex 0) }} open{{ end }}>
+      <summary><strong>{{ $region }}</strong><span>{{ len $regionProducts }} 个条目 · 展开查看配置与价格</span></summary>
+      <div class="merchant-catalog-region-content">
+        <div class="merchant-catalog-table-wrap" role="region" aria-label="{{ $catalog.merchant }} {{ $region }}配置与价格，窄屏可横向滚动" tabindex="0">
+          <table class="merchant-catalog-table{{ if gt (len $columns) 2 }} merchant-catalog-table-wide{{ end }}">
+            <caption class="merchant-catalog-sr-only">{{ $catalog.merchant }}，{{ $region }}，产品配置与已核实计费方式的美元价格</caption>
+            <thead><tr><th scope="col">产品配置</th>{{ range $columns }}<th scope="col">{{ .label }}</th>{{ end }}<th scope="col">官方入口</th></tr></thead>
+            <tbody>
+            {{- range $regionProducts }}
+              {{- $product := . }}
+              {{- $rowNotes := slice }}
+              {{- range slice .region_note .notes .availability }}{{ if and . (not (in $commonNotes .)) }}{{ $rowNotes = $rowNotes | append . }}{{ end }}{{ end }}
+              {{- range .offers }}{{ with .price_note }}{{ if not (in $commonNotes .) }}{{ $rowNotes = $rowNotes | append . }}{{ end }}{{ end }}{{ end }}
+              <tr class="merchant-catalog-product" id="{{ $merchantID }}-product-{{ .id }}" data-product="{{ .id }}">
+                <th scope="row" class="merchant-catalog-specs">
+                  <strong id="{{ $merchantID }}-name-{{ .id }}">{{ .name }}</strong>
+                  {{- $hardware := slice }}
+                  {{- if .cpu_label }}{{ $hardware = $hardware | append .cpu_label }}{{ else }}{{ with .vcpu_count }}{{ $hardware = $hardware | append (printf "%v vCPU" .) }}{{ end }}{{ end }}
+                  {{- with .ram_mb }}{{ $hardware = $hardware | append (printf "%v GB 内存" (div (float .) 1024)) }}{{ end }}
+                  {{- with .storage_gb }}{{ $hardware = $hardware | append (printf "%v GB %s" . $product.storage_type) }}{{ end }}
+                  {{- with $hardware }}<span>{{ delimit . " · " }}</span>{{ end }}
+                  {{- $network := slice }}
+                  {{- with .bandwidth_label }}{{ $network = $network | append . }}{{ end }}
+                  {{- with .port_mbps }}{{ $network = $network | append (printf "%v Mbps 端口" .) }}{{ end }}
+                  {{- with $network }}<span>{{ delimit . " · " }}</span>{{ end }}
+                  {{- with .spec_label }}<span>{{ . }}</span>{{ end }}
+                  {{- with $rowNotes | uniq }}<details class="merchant-catalog-row-notes"><summary>套餐说明</summary>{{ range . }}<p>{{ . }}</p>{{ end }}</details>{{ end }}
+                </th>
+                {{- range $columns }}
+                  {{- $column := . }}{{ $matched := false }}
+                  <td class="merchant-catalog-price-cell" data-period="{{ .id }}">
+                  {{- range $product.offers }}
+                    {{- if and (eq $column.id "hourly") (ne .price_hourly nil) }}
+                      {{- $matched = true }}<strong class="merchant-catalog-price">${{ .price_hourly }}</strong>
+                    {{- else if and (eq $column.id "official-monthly") (ne .price_monthly nil) }}
+                      {{- $matched = true }}<strong class="merchant-catalog-price">${{ printf "%.2f" (float .price_monthly) }}</strong>
+                    {{- else if and (eq $column.id .period) (ne .amount_cents nil) }}
+                      {{- $matched = true }}
+                      {{- if ne .renewal_amount_cents nil }}<span class="merchant-catalog-price-label">首期</span>{{ end }}
+                      <strong class="merchant-catalog-price">${{ printf "%.2f" (div (float .amount_cents) 100) }}</strong>
+                      {{- if ne .renewal_amount_cents nil }}<span class="merchant-catalog-renewal">续费 ${{ printf "%.2f" (div (float .renewal_amount_cents) 100) }}</span>{{ end }}
+                    {{- else if and (eq $column.id "other") (in (slice "quote" "unknown" "percentage" "unit-monthly") .period) }}
+                      {{- $matched = true }}
+                      {{- if eq .period "percentage" }}<strong class="merchant-catalog-price">{{ .unit }}</strong>
+                      {{- else if ne .unit_price nil }}<strong class="merchant-catalog-price">${{ .unit_price }}{{ with .unit }}/{{ . }}{{ end }}</strong>
+                      {{- else }}<span class="merchant-catalog-unavailable">{{ .label }}</span>{{ end }}
+                    {{- end }}
+                  {{- end }}
+                  {{- if not $matched }}<span class="merchant-catalog-unavailable" title="本次未收录此计费方式的报价">未核实</span>{{ end }}
+                  </td>
+                {{- end }}
+                <td class="merchant-catalog-product-links">
+                  {{- if in (slice "ethernetservers" "interserver") $merchantID }}
+                    {{- with (index .offers 0).affiliate_url }}
+                  <a href="{{ . }}" target="_blank" rel="sponsored nofollow noopener" aria-label="{{ $product.name }} 推广入口，进入官网后选择配置">推广入口</a>
+                    {{- end }}
+                  {{- end }}
+                  <a href="{{ .purchase_url | default .official_url }}" target="_blank" rel="noopener">{{ if .purchase_url }}查看配置{{ else }}产品说明{{ end }}</a>
+                  {{- if and .purchase_url (ne .purchase_url .official_url) }}<a class="merchant-catalog-source-link" href="{{ .official_url }}" target="_blank" rel="noopener">价格来源</a>{{ end }}
+                </td>
+              </tr>
+            {{- end }}
+            </tbody>
+          </table>
+        </div>
+        {{- with $commonNotes | uniq }}<details class="merchant-catalog-group-notes"><summary>计费、地区与库存说明</summary>{{ range . }}<p>{{ . }}</p>{{ end }}</details>{{ end }}
+      </div>
+    </details>
+    {{- end }}
+  </section>
+  {{- end }}
+  <p class="merchant-catalog-source">推广入口仅用于访问商家，不保证预选具体产品、地区或付款周期。产品直达推广链接的归因尚未验证，未将自行拼接的链接作为已验证购买入口。</p>
+</section>
+{{- end }}

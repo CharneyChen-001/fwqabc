@@ -5,9 +5,18 @@
 </header>
 <ul class="terms-tags">
   {{- $type := .Type }}
+  {{- $listedMerchants := slice }}
   {{- range .Data.Terms.Alphabetical }}
     {{- with site.GetPage (printf "/%s/%s" $type .Name) }}
+    {{- $listedMerchants = $listedMerchants | append .RelPermalink }}
     <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+    {{- end }}
+  {{- end }}
+  {{- range slice "raksmart" "cloudcone" "ethernetservers" "interserver" }}
+    {{- with site.GetPage (printf "/merchants/%s" .) }}
+      {{- if not (in $listedMerchants .RelPermalink) }}
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
     {{- end }}
   {{- end }}
 </ul>
@@ -47,5 +56,20 @@
   <a class="go-btn" href="{{ "/merchants/racknerd/#products" | relURL }}">查看 RackNerd 产品目录</a>
   <p class="racknerd-source">核对日期：{{ .checked_on }} · 推广链接指定产品，地区与付款周期需在官网选择</p>
 </section>
+{{- end }}
+{{- range slice "raksmart" "cloudcone" "ethernetservers" "interserver" }}
+{{- $merchantID := . }}
+{{- with index hugo.Data (printf "%s_catalog" $merchantID) }}
+<section class="merchant-directory-entry" aria-labelledby="{{ $merchantID }}-directory-title">
+  <p class="merchant-catalog-eyebrow">产品与服务目录</p>
+  <h2 id="{{ $merchantID }}-directory-title">{{ .merchant }}</h2>
+  <p>{{ .product_count }} 个产品与服务条目 · {{ .priced_product_count }} 个有明确价格 · 按系列与已核实地区查看配置、计费周期和官方来源。</p>
+  <nav class="merchant-catalog-nav" aria-label="{{ .merchant }} 产品系列">
+    {{ range .series }}<a href="{{ printf "/merchants/%s/#%s-%s" $merchantID $merchantID .id | relURL }}"><strong>{{ .label }}</strong><span>{{ .product_count }} 个条目</span></a>{{ end }}
+  </nav>
+  <a class="go-btn" href="{{ printf "/merchants/%s/#products" $merchantID | relURL }}">查看 {{ .merchant }} 产品目录</a>
+  <p class="merchant-catalog-source">核对日期：{{ .checked_on }} · 推广入口不预选产品、地区或付款周期；未知价格与库存保留待确认。</p>
+</section>
+{{- end }}
 {{- end }}
 {{- end }}

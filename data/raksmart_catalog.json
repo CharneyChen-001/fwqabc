@@ -1,0 +1,895 @@
+{
+  "id": "raksmart",
+  "merchant": "RakSmart",
+  "checked_on": "2026-11-01",
+  "affiliate_id": "10061",
+  "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+  "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+  "scope_note": "本目录整理本次已核实的代表套餐及服务入口，不代表全站全部 SKU。VPS 地区和线路未逐档绑定，未核实的价格周期留空；不把历史活动当作当前优惠。",
+  "policy_notes": [
+    "当前账户后台默认周期性佣金为15%、一次性佣金为35%；推广收益不等于购买者折扣。",
+    "后台最低提现100美元；官方公开说明订单周期结束后佣金生效，退款会扣回相关佣金。一次性计佣基数、各产品适用范围与 Cookie 有效期仍需单独核实。",
+    "后台支持定向推广链接管理，本次未生成或验证产品深链。页面推广按钮使用已核实的商家入口，具体产品和付款周期需自行选择。"
+  ],
+  "source_urls": [
+    "https://www.raksmart.com/vps/introduction.html",
+    "https://www.raksmart.com/dedicated/index.html",
+    "https://www.raksmart.com/bare/index.html",
+    "https://www.raksmart.com/gpu/index.html",
+    "https://www.raksmart.com/privatea/shared_hosting.html",
+    "https://billing.raksmart.com/whmcs/products.php?language=chinese-cn&t=colo",
+    "https://www.raksmart.com/",
+    "https://www.raksmart.com/cloudflare/index.html",
+    "https://www.raksmart.com/reseller/affiliates.html",
+    "https://billing.raksmart.com/whmcs/affiliates.php"
+  ],
+  "series": [
+    {
+      "id": "vps",
+      "label": "VPS",
+      "description": "按官网明确配置记录 HDD 与 NVMe，不将全系统一标为 NVMe。",
+      "region_note": "以下四档未逐项绑定地区与线路，请在官网配置页确认。",
+      "product_count": 4
+    },
+    {
+      "id": "dedicated",
+      "label": "物理服务器",
+      "description": "独享物理服务器，按处理器、内存、存储和线路选择。",
+      "region_note": "产品线含硅谷、洛杉矶、西雅图、东京、香港、吉隆坡、新加坡、首尔、台湾、越南；不代表每款均可选择这些地区。",
+      "product_count": 1
+    },
+    {
+      "id": "bare",
+      "label": "裸机云",
+      "description": "裸机云代表配置；线路与附加服务以订单为准。",
+      "region_note": "产品线含硅谷、洛杉矶、西雅图、法兰克福、东京、香港、吉隆坡、新加坡、首尔、台湾；本次仅列已核实示例。",
+      "product_count": 1
+    },
+    {
+      "id": "gpu",
+      "label": "GPU 服务器",
+      "description": "GPU 型号与显存需要逐项确认，不依据系列宣传推断算力。",
+      "region_note": "产品线含硅谷与香港，示例配置的具体部署地区待确认。",
+      "product_count": 1
+    },
+    {
+      "id": "hosting",
+      "label": "共享主机",
+      "description": "网站托管产品，区别于可自行管理系统的 VPS。",
+      "region_note": "官网有硅谷、香港、印度分类；本次仅记录已核实的硅谷与香港示例。",
+      "product_count": 2
+    },
+    {
+      "id": "colocation",
+      "label": "机柜托管",
+      "description": "按机柜、电力、带宽等条件报价。",
+      "region_note": "本次记录硅谷、香港入口；展示金额的计费周期与带宽包含量待确认。",
+      "product_count": 2
+    },
+    {
+      "id": "website",
+      "label": "域名、证书与邮箱",
+      "description": "网站配套服务入口，暂不推断统一套餐价格。",
+      "region_note": "具体服务覆盖与交付方式以官网说明为准。",
+      "product_count": 3
+    },
+    {
+      "id": "cdn",
+      "label": "CDN 与网站安全",
+      "description": "RakSmart 官网展示的 Cloudflare 相关套餐。",
+      "region_note": "服务覆盖按官方方案，不能视为服务器机房地区。",
+      "product_count": 4
+    },
+    {
+      "id": "network",
+      "label": "网络服务",
+      "description": "专线、IP Transit、IP 广播与光纤互联等配置型服务。",
+      "region_note": "需按线路两端、带宽及交付地区询价。",
+      "product_count": 1
+    }
+  ],
+  "products": [
+    {
+      "id": "vps-1g",
+      "product_id": "",
+      "series_id": "vps",
+      "category": "VPS",
+      "name": "1 核 / 1 GB VPS",
+      "country": "待核实",
+      "city": "地区待核实",
+      "region_note": "官网本档未明确绑定地区与线路，不能直接标为香港或 CN2 套餐。",
+      "vcpu_count": 1,
+      "ram_mb": 1024,
+      "storage_gb": 50,
+      "storage_type": "HDD",
+      "bandwidth_gb": null,
+      "bandwidth_label": "不限流量",
+      "port_mbps": 1,
+      "cpu_label": "",
+      "spec_label": "1 个 IP",
+      "official_url": "https://www.raksmart.com/vps/introduction.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/vps/introduction.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网展示，交付库存未实测",
+      "notes": "内存按官网 GB 规格记录；HDD 与 NVMe 按具体套餐区分，不沿用页面通用宣传。",
+      "offers": [
+        {
+          "period": "monthly",
+          "label": "月付",
+          "amount_cents": 325,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "官网展示月价；地区、线路及附加项可能影响结算价。",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "vps-4g",
+      "product_id": "",
+      "series_id": "vps",
+      "category": "VPS",
+      "name": "2 核 / 4 GB VPS",
+      "country": "待核实",
+      "city": "地区待核实",
+      "region_note": "官网本档未明确绑定地区与线路，不能直接标为香港或 CN2 套餐。",
+      "vcpu_count": 2,
+      "ram_mb": 4096,
+      "storage_gb": 100,
+      "storage_type": "HDD",
+      "bandwidth_gb": null,
+      "bandwidth_label": "不限流量",
+      "port_mbps": 100,
+      "cpu_label": "",
+      "spec_label": "",
+      "official_url": "https://www.raksmart.com/vps/introduction.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/vps/introduction.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网展示，交付库存未实测",
+      "notes": "内存按官网 GB 规格记录；HDD 与 NVMe 按具体套餐区分，不沿用页面通用宣传。",
+      "offers": [
+        {
+          "period": "monthly",
+          "label": "月付",
+          "amount_cents": 1240,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "官网展示月价；地区、线路及附加项可能影响结算价。",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "vps-8g",
+      "product_id": "",
+      "series_id": "vps",
+      "category": "VPS",
+      "name": "4 核 / 8 GB VPS",
+      "country": "待核实",
+      "city": "地区待核实",
+      "region_note": "官网本档未明确绑定地区与线路，不能直接标为香港或 CN2 套餐。",
+      "vcpu_count": 4,
+      "ram_mb": 8192,
+      "storage_gb": 200,
+      "storage_type": "NVMe",
+      "bandwidth_gb": null,
+      "bandwidth_label": "流量限制待确认",
+      "port_mbps": 500,
+      "cpu_label": "",
+      "spec_label": "",
+      "official_url": "https://www.raksmart.com/vps/introduction.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/vps/introduction.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网展示，交付库存未实测",
+      "notes": "内存按官网 GB 规格记录；HDD 与 NVMe 按具体套餐区分，不沿用页面通用宣传。",
+      "offers": [
+        {
+          "period": "monthly",
+          "label": "月付",
+          "amount_cents": 4480,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "官网展示月价；地区、线路及附加项可能影响结算价。",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "vps-16g",
+      "product_id": "",
+      "series_id": "vps",
+      "category": "VPS",
+      "name": "8 核 / 16 GB VPS",
+      "country": "待核实",
+      "city": "地区待核实",
+      "region_note": "官网本档未明确绑定地区与线路，不能直接标为香港或 CN2 套餐。",
+      "vcpu_count": 8,
+      "ram_mb": 16384,
+      "storage_gb": 200,
+      "storage_type": "NVMe",
+      "bandwidth_gb": null,
+      "bandwidth_label": "流量限制待确认",
+      "port_mbps": 1000,
+      "cpu_label": "",
+      "spec_label": "",
+      "official_url": "https://www.raksmart.com/vps/introduction.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/vps/introduction.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网展示，交付库存未实测",
+      "notes": "内存按官网 GB 规格记录；HDD 与 NVMe 按具体套餐区分，不沿用页面通用宣传。",
+      "offers": [
+        {
+          "period": "monthly",
+          "label": "月付",
+          "amount_cents": 8060,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "官网展示月价；地区、线路及附加项可能影响结算价。",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "dedicated-e3-1230",
+      "product_id": "519",
+      "series_id": "dedicated",
+      "category": "物理服务器",
+      "name": "E3-1230 独立服务器",
+      "country": "美国",
+      "city": "硅谷",
+      "region_note": "已核实硅谷示例。",
+      "vcpu_count": null,
+      "ram_mb": 16384,
+      "storage_gb": 1000,
+      "storage_type": "HDD",
+      "bandwidth_gb": null,
+      "bandwidth_label": "不限流量",
+      "port_mbps": 100,
+      "cpu_label": "Intel Xeon E3-1230",
+      "spec_label": "1 个 IP；抗 DDoS 为可选项",
+      "official_url": "https://www.raksmart.com/dedicated/index.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/dedicated/index.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网展示，交付库存未实测",
+      "notes": "1 TB 硬盘按1000 GB记录；其他线路、地区或配置价格需单独确认。",
+      "offers": [
+        {
+          "period": "monthly",
+          "label": "月付",
+          "amount_cents": 5900,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "bare-e5-2620",
+      "product_id": "1959",
+      "series_id": "bare",
+      "category": "裸机云",
+      "name": "E5-2620 裸机云",
+      "country": "美国",
+      "city": "硅谷",
+      "region_note": "已核实硅谷示例。",
+      "vcpu_count": null,
+      "ram_mb": 32768,
+      "storage_gb": 1000,
+      "storage_type": "HDD",
+      "bandwidth_gb": null,
+      "bandwidth_label": "不限流量",
+      "port_mbps": 100,
+      "cpu_label": "Intel Xeon E5-2620",
+      "spec_label": "1 个 IP",
+      "official_url": "https://www.raksmart.com/bare/index.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/bare/index.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网展示，交付库存未实测",
+      "notes": "1 TB 硬盘按1000 GB记录。",
+      "offers": [
+        {
+          "period": "monthly",
+          "label": "月付",
+          "amount_cents": 8900,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "gpu750-e5-2620",
+      "product_id": "",
+      "series_id": "gpu",
+      "category": "GPU 服务器",
+      "name": "GPU750 服务器示例",
+      "country": "待核实",
+      "city": "地区待核实",
+      "region_note": "具体地区与库存请在官网配置页确认。",
+      "vcpu_count": null,
+      "ram_mb": 32768,
+      "storage_gb": 1000,
+      "storage_type": "HDD",
+      "bandwidth_gb": null,
+      "bandwidth_label": "不限流量",
+      "port_mbps": 100,
+      "cpu_label": "Intel Xeon E5-2620",
+      "spec_label": "官网 GPU 标识：GPU750；显存待确认",
+      "official_url": "https://www.raksmart.com/gpu/index.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/gpu/index.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网展示，交付库存未实测",
+      "notes": "GPU 型号完整名称与显存未核实，不能据此承诺 AI 训练性能；1 TB 硬盘按1000 GB记录。",
+      "offers": [
+        {
+          "period": "monthly",
+          "label": "月付",
+          "amount_cents": 16900,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "shared-sv",
+      "product_id": "",
+      "series_id": "hosting",
+      "category": "共享主机",
+      "name": "硅谷共享主机示例",
+      "country": "美国",
+      "city": "硅谷",
+      "region_note": "具体地区与库存请在官网配置页确认。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": 20,
+      "storage_type": "SSD",
+      "bandwidth_gb": null,
+      "bandwidth_label": "不限流量",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "1 个独立 IP；不限托管域名数量",
+      "official_url": "https://www.raksmart.com/privatea/shared_hosting.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/privatea/shared_hosting.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网展示，交付库存未实测",
+      "notes": "地区分类已核实，其他付款周期及交付库存未核实。",
+      "offers": [
+        {
+          "period": "unknown",
+          "label": "价格与周期待确认",
+          "amount_cents": null,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "官网展示金额为3美元，但未明确账期；不按月价收录。",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "shared-hk",
+      "product_id": "",
+      "series_id": "hosting",
+      "category": "共享主机",
+      "name": "香港共享主机示例",
+      "country": "中国",
+      "city": "香港",
+      "region_note": "具体地区与库存请在官网配置页确认。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": 20,
+      "storage_type": "SSD",
+      "bandwidth_gb": null,
+      "bandwidth_label": "不限流量",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "1 个独立 IP；不限托管域名数量",
+      "official_url": "https://www.raksmart.com/privatea/shared_hosting.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/privatea/shared_hosting.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网展示，交付库存未实测",
+      "notes": "地区分类已核实，其他付款周期及交付库存未核实。",
+      "offers": [
+        {
+          "period": "unknown",
+          "label": "价格与周期待确认",
+          "amount_cents": null,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "官网展示金额为3美元，但未明确账期；不按月价收录。",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "colo-sv",
+      "product_id": "",
+      "series_id": "colocation",
+      "category": "机柜托管",
+      "name": "硅谷整柜托管",
+      "country": "美国",
+      "city": "硅谷",
+      "region_note": "具体地区与库存请在官网配置页确认。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": null,
+      "storage_type": "",
+      "bandwidth_gb": null,
+      "bandwidth_label": "",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "45U；5 KVA 双路电力",
+      "official_url": "https://billing.raksmart.com/whmcs/products.php?language=chinese-cn&t=colo",
+      "purchase_url": "",
+      "source_urls": [
+        "https://billing.raksmart.com/whmcs/products.php?language=chinese-cn&t=colo"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网展示，交付库存未实测",
+      "notes": "最终报价需确认电力、带宽、机柜与交付条件。",
+      "offers": [
+        {
+          "period": "unknown",
+          "label": "价格与周期待确认",
+          "amount_cents": null,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "官网展示金额为1569美元，计费周期和带宽包含量未明确；不按月价收录。",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "colo-hk",
+      "product_id": "",
+      "series_id": "colocation",
+      "category": "机柜托管",
+      "name": "香港整柜托管",
+      "country": "中国",
+      "city": "香港",
+      "region_note": "具体地区与库存请在官网配置页确认。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": null,
+      "storage_type": "",
+      "bandwidth_gb": null,
+      "bandwidth_label": "",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "42U；4 KVA 双路电力",
+      "official_url": "https://billing.raksmart.com/whmcs/products.php?language=chinese-cn&t=colo",
+      "purchase_url": "",
+      "source_urls": [
+        "https://billing.raksmart.com/whmcs/products.php?language=chinese-cn&t=colo"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网展示，交付库存未实测",
+      "notes": "最终报价需确认电力、带宽、机柜与交付条件。",
+      "offers": [
+        {
+          "period": "unknown",
+          "label": "价格与周期待确认",
+          "amount_cents": null,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "官网展示金额为1349美元，计费周期和带宽包含量未明确；不按月价收录。",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "domains",
+      "product_id": "",
+      "series_id": "website",
+      "category": "网站服务",
+      "name": "域名注册与转入",
+      "country": "待核实",
+      "city": "地区待核实",
+      "region_note": "具体地区与库存请在官网配置页确认。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": null,
+      "storage_type": "",
+      "bandwidth_gb": null,
+      "bandwidth_label": "",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "",
+      "official_url": "https://www.raksmart.com/",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "服务入口已确认，具体套餐待核实",
+      "notes": "本次确认服务入口，尚未逐套餐核实价格。",
+      "offers": [
+        {
+          "period": "quote",
+          "label": "按官网报价",
+          "amount_cents": null,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "注册、续费、转入价格及溢价域名须分别确认。",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "ssl",
+      "product_id": "",
+      "series_id": "website",
+      "category": "网站服务",
+      "name": "SSL 证书",
+      "country": "待核实",
+      "city": "地区待核实",
+      "region_note": "具体地区与库存请在官网配置页确认。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": null,
+      "storage_type": "",
+      "bandwidth_gb": null,
+      "bandwidth_label": "",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "",
+      "official_url": "https://www.raksmart.com/newpage/sslcertificate.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/newpage/sslcertificate.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "服务入口已确认，具体套餐待核实",
+      "notes": "本次确认服务入口，尚未逐套餐核实价格。",
+      "offers": [
+        {
+          "period": "quote",
+          "label": "按官网报价",
+          "amount_cents": null,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "证书品牌、域名数量、验证级别与有效期影响报价。",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "email",
+      "product_id": "",
+      "series_id": "website",
+      "category": "网站服务",
+      "name": "企业邮箱",
+      "country": "待核实",
+      "city": "地区待核实",
+      "region_note": "具体地区与库存请在官网配置页确认。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": null,
+      "storage_type": "",
+      "bandwidth_gb": null,
+      "bandwidth_label": "",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "",
+      "official_url": "https://www.raksmart.com/",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "服务入口已确认，具体套餐待核实",
+      "notes": "本次确认服务入口，尚未逐套餐核实价格。",
+      "offers": [
+        {
+          "period": "quote",
+          "label": "按官网报价",
+          "amount_cents": null,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "邮箱数量、容量、发送额度与计费周期待核实。",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "cloudflare-free",
+      "product_id": "",
+      "series_id": "cdn",
+      "category": "CDN 与安全",
+      "name": "Cloudflare Free",
+      "country": "按服务覆盖范围",
+      "city": "按服务覆盖范围",
+      "region_note": "网站加速与安全服务，不代表 VPS 地区。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": null,
+      "storage_type": "",
+      "bandwidth_gb": null,
+      "bandwidth_label": "",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "功能与适用站点范围以对应官方套餐说明为准。",
+      "official_url": "https://www.raksmart.com/cloudflare/index.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/cloudflare/index.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网服务套餐展示，适用条件需确认",
+      "notes": "RakSmart 官网展示的 Cloudflare 相关套餐，返佣适用性需逐项核实。",
+      "offers": [
+        {
+          "period": "monthly",
+          "label": "月付",
+          "amount_cents": 0,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "cloudflare-pro",
+      "product_id": "",
+      "series_id": "cdn",
+      "category": "CDN 与安全",
+      "name": "Cloudflare Pro",
+      "country": "按服务覆盖范围",
+      "city": "按服务覆盖范围",
+      "region_note": "网站加速与安全服务，不代表 VPS 地区。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": null,
+      "storage_type": "",
+      "bandwidth_gb": null,
+      "bandwidth_label": "",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "功能与适用站点范围以对应官方套餐说明为准。",
+      "official_url": "https://www.raksmart.com/cloudflare/index.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/cloudflare/index.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网服务套餐展示，适用条件需确认",
+      "notes": "RakSmart 官网展示的 Cloudflare 相关套餐，返佣适用性需逐项核实。",
+      "offers": [
+        {
+          "period": "monthly",
+          "label": "月付",
+          "amount_cents": 2500,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "cloudflare-business",
+      "product_id": "",
+      "series_id": "cdn",
+      "category": "CDN 与安全",
+      "name": "Cloudflare Business",
+      "country": "按服务覆盖范围",
+      "city": "按服务覆盖范围",
+      "region_note": "网站加速与安全服务，不代表 VPS 地区。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": null,
+      "storage_type": "",
+      "bandwidth_gb": null,
+      "bandwidth_label": "",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "功能与适用站点范围以对应官方套餐说明为准。",
+      "official_url": "https://www.raksmart.com/cloudflare/index.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/cloudflare/index.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网服务套餐展示，适用条件需确认",
+      "notes": "RakSmart 官网展示的 Cloudflare 相关套餐，返佣适用性需逐项核实。",
+      "offers": [
+        {
+          "period": "monthly",
+          "label": "月付",
+          "amount_cents": 25000,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "cloudflare-enterprise",
+      "product_id": "",
+      "series_id": "cdn",
+      "category": "CDN 与安全",
+      "name": "Cloudflare Enterprise",
+      "country": "按服务覆盖范围",
+      "city": "按服务覆盖范围",
+      "region_note": "网站加速与安全服务，不代表 VPS 地区。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": null,
+      "storage_type": "",
+      "bandwidth_gb": null,
+      "bandwidth_label": "",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "功能与适用站点范围以对应官方套餐说明为准。",
+      "official_url": "https://www.raksmart.com/cloudflare/index.html",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/cloudflare/index.html"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "官网服务套餐展示，适用条件需确认",
+      "notes": "RakSmart 官网展示的 Cloudflare 相关套餐，返佣适用性需逐项核实。",
+      "offers": [
+        {
+          "period": "quote",
+          "label": "定制报价",
+          "amount_cents": null,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    },
+    {
+      "id": "network-services",
+      "product_id": "",
+      "series_id": "network",
+      "category": "网络服务",
+      "name": "专线与 IP 网络服务",
+      "country": "待核实",
+      "city": "地区待核实",
+      "region_note": "具体地区与库存请在官网配置页确认。",
+      "vcpu_count": null,
+      "ram_mb": null,
+      "storage_gb": null,
+      "storage_type": "",
+      "bandwidth_gb": null,
+      "bandwidth_label": "",
+      "port_mbps": null,
+      "cpu_label": "",
+      "spec_label": "专线、IP Transit、IP 广播、光纤互联",
+      "official_url": "https://www.raksmart.com/",
+      "purchase_url": "",
+      "source_urls": [
+        "https://www.raksmart.com/"
+      ],
+      "checked_on": "2026-11-01",
+      "availability": "服务入口已确认，需询价",
+      "notes": "本条是服务入口汇总，不是固定配置 SKU。",
+      "offers": [
+        {
+          "period": "quote",
+          "label": "按需求询价",
+          "amount_cents": null,
+          "price_hourly": null,
+          "price_monthly": null,
+          "unit_price": null,
+          "unit": "",
+          "price_note": "",
+          "affiliate_url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+          "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+          "program_id": "raksmart-recurring"
+        }
+      ]
+    }
+  ],
+  "product_count": 19,
+  "priced_product_count": 10,
+  "offer_count": 19,
+  "priced_offer_count": 10
+}

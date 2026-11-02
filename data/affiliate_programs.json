@@ -2,6 +2,95 @@
   "checked_on": "2026-11-01",
   "programs": [
     {
+      "id": "ethernetservers-standard",
+      "merchant": "Ethernet Servers",
+      "name": "持续返佣推广",
+      "affiliate_id": "3319",
+      "url": "https://www.ethernetservers.com/aff.php?aff=3319",
+      "official_url": "https://www.ethernetservers.com/",
+      "link_scope": "商家推广入口，不预选产品、地区或付款周期；域名不计佣。",
+      "status": "账户基础链接及公开联盟政策已核实；产品深链与计佣交易未实测",
+      "reward": "合格共享主机、KVM VPS、独立服务器按付款周期提供20%持续佣金；官网提供10美元联盟开通奖励，域名不计佣。",
+      "conditions": "最低提现25美元，支持PayPal或站内余额；服务持续有效才继续返佣。Cookie期限、佣金成熟等待期、具体计佣基数和自购限制尚未核实。推广收益不等于购买者折扣。",
+      "source_url": "https://www.ethernetservers.com/affiliates",
+      "source_urls": ["https://www.ethernetservers.com/affiliates", "https://www.ethernetservers.com/affiliates.php", "https://www.ethernetservers.com/terms"],
+      "checked_on": "2026-11-01"
+    },
+    {
+      "id": "interserver-standard",
+      "merchant": "InterServer",
+      "name": "新客户一次性推广",
+      "affiliate_id": "1219011",
+      "url": "https://www.interserver.net/r/1219011",
+      "official_url": "https://www.interserver.net/",
+      "landing_links": [
+        {"name": "VPS 分类推广入口", "url": "https://www.interserver.net/vps?id=1219011"},
+        {"name": "网站主机分类推广入口", "url": "https://www.interserver.net/webhosting?id=1219011"}
+      ],
+      "link_scope": "已核实默认首页、VPS及网站主机分类推广入口；不预选具体配置、地区或付款周期。",
+      "status": "官方后台生成链接及当前详细计佣规则已核实；未进行计佣交易测试",
+      "reward": "合格新客户前90天收入的80%，每客户最高300美元，一次性奖励。",
+      "conditions": "客户服务需保持有效90天；公开说明90天归因Cookie，仅通过PayPal按月结算。最低提现金额未明确；后台付款日存在1至5日、前7天和约20日不同文案。禁止自荐及重复客户，代购代管、共用付款方式或推广者登录被推荐账号可能导致佣金无效；不采用旧版每单100美元宣传。",
+      "source_url": "https://my.interserver.net/affiliate?link=faq",
+      "source_urls": ["https://www.interserver.net/affiliate.html", "https://my.interserver.net/affiliate?link=faq", "https://my.interserver.net/affiliate?link=tos", "https://my.interserver.net/affiliate?link=banners"],
+      "checked_on": "2026-11-01"
+    },
+    {
+      "id": "raksmart-recurring",
+      "merchant": "RakSmart",
+      "name": "周期性佣金",
+      "affiliate_id": "10061",
+      "url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliate",
+      "official_url": "https://www.raksmart.com/",
+      "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+      "status": "当前账户基础链接及默认比例已核实；产品深链与计佣交易未实测",
+      "reward": "默认15%周期性佣金；属于推荐人收益，不等于购买者折扣。",
+      "conditions": "当前后台最低提现100美元；官方说明订单周期结束后佣金生效，退款会扣回相关佣金。具体产品适用性、计佣基数与Cookie期限需单独核实；禁止自购返佣，代理商不能同时作为联盟推广者。",
+      "source_url": "https://www.raksmart.com/reseller/affiliates.html",
+      "source_urls": [
+        "https://billing.raksmart.com/whmcs/affiliates.php",
+        "https://www.raksmart.com/reseller/affiliates.html"
+      ],
+      "checked_on": "2026-11-01"
+    },
+    {
+      "id": "raksmart-onetime",
+      "merchant": "RakSmart",
+      "name": "一次性佣金",
+      "affiliate_id": "10061",
+      "url": "https://billing.raksmart.com/whmcs/aff.php?aff=10061&aff_rtype=affiliateonetime",
+      "official_url": "https://www.raksmart.com/",
+      "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+      "status": "当前账户基础链接及默认比例已核实；产品深链与计佣交易未实测",
+      "reward": "当前后台提示默认35%一次性佣金；不等同于周期性模式。",
+      "conditions": "一次性计佣范围、基数、产品排除项与提现审核条件需单独核实。后台最低提现100美元；不要把一次性模式当作每次续费均返35%。",
+      "source_url": "https://billing.raksmart.com/whmcs/affiliates.php",
+      "source_urls": [
+        "https://billing.raksmart.com/whmcs/affiliates.php",
+        "https://www.raksmart.com/reseller/affiliates.html"
+      ],
+      "checked_on": "2026-11-01"
+    },
+    {
+      "id": "cloudcone-standard",
+      "merchant": "CloudCone",
+      "name": "首次充值推广",
+      "affiliate_id": "14787",
+      "url": "https://app.cloudcone.com/?ref=14787",
+      "official_url": "https://cloudcone.com/",
+      "link_scope": "商家推广入口，不预选产品、地区或付款周期；产品直达推广归因待核实。",
+      "status": "账户基础入口已核实；产品深链与计佣交易未实测",
+      "reward": "默认新推荐用户首次充值的30%；循环佣金需另行协商。",
+      "conditions": "公开条款写佣金待确认3个月，季节性活动可能降至5%。当前后台PayPal提现最低25美元，每6个月最多申请一次；支持转为站内Cloud Credits。公开帮助与条款修订较早；Cookie期限、完整产品排除清单及活动适用比例待核实。",
+      "source_url": "https://help.cloudcone.com/en-us/article/how-to-become-an-affiliate-1ky5xze/",
+      "source_urls": [
+        "https://app.cloudcone.com/user/affiliate?create",
+        "https://help.cloudcone.com/en-us/article/how-to-become-an-affiliate-1ky5xze/",
+        "https://cloudcone.com/policies/terms/"
+      ],
+      "checked_on": "2026-11-01"
+    },
+    {
       "id": "racknerd-standard", "merchant": "RackNerd", "name": "普通推广", "affiliate_id": "21792",
       "url": "https://my.racknerd.com/aff.php?aff=21792", "official_url": "https://www.racknerd.com/",
       "link_scope": "支持 pid 产品预选；地区、系统及付款周期需在配置页选择", "status": "官方后台产品链接已核实，未进行计佣交易实测",

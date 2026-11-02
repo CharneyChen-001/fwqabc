@@ -20,6 +20,7 @@ def export():
     vultr = read("vultr_catalog.json")
     services = read("vultr_services.json")
     racknerd = read("racknerd_catalog.json")
+    additional_catalogs = [read(f"{name}_catalog.json") for name in ("raksmart", "cloudcone", "ethernetservers", "interserver")]
     programs = read("affiliate_programs.json")["programs"]
     normal = next(x for x in programs if x["id"] == "vultr-standard")
     rows, checks = [], []
@@ -102,6 +103,47 @@ def export():
                          "notes": " ".join(details)})
     assert len(rows) - racknerd_start == racknerd["offer_count"]
     assert len(racknerd["products"]) == racknerd["product_count"]
+    for catalog in additional_catalogs:
+        series = {s["id"]: s["label"] for s in catalog["series"]}
+        start = len(rows)
+        for product in catalog["products"]:
+            for offer in product["offers"]:
+                program = next((p for p in programs if p["id"] == offer["program_id"]), None)
+                if program:
+                    allowed_links = {program["url"], *(link["url"] for link in program.get("landing_links", []))}
+                    assert offer["affiliate_url"] in allowed_links, "未核实的产品推广深链"
+                else:
+                    assert catalog["id"] == "ethernetservers" and product["series_id"] == "domain" and not offer["affiliate_url"], "未声明的推广计划或产品排除项"
+                amount = offer.get("amount_cents")
+                period = offer["period"]
+                assert period not in ("quote", "unknown") or amount is None, "未知账期不能导出为周期价格"
+                details = [product.get(k, "") for k in ("cpu_label", "spec_label", "storage_type", "bandwidth_label", "region_note", "notes")]
+                details.extend([offer.get("price_note", ""), "推广入口不预选产品、地区或付款周期；产品归因未实测。" if program else "域名不参与联盟返佣，推广链接留空。"])
+                renewal = offer.get("renewal_amount_cents")
+                if renewal is not None:
+                    details.append(f"本行周期价格为首期总价；同周期续费总价为{renewal / 100:.2f}美元。")
+                if catalog["id"] == "raksmart":
+                    details.append("本行使用周期性推广入口；一次性推广链接见商家与推广计划，不把两种返佣模式合并。")
+                rows.append({"record_id": f"{catalog['id']}:{product['id']}:{period}",
+                             "merchant": catalog["merchant"], "category": product["category"], "series": series[product["series_id"]],
+                             "product_id": product.get("product_id", ""), "name": product["name"],
+                             "country": product.get("country", ""), "city": product.get("city", ""),
+                             "region_id": product.get("region_id", ""), "datacenter": product.get("datacenter", ""),
+                             "vcpu_count": product.get("vcpu_count"), "ram_mb": product.get("ram_mb"),
+                             "disk_gb": product.get("storage_gb"), "disk_count": product.get("disk_count"),
+                             "bandwidth_gb": product.get("bandwidth_gb"),
+                             "gpu_type": product.get("gpu_type", ""), "gpu_count": product.get("gpu_count"), "gpu_vram_gb": product.get("gpu_vram_gb"),
+                             "currency": "USD", "billing_mode": "按小时累计" if period == "hourly" else "待询价" if period == "quote" else "账期待核实" if period == "unknown" else "固定周期" if amount is not None else "按用量或比例",
+                             "period": offer["label"], "period_price": amount / 100 if amount is not None else None,
+                             **({"renewal_period_price": renewal / 100} if renewal is not None else {}),
+                             "price_hourly": offer.get("price_hourly"), "price_monthly": offer.get("price_monthly"),
+                             "unit_price": offer.get("unit_price"), "unit": offer.get("unit", offer["label"]),
+                             "official_url": product["official_url"], "purchase_url": product.get("purchase_url", ""),
+                             "affiliate_url": offer["affiliate_url"], "program": program["name"] if program else "不参与推广", "link_scope": offer["link_scope"],
+                             "availability": product["availability"], "checked_on": product["checked_on"],
+                             "source_url": "\n".join(product["source_urls"]), "notes": " ".join(filter(None, details))})
+        assert len(catalog["products"]) == catalog["product_count"]
+        assert len(rows) - start == catalog["offer_count"]
     assert len({r["record_id"] for r in rows}) == len(rows), "重复记录编号"
     campaign = next(p for p in programs if p["id"] == "vultr-credit")
     promotions = [{"merchant":"Vultr", "name":campaign["name"], "category":"推广活动", "billing_mode":"测试赠金", "price_monthly":None, "price_hourly":None, "unit_price":None, "unit":"额度，非现金", "credit_usd":300, "credit_days":30, "conditions":campaign["conditions"], "status":campaign["status"], "affiliate_url":campaign["url"], "source_url":campaign["source_url"], "checked_on":campaign["checked_on"], "notes":"活动截止日期未公布；不可把普通推广链接替换成活动链接后仍沿用旧条件。"}]
@@ -131,8 +173,31 @@ def export():
         {"merchant": "RackNerd", "item": "地区、流量周期与交付库存", "status": "部分待核实", "detail": "5款VPS配置页列纽约、洛杉矶DC03、达拉斯、西雅图，交付库存未实测。共享/分销地区及流量统计周期未逐项核实，月流量栏留空并在备注保留官方流量原值。", "source_url": "\n".join(p["purchase_url"] for p in racknerd["products"] if p["series_id"] == "vps"), "checked_on": racknerd["checked_on"]},
         {"merchant": "RackNerd", "item": "活动年份与推广条款", "status": "已注明限制", "detail": "共享933及分销936仍指向blackfriday2025路径，不标为2026新品。官方联盟条款对优惠码、返现等引流页面有限制，相关页面发布前须核对条款。", "source_url": "https://www.racknerd.com/affiliates-terms-of-service", "checked_on": racknerd["checked_on"]},
     ])
+    for catalog in additional_catalogs:
+        checks.extend([
+            {"merchant": catalog["merchant"], "item": "本次收录范围", "status": "已注明范围",
+             "detail": f"{catalog['product_count']}条产品与服务、{catalog['offer_count']}条报价或询价记录。" + catalog["scope_note"],
+             "source_url": "\n".join(catalog["source_urls"]), "checked_on": catalog["checked_on"]},
+            {"merchant": catalog["merchant"], "item": "推广链接与实际库存", "status": "部分待核实",
+             "detail": catalog["link_scope"].rstrip("。") + "。仅保留已确认的基础推广入口；未进行计佣交易和交付库存测试。",
+             "source_url": "\n".join(p["source_url"] for p in programs if p["merchant"] == catalog["merchant"]), "checked_on": catalog["checked_on"]},
+            {"merchant": catalog["merchant"], "item": "计费与推广规则", "status": "已注明限制",
+             "detail": " ".join(catalog["policy_notes"]),
+             "source_url": "\n".join(catalog["source_urls"]), "checked_on": catalog["checked_on"]},
+        ])
+        for product in catalog["products"]:
+            if product["category"] in ("附加费用", "附加服务"):
+                for offer in product["offers"]:
+                    promotions.append({"merchant": catalog["merchant"], "name": product["name"], "category": product["category"],
+                                       "billing_mode": offer["label"], "unit_price": offer.get("unit_price"), "unit": offer.get("unit", ""),
+                                       "price_hourly": offer.get("price_hourly"), "price_monthly": offer.get("price_monthly"),
+                                       "conditions": offer.get("price_note", ""), "status": product["availability"],
+                                       "affiliate_url": offer["affiliate_url"], "source_url": "\n".join(product["source_urls"]),
+                                       "checked_on": product["checked_on"], "notes": product.get("notes", "")})
     return {"checked_on":vultr["checked_on"], "products":rows, "programs":programs, "promotions":promotions, "checks":checks,
-            "counts":{"bandwagonhost_offers":bwh["offer_count"], "vultr_offers":vultr["offer_count"], "vultr_services":len(services["services"]), "racknerd_products":racknerd["product_count"], "racknerd_offers":racknerd["offer_count"], "total_rows":len(rows)}}
+            "counts":{"bandwagonhost_offers":bwh["offer_count"], "vultr_offers":vultr["offer_count"], "vultr_services":len(services["services"]), "racknerd_products":racknerd["product_count"], "racknerd_offers":racknerd["offer_count"],
+                      **{f"{c['id']}_products": c["product_count"] for c in additional_catalogs},
+                      **{f"{c['id']}_offers": c["offer_count"] for c in additional_catalogs}, "total_rows":len(rows)}}
 
 
 if __name__ == "__main__":
