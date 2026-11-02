@@ -1,0 +1,13 @@
+{{- with .Page.Params.case -}}
+<div class="case-sum">
+  <div class="case-sum-top"><span class="case-badge">{{ .badge }}</span><span class="case-client">{{ .client }}</span></div>
+  <dl class="case-facts">
+    <div><dt>测试机器</dt><dd>{{ .machine }}</dd></div>
+    <div><dt>价格</dt><dd><b>{{ .price }}</b></dd></div>
+    <div><dt>机房</dt><dd>{{ .region }}</dd></div>
+    <div><dt>测试时间</dt><dd>{{ .time }}</dd></div>
+  </dl>
+  <div class="case-metrics">{{ range .metrics }}<div><b>{{ .v }}</b><span>{{ .k }}</span></div>{{ end }}</div>
+  <p class="case-verdict"><b>结论</b>{{ .verdict }}</p>
+</div>
+{{- end -}}

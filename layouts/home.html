@@ -70,7 +70,7 @@
     {{- $bc := "mid" }}{{ if hasPrefix $p.budget "极低" }}{{ $bc = "xlow" }}{{ else if hasPrefix $p.budget "低" }}{{ $bc = "low" }}{{ else if hasPrefix $p.budget "高" }}{{ $bc = "high" }}{{ else if hasPrefix $p.budget "按" }}{{ $bc = "hour" }}{{ end }}
     <div class="pk pk-{{ $c }}{{ if $promo }} pk-hot{{ end }}" id="pick-{{ $i }}">
       <div class="pk-use"><span class="use-chip">{{ $p.use }}</span><span class="bud bud-{{ $bc }}">{{ $p.budget }}</span></div>
-      <div class="pk-m"><span class="mono mono-{{ index $mono $p.merchant | default "X" | lower }}">{{ index $mono $p.merchant | default (substr $p.merchant 0 1) }}</span><div><b>{{ $p.merchant }}</b><small>{{ $p.plan }}</small></div></div>
+      <div class="pk-m"><span class="mono mono-{{ index $mono $p.merchant | default "X" | lower }}">{{ index $mono $p.merchant | default (substr $p.merchant 0 1) }}</span><div><b>{{ $p.merchant }}</b><small>{{ $p.plan }}</small>{{ with $p.case }}{{ with site.GetPage . }}<a class="case-chip" href="{{ .RelPermalink }}">✓ 有实测</a>{{ end }}{{ end }}</div></div>
       <div class="pk-route"><span class="rt rt-{{ $rc }}">{{ $p.route }}</span></div>
       <div class="pk-price"><span class="num">{{ $num }}</span><span class="unit">{{ $unit }}</span>{{ with $promo }}<span class="hot-badge">限时 · {{ index . 0 | replaceRE "[（）]" "" }}</span>{{ end }}</div>
       <div class="pk-cta"><a class="go-btn {{ if $promo }}btn-hot{{ else }}btn-grad{{ end }}" href="/go/{{ $p.slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ $p.cta | default (i18n "ctaPick") }} →</a></div>
@@ -80,6 +80,18 @@
   <p class="src-note">价格于 2026年11月1日 在各家官网核对（搬瓦工产品目录、RakSmart 官方活动说明、Vultr 价格页），{{ i18n "ctaNote" }}。</p>
   {{ partial "affiliate-notice.html" . }}
 </section>
+
+{{- with first 1 (where site.RegularPages "Section" "cases") }}{{ with index . 0 }}{{ $c := .Params.case }}
+<section class="home-sec case-hl">
+  <a class="case-hl-img" href="{{ .RelPermalink }}"><img src="{{ .Params.cover_img }}" alt="{{ .Params.cover_alt }}" width="800" height="500" loading="lazy" decoding="async"></a>
+  <div class="case-hl-body">
+    <div class="case-hl-k"><span class="case-badge">真实实测</span><span>{{ $c.machine_short }} · {{ $c.price }} · {{ $c.region_short }}</span></div>
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <div class="case-metrics sm">{{ range $c.metrics }}<div><b>{{ .v }}</b><span>{{ .k }}</span></div>{{ end }}</div>
+    <a class="go-btn" href="{{ .RelPermalink }}">看完整实测报告 →</a> <a class="case-more" href="/cases/">全部实测案例</a>
+  </div>
+</section>
+{{- end }}{{ end }}
 
 <section class="home-sec band band-latest">
   <h2><span class="sec-ico ico-blue">✦</span>最新优惠 <a href="/deals/">更多 »</a></h2>
