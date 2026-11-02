@@ -1,0 +1,14 @@
+# 出海客户及合作伙伴。logo 均取自对方官网（2026-11-02 下载），不得自行绘制。
+- name: 兆讯科技
+  url: https://www.megsine.com/
+  logo: /img/partners/megsine.webp
+  logo_png: /img/partners/megsine.png
+  logo_src: https://www.megsine.com/app_fe/megsine_com/static/image/public/logo.png
+  note: 射频器件品牌
+- name: RFKEY 射频元器件商城
+  url: https://www.rfkey.cn/
+  logo: /img/partners/rfkey.webp
+  logo_png: /img/partners/rfkey.png
+  logo_src: https://www.rfkey.cn/app_fe/rfkey_cn/static/image/public/logo.png
+  note: 射频元器件现货商城
+  case: /cases/rfkey-overseas-check-2026-11

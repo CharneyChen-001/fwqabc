@@ -427,3 +427,25 @@ sup.tbc,sup.tbc a{color:var(--info)!important}.tbc-note{color:var(--info)}
 .case-adv a{color:var(--btn);white-space:nowrap}
 @media(max-width:720px){.adv{padding:14px 14px 4px}.adv-head{flex-wrap:wrap;gap:8px}.post-content .adv-head h3{flex-basis:calc(100% - 40px);font-size:16px}.adv-p{margin-left:38px}}
 </style>
+<style>
+/* ===== 出海客户及合作伙伴 ===== */
+.partners{margin:26px 0}
+.partners-h{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.partners-h h2{margin:0;font-size:1.25em;font-weight:700;color:var(--ink)}
+.partners-h p{margin:2px 0 0;font-size:13px;color:var(--warm-500)}
+.partners-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.partner{display:flex;align-items:center;gap:16px;background:var(--theme);border:1px solid var(--warm-100);border-radius:14px;padding:16px 18px;box-shadow:var(--card-sh);text-decoration:none!important;transition:transform .2s,box-shadow .2s,border-color .2s}
+.partner:hover{transform:translateY(-2px);box-shadow:var(--card-sh-h);border-color:rgba(242,70,21,.35)}
+.partner-logo{flex:none;width:110px;height:44px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:8px}
+.partner-logo img{max-width:100px;max-height:36px;width:auto;height:auto;margin:0!important;display:block;filter:grayscale(.15);transition:filter .2s}
+.partner:hover .partner-logo img{filter:none}
+.partner-t b{display:block;color:var(--ink);font-size:15px}
+.partner-t small{display:block;color:var(--warm-500);font-size:12.5px;margin-top:2px}
+.partners-sm{margin:18px 0;padding:12px 14px;background:var(--warm-50);border:1px solid var(--warm-100);border-radius:12px}
+.partners-sm .partners-h{font-size:13px;font-weight:700;color:var(--warm-500);margin-bottom:8px}
+.partners-sm .partners-g{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.partners-sm .partner{padding:8px 12px;box-shadow:none;gap:12px}
+.partners-sm .partner-logo{width:84px;height:34px}.partners-sm .partner-logo img{max-width:78px;max-height:26px}
+.partners-sm .partner-t b{font-size:13.5px}
+.post-content .partners a{box-shadow:none}
+</style>

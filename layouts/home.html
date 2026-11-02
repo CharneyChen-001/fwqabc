@@ -91,13 +91,15 @@
 <section class="home-sec case-hl">
   <a class="case-hl-img" href="{{ .RelPermalink }}"><img src="{{ .Params.cover_img }}" alt="{{ .Params.cover_alt }}" width="800" height="500" loading="lazy" decoding="async"></a>
   <div class="case-hl-body">
-    <div class="case-hl-k"><span class="case-badge">真实实测</span><span>{{ $c.machine_short }} · {{ $c.price }} · {{ $c.region_short }}</span></div>
+    <div class="case-hl-k"><span class="case-badge">低成本出海实测</span><span>{{ $c.machine_short }} · {{ $c.price }} · {{ $c.region_short }}</span></div>
     <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
     <div class="case-metrics sm">{{ range $c.metrics }}<div><b>{{ .v }}</b><span>{{ .k }}</span></div>{{ end }}</div>
     <a class="go-btn" href="{{ .RelPermalink }}">看完整实测报告 →</a> <a class="case-more" href="/cases/">全部实测案例</a>
   </div>
 </section>
 {{- end }}{{ end }}
+
+{{ partial "partners.html" (dict "compact" false) }}
 
 <section class="home-sec band band-latest">
   <h2><span class="sec-ico ico-blue" aria-hidden="true">新</span>最新优惠 <a href="/deals/">更多 »</a></h2>

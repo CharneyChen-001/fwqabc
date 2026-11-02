@@ -1,0 +1,14 @@
+{{- /* partial "partners.html" (dict "compact" true/false) */ -}}
+{{- with hugo.Data.partners }}
+<section class="partners{{ if $.compact }} partners-sm{{ end }}">
+  <div class="partners-h">{{ if $.compact }}合作伙伴{{ else }}<span class="sec-ico">✦</span><div><h2>出海客户及合作伙伴</h2><p>我们服务和合作的出海企业</p></div>{{ end }}</div>
+  <div class="partners-g">
+  {{- range . }}
+    <a class="partner" href="{{ .url }}" target="_blank" rel="noopener" title="{{ .name }}">
+      <span class="partner-logo"><picture><source srcset="{{ .logo }}" type="image/webp"><img src="{{ .logo_png }}" alt="{{ .name }} logo" loading="lazy" decoding="async"></picture></span>
+      <span class="partner-t"><b>{{ .name }}</b>{{ if not $.compact }}<small>{{ .note }}</small>{{ end }}</span>
+    </a>
+  {{- end }}
+  </div>
+</section>
+{{- end }}
