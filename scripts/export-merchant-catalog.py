@@ -106,7 +106,8 @@ def export():
     for catalog in additional_catalogs:
         series = {s["id"]: s["label"] for s in catalog["series"]}
         start = len(rows)
-        for product in catalog["products"]:
+        regional_products = [row for product in catalog["products"] for row in product.get("deployments", [product])]
+        for product in regional_products:
             for offer in product["offers"]:
                 program = next((p for p in programs if p["id"] == offer["program_id"]), None)
                 if program:
@@ -121,7 +122,10 @@ def export():
                 details.extend([offer.get("price_note", ""), "推广入口不预选产品、地区或付款周期；产品归因未实测。" if program else "域名不参与联盟返佣，推广链接留空。"])
                 renewal = offer.get("renewal_amount_cents")
                 if renewal is not None:
-                    details.append(f"本行周期价格为首期总价；同周期续费总价为{renewal / 100:.2f}美元。")
+                    if catalog["id"] == "cloudcone":
+                        details.append(f"同周期续费总价为{offer.get('currency', 'USD')} {renewal / 100:.2f}。")
+                    else:
+                        details.append(f"本行周期价格为首期总价；同周期续费总价为{renewal / 100:.2f}美元。")
                 if catalog["id"] == "raksmart":
                     details.append("本行使用周期性推广入口；一次性推广链接见商家与推广计划，不把两种返佣模式合并。")
                 rows.append({"record_id": f"{catalog['id']}:{product['id']}:{period}",
@@ -133,12 +137,12 @@ def export():
                              "disk_gb": product.get("storage_gb"), "disk_count": product.get("disk_count"),
                              "bandwidth_gb": product.get("bandwidth_gb"),
                              "gpu_type": product.get("gpu_type", ""), "gpu_count": product.get("gpu_count"), "gpu_vram_gb": product.get("gpu_vram_gb"),
-                             "currency": "USD", "billing_mode": "按小时累计" if period == "hourly" else "待询价" if period == "quote" else "账期待核实" if period == "unknown" else "固定周期" if amount is not None else "按用量或比例",
+                             "currency": offer.get("currency", "USD"), "billing_mode": "按小时累计" if period == "hourly" else "待询价" if period == "quote" else "账期待核实" if period == "unknown" else "固定周期" if amount is not None else "按用量或比例",
                              "period": offer["label"], "period_price": amount / 100 if amount is not None else None,
                              **({"renewal_period_price": renewal / 100} if renewal is not None else {}),
                              "price_hourly": offer.get("price_hourly"), "price_monthly": offer.get("price_monthly"),
                              "unit_price": offer.get("unit_price"), "unit": offer.get("unit", offer["label"]),
-                             "official_url": product["official_url"], "purchase_url": product.get("purchase_url", ""),
+                             "official_url": product["official_url"], "purchase_url": offer.get("purchase_url", product.get("purchase_url", "")),
                              "affiliate_url": offer["affiliate_url"], "program": program["name"] if program else "不参与推广", "link_scope": offer["link_scope"],
                              "availability": product["availability"], "checked_on": product["checked_on"],
                              "source_url": "\n".join(product["source_urls"]), "notes": " ".join(filter(None, details))})
@@ -185,7 +189,7 @@ def export():
              "detail": " ".join(catalog["policy_notes"]),
              "source_url": "\n".join(catalog["source_urls"]), "checked_on": catalog["checked_on"]},
         ])
-        for product in catalog["products"]:
+        for product in [row for product in catalog["products"] for row in product.get("deployments", [product])]:
             if product["category"] in ("附加费用", "附加服务"):
                 for offer in product["offers"]:
                     promotions.append({"merchant": catalog["merchant"], "name": product["name"], "category": product["category"],

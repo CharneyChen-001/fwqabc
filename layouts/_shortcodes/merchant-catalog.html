@@ -1,5 +1,6 @@
 {{- $merchantID := .Get "merchant" -}}
 {{- $catalog := index hugo.Data (printf "%s_catalog" $merchantID) -}}
+{{- $isCloudCone := eq $merchantID "cloudcone" -}}
 {{- with $catalog }}
 <section class="merchant-catalog" id="products" aria-labelledby="{{ $merchantID }}-products-title">
   <div class="merchant-catalog-heading">
@@ -7,7 +8,7 @@
     <p class="merchant-catalog-meta">{{ .product_count }} 个产品与服务条目 · {{ .priced_product_count }} 个有明确价格</p>
   </div>
   <p>{{ .scope_note }}</p>
-  <p class="merchant-catalog-source">核对日期：<time datetime="{{ .checked_on }}">{{ .checked_on }}</time> · 价格单位为美元 · <a href="{{ "/disclosure/" | relURL }}">推广披露</a></p>
+  <p class="merchant-catalog-source">核对日期：<time datetime="{{ .checked_on }}">{{ .checked_on }}</time> · {{ .currency_note | default "价格单位为美元" }} · <a href="{{ "/disclosure/" | relURL }}">推广披露</a></p>
   <div class="merchant-catalog-notice">
     <p>下方保留官方计费周期。年付金额为整年总价，小时计费的官方月价单独列出；未明确的账期和费用以官网确认为准。库存与最终费用以配置页为准。</p>
     <p>{{ .link_scope }}推广佣金不等于购买者折扣或赠金。</p>
@@ -23,7 +24,11 @@
   </nav>
   {{- range $seriesIndex, $series := .series }}
   {{- $seriesID := .id }}
-  {{- $products := where $catalog.products "series_id" $seriesID }}
+  {{- $products := slice }}
+  {{- range where $catalog.products "series_id" $seriesID }}
+    {{- with .deployments }}{{ range . }}{{ $products = $products | append . }}{{ end }}
+    {{- else }}{{ $products = $products | append . }}{{ end }}
+  {{- end }}
   <section class="merchant-catalog-series" id="{{ $merchantID }}-{{ $seriesID }}" aria-labelledby="{{ $merchantID }}-title-{{ $seriesID }}">
     <div class="merchant-catalog-heading"><h3 id="{{ $merchantID }}-title-{{ $seriesID }}">{{ .label }}</h3><span class="merchant-catalog-meta">{{ .product_count }} 个条目</span></div>
     <p class="merchant-catalog-description">{{ .description }}</p>
@@ -59,15 +64,15 @@
       {{- $value := index $firstProduct . }}
       {{- if and $value (eq (len (where $regionProducts . $value)) (len $regionProducts)) }}{{ $commonNotes = $commonNotes | append $value }}{{ end }}
     {{- end }}
-    {{- with (index $regionOffers 0).price_note }}
+    {{- if $regionOffers }}{{ with (index $regionOffers 0).price_note }}
       {{- if eq (len (where $regionOffers "price_note" .)) (len $regionOffers) }}{{ $commonNotes = $commonNotes | append . }}{{ end }}
-    {{- end }}
+    {{- end }}{{ end }}
     <details class="merchant-catalog-region"{{ if and (eq $seriesIndex 0) (eq $regionIndex 0) }} open{{ end }}>
       <summary><strong>{{ $region }}</strong><span>{{ len $regionProducts }} 个条目 · 展开查看配置与价格</span></summary>
       <div class="merchant-catalog-region-content">
         <div class="merchant-catalog-table-wrap" role="region" aria-label="{{ $catalog.merchant }} {{ $region }}配置与价格，窄屏可横向滚动" tabindex="0">
           <table class="merchant-catalog-table{{ if gt (len $columns) 2 }} merchant-catalog-table-wide{{ end }}">
-            <caption class="merchant-catalog-sr-only">{{ $catalog.merchant }}，{{ $region }}，产品配置与已核实计费方式的美元价格</caption>
+            <caption class="merchant-catalog-sr-only">{{ $catalog.merchant }}，{{ $region }}，产品配置与已核实计费方式的{{ if $isCloudCone }}报价，币种按行标注{{ else }}美元价格{{ end }}</caption>
             <thead><tr><th scope="col">产品配置</th>{{ range $columns }}<th scope="col">{{ .label }}</th>{{ end }}<th scope="col">官方入口</th></tr></thead>
             <tbody>
             {{- range $regionProducts }}
@@ -78,6 +83,7 @@
               <tr class="merchant-catalog-product" id="{{ $merchantID }}-product-{{ .id }}" data-product="{{ .id }}">
                 <th scope="row" class="merchant-catalog-specs">
                   <strong id="{{ $merchantID }}-name-{{ .id }}">{{ .name }}</strong>
+                  {{- if $isCloudCone }}{{ with .datacenter }}<span>{{ . }}</span>{{ end }}{{ if eq .availability_status "sold_out" }}<span class="merchant-catalog-unavailable">核验时售罄</span>{{ end }}{{ if not .offers }}<span class="merchant-catalog-unavailable">暂无有效报价</span>{{ end }}{{ end }}
                   {{- $hardware := slice }}
                   {{- if .cpu_label }}{{ $hardware = $hardware | append .cpu_label }}{{ else }}{{ with .vcpu_count }}{{ $hardware = $hardware | append (printf "%v vCPU" .) }}{{ end }}{{ end }}
                   {{- with .ram_mb }}{{ $hardware = $hardware | append (printf "%v GB 内存" (div (float .) 1024)) }}{{ end }}
@@ -85,7 +91,7 @@
                   {{- with $hardware }}<span>{{ delimit . " · " }}</span>{{ end }}
                   {{- $network := slice }}
                   {{- with .bandwidth_label }}{{ $network = $network | append . }}{{ end }}
-                  {{- with .port_mbps }}{{ $network = $network | append (printf "%v Mbps 端口" .) }}{{ end }}
+                  {{- with .port_mbps }}{{ if $isCloudCone }}{{ $network = $network | append (printf "%v Mbps 链路速率" .) }}{{ else }}{{ $network = $network | append (printf "%v Mbps 端口" .) }}{{ end }}{{ end }}
                   {{- with $network }}<span>{{ delimit . " · " }}</span>{{ end }}
                   {{- with .spec_label }}<span>{{ . }}</span>{{ end }}
                   {{- with $rowNotes | uniq }}<details class="merchant-catalog-row-notes"><summary>套餐说明</summary>{{ range . }}<p>{{ . }}</p>{{ end }}</details>{{ end }}
@@ -94,23 +100,27 @@
                   {{- $column := . }}{{ $matched := false }}
                   <td class="merchant-catalog-price-cell" data-period="{{ .id }}">
                   {{- range $product.offers }}
+                    {{- $currency := "$" }}{{ if $isCloudCone }}{{ $currency = printf "%s " (.currency | default "USD") }}{{ end }}
+                    {{- $priceLink := "" }}{{ if and $isCloudCone (ne (.availability_status | default $product.availability_status) "sold_out") }}{{ $priceLink = .purchase_url }}{{ end }}
+                    {{- $linkRel := "noopener noreferrer" }}{{ if eq .link_kind "affiliate" }}{{ $linkRel = "sponsored nofollow noopener noreferrer" }}{{ end }}
                     {{- if and (eq $column.id "hourly") (ne .price_hourly nil) }}
-                      {{- $matched = true }}<strong class="merchant-catalog-price">${{ .price_hourly }}</strong>
+                      {{- $matched = true }}{{ if $priceLink }}<a href="{{ $priceLink }}" target="_blank" rel="{{ $linkRel }}">{{ end }}<strong class="merchant-catalog-price">{{ $currency }}{{ .price_hourly }}</strong>{{ if $priceLink }}</a>{{ end }}
                     {{- else if and (eq $column.id "official-monthly") (ne .price_monthly nil) }}
-                      {{- $matched = true }}<strong class="merchant-catalog-price">${{ printf "%.2f" (float .price_monthly) }}</strong>
+                      {{- $matched = true }}{{ if $priceLink }}<a href="{{ $priceLink }}" target="_blank" rel="{{ $linkRel }}">{{ end }}<strong class="merchant-catalog-price">{{ $currency }}{{ printf "%.2f" (float .price_monthly) }}</strong>{{ if $priceLink }}</a>{{ end }}
                     {{- else if and (eq $column.id .period) (ne .amount_cents nil) }}
                       {{- $matched = true }}
-                      {{- if ne .renewal_amount_cents nil }}<span class="merchant-catalog-price-label">首期</span>{{ end }}
-                      <strong class="merchant-catalog-price">${{ printf "%.2f" (div (float .amount_cents) 100) }}</strong>
-                      {{- if ne .renewal_amount_cents nil }}<span class="merchant-catalog-renewal">续费 ${{ printf "%.2f" (div (float .renewal_amount_cents) 100) }}</span>{{ end }}
+                      {{- if and (not $isCloudCone) (ne .renewal_amount_cents nil) }}<span class="merchant-catalog-price-label">首期</span>{{ end }}
+                      {{ if $priceLink }}<a href="{{ $priceLink }}" target="_blank" rel="{{ $linkRel }}">{{ end }}<strong class="merchant-catalog-price">{{ $currency }}{{ printf "%.2f" (div (float .amount_cents) 100) }}</strong>{{ if $priceLink }}</a>{{ end }}
+                      {{- if ne .renewal_amount_cents nil }}<span class="merchant-catalog-renewal">续费 {{ $currency }}{{ printf "%.2f" (div (float .renewal_amount_cents) 100) }}</span>{{ end }}
+                      {{- if and $isCloudCone (ne .crossed_amount_cents nil) }}<span class="merchant-catalog-price-label">官网划线价 <s>{{ $currency }}{{ printf "%.2f" (div (float .crossed_amount_cents) 100) }}</s></span>{{ end }}
                     {{- else if and (eq $column.id "other") (in (slice "quote" "unknown" "percentage" "unit-monthly") .period) }}
                       {{- $matched = true }}
                       {{- if eq .period "percentage" }}<strong class="merchant-catalog-price">{{ .unit }}</strong>
-                      {{- else if ne .unit_price nil }}<strong class="merchant-catalog-price">${{ .unit_price }}{{ with .unit }}/{{ . }}{{ end }}</strong>
+                      {{- else if ne .unit_price nil }}{{ if $priceLink }}<a href="{{ $priceLink }}" target="_blank" rel="{{ $linkRel }}">{{ end }}<strong class="merchant-catalog-price">{{ $currency }}{{ .unit_price }}{{ with .unit }}/{{ . }}{{ end }}</strong>{{ if $priceLink }}</a>{{ end }}
                       {{- else }}<span class="merchant-catalog-unavailable">{{ .label }}</span>{{ end }}
                     {{- end }}
                   {{- end }}
-                  {{- if not $matched }}<span class="merchant-catalog-unavailable" title="本次未收录此计费方式的报价">未核实</span>{{ end }}
+                  {{- if not $matched }}{{ if $isCloudCone }}<span class="merchant-catalog-unavailable">—</span>{{ else }}<span class="merchant-catalog-unavailable" title="本次未收录此计费方式的报价">未核实</span>{{ end }}{{ end }}
                   </td>
                 {{- end }}
                 <td class="merchant-catalog-product-links">
@@ -119,8 +129,12 @@
                   <a href="{{ . }}" target="_blank" rel="sponsored nofollow noopener" aria-label="{{ $product.name }} 推广入口，进入官网后选择配置">推广入口</a>
                     {{- end }}
                   {{- end }}
+                  {{- if and $isCloudCone (eq .availability_status "sold_out") }}
+                  <a href="{{ .official_url }}" target="_blank" rel="noopener">查看官方资料</a>
+                  {{- else }}
                   <a href="{{ .purchase_url | default .official_url }}" target="_blank" rel="noopener">{{ if .purchase_url }}查看配置{{ else }}产品说明{{ end }}</a>
                   {{- if and .purchase_url (ne .purchase_url .official_url) }}<a class="merchant-catalog-source-link" href="{{ .official_url }}" target="_blank" rel="noopener">价格来源</a>{{ end }}
+                  {{- end }}
                 </td>
               </tr>
             {{- end }}
