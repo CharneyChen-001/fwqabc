@@ -55,27 +55,54 @@ pagination.pagerSize = 10
     favicon32x32 = "/favicon-32x32.png"
     apple_touch_icon = "/apple-touch-icon.png"
     safari_pinned_tab = "/android-chrome-512x512.png"
-    theme_color = "#F24615"
+    theme_color = "#2f394c"
   [params.footer]
     text = "出海ABC —— 出海服务器，少踩坑少花钱。本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 [推广披露](/disclosure/)。价格以官网为准。"
 
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
 [menus]
   [[menus.main]]
+    name = "文章"
+    identifier = "articles"
+    url = "/deals/"
+    weight = 10
+  [[menus.main]]
     name = "优惠促销"
+    identifier = "deals"
+    parent = "articles"
     url = "/deals/"
     weight = 10
   [[menus.main]]
     name = "免费服务器 / 赠金"
+    parent = "articles"
     url = "/free/"
-    weight = 15
+    weight = 20
+  [[menus.main]]
+    name = "实测案例"
+    parent = "articles"
+    url = "/cases/"
+    weight = 30
   [[menus.main]]
     name = "线路专题"
+    parent = "articles"
     url = "/routes/"
-    weight = 30
+    weight = 40
+  [[menus.main]]
+    name = "服务器比价"
+    identifier = "servers"
+    url = "/servers/"
+    weight = 20
   [[menus.main]]
     name = "商家目录"
     url = "/merchants/"
-    weight = 50
+    weight = 30
+  [[menus.main]]
+    name = "搜索"
+    identifier = "search"
+    url = "/search/"
+    weight = 40
 
 [sitemap]
   changeFreq = "daily"

@@ -1,0 +1,36 @@
+<article class="offer-card">
+  <div class="offer-top">
+    <h3>{{ .name }}</h3>
+    {{- if eq .stock "in" }}<span class="stock stock-in">{{ .stock_label | default "有货" }}</span>
+    {{- else if eq .stock "out" }}<span class="stock stock-out">{{ .stock_label | default "缺货" }}</span>
+    {{- else }}<span class="stock stock-unknown">库存未核实</span>{{ end }}
+  </div>
+  <p class="offer-meta">
+    <span>{{ .provider }}</span>
+    {{- with .kind }}<span>{{ . }}</span>{{ end }}
+    {{- with .promo_code }}<span class="promo-code">优惠码 {{ . }}</span>{{ end }}
+  </p>
+  <p class="offer-price">
+    {{- with .price_text }}<b>{{ . }}</b>{{ else }}<b class="is-muted">价格待核实</b>{{ end }}
+    {{- with .period_label }}<span>{{ . }}</span>{{ end }}
+    {{- if and (eq .monthly_basis "period_divided") .monthly_usd }}<small>折合 ${{ printf "%.2f" (float .monthly_usd) }}/月</small>{{ end }}
+    {{- if and (eq .period "hourly") .hourly_text }}<small>{{ .hourly_text }}/小时</small>{{ end }}
+  </p>
+  <p class="offer-where">
+    {{- $where := slice }}
+    {{- with .region }}{{ $where = $where | append . }}{{ end }}
+    {{- with .city }}{{ $where = $where | append . }}{{ end }}
+    {{- with .line }}{{ $where = $where | append . }}{{ end }}
+    {{- if $where }}{{ delimit $where " · " }}{{ else }}地区与线路待核实{{ end }}
+  </p>
+  <p class="offer-specs">{{ .specs | default "配置待核实" }}</p>
+  {{- with .location_note }}<p class="offer-note">{{ . }}</p>{{ end }}
+  <div class="offer-foot">
+    {{- with .checked_on }}<time datetime="{{ . }}">核实 {{ . }}</time>{{ else }}<span>核实日期待核实</span>{{ end }}
+    {{- if .aff_slug }}
+    <a class="go-btn" href="/go/{{ .aff_slug }}/" rel="sponsored nofollow noopener" target="_blank">购买</a>
+    {{- else if .buy_url }}
+    <a class="go-btn" href="{{ .buy_url }}" rel="{{ .buy_rel | default "sponsored nofollow noopener" }}" target="_blank">购买</a>
+    {{- end }}
+  </div>
+</article>

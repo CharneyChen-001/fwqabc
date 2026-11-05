@@ -1,0 +1,17 @@
+{{- define "main" }}
+<header class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+</header>
+<div id="searchbox" class="searchbox">
+    <input id="searchInput" disabled placeholder="{{ .Params.placeholder | default "搜索文章、商家、地区或线路" }}"
+        aria-label="搜索" type="search" autocomplete="off" maxlength="64">
+    <ul id="searchResults" class="searchResults" aria-label="文章搜索结果"></ul>
+</div>
+<section class="offer-hits" id="offer-hits" hidden>
+    <h2>套餐</h2>
+    <ul id="offer-hit-list"></ul>
+    <p><a id="offer-hit-more" href="/servers/">在比价页继续筛选</a></p>
+</section>
+<script src="/js/search-offers.js" defer></script>
+{{- end }}

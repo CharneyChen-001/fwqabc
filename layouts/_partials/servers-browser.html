@@ -1,0 +1,95 @@
+{{- $offers := hugo.Data.offers -}}
+{{- $items := $offers.offers -}}
+{{- with .Params.filter_provider }}{{ $items = where $items "provider_slug" . }}{{ end -}}
+{{- with .Params.filter_region }}{{ $items = where $items "region_slug" . }}{{ end -}}
+{{- with .Params.filter_line }}{{ $items = where $items "line_slug" . }}{{ end -}}
+{{- $count := .Params.offer_count | default $offers.meta.offer_count -}}
+<div class="servers-app" id="servers-app"
+  data-provider="{{ .Params.filter_provider }}"
+  data-region="{{ .Params.filter_region }}"
+  data-line="{{ .Params.filter_line }}">
+  <nav class="crumbs" aria-label="面包屑">
+    <a href="/">首页</a>
+    {{- if or .Params.filter_provider .Params.filter_region .Params.filter_line }}
+    <span aria-hidden="true">/</span><a href="/servers/">服务器比价</a>
+    {{- end }}
+    <span aria-hidden="true">/</span><span>{{ .Title }}</span>
+  </nav>
+  <header class="servers-head">
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Description }}</p>
+  </header>
+  <p class="servers-stats" id="servers-stats">套餐 {{ $count }}{{ with $offers.meta.in_stock_count }}{{ if not $.Params.filter_provider }}{{ if not $.Params.filter_region }}{{ if not $.Params.filter_line }} · 有货 {{ . }} · 商家 {{ $offers.meta.provider_count }}{{ with $offers.meta.min_monthly_usd }} · 月价起 ${{ printf "%.2f" (float .) }}{{ end }}{{ end }}{{ end }}{{ end }}{{ end }}</p>
+  <p class="servers-note">目录快照，不是实时库存。没写明的地区、线路、库存和优惠码保持为空。小时价不会被换算成月价。NameSilo 以及域名、邮箱、CDN、机柜托管不在这里。价格以商家结算页为准。</p>
+  <form class="servers-filters" id="servers-filters" action="{{ .RelPermalink }}" method="get">
+    <label>搜索<input id="f-q" name="q" type="search" placeholder="商家、地区、线路、优惠码" autocomplete="off"></label>
+    <label>地区
+      <select id="f-region" name="region">
+        <option value="">全部地区</option>
+        {{- range $offers.facets.regions }}<option value="{{ .slug }}"{{ if eq $.Params.filter_region .slug }} selected{{ end }}>{{ .label }}</option>{{ end }}
+      </select>
+    </label>
+    <label>线路
+      <select id="f-line" name="line">
+        <option value="">全部线路</option>
+        {{- range $offers.facets.lines }}<option value="{{ .slug }}"{{ if eq $.Params.filter_line .slug }} selected{{ end }}>{{ .label }}</option>{{ end }}
+      </select>
+    </label>
+    <label>月价
+      <select id="f-price" name="price">
+        <option value="">全部月价</option>
+        <option value="lt3">3 美元以下</option>
+        <option value="3-5">3–5 美元</option>
+        <option value="5-10">5–10 美元</option>
+        <option value="10-20">10–20 美元</option>
+        <option value="20-50">20–50 美元</option>
+        <option value="gt50">50 美元以上</option>
+      </select>
+    </label>
+    <label>最低月价<input id="f-min" name="minPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="美元"></label>
+    <label>最高月价<input id="f-max" name="maxPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="美元"></label>
+    <label>周期
+      <select id="f-period" name="period">
+        <option value="">全部周期</option>
+        {{- range $offers.facets.periods }}<option value="{{ .slug }}">{{ .label }}</option>{{ end }}
+      </select>
+    </label>
+    <label>库存
+      <select id="f-stock" name="stock">
+        <option value="">全部库存</option>
+        {{- range $offers.facets.stocks }}<option value="{{ .slug }}">{{ .label }}</option>{{ end }}
+      </select>
+    </label>
+    <label>商家
+      <select id="f-provider" name="provider">
+        <option value="">全部商家</option>
+        {{- range $offers.facets.providers }}<option value="{{ .slug }}"{{ if eq $.Params.filter_provider .slug }} selected{{ end }}>{{ .label }}</option>{{ end }}
+      </select>
+    </label>
+    <label>排序
+      <select id="f-sort" name="sort">
+        <option value="updated">最近核对</option>
+        <option value="price-asc">月价从低到高</option>
+        <option value="price-desc">月价从高到低</option>
+      </select>
+    </label>
+    <button type="button" id="f-reset" class="filter-reset">重置</button>
+  </form>
+  <p class="servers-js-note">筛选在浏览器里完成。未启用脚本时，下面先列出最多 48 条；按地区、线路或商家查看请用页面顶部的入口。</p>
+  <div id="offer-list" class="offer-list">
+    {{- range $i, $offer := $items }}
+      {{- if lt $i 48 }}{{ partial "offer-card.html" $offer }}{{ end }}
+    {{- end }}
+  </div>
+  <div class="offer-pager" id="offer-pager" hidden>
+    <button type="button" id="offer-prev">上一页</button>
+    <span id="offer-page"></span>
+    <button type="button" id="offer-next">下一页</button>
+  </div>
+  {{- if and (not .Params.filter_provider) (not .Params.filter_region) (not .Params.filter_line) }}
+  {{ partial "picks.html" . }}
+  {{- else }}
+  <p class="servers-more"><a href="/servers/">查看全部套餐</a> · <a href="/servers/#picks">按预算和用途选</a></p>
+  {{- end }}
+</div>
+<script src="/js/servers-filter.js" defer></script>

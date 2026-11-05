@@ -1,12 +1,39 @@
 {{- if not (.Param "hideFooter") }}
 <footer class="footer site-footer">
   <div class="sf-grid">
-    <div class="sf-brand"><img src="/brand/logo-64.png" alt="出海ABC" width="44" height="44" loading="lazy"><div><b>出海ABC</b><span>出海服务器，少踩坑少花钱</span></div></div>
-    <nav class="sf-col"><b>栏目</b><a href="/deals/">优惠促销</a><a href="/free/">免费服务器 / 赠金</a><a href="/routes/">线路专题</a><a href="/merchants/">商家目录</a></nav>
-    <nav class="sf-col"><b>关于</b><a href="/about/">关于本站</a><a href="/disclosure/">推广披露</a><a href="/privacy/">隐私政策</a><a href="/contact/">联系与纠错</a></nav>
+    <div class="sf-brand">
+      <a href="/"><img src="/brand/logo-64.png" alt="" width="44" height="44" loading="lazy"><b>出海ABC</b></a>
+      <p>看清楚价格和线路，再决定买哪一台。本站整理已核实的优惠、实测和套餐，不代售服务器。</p>
+    </div>
+    <nav class="sf-col" aria-label="服务器专题">
+      <b>服务器专题</b>
+      <a href="/servers/">全部套餐</a>
+      <a href="/servers/regions/hong-kong/">中国香港</a>
+      <a href="/servers/regions/united-states/">美国</a>
+      <a href="/servers/regions/japan/">日本</a>
+      <a href="/servers/lines/cn2-gia/">CN2 GIA</a>
+      <a href="/servers/#picks">按预算和用途</a>
+    </nav>
+    <nav class="sf-col" aria-label="常用入口">
+      <b>常用入口</b>
+      <a href="/deals/">优惠促销</a>
+      <a href="/free/">免费服务器 / 赠金</a>
+      <a href="/cases/">实测案例</a>
+      <a href="/routes/">线路专题</a>
+      <a href="/merchants/">商家目录</a>
+      <a href="/search/">站内搜索</a>
+    </nav>
+    <nav class="sf-col" aria-label="信任与政策">
+      <b>信任与政策</b>
+      <a href="/about/">关于本站</a>
+      <a href="/contact/">联系与纠错</a>
+      <a href="/disclosure/">推广披露</a>
+      <a href="/privacy/">隐私政策</a>
+      <a href="/index.xml">RSS 订阅</a>
+    </nav>
   </div>
-  <p class="sf-disc">本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 <a href="/disclosure/">推广披露</a>。价格以官网为准。</p>
-  <p class="sf-copy">&copy; {{ now.Year }} 出海ABC · fwqabc.com · 基于 <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> 与 <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a> 构建</p>
+  <p class="sf-disc">本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 <a href="/disclosure/">推广披露</a>。套餐价格以商家结算页为准。</p>
+  <p class="sf-copy">&copy; {{ now.Year }} 出海ABC · fwqabc.com</p>
 </footer>
 {{- end }}
 
@@ -42,13 +69,10 @@
 <script>
     let menu = document.getElementById('menu');
     if (menu) {
-        // Set the scroll position
         const scrollPosition = localStorage.getItem("menu-scroll-position");
         if (scrollPosition) {
             menu.scrollLeft = parseInt(scrollPosition, 10);
         }
-        
-        // Save once scrolling settles, not on every event
         let menuScrollTimeout;
         menu.addEventListener("scroll", function () {
             clearTimeout(menuScrollTimeout);
@@ -60,18 +84,15 @@
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
-            e.preventDefault();
             var id = this.getAttribute("href").substr(1);
             const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!target) return;
+            e.preventDefault();
             if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                target.scrollIntoView({
-                    behavior: "smooth"
-                });
+                target.scrollIntoView({ behavior: "smooth" });
             } else {
                 target.scrollIntoView();
             }
-            // Move keyboard focus to the target like native anchor navigation,
-            // so the next Tab continues from there instead of from this link
             if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
                 target.setAttribute("tabindex", "-1");
             }
@@ -83,18 +104,14 @@
             }
         });
     });
-
 </script>
 
 {{- if (not site.Params.disableScrollToTop) }}
 <script>
     var toplink = document.getElementById("top-link");
     var scrollTicking = false;
-    // At most one check per frame
     window.addEventListener("scroll", function () {
-        if (scrollTicking) {
-            return;
-        }
+        if (scrollTicking) return;
         scrollTicking = true;
         requestAnimationFrame(function () {
             const scrollThreshold = window.innerHeight;
@@ -103,7 +120,6 @@
             scrollTicking = false;
         });
     }, { passive: true });
-
 </script>
 {{- end }}
 
@@ -119,7 +135,6 @@
             localStorage.setItem("pref-theme", 'dark');
         }
     })
-
 </script>
 {{- end }}
 
@@ -127,46 +142,33 @@
 <script>
     document.querySelectorAll('pre > code').forEach((codeblock) => {
         const container = codeblock.parentNode.parentNode;
-
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
         copybutton.innerHTML = '{{- i18n "code_copy" | default "copy" }}';
-
         function copyingDone() {
             copybutton.innerHTML = '{{- i18n "code_copied" | default "copied!" }}';
-            setTimeout(() => {
-                copybutton.innerHTML = '{{- i18n "code_copy" | default "copy" }}';
-            }, 2000);
+            setTimeout(() => { copybutton.innerHTML = '{{- i18n "code_copy" | default "copy" }}'; }, 2000);
         }
-
         copybutton.addEventListener('click', (cb) => {
             if ('clipboard' in navigator) {
                 navigator.clipboard.writeText(codeblock.textContent);
                 copyingDone();
                 return;
             }
-
             const range = document.createRange();
             range.selectNodeContents(codeblock);
             const selection = window.getSelection();
             selection.removeAllRanges();
             selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
+            try { document.execCommand('copy'); copyingDone(); } catch (e) { }
             selection.removeRange(range);
         });
-
         if (container.classList.contains("highlight")) {
             container.appendChild(copybutton);
         } else if (container.parentNode.firstChild == container) {
-            // td containing LineNos
         } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            // table containing LineNos and code
             codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
         } else {
-            // code blocks not having highlight as parent class
             codeblock.parentNode.appendChild(copybutton);
         }
     });
