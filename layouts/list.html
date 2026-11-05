@@ -30,6 +30,15 @@
 </header>
 {{- end }}
 
+{{- if and (eq .Section "routes") .Params.knowledge }}
+<p class="knowledge-xref">同一主题的判断框架在<a href="{{ .Params.knowledge }}">知识库</a>。本页仍是原文，地址不变。</p>
+{{- end }}
+{{- if and (eq .Section "routes") (ne .RelPermalink "/routes/") }}
+{{ partial "post-actions.html" . }}
+{{- end }}
+{{- if and .Content (.Param "ShowToc") (in (slice "routes" "deals" "free" "cases") .Section) }}
+{{ partial "toc.html" . }}
+{{- end }}
 {{- if .Content }}
 <div class="post-content md-content">
   {{- if not (.Param "disableAnchoredHeadings") }}

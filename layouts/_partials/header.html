@@ -12,7 +12,8 @@
             {{- range site.Menus.main }}
             {{- $active := eq $.RelPermalink .URL }}
             {{- if and (eq .Identifier "servers") (hasPrefix $.RelPermalink "/servers/") }}{{ $active = true }}{{ end }}
-            {{- if and (eq .Identifier "articles") (or (hasPrefix $.RelPermalink "/deals/") (hasPrefix $.RelPermalink "/free/") (hasPrefix $.RelPermalink "/cases/") (hasPrefix $.RelPermalink "/routes/")) }}{{ $active = true }}{{ end }}
+            {{- if and (eq .Identifier "articles") (or (hasPrefix $.RelPermalink "/deals/") (hasPrefix $.RelPermalink "/free/") (hasPrefix $.RelPermalink "/cases/") (hasPrefix $.RelPermalink "/routes/") (hasPrefix $.RelPermalink "/categories/")) }}{{ $active = true }}{{ end }}
+            {{- if and (eq .Identifier "knowledge") (hasPrefix $.RelPermalink "/knowledge/") }}{{ $active = true }}{{ end }}
             <li class="{{ if or .HasChildren (eq .Identifier "servers") }}has-sub{{ end }}">
                 {{- if or .HasChildren (eq .Identifier "servers") }}
                 <details>

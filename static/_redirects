@@ -15,3 +15,5 @@
 /go/vultr/ https://www.vultr.com/?ref=9932591 302
 /go/vultr-credit https://www.vultr.com/?ref=9932592-9J 302
 /go/vultr-credit/ https://www.vultr.com/?ref=9932592-9J 302
+# /feed.xml 由 Hugo 输出，和 /index.xml 都是 RSS。
+/feed /feed.xml 301

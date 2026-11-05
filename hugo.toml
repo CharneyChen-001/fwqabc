@@ -9,9 +9,16 @@ pagination.pagerSize = 10
 
 [taxonomies]
   tag = "tags"
+  category = "categories"
   merchant = "merchants"
   route = "routes"
   datacenter = "datacenters"
+
+[languages]
+  [languages.zh-cn]
+    label = "简体中文"
+    locale = "zh-CN"
+    weight = 1
 
 [permalinks]
   [permalinks.page]
@@ -32,6 +39,7 @@ pagination.pagerSize = 10
   ShowBreadCrumbs = true
   ShowReadingTime = true
   ShowToc = true
+  TocOpen = true
   ShowPostNavLinks = true
   xHandle = ""       # X 账号（如 chuhaiabc，不带 @）；留空则不显示
   telegram = ""      # Telegram 频道链接，如 https://t.me/fwqabc；留空则不显示订阅框
@@ -60,7 +68,34 @@ pagination.pagerSize = 10
     text = "出海ABC —— 出海服务器，少踩坑少花钱。本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 [推广披露](/disclosure/)。价格以官网为准。"
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "feed", "postsmap", "serversmap", "knowledgemap", "pagesmap"]
+
+[outputFormats]
+  [outputFormats.feed]
+    mediaType = "application/rss+xml"
+    baseName = "feed"
+    isPlainText = false
+    notAlternative = true
+  [outputFormats.postsmap]
+    mediaType = "application/xml"
+    baseName = "sitemap-posts"
+    isPlainText = false
+    notAlternative = true
+  [outputFormats.serversmap]
+    mediaType = "application/xml"
+    baseName = "sitemap-servers"
+    isPlainText = false
+    notAlternative = true
+  [outputFormats.knowledgemap]
+    mediaType = "application/xml"
+    baseName = "sitemap-knowledge"
+    isPlainText = false
+    notAlternative = true
+  [outputFormats.pagesmap]
+    mediaType = "application/xml"
+    baseName = "sitemap-pages"
+    isPlainText = false
+    notAlternative = true
 
 [menus]
   [[menus.main]]
@@ -89,6 +124,16 @@ pagination.pagerSize = 10
     parent = "articles"
     url = "/routes/"
     weight = 40
+  [[menus.main]]
+    name = "文章分类"
+    parent = "articles"
+    url = "/categories/"
+    weight = 50
+  [[menus.main]]
+    name = "知识库"
+    identifier = "knowledge"
+    url = "/knowledge/"
+    weight = 15
   [[menus.main]]
     name = "服务器比价"
     identifier = "servers"

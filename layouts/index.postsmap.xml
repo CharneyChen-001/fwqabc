@@ -1,0 +1,2 @@
+{{- $pages := where (where site.RegularPages "Kind" "page") "Section" "in" (slice "deals" "free" "cases") -}}
+{{- partial "sitemap-urlset.html" $pages -}}

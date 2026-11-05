@@ -3,8 +3,14 @@
 <article class="post-single">
   <header class="post-header post-band">
     {{ partial "breadcrumbs.html" . }}
-    {{- $secN := dict "deals" "优惠促销" "free" "免费服务器 / 赠金" "guides" "指南" "review" "评测" }}
-    {{- with index $secN .Section }}<div class="post-chips"><span class="cat-chip sec-{{ $.Section }}">{{ . }}</span>{{ range $.Params.tags }}<a class="tag-chip" href="{{ printf "/tags/%s/" (urlize .) }}">#{{ . }}</a>{{ end }}</div>{{ end }}
+    {{- $secN := dict "deals" "优惠促销" "free" "免费服务器 / 赠金" "guides" "指南" "review" "评测" "cases" "实测案例" }}
+    {{- if or (index $secN .Section) (.GetTerms "categories") }}
+    <div class="post-chips">
+      {{- with index $secN .Section }}<span class="cat-chip sec-{{ $.Section }}">{{ . }}</span>{{ end }}
+      {{- range (.GetTerms "categories") }}<a class="tag-chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+      {{- range $.Params.tags }}<a class="tag-chip" href="{{ printf "/tags/%s/" (urlize .) }}">#{{ . }}</a>{{ end }}
+    </div>
+    {{- end }}
     <h1 class="post-title entry-hint-parent">
       {{ .Title }}
       {{- if .Draft }}
@@ -28,6 +34,9 @@
       {{- partial "edit_post.html" . -}}
       {{- partial "post_canonical.html" . -}}
     </div>
+    {{- end }}
+    {{- if in (slice "deals" "free" "cases" "guides" "review") .Section }}
+    {{ partial "post-actions.html" . }}
     {{- end }}
   </header>
   {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}

@@ -1,6 +1,8 @@
 ---
 title: "9929"
 description: "9929 线路说明：中国联通 AS9929 高等级骨干网，适合联通用户为主的访客；对应的 VPS 方案（附来源）。"
+categories: ["lines", "as9929"]
+knowledge: "/knowledge/as9929/"
 ---
 
 > 本页含推广链接，详见[推广披露](/disclosure/)。

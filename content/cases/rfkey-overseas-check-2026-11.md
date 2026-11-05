@@ -8,6 +8,7 @@ keywords: ["外贸网站海外访问测试", "搬瓦工实测", "搬瓦工 洛�
 merchant: "bandwagonhost"
 merchants: ["bandwagonhost"]
 tags: ["实测", "搬瓦工", "外贸独立站"]
+categories: ["server-reviews", "usa-vps"]
 cover_img: "/img/cases/rfkey-2026-11/cover.webp"
 cover_alt: "RFKEY 中文首页，从美国加州 VPS 浏览器冷加载时的截图"
 case:

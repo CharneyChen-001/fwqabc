@@ -15,6 +15,7 @@ faq:
 description: "2026 甲骨文 Oracle Cloud 免费服务器申请指南：Always Free 资源（Ampere A1 2 OCPU/12GB、2 台 AMD Micro、200GB 块存储、每月 10TB 出站流量）、主区域不可更改、闲置回收规则、信用卡验证、out of capacity 应对，全部引用官方文档。"
 keywords: ["甲骨文免费服务器", "Oracle Cloud Always Free", "甲骨文云申请", "Ampere A1", "免费VPS", "甲骨文注册"]
 tags: ["免费服务器", "甲骨文", "Oracle Cloud"]
+categories: ["free-vps"]
 merchants: ["raksmart", "bandwagonhost", "racknerd", "vultr"]
 ---
 

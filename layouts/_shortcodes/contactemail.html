@@ -1,1 +1,5 @@
-{{- with site.Params.contactEmail -}}<p>联系邮箱：<a href="mailto:{{ . }}">{{ . }}</a></p>{{- end -}}
+{{- with site.Params.contactEmail -}}
+<p>联系邮箱：<a href="mailto:{{ . }}">{{ . }}</a></p>
+{{- else -}}
+<p class="todo-note"><b>TODO：</b>联系邮箱还没配置。请在 <code>hugo.toml</code> 的 <code>params.contactEmail</code> 填入真实邮箱后再显示。这里不放一个编出来的地址。</p>
+{{- end -}}
