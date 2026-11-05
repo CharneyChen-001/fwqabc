@@ -1,9 +1,9 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap><loc>{{ "sitemap-posts.xml" | absURL }}</loc></sitemap>
-  <sitemap><loc>{{ "sitemap-servers.xml" | absURL }}</loc></sitemap>
-  <sitemap><loc>{{ "sitemap-knowledge.xml" | absURL }}</loc></sitemap>
-  <sitemap><loc>{{ "sitemap-pages.xml" | absURL }}</loc></sitemap>
+  <sitemap><loc>{{ "sitemap-posts.xml" | absLangURL }}</loc></sitemap>
+  <sitemap><loc>{{ "sitemap-servers.xml" | absLangURL }}</loc></sitemap>
+  <sitemap><loc>{{ "sitemap-knowledge.xml" | absLangURL }}</loc></sitemap>
+  <sitemap><loc>{{ "sitemap-pages.xml" | absLangURL }}</loc></sitemap>
   {{- if eq site.Language.Lang "zh-cn" }}
   <sitemap><loc>{{ "en/sitemap.xml" | absURL }}</loc></sitemap>
   {{- end }}

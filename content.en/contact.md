@@ -1,6 +1,6 @@
 ---
 title: "Contact and corrections"
-description: "How to report a wrong price or a broken link. The mailbox is shown only after it is configured."
+description: "How to report a wrong price or a broken link."
 ShowToc: false
 ShowReadingTime: false
 ---

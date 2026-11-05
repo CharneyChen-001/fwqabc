@@ -598,6 +598,7 @@ def build_generic(builder, catalog):
                 offer.get("period"), offer.get("label"), offer.get("amount_cents"),
                 offer.get("price_hourly"), offer.get("price_monthly"),
             )
+            currency = offer.get("currency") or "USD"
             hourly_text = money(offer.get("price_hourly")) if offer.get("period") == "hourly" else None
             if offer.get("period") == "hourly" and offer.get("price_monthly") is not None:
                 price = float(offer["price_monthly"])
@@ -605,6 +606,13 @@ def build_generic(builder, catalog):
                 monthly = float(offer["price_monthly"])
                 basis = "official"
             notes = []
+            # 不用汇率把非美元标价换算成美元，避免和美元月价放在一起排序。
+            if currency != "USD":
+                monthly = None
+                basis = None
+                if price is not None:
+                    price_text = f"{currency} {price:.2f}"
+                notes.append("标价货币不是美元，未折成美元。")
             if offer.get("is_introductory"):
                 notes.append("标价为首期价。")
             renewal = offer.get("renewal_amount_cents")

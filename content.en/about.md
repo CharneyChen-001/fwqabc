@@ -12,7 +12,7 @@ faq:
   - q: "Do affiliate links make me pay more?"
     a: "No. We may earn a commission, and your price does not go up because of it. See the disclosure page."
   - q: "How do I report an error?"
-    a: "Use the contact page and include the article URL, the wrong statement, and an official source. The contact email appears only after contactEmail is set in hugo.toml. This page does not invent an address."
+    a: "Use the contact page, or the email published there. Include the page URL, the wrong statement, and an official source. The page is updated after the correction is checked."
 ---
 
 **Chuhai ABC (fwqabc.com)** collects VPS deals, free-server notes, and line explainers so a reader can compare them. We do not sell servers.
