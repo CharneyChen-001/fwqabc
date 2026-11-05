@@ -13,7 +13,8 @@
     <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
   </header>
   <div class="entry-content"><p>{{ .Description | default .Summary | plainify | truncate 140 }}</p></div>
-  <footer class="entry-footer">{{ .Date.Format "2006年1月2日" }}</footer>
+  {{- $when := partial "date-text.html" .Date -}}
+  {{- with $when }}<footer class="entry-footer">{{ . }}</footer>{{ end }}
 </article>
 {{- end }}
 {{- if gt $paginator.TotalPages 1 }}

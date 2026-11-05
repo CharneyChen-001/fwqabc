@@ -84,7 +84,7 @@
   {{- with $rel }}
   <nav class="related" aria-label="相关文章">
     <h2>相关文章</h2>
-    <ul>{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a><small>{{ .Lastmod.Format "1月2日更新" }}</small></li>{{ end }}</ul>
+    <ul>{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with partial "date-text.html" .Lastmod }}<small>{{ . }}</small>{{ end }}</li>{{ end }}</ul>
     <p class="back-picks"><a href="/servers/#picks">« 按预算和用途选</a> · <a href="/deals/">全部优惠</a> · <a href="/free/">免费服务器 / 新用户赠金</a></p>
   </nav>
   {{- end }}

@@ -1,11 +1,15 @@
-{{- $sec := dict "deals" "优惠促销" "free" "免费服务器" "cases" "实测案例" "routes" "线路专题" }}
+{{- $sec := dict "deals" "优惠促销" "free" "免费服务器" "cases" "实测案例" "routes" "线路专题" "knowledge" "知识库" "tools" "选购工具" -}}
+{{- if eq site.Language.Lang "en" -}}
+  {{- $sec = dict "deals" "Deals" "free" "Free servers" "cases" "Tests" "routes" "Lines" "knowledge" "Knowledge" "tools" "Tools" -}}
+{{- end -}}
+{{- $when := partial "date-text.html" .Date -}}
 <article class="article-card">
   <a href="{{ .RelPermalink }}">
     {{- with .Params.cover_img }}
     <img src="{{ . }}" alt="{{ $.Params.cover_alt | default $.Title }}" width="640" height="400" loading="lazy" decoding="async">
     {{- end }}
     <div class="article-body">
-      <p class="article-kicker">{{ index $sec .Section | default .Section }} · {{ .Date.Format "2006年1月2日" }}</p>
+      <p class="article-kicker">{{ index $sec .Section | default .Section }}{{ with $when }} · {{ . }}{{ end }}</p>
       <h3>{{ .Title }}</h3>
       <p>{{ .Description | default .Summary | plainify | truncate 110 }}</p>
     </div>
