@@ -9,6 +9,8 @@ routes: []
 deal_start: ""   # 北京时间
 deal_end: ""
 tags: []
+categories: []
+# 不编造价格和线路。未知就留空，或写 TODO。
 ---
 
 ## 活动时间（北京时间）

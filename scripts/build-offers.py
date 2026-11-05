@@ -731,6 +731,113 @@ def write_pages(payload):
             text = path.read_text(encoding="utf-8")
             if path not in keep and "generated_by: build-offers.py" in text:
                 path.unlink()
+    write_english_pages(payload)
+
+
+REGION_EN = {
+    "united-states": "United States",
+    "hong-kong": "Hong Kong",
+    "japan": "Japan",
+    "singapore": "Singapore",
+    "netherlands": "Netherlands",
+    "germany": "Germany",
+    "united-kingdom": "United Kingdom",
+    "australia": "Australia",
+    "canada": "Canada",
+    "south-korea": "South Korea",
+    "france": "France",
+    "india": "India",
+    "poland": "Poland",
+    "united-arab-emirates": "United Arab Emirates",
+    "new-zealand": "New Zealand",
+    "spain": "Spain",
+    "china": "China",
+    "mexico": "Mexico",
+    "brazil": "Brazil",
+    "south-africa": "South Africa",
+    "israel": "Israel",
+    "sweden": "Sweden",
+    "italy": "Italy",
+    "chile": "Chile",
+}
+PROVIDER_EN = {
+    "bandwagonhost": "BandwagonHost",
+    "vultr": "Vultr",
+    "racknerd": "RackNerd",
+    "raksmart": "RakSmart",
+    "cloudcone": "CloudCone",
+    "ethernetservers": "Ethernet Servers",
+    "interserver": "InterServer",
+}
+LINE_EN = {"cn2-gia": "CN2 GIA", "cmin2": "CMIN2", "as9929": "AS9929", "cn2": "CN2"}
+
+
+def write_english_pages(payload):
+    """英文落地页只翻译标题和筛选说明，套餐数字仍来自同一份 offers.json。"""
+    root = ROOT / "content.en" / "servers"
+    providers = root / "providers"
+    regions = root / "regions"
+    lines = root / "lines"
+    for folder in (root, providers, regions, lines):
+        folder.mkdir(parents=True, exist_ok=True)
+
+    def dump(path, title, description, **params):
+        out = ["---", f"title: {json.dumps(title, ensure_ascii=False)}", f"description: {json.dumps(description, ensure_ascii=False)}"]
+        for key, value in params.items():
+            if value is None:
+                continue
+            if isinstance(value, bool):
+                out.append(f"{key}: {str(value).lower()}")
+            elif isinstance(value, (int, float)):
+                out.append(f"{key}: {value}")
+            else:
+                out.append(f"{key}: {json.dumps(value, ensure_ascii=False)}")
+        out += ["generated_by: build-offers.py", "---", ""]
+        path.write_text("\n".join(out), encoding="utf-8")
+        return path
+
+    keep = set()
+    meta = payload["meta"]
+    keep.add(dump(
+        root / "_index.md",
+        "Compare server plans",
+        "Filter plans already checked against merchant catalogs. Unknown fields stay empty. This is not a live price or stock feed.",
+        offer_count=meta["offer_count"],
+        in_stock_count=meta["in_stock_count"],
+        provider_count=meta["provider_count"],
+        min_monthly_usd=meta["min_monthly_usd"],
+    ))
+    for item in payload["facets"]["providers"]:
+        label = PROVIDER_EN.get(item["slug"], item["label"])
+        keep.add(dump(
+            providers / f"{item['slug']}.md",
+            f"{label} plans",
+            f"{item['count']} offers from the {label} catalog snapshot. Missing fields are not filled in.",
+            filter_provider=item["slug"],
+            offer_count=item["count"],
+        ))
+    for item in payload["facets"]["regions"]:
+        label = REGION_EN.get(item["slug"], item["slug"])
+        keep.add(dump(
+            regions / f"{item['slug']}.md",
+            f"{label} server plans",
+            f"{item['count']} offers whose catalog entry names {label}. Plans without a stated region are not included.",
+            filter_region=item["slug"],
+            offer_count=item["count"],
+        ))
+    for item in payload["facets"]["lines"]:
+        label = LINE_EN.get(item["slug"], item["label"])
+        keep.add(dump(
+            lines / f"{item['slug']}.md",
+            f"{label} plans",
+            f"{item['count']} offers whose product or series name states {label}. Offers that do not name a line are excluded.",
+            filter_line=item["slug"],
+            offer_count=item["count"],
+        ))
+    for folder in (providers, regions, lines):
+        for path in folder.glob("*.md"):
+            if path not in keep and "generated_by: build-offers.py" in path.read_text(encoding="utf-8"):
+                path.unlink()
 
 
 def assert_honest(offers):

@@ -8,10 +8,11 @@
   data-provider="{{ .Params.filter_provider }}"
   data-region="{{ .Params.filter_region }}"
   data-line="{{ .Params.filter_line }}">
-  <nav class="crumbs" aria-label="面包屑">
-    <a href="/">首页</a>
+  {{- $en := eq site.Language.Lang "en" -}}
+  <nav class="crumbs" aria-label="{{ if $en }}Breadcrumb{{ else }}面包屑{{ end }}">
+    <a href="{{ "/" | relLangURL }}">{{ if $en }}Home{{ else }}首页{{ end }}</a>
     {{- if or .Params.filter_provider .Params.filter_region .Params.filter_line }}
-    <span aria-hidden="true">/</span><a href="/servers/">服务器比价</a>
+    <span aria-hidden="true">/</span><a href="{{ "/servers/" | relLangURL }}">{{ if $en }}Compare{{ else }}服务器比价{{ end }}</a>
     {{- end }}
     <span aria-hidden="true">/</span><span>{{ .Title }}</span>
   </nav>
@@ -19,77 +20,79 @@
     <h1>{{ .Title }}</h1>
     <p>{{ .Description }}</p>
   </header>
-  <p class="servers-stats" id="servers-stats">套餐 {{ $count }}{{ with $offers.meta.in_stock_count }}{{ if not $.Params.filter_provider }}{{ if not $.Params.filter_region }}{{ if not $.Params.filter_line }} · 有货 {{ . }} · 商家 {{ $offers.meta.provider_count }}{{ with $offers.meta.min_monthly_usd }} · 月价起 ${{ printf "%.2f" (float .) }}{{ end }}{{ end }}{{ end }}{{ end }}{{ end }}</p>
-  <p class="servers-note">目录快照，不是实时库存。没写明的地区、线路、库存和优惠码保持为空。小时价不会被换算成月价。NameSilo 以及域名、邮箱、CDN、机柜托管不在这里。价格以商家结算页为准。</p>
+  <p class="servers-stats" id="servers-stats">{{ if $en }}Plans{{ else }}套餐{{ end }} {{ $count }}{{ with $offers.meta.in_stock_count }}{{ if not $.Params.filter_provider }}{{ if not $.Params.filter_region }}{{ if not $.Params.filter_line }} · {{ if $en }}in stock{{ else }}有货{{ end }} {{ . }} · {{ if $en }}providers{{ else }}商家{{ end }} {{ $offers.meta.provider_count }}{{ with $offers.meta.min_monthly_usd }} · {{ if $en }}monthly from{{ else }}月价起{{ end }} ${{ printf "%.2f" (float .) }}{{ end }}{{ end }}{{ end }}{{ end }}{{ end }}</p>
+  <p class="servers-note">{{ if $en }}Catalog snapshot, not live stock. Unknown region, line, stock, and promo codes stay empty. Hourly prices are not multiplied into a monthly price. NameSilo, domains, email, CDN, and colocation are excluded. Checkout prices win.{{ else }}目录快照，不是实时库存。没写明的地区、线路、库存和优惠码保持为空。小时价不会被换算成月价。NameSilo 以及域名、邮箱、CDN、机柜托管不在这里。价格以商家结算页为准。{{ end }}</p>
   <form class="servers-filters" id="servers-filters" action="{{ .RelPermalink }}" method="get">
-    <label>搜索<input id="f-q" name="q" type="search" placeholder="商家、地区、线路、优惠码" autocomplete="off"></label>
-    <label>地区
+    <label>{{ if $en }}Search{{ else }}搜索{{ end }}<input id="f-q" name="q" type="search" placeholder="{{ if $en }}Provider, region, line, code{{ else }}商家、地区、线路、优惠码{{ end }}" autocomplete="off"></label>
+    <label>{{ if $en }}Region{{ else }}地区{{ end }}
       <select id="f-region" name="region">
-        <option value="">全部地区</option>
-        {{- range $offers.facets.regions }}<option value="{{ .slug }}"{{ if eq $.Params.filter_region .slug }} selected{{ end }}>{{ .label }}</option>{{ end }}
+        <option value="">{{ if $en }}All regions{{ else }}全部地区{{ end }}</option>
+        {{- range $offers.facets.regions }}<option value="{{ .slug }}"{{ if eq $.Params.filter_region .slug }} selected{{ end }}>{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</option>{{ end }}
       </select>
     </label>
-    <label>线路
+    <label>{{ if $en }}Line{{ else }}线路{{ end }}
       <select id="f-line" name="line">
-        <option value="">全部线路</option>
-        {{- range $offers.facets.lines }}<option value="{{ .slug }}"{{ if eq $.Params.filter_line .slug }} selected{{ end }}>{{ .label }}</option>{{ end }}
+        <option value="">{{ if $en }}All lines{{ else }}全部线路{{ end }}</option>
+        {{- range $offers.facets.lines }}<option value="{{ .slug }}"{{ if eq $.Params.filter_line .slug }} selected{{ end }}>{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</option>{{ end }}
       </select>
     </label>
-    <label>月价
+    <label>{{ if $en }}Monthly price{{ else }}月价{{ end }}
       <select id="f-price" name="price">
-        <option value="">全部月价</option>
-        <option value="lt3">3 美元以下</option>
-        <option value="3-5">3–5 美元</option>
-        <option value="5-10">5–10 美元</option>
-        <option value="10-20">10–20 美元</option>
-        <option value="20-50">20–50 美元</option>
-        <option value="gt50">50 美元以上</option>
+        <option value="">{{ if $en }}Any monthly price{{ else }}全部月价{{ end }}</option>
+        <option value="lt3">{{ if $en }}Under $3{{ else }}3 美元以下{{ end }}</option>
+        <option value="3-5">{{ if $en }}$3–5{{ else }}3–5 美元{{ end }}</option>
+        <option value="5-10">{{ if $en }}$5–10{{ else }}5–10 美元{{ end }}</option>
+        <option value="10-20">{{ if $en }}$10–20{{ else }}10–20 美元{{ end }}</option>
+        <option value="20-50">{{ if $en }}$20–50{{ else }}20–50 美元{{ end }}</option>
+        <option value="gt50">{{ if $en }}$50 and up{{ else }}50 美元以上{{ end }}</option>
       </select>
     </label>
-    <label>最低月价<input id="f-min" name="minPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="美元"></label>
-    <label>最高月价<input id="f-max" name="maxPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="美元"></label>
-    <label>周期
+    <label>{{ if $en }}Min monthly{{ else }}最低月价{{ end }}<input id="f-min" name="minPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="USD"></label>
+    <label>{{ if $en }}Max monthly{{ else }}最高月价{{ end }}<input id="f-max" name="maxPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="USD"></label>
+    <label>{{ if $en }}Min RAM (GB){{ else }}最低内存（GB）{{ end }}<input id="f-min-ram" name="minRam" type="number" min="0" step="0.5" inputmode="decimal" placeholder="GB"></label>
+    <label>{{ if $en }}Min vCPU{{ else }}最低 vCPU{{ end }}<input id="f-min-cpu" name="minCpu" type="number" min="0" step="1" inputmode="numeric" placeholder="vCPU"></label>
+    <label>{{ if $en }}Term{{ else }}周期{{ end }}
       <select id="f-period" name="period">
-        <option value="">全部周期</option>
-        {{- range $offers.facets.periods }}<option value="{{ .slug }}">{{ .label }}</option>{{ end }}
+        <option value="">{{ if $en }}Any term{{ else }}全部周期{{ end }}</option>
+        {{- range $offers.facets.periods }}<option value="{{ .slug }}">{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</option>{{ end }}
       </select>
     </label>
-    <label>库存
+    <label>{{ if $en }}Stock{{ else }}库存{{ end }}
       <select id="f-stock" name="stock">
-        <option value="">全部库存</option>
-        {{- range $offers.facets.stocks }}<option value="{{ .slug }}">{{ .label }}</option>{{ end }}
+        <option value="">{{ if $en }}Any stock{{ else }}全部库存{{ end }}</option>
+        {{- range $offers.facets.stocks }}<option value="{{ .slug }}">{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</option>{{ end }}
       </select>
     </label>
-    <label>商家
+    <label>{{ if $en }}Provider{{ else }}商家{{ end }}
       <select id="f-provider" name="provider">
-        <option value="">全部商家</option>
-        {{- range $offers.facets.providers }}<option value="{{ .slug }}"{{ if eq $.Params.filter_provider .slug }} selected{{ end }}>{{ .label }}</option>{{ end }}
+        <option value="">{{ if $en }}All providers{{ else }}全部商家{{ end }}</option>
+        {{- range $offers.facets.providers }}<option value="{{ .slug }}"{{ if eq $.Params.filter_provider .slug }} selected{{ end }}>{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</option>{{ end }}
       </select>
     </label>
-    <label>排序
+    <label>{{ if $en }}Sort{{ else }}排序{{ end }}
       <select id="f-sort" name="sort">
-        <option value="updated">最近核对</option>
-        <option value="price-asc">月价从低到高</option>
-        <option value="price-desc">月价从高到低</option>
+        <option value="updated">{{ if $en }}Recently checked{{ else }}最近核对{{ end }}</option>
+        <option value="price-asc">{{ if $en }}Monthly price, low to high{{ else }}月价从低到高{{ end }}</option>
+        <option value="price-desc">{{ if $en }}Monthly price, high to low{{ else }}月价从高到低{{ end }}</option>
       </select>
     </label>
-    <button type="button" id="f-reset" class="filter-reset">重置</button>
+    <button type="button" id="f-reset" class="filter-reset">{{ if $en }}Reset{{ else }}重置{{ end }}</button>
   </form>
-  <p class="servers-js-note">筛选在浏览器里完成。未启用脚本时，下面先列出最多 48 条；按地区、线路或商家查看请用页面顶部的入口。</p>
+  <p class="servers-js-note">{{ if $en }}Filters run in the browser. Without JavaScript the first 48 plans are shown. RAM and vCPU minimums need JavaScript.{{ else }}筛选在浏览器里完成。未启用脚本时，下面先列出最多 48 条；内存和 vCPU 下限需要脚本。按地区、线路或商家查看请用页面顶部的入口。{{ end }}</p>
   <div id="offer-list" class="offer-list">
     {{- range $i, $offer := $items }}
       {{- if lt $i 48 }}{{ partial "offer-card.html" $offer }}{{ end }}
     {{- end }}
   </div>
   <div class="offer-pager" id="offer-pager" hidden>
-    <button type="button" id="offer-prev">上一页</button>
+    <button type="button" id="offer-prev">{{ if $en }}Previous{{ else }}上一页{{ end }}</button>
     <span id="offer-page"></span>
-    <button type="button" id="offer-next">下一页</button>
+    <button type="button" id="offer-next">{{ if $en }}Next{{ else }}下一页{{ end }}</button>
   </div>
-  {{- if and (not .Params.filter_provider) (not .Params.filter_region) (not .Params.filter_line) }}
+  {{- if and (not $en) (not .Params.filter_provider) (not .Params.filter_region) (not .Params.filter_line) }}
   {{ partial "picks.html" . }}
   {{- else }}
-  <p class="servers-more"><a href="/servers/">查看全部套餐</a> · <a href="/servers/#picks">按预算和用途选</a></p>
+  <p class="servers-more"><a href="{{ "/servers/" | relLangURL }}">{{ if $en }}All plans{{ else }}查看全部套餐{{ end }}</a>{{ if not $en }} · <a href="/servers/#picks">按预算和用途选</a>{{ end }}</p>
   {{- end }}
 </div>
 <script src="/js/servers-filter.js" defer></script>

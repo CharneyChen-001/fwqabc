@@ -1,0 +1,24 @@
+{{- $en := eq site.Language.Lang "en" -}}
+<form id="lines-form" class="tool-form" action="{{ .RelPermalink }}" method="get">
+  <label>{{ if $en }}Visitor network{{ else }}访客网络{{ end }}
+    <select id="lines-isp" name="isp">
+      <option value="">{{ if $en }}Choose{{ else }}请选择{{ end }}</option>
+      <option value="telecom">{{ if $en }}China Telecom{{ else }}中国电信{{ end }}</option>
+      <option value="unicom">{{ if $en }}China Unicom{{ else }}中国联通{{ end }}</option>
+      <option value="mobile">{{ if $en }}China Mobile{{ else }}中国移动{{ end }}</option>
+      <option value="overseas">{{ if $en }}Mostly outside mainland China{{ else }}访客主要不在中国大陆{{ end }}</option>
+      <option value="unknown">{{ if $en }}Not sure{{ else }}不确定{{ end }}</option>
+    </select>
+  </label>
+  <label>{{ if $en }}Where the visitors are{{ else }}访客在哪里{{ end }}
+    <select id="lines-audience" name="audience">
+      <option value="">{{ if $en }}Choose{{ else }}请选择{{ end }}</option>
+      <option value="china">{{ if $en }}Mainly in mainland China{{ else }}主要在中国大陆{{ end }}</option>
+      <option value="overseas">{{ if $en }}Mainly outside mainland China{{ else }}主要在中国大陆以外{{ end }}</option>
+    </select>
+  </label>
+  <button type="submit">{{ if $en }}Show the matching note{{ else }}看对应说明{{ end }}</button>
+</form>
+<div id="lines-result" class="tool-result" role="status" aria-live="polite"></div>
+<script src="/js/network-rules.js" defer></script>
+<script src="/js/network-lines.js" defer></script>

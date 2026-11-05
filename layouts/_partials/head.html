@@ -100,9 +100,13 @@
 {{ range .AlternativeOutputFormats -}}
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ .Name }}">
 {{ end -}}
+{{- if .IsTranslated -}}
 {{- range .AllTranslations -}}
-<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+<link rel="alternate" hreflang="{{ .Language.Locale | default .Lang }}" href="{{ .Permalink }}">
 {{ end -}}
+{{- $zh := index (where .AllTranslations "Lang" "zh-cn") 0 -}}
+{{- with $zh }}<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">{{ end }}
+{{- end -}}
 
 <noscript>
     <style>

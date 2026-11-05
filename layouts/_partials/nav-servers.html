@@ -1,29 +1,31 @@
+{{- $en := eq site.Language.Lang "en" -}}
 <div class="sub sub-mega">
   <div>
-    <p class="mega-label">入口</p>
-    <a href="/servers/">全部套餐</a>
-    <a href="/servers/#picks">按预算和用途</a>
-    <a href="/merchants/">商家目录</a>
+    <p class="mega-label">{{ if $en }}Browse{{ else }}入口{{ end }}</p>
+    <a href="{{ "/servers/" | relLangURL }}">{{ if $en }}All plans{{ else }}全部套餐{{ end }}</a>
+    {{- if not $en }}<a href="{{ "/servers/#picks" | relLangURL }}">按预算和用途</a>{{ end }}
+    {{- if not $en }}<a href="{{ "/merchants/" | relLangURL }}">商家目录</a>{{ end }}
+    <a href="{{ "/tools/" | relLangURL }}">{{ if $en }}Buying tools{{ else }}选购工具{{ end }}</a>
   </div>
   <div>
-    <p class="mega-label">地区</p>
+    <p class="mega-label">{{ if $en }}Region{{ else }}地区{{ end }}</p>
     {{- range hugo.Data.offers.facets.regions }}
-    <a href="/servers/regions/{{ .slug }}/">{{ .label }}</a>
+    <a href="{{ printf "/servers/regions/%s/" .slug | relLangURL }}">{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</a>
     {{- end }}
   </div>
   <div>
-    <p class="mega-label">线路</p>
+    <p class="mega-label">{{ if $en }}Line{{ else }}线路{{ end }}</p>
     {{- range hugo.Data.offers.facets.lines }}
-    <a href="/servers/lines/{{ .slug }}/">{{ .label }}</a>
+    <a href="{{ printf "/servers/lines/%s/" .slug | relLangURL }}">{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</a>
     {{- end }}
-    <a href="/routes/cn2-gia/">CN2 GIA 说明</a>
-    <a href="/routes/9929/">AS9929 说明</a>
-    <a href="/routes/cmin2/">CMIN2 说明</a>
+    <a href="{{ "/routes/cn2-gia/" | relLangURL }}">{{ if $en }}CN2 GIA note{{ else }}CN2 GIA 说明{{ end }}</a>
+    <a href="{{ "/routes/9929/" | relLangURL }}">{{ if $en }}9929 note{{ else }}AS9929 说明{{ end }}</a>
+    <a href="{{ "/routes/cmin2/" | relLangURL }}">{{ if $en }}CMIN2 note{{ else }}CMIN2 说明{{ end }}</a>
   </div>
   <div>
-    <p class="mega-label">商家</p>
+    <p class="mega-label">{{ if $en }}Provider{{ else }}商家{{ end }}</p>
     {{- range hugo.Data.offers.facets.providers }}
-    <a href="/servers/providers/{{ .slug }}/">{{ .label }}</a>
+    <a href="{{ printf "/servers/providers/%s/" .slug | relLangURL }}">{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</a>
     {{- end }}
   </div>
 </div>

@@ -6,7 +6,7 @@
   var offers = [];
   var matched = [];
   var page = 1;
-  var fields = ["f-q", "f-region", "f-line", "f-price", "f-min", "f-max", "f-period", "f-stock", "f-provider", "f-sort"];
+  var fields = ["f-q", "f-region", "f-line", "f-price", "f-min", "f-max", "f-min-ram", "f-min-cpu", "f-period", "f-stock", "f-provider", "f-sort"];
 
   function readForm() {
     return {
@@ -16,6 +16,8 @@
       band: document.getElementById("f-price").value,
       min: document.getElementById("f-min").value,
       max: document.getElementById("f-max").value,
+      minRam: document.getElementById("f-min-ram") ? document.getElementById("f-min-ram").value : "",
+      minCpu: document.getElementById("f-min-cpu") ? document.getElementById("f-min-cpu").value : "",
       period: document.getElementById("f-period").value,
       stock: document.getElementById("f-stock").value,
       provider: document.getElementById("f-provider").value,
@@ -34,6 +36,8 @@
     document.getElementById("f-price").value = pick("price", "");
     document.getElementById("f-min").value = pick("minPrice", "");
     document.getElementById("f-max").value = pick("maxPrice", "");
+    if (document.getElementById("f-min-ram")) document.getElementById("f-min-ram").value = pick("minRam", "");
+    if (document.getElementById("f-min-cpu")) document.getElementById("f-min-cpu").value = pick("minCpu", "");
     document.getElementById("f-period").value = pick("period", "");
     document.getElementById("f-stock").value = pick("stock", "");
     document.getElementById("f-provider").value = pick("provider", app.dataset.provider || "");
@@ -71,6 +75,16 @@
       if (filter.max !== "" && offer.monthly_usd > Number(filter.max)) return false;
       if (!inBand(offer.monthly_usd, filter.band)) return false;
     }
+    if (filter.minRam !== "") {
+      var ramGb = Number(filter.minRam);
+      if (!isFinite(ramGb) || ramGb < 0) return false;
+      if (offer.ram_mb == null || offer.ram_mb < ramGb * 1024) return false;
+    }
+    if (filter.minCpu !== "") {
+      var cpu = Number(filter.minCpu);
+      if (!isFinite(cpu) || cpu < 0) return false;
+      if (offer.cpu == null || offer.cpu < cpu) return false;
+    }
     return true;
   }
 
@@ -102,45 +116,65 @@
     return node;
   }
 
+  var uiEn = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var regionEn = { "united-states": "United States", "hong-kong": "Hong Kong", japan: "Japan", singapore: "Singapore", netherlands: "Netherlands", germany: "Germany", "united-kingdom": "United Kingdom", australia: "Australia", canada: "Canada", "south-korea": "South Korea", france: "France", india: "India", poland: "Poland", "united-arab-emirates": "United Arab Emirates", "new-zealand": "New Zealand", spain: "Spain", china: "China", mexico: "Mexico", brazil: "Brazil", "south-africa": "South Africa", israel: "Israel", sweden: "Sweden", italy: "Italy", chile: "Chile" };
+  var lineEn = { "cn2-gia": "CN2 GIA", cmin2: "CMIN2", as9929: "AS9929", cn2: "CN2" };
+  var periodEn = { hourly: "Hourly", monthly: "Monthly", quarterly: "Quarterly", semiannually: "Semiannual", annually: "Annual", biennially: "Biennial", quote: "Quote", unknown: "Period not verified" };
+  var kindEn = { "云服务器": "Cloud server", "裸金属": "Bare metal", "共享主机": "Shared hosting", "独立服务器": "Dedicated", "物理服务器": "Dedicated", "Linux 云 VPS": "Linux VPS", "存储型 VPS": "Storage VPS" };
+
   function stockNode(offer) {
-    if (offer.stock === "in") return el("span", "stock stock-in", offer.stock_label || "有货");
-    if (offer.stock === "out") return el("span", "stock stock-out", offer.stock_label || "缺货");
-    return el("span", "stock stock-unknown", "库存未核实");
+    if (offer.stock === "in") return el("span", "stock stock-in", uiEn ? "In stock" : (offer.stock_label || "有货"));
+    if (offer.stock === "out") return el("span", "stock stock-out", uiEn ? "Out of stock" : (offer.stock_label || "缺货"));
+    return el("span", "stock stock-unknown", uiEn ? "Stock not verified" : "库存未核实");
   }
 
   function card(offer) {
     var article = el("article", "offer-card");
     var top = el("div", "offer-top");
-    top.appendChild(el("h3", "", offer.name || "未命名套餐"));
+    top.appendChild(el("h3", "", offer.name || (uiEn ? "Unnamed plan" : "未命名套餐")));
     top.appendChild(stockNode(offer));
     article.appendChild(top);
     var meta = el("p", "offer-meta");
-    meta.appendChild(el("span", "", offer.provider || ""));
-    if (offer.kind) meta.appendChild(el("span", "", offer.kind));
-    if (offer.promo_code) meta.appendChild(el("span", "promo-code", "优惠码 " + offer.promo_code));
+    var provider = offer.provider || "";
+    if (uiEn && offer.provider_slug === "bandwagonhost") provider = "BandwagonHost";
+    meta.appendChild(el("span", "", provider));
+    if (offer.kind && (!uiEn || kindEn[offer.kind] || offer.kind === "VPS" || offer.kind === "GPU")) {
+      meta.appendChild(el("span", "", uiEn ? (kindEn[offer.kind] || offer.kind) : offer.kind));
+    }
+    if (offer.promo_code) meta.appendChild(el("span", "promo-code", (uiEn ? "Code " : "优惠码 ") + offer.promo_code));
     article.appendChild(meta);
     var price = el("p", "offer-price");
-    price.appendChild(el("b", offer.price_text ? "" : "is-muted", offer.price_text || "价格待核实"));
-    if (offer.period_label) price.appendChild(el("span", "", offer.period_label));
+    price.appendChild(el("b", offer.price_text ? "" : "is-muted", offer.price_text || (uiEn ? "Price not verified" : "价格待核实")));
+    if (offer.period) price.appendChild(el("span", "", uiEn ? (periodEn[offer.period] || offer.period) : (offer.period_label || offer.period)));
     if (offer.monthly_basis === "period_divided" && offer.monthly_usd != null) {
-      price.appendChild(el("small", "", "折合 $" + Number(offer.monthly_usd).toFixed(2) + "/月"));
+      price.appendChild(el("small", "", (uiEn ? "about $" : "折合 $") + Number(offer.monthly_usd).toFixed(2) + (uiEn ? "/mo" : "/月")));
     }
-    if (offer.period === "hourly" && offer.hourly_text) price.appendChild(el("small", "", offer.hourly_text + "/小时"));
+    if (offer.period === "hourly" && offer.hourly_text) price.appendChild(el("small", "", offer.hourly_text + (uiEn ? "/hour" : "/小时")));
     article.appendChild(price);
-    var where = [offer.region, offer.city, offer.line].filter(Boolean).join(" · ");
-    article.appendChild(el("p", "offer-where", where || "地区与线路待核实"));
-    article.appendChild(el("p", "offer-specs", offer.specs || "配置待核实"));
-    if (offer.location_note) article.appendChild(el("p", "offer-note", offer.location_note));
+    var whereBits = uiEn
+      ? [offer.region_slug && regionEn[offer.region_slug], offer.line_slug && lineEn[offer.line_slug]].filter(Boolean)
+      : [offer.region, offer.city, offer.line].filter(Boolean);
+    article.appendChild(el("p", "offer-where", whereBits.join(" · ") || (uiEn ? "Region and line not verified" : "地区与线路待核实")));
+    var specs = offer.specs;
+    if (uiEn) {
+      var parts = [];
+      if (offer.cpu != null) parts.push(offer.cpu + " vCPU");
+      if (offer.ram_mb != null) parts.push((offer.ram_mb % 1024 === 0 ? (offer.ram_mb / 1024) + " GB RAM" : offer.ram_mb + " MB RAM"));
+      if (offer.disk_gb != null) parts.push(offer.disk_gb + " GB" + (offer.disk_type ? " " + offer.disk_type : ""));
+      specs = parts.join(" / ");
+    }
+    article.appendChild(el("p", "offer-specs", specs || (uiEn ? "Specs not verified" : "配置待核实")));
+    if (!uiEn && offer.location_note) article.appendChild(el("p", "offer-note", offer.location_note));
     var foot = el("div", "offer-foot");
     if (offer.checked_on) {
-      var time = el("time", "", "核实 " + offer.checked_on);
+      var time = el("time", "", (uiEn ? "Checked " : "核实 ") + offer.checked_on);
       time.dateTime = offer.checked_on;
       foot.appendChild(time);
     } else {
-      foot.appendChild(el("span", "", "核实日期待核实"));
+      foot.appendChild(el("span", "", uiEn ? "Check date missing" : "核实日期待核实"));
     }
     if (offer.aff_slug || offer.buy_url) {
-      var link = el("a", "go-btn", "购买");
+      var link = el("a", "go-btn", uiEn ? "Buy" : "购买");
       link.href = offer.aff_slug ? "/go/" + offer.aff_slug + "/" : offer.buy_url;
       link.rel = offer.buy_rel || "sponsored nofollow noopener";
       link.target = "_blank";
@@ -166,16 +200,18 @@
       if (Math.abs(value - Math.round(value)) < 1e-6) return "$" + Math.round(value);
       return "$" + value.toFixed(2);
     }
-    var text = "套餐 " + items.length + " · 有货 " + instock + " · 商家 " + Object.keys(providers).length;
-    if (paid.length && paid.length !== months.length) text += " · 付费月价起 " + usd(Math.min.apply(null, paid)) + "（另有免费档）";
-    else if (months.length) text += " · 月价起 " + usd(Math.min.apply(null, months));
+    var en = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+    var text = (en ? "Plans " : "套餐 ") + items.length + (en ? " · in stock " : " · 有货 ") + instock + (en ? " · providers " : " · 商家 ") + Object.keys(providers).length;
+    var enStats = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+    if (paid.length && paid.length !== months.length) text += (enStats ? " · paid monthly from " : " · 付费月价起 ") + usd(Math.min.apply(null, paid)) + (enStats ? " (a free tier also exists)" : "（另有免费档）");
+    else if (months.length) text += (enStats ? " · monthly from " : " · 月价起 ") + usd(Math.min.apply(null, months));
     stats.textContent = text;
   }
 
   function render() {
     list.replaceChildren();
     if (!matched.length) {
-      list.appendChild(el("p", "offer-empty", "没有符合条件的套餐。可以放宽筛选，或去商家目录看原始报价。"));
+      list.appendChild(el("p", "offer-empty", uiEn ? "No plans match. Widen the filters. Unknown RAM or vCPU is excluded when a minimum is set." : "没有符合条件的套餐。可以放宽筛选。设了内存或 vCPU 下限时，未知配置会被排除。"));
     } else {
       var start = (page - 1) * PAGE;
       matched.slice(start, start + PAGE).forEach(function (offer) { list.appendChild(card(offer)); });
@@ -202,6 +238,8 @@
     if (filter.band) params.set("price", filter.band);
     if (filter.min !== "") params.set("minPrice", filter.min);
     if (filter.max !== "") params.set("maxPrice", filter.max);
+    if (filter.minRam !== "") params.set("minRam", filter.minRam);
+    if (filter.minCpu !== "") params.set("minCpu", filter.minCpu);
     if (filter.sort && filter.sort !== "updated") params.set("sort", filter.sort);
     var query = params.toString();
     history.replaceState(null, "", query ? "?" + query : location.pathname);

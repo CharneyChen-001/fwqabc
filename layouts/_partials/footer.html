@@ -1,41 +1,52 @@
 {{- if not (.Param "hideFooter") }}
 <footer class="footer site-footer">
+  {{- $en := eq site.Language.Lang "en" -}}
   <div class="sf-grid">
     <div class="sf-brand">
-      <a href="/"><img src="/brand/logo-64.png" alt="" width="44" height="44" loading="lazy"><b>出海ABC</b></a>
-      <p>看清楚价格和线路，再决定买哪一台。本站整理已核实的优惠、实测和套餐，不代售服务器。</p>
+      <a href="{{ "/" | relLangURL }}"><img src="/brand/logo-64.png" alt="" width="44" height="44" loading="lazy"><b>出海ABC</b></a>
+      <p>{{ if $en }}Read the price and the line before you buy. This site does not sell servers.{{ else }}看清楚价格和线路，再决定买哪一台。本站整理已核实的优惠、实测和套餐，不代售服务器。{{ end }}</p>
     </div>
-    <nav class="sf-col" aria-label="服务器专题">
-      <b>服务器专题</b>
-      <a href="/servers/">全部套餐</a>
-      <a href="/servers/regions/hong-kong/">中国香港</a>
-      <a href="/servers/regions/united-states/">美国</a>
-      <a href="/servers/regions/japan/">日本</a>
-      <a href="/servers/lines/cn2-gia/">CN2 GIA</a>
-      <a href="/servers/#picks">按预算和用途</a>
+    <nav class="sf-col" aria-label="{{ if $en }}Plans{{ else }}服务器专题{{ end }}">
+      <b>{{ if $en }}Plans{{ else }}服务器专题{{ end }}</b>
+      <a href="{{ "/servers/" | relLangURL }}">{{ if $en }}All plans{{ else }}全部套餐{{ end }}</a>
+      <a href="{{ "/servers/regions/hong-kong/" | relLangURL }}">{{ if $en }}Hong Kong{{ else }}中国香港{{ end }}</a>
+      <a href="{{ "/servers/regions/united-states/" | relLangURL }}">{{ if $en }}United States{{ else }}美国{{ end }}</a>
+      <a href="{{ "/servers/regions/japan/" | relLangURL }}">{{ if $en }}Japan{{ else }}日本{{ end }}</a>
+      <a href="{{ "/servers/lines/cn2-gia/" | relLangURL }}">CN2 GIA</a>
+      {{- if not $en }}<a href="/servers/#picks">按预算和用途</a>{{ end }}
     </nav>
-    <nav class="sf-col" aria-label="常用入口">
-      <b>常用入口</b>
+    <nav class="sf-col" aria-label="{{ if $en }}Explore{{ else }}常用入口{{ end }}">
+      <b>{{ if $en }}Explore{{ else }}常用入口{{ end }}</b>
+      {{- if $en }}
+      <a href="{{ "/tools/server-sizing/" | relLangURL }}">Configuration floor</a>
+      <a href="{{ "/tools/network-lines/" | relLangURL }}">Line lookup</a>
+      <a href="{{ "/knowledge/" | relLangURL }}">Knowledge</a>
+      <a href="{{ "/routes/" | relLangURL }}">Line notes</a>
+      <a href="{{ "/search/" | relLangURL }}">Search</a>
+      <a href="/deals/">Chinese deal posts</a>
+      {{- else }}
       <a href="/deals/">优惠促销</a>
       <a href="/free/">免费服务器 / 赠金</a>
       <a href="/cases/">实测案例</a>
       <a href="/routes/">线路专题</a>
+      <a href="/tools/">选购工具</a>
       <a href="/knowledge/">知识库</a>
       <a href="/categories/">文章分类</a>
       <a href="/merchants/">商家目录</a>
       <a href="/search/">站内搜索</a>
+      {{- end }}
     </nav>
-    <nav class="sf-col" aria-label="信任与政策">
-      <b>信任与政策</b>
-      <a href="/about/">关于本站</a>
-      <a href="/contact/">联系与纠错</a>
-      <a href="/disclosure/">推广披露</a>
-      <a href="/privacy/">隐私政策</a>
-      <a href="/terms/">服务条款</a>
-      <a href="/index.xml">RSS 订阅</a>
+    <nav class="sf-col" aria-label="{{ if $en }}Policies{{ else }}信任与政策{{ end }}">
+      <b>{{ if $en }}Policies{{ else }}信任与政策{{ end }}</b>
+      <a href="{{ "/about/" | relLangURL }}">{{ if $en }}About{{ else }}关于本站{{ end }}</a>
+      <a href="{{ "/contact/" | relLangURL }}">{{ if $en }}Contact{{ else }}联系与纠错{{ end }}</a>
+      <a href="{{ "/disclosure/" | relLangURL }}">{{ if $en }}Affiliate disclosure{{ else }}推广披露{{ end }}</a>
+      <a href="{{ "/privacy/" | relLangURL }}">{{ if $en }}Privacy{{ else }}隐私政策{{ end }}</a>
+      <a href="{{ "/terms/" | relLangURL }}">{{ if $en }}Terms{{ else }}服务条款{{ end }}</a>
+      <a href="{{ "feed.xml" | relLangURL }}">RSS</a>
     </nav>
   </div>
-  <p class="sf-disc">本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 <a href="/disclosure/">推广披露</a>。套餐价格以商家结算页为准。</p>
+  <p class="sf-disc">{{ if $en }}Some links are affiliate links. We may earn a commission, and your price does not change. See the <a href="{{ "/disclosure/" | relLangURL }}">disclosure</a>. Checkout prices win.{{ else }}本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 <a href="/disclosure/">推广披露</a>。套餐价格以商家结算页为准。{{ end }}</p>
   <p class="sf-copy">&copy; {{ now.Year }} 出海ABC · fwqabc.com</p>
 </footer>
 {{- end }}

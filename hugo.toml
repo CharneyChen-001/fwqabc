@@ -1,6 +1,7 @@
 baseURL = "https://fwqabc.com/"
 locale = "zh-cn"
 defaultContentLanguage = "zh-cn"
+defaultContentLanguageInSubdir = false
 hasCJKLanguage = true
 title = "fwqabc 出海ABC"
 theme = "PaperMod"
@@ -16,9 +17,23 @@ pagination.pagerSize = 10
 
 [languages]
   [languages.zh-cn]
-    label = "简体中文"
+    label = "中文"
     locale = "zh-CN"
     weight = 1
+    contentDir = "content"
+    [languages.zh-cn.params]
+      homeTitle = "出海服务器，少踩坑少花钱"
+      description = "出海ABC旗下服务器指南：国外VPS真实价格、线路科普与优惠汇总，帮站长、外贸和出海新手少踩坑少花钱。价格以官网为准。"
+      DateFormat = "2006年1月2日"
+  [languages.en]
+    label = "English"
+    locale = "en"
+    weight = 2
+    contentDir = "content.en"
+    [languages.en.params]
+      homeTitle = "Server deals and buying guides"
+      description = "Chuhai ABC notes on VPS prices, lines, and offers that this site has already checked. Checkout prices win. Unverified fields stay empty."
+      DateFormat = "January 2, 2006"
 
 [permalinks]
   [permalinks.page]
@@ -68,7 +83,7 @@ pagination.pagerSize = 10
     text = "出海ABC —— 出海服务器，少踩坑少花钱。本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 [推广披露](/disclosure/)。价格以官网为准。"
 
 [outputs]
-  home = ["HTML", "RSS", "JSON", "feed", "postsmap", "serversmap", "knowledgemap", "pagesmap"]
+  home = ["HTML", "RSS", "JSON", "feed", "postsmap", "serversmap", "knowledgemap", "pagesmap", "ensitemap"]
 
 [outputFormats]
   [outputFormats.feed]
@@ -94,6 +109,11 @@ pagination.pagerSize = 10
   [outputFormats.pagesmap]
     mediaType = "application/xml"
     baseName = "sitemap-pages"
+    isPlainText = false
+    notAlternative = true
+  [outputFormats.ensitemap]
+    mediaType = "application/xml"
+    baseName = "sitemap-en"
     isPlainText = false
     notAlternative = true
 
@@ -144,7 +164,53 @@ pagination.pagerSize = 10
     url = "/merchants/"
     weight = 30
   [[menus.main]]
+    name = "选购工具"
+    identifier = "tools"
+    url = "/tools/"
+    weight = 18
+  [[menus.main]]
+    name = "配置下限"
+    parent = "tools"
+    url = "/tools/server-sizing/"
+    weight = 10
+  [[menus.main]]
+    name = "线路对照"
+    parent = "tools"
+    url = "/tools/network-lines/"
+    weight = 20
+  [[menus.main]]
     name = "搜索"
+    identifier = "search"
+    url = "/search/"
+    weight = 40
+
+  [[languages.en.menus.main]]
+    name = "Knowledge"
+    identifier = "knowledge"
+    url = "/knowledge/"
+    weight = 10
+  [[languages.en.menus.main]]
+    name = "Tools"
+    identifier = "tools"
+    url = "/tools/"
+    weight = 15
+  [[languages.en.menus.main]]
+    name = "Configuration floor"
+    parent = "tools"
+    url = "/tools/server-sizing/"
+    weight = 10
+  [[languages.en.menus.main]]
+    name = "Line lookup"
+    parent = "tools"
+    url = "/tools/network-lines/"
+    weight = 20
+  [[languages.en.menus.main]]
+    name = "Compare plans"
+    identifier = "servers"
+    url = "/servers/"
+    weight = 20
+  [[languages.en.menus.main]]
+    name = "Search"
     identifier = "search"
     url = "/search/"
     weight = 40

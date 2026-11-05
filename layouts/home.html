@@ -5,69 +5,75 @@
   {{- $end := time.AsTime (.end | default "2099-01-01T00:00:00+08:00") -}}
   {{- if gt $end.Unix $now }}{{ $promos = $promos | append . }}{{ end -}}
 {{- end -}}
+{{- $en := eq site.Language.Lang "en" -}}
 <div class="home-wrap"></div>
 <section class="home-hero">
   <p class="home-kicker">fwqabc.com · 出海ABC</p>
-  <h1>服务器优惠与选购指南</h1>
-  <p class="home-lead">读最新优惠和实测，再按地区、线路和价格比较套餐。价格以官网为准，没核实的不写。</p>
-  <form class="home-search" action="/search/" method="get" role="search">
-    <label class="sr-only" for="home-q">搜索</label>
-    <input id="home-q" name="q" type="search" placeholder="搜索商家、地区、线路、优惠码或文章" autocomplete="off">
-    <button type="submit">搜索</button>
+  <h1>{{ if $en }}Server deals and buying guides{{ else }}服务器优惠与选购指南{{ end }}</h1>
+  <p class="home-lead">{{ if $en }}Read the notes this site has already checked, then filter plans by region, line, and price. Checkout prices win. Empty fields were not guessed.{{ else }}读最新优惠和实测，再按地区、线路和价格比较套餐。价格以官网为准，没核实的不写。{{ end }}</p>
+  <form class="home-search" action="{{ "/search/" | relLangURL }}" method="get" role="search">
+    <label class="sr-only" for="home-q">{{ if $en }}Search{{ else }}搜索{{ end }}</label>
+    <input id="home-q" name="q" type="search" placeholder="{{ if $en }}Search providers, regions, lines, or pages{{ else }}搜索商家、地区、线路、优惠码或文章{{ end }}" autocomplete="off">
+    <button type="submit">{{ if $en }}Search{{ else }}搜索{{ end }}</button>
   </form>
   <div class="chip-block">
-    <p>按地区</p>
+    <p>{{ if $en }}By region{{ else }}按地区{{ end }}</p>
     <div class="chip-row">
       {{- $prefer := slice "hong-kong" "united-states" "japan" "singapore" "south-korea" "netherlands" "germany" "united-kingdom" }}
       {{- $regions := hugo.Data.offers.facets.regions }}
       {{- range $prefer }}
         {{- $slug := . }}
-        {{- range $regions }}{{ if eq .slug $slug }}<a class="chip" href="/servers/regions/{{ .slug }}/">{{ .label }}</a>{{ end }}{{ end }}
+        {{- range $regions }}{{ if eq .slug $slug }}<a class="chip" href="{{ printf "/servers/regions/%s/" .slug | relLangURL }}">{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</a>{{ end }}{{ end }}
       {{- end }}
     </div>
   </div>
   <div class="chip-block">
-    <p>按线路</p>
+    <p>{{ if $en }}By line{{ else }}按线路{{ end }}</p>
     <div class="chip-row">
-      {{- range hugo.Data.offers.facets.lines }}<a class="chip" href="/servers/lines/{{ .slug }}/">{{ .label }}</a>{{ end }}
-      <a class="chip" href="/routes/9929/">AS9929</a>
-      <a class="chip" href="/routes/cmin2/">CMIN2</a>
-      <a class="chip" href="/routes/">线路说明</a>
+      {{- range hugo.Data.offers.facets.lines }}<a class="chip" href="{{ printf "/servers/lines/%s/" .slug | relLangURL }}">{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</a>{{ end }}
+      <a class="chip" href="{{ "/routes/9929/" | relLangURL }}">AS9929</a>
+      <a class="chip" href="{{ "/routes/cmin2/" | relLangURL }}">CMIN2</a>
+      <a class="chip" href="{{ "/routes/" | relLangURL }}">{{ if $en }}Line notes{{ else }}线路说明{{ end }}</a>
     </div>
   </div>
 </section>
 
 <section class="home-sec">
-  <div class="sec-line"><h2>最新文章</h2><a href="/deals/">浏览优惠</a></div>
+  <div class="sec-line"><h2>{{ if $en }}Latest notes{{ else }}最新文章{{ end }}</h2>{{ if not $en }}<a href="/deals/">浏览优惠</a>{{ end }}</div>
+  {{- if $en }}
+  <p class="src-note">Deal posts, the RFKEY test, and merchant catalogs are still published in Chinese. <a href="/deals/">Open the Chinese deal list</a>.</p>
+  {{- end }}
   <div class="article-grid">
-    {{- $latest := where site.RegularPages "Section" "in" (slice "deals" "free" "cases") }}
+    {{- $latest := where site.RegularPages "Section" "in" (slice "deals" "free" "cases" "knowledge" "tools") }}
     {{- range first 6 $latest }}{{ partial "article-card.html" . }}{{ end }}
   </div>
 </section>
 
 <section class="home-sec">
-  <div class="sec-line"><h2>从这里继续</h2></div>
+  <div class="sec-line"><h2>{{ if $en }}Continue{{ else }}从这里继续{{ end }}</h2></div>
   <div class="entry-grid">
-    <a href="/servers/"><b>服务器比价</b><span>按地区、线路、价格和库存筛选已核实套餐</span></a>
-    <a href="/servers/#picks"><b>按预算和用途</b><span>几条已经核对过的入门方案</span></a>
+    <a href="{{ "/servers/" | relLangURL }}"><b>{{ if $en }}Compare plans{{ else }}服务器比价{{ end }}</b><span>{{ if $en }}Filter checked offers by region, line, and price{{ else }}按地区、线路、价格和库存筛选已核实套餐{{ end }}</span></a>
+    {{- if not $en }}<a href="/servers/#picks"><b>按预算和用途</b><span>几条已经核对过的入门方案</span></a>
     <a href="/merchants/"><b>商家目录</b><span>按系列和机房查看原始目录</span></a>
     <a href="/free/"><b>免费服务器</b><span>赠金和 Always Free 申请指南</span></a>
-    <a href="/cases/"><b>实测案例</b><span>自购机器上的访问记录</span></a>
-    <a href="/routes/"><b>线路专题</b><span>CN2 GIA、9929、CMIN2</span></a>
-    <a href="/knowledge/"><b>知识库</b><span>先看适不适合，再去比价</span></a>
+    <a href="/cases/"><b>实测案例</b><span>自购机器上的访问记录</span></a>{{ end }}
+    <a href="{{ "/tools/server-sizing/" | relLangURL }}"><b>{{ if $en }}Configuration floor{{ else }}配置下限{{ end }}</b><span>{{ if $en }}A vCPU and RAM floor, not a benchmark{{ else }}经验下限，不是压测{{ end }}</span></a>
+    <a href="{{ "/tools/network-lines/" | relLangURL }}"><b>{{ if $en }}Line lookup{{ else }}线路对照{{ end }}</b><span>{{ if $en }}Match a carrier to the notes already on this site{{ else }}按本站线路页对照运营商{{ end }}</span></a>
+    <a href="{{ "/routes/" | relLangURL }}"><b>{{ if $en }}Line notes{{ else }}线路专题{{ end }}</b><span>CN2 GIA、9929、CMIN2</span></a>
+    <a href="{{ "/knowledge/" | relLangURL }}"><b>{{ if $en }}Knowledge{{ else }}知识库{{ end }}</b><span>{{ if $en }}Decide if a line fits before comparing plans{{ else }}先看适不适合，再去比价{{ end }}</span></a>
   </div>
 </section>
 
 <section class="promo-lite" id="promos">
-  <div class="sec-line"><h2>近期活动</h2><a href="/deals/">全部优惠</a></div>
+  <div class="sec-line"><h2>{{ if $en }}Current offers{{ else }}近期活动{{ end }}</h2><a href="/deals/">{{ if $en }}Chinese deal posts{{ else }}全部优惠{{ end }}</a></div>
   <div class="promo-lite-row">
-    <div class="cd-mini"><span>双11 · 11/11 北京时间</span><b data-target="{{ site.Params.double11 | default "2026-11-11T00:00:00+08:00" }}">11/11</b></div>
-    <div class="cd-mini"><span>黑五 · 11/25–11/30</span><b data-target="{{ site.Params.blackFridayStart | default "2026-11-25T00:00:00+08:00" }}" data-end="{{ site.Params.blackFridayEnd | default "2026-11-30T23:59:59+08:00" }}">11/25</b></div>
+    <div class="cd-mini"><span>{{ if $en }}Singles' Day · 11/11 Beijing time{{ else }}双11 · 11/11 北京时间{{ end }}</span><b data-target="{{ site.Params.double11 | default "2026-11-11T00:00:00+08:00" }}">11/11</b></div>
+    <div class="cd-mini"><span>{{ if $en }}Black Friday · 11/25–11/30{{ else }}黑五 · 11/25–11/30{{ end }}</span><b data-target="{{ site.Params.blackFridayStart | default "2026-11-25T00:00:00+08:00" }}" data-end="{{ site.Params.blackFridayEnd | default "2026-11-30T23:59:59+08:00" }}">11/25</b></div>
     {{- range first 2 $promos }}
     <a class="promo-mini" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">
-      {{- with .badge }}<span class="badge">{{ . }}</span>{{ end }}
+      {{- if not $en }}{{ with .badge }}<span class="badge">{{ . }}</span>{{ end }}{{ end }}
       <b>{{ .merchant }} {{ .price }}</b>
-      <span>{{ .title }}</span>
+      {{- if not $en }}<span>{{ .title }}</span>{{ end }}
     </a>
     {{- end }}
   </div>
@@ -80,8 +86,8 @@ if(!m){var t=Date.parse(v);return isNaN(t)?NaN:t}
 var u=Date.UTC(+m[1],m[2]-1,+m[3],+m[4],+m[5],+(m[6]||0)),o=8*60;if(m[7]==='Z')o=0;else if(m[8])o=(m[8]==='-'?-1:1)*(m[9]*60+ +m[10]);return u-o*6e4}
 function cd(){document.querySelectorAll('.cd-mini b[data-target]').forEach(function(el){var t=pd(el.dataset.target),e=el.dataset.end?pd(el.dataset.end):NaN,n=Date.now();
 if(isNaN(t))return;var d=t-n;
-if(d<=0){el.textContent=(!isNaN(e)&&n<e)?'进行中':(!isNaN(e)?'已结束':'进行中');return}
-var D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24;el.textContent=D+'天 '+H+'时'})}
+if(d<=0){el.textContent=(!isNaN(e)&&n<e)?'{{ if $en }}On now{{ else }}进行中{{ end }}':(!isNaN(e)?'{{ if $en }}Ended{{ else }}已结束{{ end }}':'{{ if $en }}On now{{ else }}进行中{{ end }}');return}
+var D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24;el.textContent=D+'{{ if $en }}d {{ else }}天 {{ end }}'+H+'{{ if $en }}h{{ else }}时{{ end }}'})}
 cd();setInterval(cd,1000)})();
 </script>
 {{- end }}

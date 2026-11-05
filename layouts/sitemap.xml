@@ -4,4 +4,7 @@
   <sitemap><loc>{{ "sitemap-servers.xml" | absURL }}</loc></sitemap>
   <sitemap><loc>{{ "sitemap-knowledge.xml" | absURL }}</loc></sitemap>
   <sitemap><loc>{{ "sitemap-pages.xml" | absURL }}</loc></sitemap>
+  {{- if eq site.Language.Lang "zh-cn" }}
+  <sitemap><loc>{{ "en/sitemap.xml" | absURL }}</loc></sitemap>
+  {{- end }}
 </sitemapindex>

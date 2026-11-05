@@ -9,11 +9,16 @@
         </div>
         <input class="nav-toggle" id="nav-toggle" type="checkbox">
         <ul id="menu" class="menu">
+            {{- $here := $.RelPermalink }}
+            {{- if hasPrefix $here "/en/" }}{{ $here = substr $here 3 }}{{ end }}
             {{- range site.Menus.main }}
-            {{- $active := eq $.RelPermalink .URL }}
-            {{- if and (eq .Identifier "servers") (hasPrefix $.RelPermalink "/servers/") }}{{ $active = true }}{{ end }}
-            {{- if and (eq .Identifier "articles") (or (hasPrefix $.RelPermalink "/deals/") (hasPrefix $.RelPermalink "/free/") (hasPrefix $.RelPermalink "/cases/") (hasPrefix $.RelPermalink "/routes/") (hasPrefix $.RelPermalink "/categories/")) }}{{ $active = true }}{{ end }}
-            {{- if and (eq .Identifier "knowledge") (hasPrefix $.RelPermalink "/knowledge/") }}{{ $active = true }}{{ end }}
+            {{- $menuURL := .URL }}
+            {{- if hasPrefix $menuURL "/en/" }}{{ $menuURL = substr $menuURL 3 }}{{ end }}
+            {{- $active := or (eq $.RelPermalink .URL) (eq $here $menuURL) }}
+            {{- if and (eq .Identifier "servers") (or (hasPrefix $here "/servers/") (hasPrefix $.RelPermalink "/servers/")) }}{{ $active = true }}{{ end }}
+            {{- if and (eq .Identifier "articles") (or (hasPrefix $here "/deals/") (hasPrefix $here "/free/") (hasPrefix $here "/cases/") (hasPrefix $here "/routes/") (hasPrefix $here "/categories/")) }}{{ $active = true }}{{ end }}
+            {{- if and (eq .Identifier "knowledge") (hasPrefix $here "/knowledge/") }}{{ $active = true }}{{ end }}
+            {{- if and (eq .Identifier "tools") (hasPrefix $here "/tools/") }}{{ $active = true }}{{ end }}
             <li class="{{ if or .HasChildren (eq .Identifier "servers") }}has-sub{{ end }}">
                 {{- if or .HasChildren (eq .Identifier "servers") }}
                 <details>
@@ -37,13 +42,24 @@
             {{- end }}
         </ul>
         <div class="nav-tools">
+            {{- if .IsTranslated }}
+              {{- range .Translations }}
+              <a class="lang-switch" href="{{ .Permalink }}" hreflang="{{ .Language.Locale | default .Lang }}" lang="{{ .Language.Locale | default .Lang }}">{{ .Language.Label }}</a>
+              {{- end }}
+            {{- else }}
+              {{- range site.Home.AllTranslations }}
+                {{- if ne .Lang site.Language.Lang }}
+                <a class="lang-switch" href="{{ .Permalink }}" hreflang="{{ .Language.Locale | default .Lang }}">{{ .Language.Label }}</a>
+                {{- end }}
+              {{- end }}
+            {{- end }}
             {{- if not site.Params.disableThemeToggle }}
-            <button id="theme-toggle" class="theme-toggle" accesskey="t" title="切换深色 (Alt + T)" aria-label="切换深色">
+            <button id="theme-toggle" class="theme-toggle" accesskey="t" title="{{ if eq site.Language.Lang "en" }}Toggle dark mode (Alt + T){{ else }}切换深色 (Alt + T){{ end }}" aria-label="{{ if eq site.Language.Lang "en" }}Toggle dark mode{{ else }}切换深色{{ end }}">
                 <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                 <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
             </button>
             {{- end }}
-            <label class="nav-burger" for="nav-toggle"><span></span><span></span><span></span><span class="sr-only">菜单</span></label>
+            <label class="nav-burger" for="nav-toggle"><span></span><span></span><span></span><span class="sr-only">{{ if eq site.Language.Lang "en" }}Menu{{ else }}菜单{{ end }}</span></label>
         </div>
     </nav>
 </header>

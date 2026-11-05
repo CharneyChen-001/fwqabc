@@ -1,0 +1,15 @@
+{{- define "main" }}
+<article class="post-single tool-page">
+  <header class="post-header post-band">
+    {{ partial "breadcrumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+  </header>
+  <div class="post-content md-content">{{ .Content }}</div>
+  {{- if eq .File.ContentBaseName "server-sizing" }}
+  {{ partial "tool-sizing.html" . }}
+  {{- else if eq .File.ContentBaseName "network-lines" }}
+  {{ partial "tool-lines.html" . }}
+  {{- end }}
+</article>
+{{- end }}
