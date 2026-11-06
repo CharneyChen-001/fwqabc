@@ -297,8 +297,54 @@ body {
 @media (max-width: 800px) { .entry-grid { grid-template-columns: 1fr; } }
 .header #menu a,
 .header .menu summary,
-.header .theme-toggle { color: var(--fg) !important; }
-.header #menu a[aria-current="page"] { color: var(--color-primary-fg) !important; background: var(--color-primary) !important; }
+.header .theme-toggle,
+.header #theme-toggle,
+.header #theme-toggle svg { color: var(--fg) !important; }
+/* 旧深色顶栏把悬停文字写成 #fff。亮色顶栏背景接近白色，悬停后字会消失。 */
+.header #menu a:hover,
+.header #menu a:focus,
+.header #menu a:focus-visible,
+.header #menu a:active {
+  color: var(--fg) !important;
+  background: var(--secondary-bg) !important;
+}
+.header #menu a[aria-current="page"],
+.header #menu a[aria-current="page"]:hover,
+.header #menu a[aria-current="page"]:focus,
+.header #menu a[aria-current="page"]:focus-visible,
+.header #menu a[aria-current="page"]:active {
+  color: var(--color-primary-fg) !important;
+  background: var(--color-primary) !important;
+}
+.header #menu a:focus-visible,
+.header .theme-toggle:focus-visible,
+.header .lang-switch:focus-visible,
+.header .logo a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.header #theme-toggle:hover,
+.header #theme-toggle:hover svg,
+.header #theme-toggle:focus,
+.header #theme-toggle:focus svg,
+.header #theme-toggle:focus-visible,
+.header #theme-toggle:focus-visible svg,
+.header #theme-toggle:active,
+.header #theme-toggle:active svg,
+.header .lang-switch:hover,
+.header .lang-switch:focus,
+.header .lang-switch:focus-visible,
+.header .lang-switch:active {
+  color: var(--fg) !important;
+}
+.header #theme-toggle:hover,
+.header #theme-toggle:focus-visible,
+.header #theme-toggle:active,
+.header .lang-switch:hover,
+.header .lang-switch:focus-visible,
+.header .lang-switch:active {
+  background: var(--secondary-bg) !important;
+}
 .lang-switch { display: inline-flex; align-items: center; min-height: 40px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--fg) !important; text-decoration: none; font-weight: 700; background: var(--entry); white-space: nowrap; }
 .tool-form { display: grid; gap: 14px; max-width: 40rem; margin: 1.2em 0; }
 .tool-form fieldset { border: 1px solid var(--border); border-radius: 12px; margin: 0; padding: 12px 14px 14px; display: grid; gap: 4px; }
