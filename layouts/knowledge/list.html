@@ -1,0 +1,50 @@
+{{- define "main" }}
+<header class="page-header">
+  {{ partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+</header>
+<div class="post-content">{{ .Content }}</div>
+<form class="knowledge-tools" role="search">
+  <label class="sr-only" for="knowledge-q">搜索知识库</label>
+  <input id="knowledge-q" type="search" placeholder="搜索标题或结论，例如 CN2、移动、联通" autocomplete="off">
+  <div class="chip-row knowledge-filters">
+    <button type="button" class="chip is-on" data-knowledge-filter="">全部</button>
+    {{- $types := slice }}
+    {{- range .RegularPages }}
+      {{- $key := .Params.knowledge_type | default "other" }}
+      {{- if not (in $types $key) }}{{ $types = $types | append $key }}{{ end }}
+    {{- end }}
+    {{- range $types }}
+      {{- $key := . }}
+      {{- $label := $key }}
+      {{- range $.RegularPages }}{{ if eq (.Params.knowledge_type | default "other") $key }}{{ $label = .Params.knowledge_label | default $key }}{{ end }}{{ end }}
+      <button type="button" class="chip" data-knowledge-filter="{{ $key }}">{{ $label }}</button>
+    {{- end }}
+  </div>
+</form>
+<div id="knowledge-list">
+  {{- range $types }}
+    {{- $key := . }}
+    {{- $label := $key }}
+    {{- range $.RegularPages }}{{ if eq (.Params.knowledge_type | default "other") $key }}{{ $label = .Params.knowledge_label | default $key }}{{ end }}{{ end }}
+    <section class="knowledge-group" data-knowledge-group="{{ $key }}">
+      <h2>{{ $label }}</h2>
+      <div class="article-grid">
+        {{- range where $.RegularPages "Params.knowledge_type" $key }}
+        <article class="article-card" data-knowledge="{{ $key }}" data-text="{{ printf "%s %s %s" .Title .Description .Params.conclusion }}">
+          <a href="{{ .RelPermalink }}">
+            <div class="article-body">
+              <p class="article-kicker">{{ .Params.knowledge_label | default "知识库" }}</p>
+              <h3>{{ .Title }}</h3>
+              <p>{{ .Params.conclusion | default .Description | plainify | truncate 120 }}</p>
+            </div>
+          </a>
+        </article>
+        {{- end }}
+      </div>
+    </section>
+  {{- end }}
+</div>
+<script src="/js/knowledge-filter.js" defer></script>
+{{- end }}

@@ -1,0 +1,21 @@
+{{- $slug := .slug -}}
+{{- $label := .label -}}
+{{- $en := dict
+  "united-states" "United States" "hong-kong" "Hong Kong" "japan" "Japan" "singapore" "Singapore"
+  "netherlands" "Netherlands" "germany" "Germany" "united-kingdom" "United Kingdom" "australia" "Australia"
+  "canada" "Canada" "south-korea" "South Korea" "france" "France" "india" "India" "poland" "Poland"
+  "united-arab-emirates" "United Arab Emirates" "new-zealand" "New Zealand" "spain" "Spain" "china" "China"
+  "mexico" "Mexico" "brazil" "Brazil" "south-africa" "South Africa" "israel" "Israel" "sweden" "Sweden"
+  "italy" "Italy" "chile" "Chile" "cn2-gia" "CN2 GIA" "cmin2" "CMIN2" "as9929" "AS9929" "cn2" "CN2"
+  "bandwagonhost" "BandwagonHost" "vultr" "Vultr" "racknerd" "RackNerd" "raksmart" "RakSmart"
+  "cloudcone" "CloudCone" "ethernetservers" "Ethernet Servers" "interserver" "InterServer"
+  "hourly" "Hourly" "monthly" "Monthly" "quarterly" "Quarterly" "semiannually" "Semiannual"
+  "annually" "Annual" "biennially" "Biennial" "triennially" "Triennial" "quote" "Quote" "unknown" "Period not verified"
+  "in" "In stock" "out" "Out of stock"
+  "VPS" "VPS" "云服务器" "Cloud server" "裸金属" "Bare metal" "GPU" "GPU"
+  "共享主机" "Shared hosting" "KVM VPS" "KVM VPS" "独立服务器" "Dedicated"
+  "物理服务器" "Dedicated" "Linux 云 VPS" "Linux VPS" "存储型 VPS" "Storage VPS"
+  "Windows VPS" "Windows VPS"
+-}}
+{{- if eq site.Language.Lang "en" }}{{ return (index $en $slug | default $label) }}{{ end }}
+{{- return $label -}}

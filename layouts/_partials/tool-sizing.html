@@ -1,0 +1,19 @@
+{{- $en := eq site.Language.Lang "en" -}}
+<form id="sizing-form" class="tool-form" action="{{ .RelPermalink }}" method="get">
+  <fieldset>
+    <legend>{{ if $en }}Workload{{ else }}工作负载{{ end }}</legend>
+    <label><input type="radio" name="workload" value="static"> {{ if $en }}Static site{{ else }}静态站{{ end }}</label>
+    <label><input type="radio" name="workload" value="cms"> {{ if $en }}CMS (one site, with a database){{ else }}CMS（一个站点，带数据库）{{ end }}</label>
+    <label><input type="radio" name="workload" value="api"> {{ if $en }}Small JSON API{{ else }}小型 JSON API{{ end }}</label>
+  </fieldset>
+  <label>{{ if $en }}Monthly page views (optional, integer){{ else }}月访问量（可选，整数，次/月）{{ end }}
+    <input id="sizing-views" name="pageviews" type="text" inputmode="numeric" autocomplete="off" placeholder="{{ if $en }}leave blank if unknown{{ else }}不知道就留空{{ end }}">
+  </label>
+  <label>{{ if $en }}API peak requests per second (optional, integer){{ else }}API 峰值请求（可选，整数，次/秒）{{ end }}
+    <input id="sizing-rps" name="rps" type="text" inputmode="numeric" autocomplete="off" placeholder="{{ if $en }}used only for API{{ else }}只在选了 API 时使用{{ end }}">
+  </label>
+  <button type="submit">{{ if $en }}Show the floor{{ else }}看起步配置{{ end }}</button>
+</form>
+<div id="sizing-result" class="tool-result" role="status" aria-live="polite"></div>
+<script src="/js/sizing-rules.js" defer></script>
+<script src="/js/server-sizing.js" defer></script>

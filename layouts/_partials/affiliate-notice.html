@@ -1,1 +1,2 @@
-<p class="aff-notice">本文含推广链接，详见 <a href="/disclosure/">推广披露</a>。</p>
+{{- $en := eq site.Language.Lang "en" -}}
+<p class="aff-notice">{{ if $en }}This page may contain affiliate links. See the <a href="{{ "/disclosure/" | relLangURL }}">disclosure</a>.{{ else }}本文含推广链接，详见 <a href="{{ "/disclosure/" | relLangURL }}">推广披露</a>。{{ end }}</p>

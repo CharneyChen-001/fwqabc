@@ -1,0 +1,44 @@
+{{- $en := eq site.Language.Lang "en" -}}
+{{- $provider := .provider -}}
+{{- if and $en (eq .provider_slug "bandwagonhost") }}{{ $provider = "BandwagonHost" }}{{ end -}}
+<article class="offer-card">
+  <div class="offer-top">
+    <h3>{{ .name }}</h3>
+    {{- if eq .stock "in" }}<span class="stock stock-in">{{ if $en }}In stock{{ else }}{{ .stock_label | default "有货" }}{{ end }}</span>
+    {{- else if eq .stock "out" }}<span class="stock stock-out">{{ if $en }}Out of stock{{ else }}{{ .stock_label | default "缺货" }}{{ end }}</span>
+    {{- else }}<span class="stock stock-unknown">{{ if $en }}Stock not verified{{ else }}库存未核实{{ end }}</span>{{ end }}
+  </div>
+  <p class="offer-meta">
+    <span>{{ $provider }}</span>
+    {{- with .kind }}<span>{{ if $en }}{{ partial "facet-name.html" (dict "slug" . "label" .) }}{{ else }}{{ . }}{{ end }}</span>{{ end }}
+    {{- with .promo_code }}<span class="promo-code">{{ if $en }}Code{{ else }}优惠码{{ end }} {{ . }}</span>{{ end }}
+  </p>
+  <p class="offer-price">
+    {{- with .price_text }}<b>{{ . }}</b>{{ else }}<b class="is-muted">{{ if $en }}Price not verified{{ else }}价格待核实{{ end }}</b>{{ end }}
+    {{- with .period }}<span>{{ partial "facet-name.html" (dict "slug" . "label" $.period_label) }}</span>{{ end }}
+    {{- if and (eq .monthly_basis "period_divided") .monthly_usd }}<small>{{ if $en }}about{{ else }}折合{{ end }} ${{ printf "%.2f" (float .monthly_usd) }}{{ if $en }}/mo{{ else }}/月{{ end }}</small>{{ end }}
+    {{- if and (eq .period "hourly") .hourly_text }}<small>{{ .hourly_text }}{{ if $en }}/hour{{ else }}/小时{{ end }}</small>{{ end }}
+  </p>
+  <p class="offer-where">
+    {{- $where := slice }}
+    {{- if $en }}
+      {{- with .region_slug }}{{ $where = $where | append (partial "facet-name.html" (dict "slug" . "label" $.region)) }}{{ end }}
+      {{- with .line_slug }}{{ $where = $where | append (partial "facet-name.html" (dict "slug" . "label" $.line)) }}{{ end }}
+    {{- else }}
+      {{- with .region }}{{ $where = $where | append . }}{{ end }}
+      {{- with .city }}{{ $where = $where | append . }}{{ end }}
+      {{- with .line }}{{ $where = $where | append . }}{{ end }}
+    {{- end }}
+    {{- if $where }}{{ delimit $where " · " }}{{ else }}{{ if $en }}Region and line not verified{{ else }}地区与线路待核实{{ end }}{{ end }}
+  </p>
+  <p class="offer-specs">{{ if $en }}{{ if or .cpu .ram_mb .disk_gb }}{{ with .cpu }}{{ . }} vCPU{{ end }}{{ with .ram_mb }}{{ if $.cpu }} / {{ end }}{{ if eq (mod (int .) 1024) 0 }}{{ div (int .) 1024 }} GB RAM{{ else }}{{ . }} MB RAM{{ end }}{{ end }}{{ with .disk_gb }} / {{ . }} GB{{ with $.disk_type }} {{ . }}{{ end }}{{ end }}{{ else }}Specs not verified{{ end }}{{ else }}{{ .specs | default "配置待核实" }}{{ end }}</p>
+  {{- if not $en }}{{ with .location_note }}<p class="offer-note">{{ . }}</p>{{ end }}{{ end }}
+  <div class="offer-foot">
+    {{- with .checked_on }}<time datetime="{{ . }}">{{ if $en }}Checked{{ else }}核实{{ end }} {{ . }}</time>{{ else }}<span>{{ if $en }}Check date missing{{ else }}核实日期待核实{{ end }}</span>{{ end }}
+    {{- if .aff_slug }}
+    <a class="go-btn" href="/go/{{ .aff_slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ if $en }}Buy{{ else }}购买{{ end }}</a>
+    {{- else if .buy_url }}
+    <a class="go-btn" href="{{ .buy_url }}" rel="{{ .buy_rel | default "sponsored nofollow noopener" }}" target="_blank">{{ if $en }}Buy{{ else }}购买{{ end }}</a>
+    {{- end }}
+  </div>
+</article>

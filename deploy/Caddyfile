@@ -1,4 +1,4 @@
-# 自动生成：python3 scripts/gen-redirects.py（勿手改 /go/ 部分）
+# 自动生成：python3 scripts/gen-redirects.py（勿手改 /go/ 与安全头）
 fwqabc.com {
 	root * /var/www/fwqabc
 	encode zstd gzip
@@ -18,11 +18,15 @@ fwqabc.com {
 	redir /go/vultr/ https://www.vultr.com/?ref=9932591 302
 	redir /go/vultr-credit https://www.vultr.com/?ref=9932592-9J 302
 	redir /go/vultr-credit/ https://www.vultr.com/?ref=9932592-9J 302
+	redir /feed /feed.xml 301
 	header /go/* X-Robots-Tag "noindex, nofollow"
 	header {
 		Strict-Transport-Security "max-age=31536000"
 		X-Content-Type-Options nosniff
 		Referrer-Policy strict-origin-when-cross-origin
+		X-Frame-Options DENY
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+		Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
 	}
 	file_server
 	handle_errors {

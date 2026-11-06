@@ -1,0 +1,2 @@
+{{- $pages := where site.Pages "Section" "servers" -}}
+{{- partial "sitemap-urlset.html" $pages -}}

@@ -3,6 +3,7 @@ title: "2026 黑色星期五 VPS 优惠汇总"
 date: 2026-11-01T12:00:00+08:00
 draft: true
 tags: ["黑五"]
+categories: ["promotions"]
 ---
 
 > TODO：骨架稿，内容与数据待补充，未核实前不要发布。

@@ -1,0 +1,19 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.Title }}</title>
+    <link>{{ "/" | absURL }}</link>
+    <description>{{ site.Params.description | plainify }}</description>
+    <language>{{ site.Language.Locale | default "zh-CN" }}</language>
+    {{ printf "<atom:link href=%q rel=\"self\" type=\"application/rss+xml\" />" ("feed.xml" | absURL) | safeHTML }}
+    {{- range where site.RegularPages "Section" "in" (slice "deals" "free" "cases" "knowledge") }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <guid>{{ .Permalink }}</guid>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <description>{{ (.Description | default .Summary) | plainify | html }}</description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

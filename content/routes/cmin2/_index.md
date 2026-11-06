@@ -1,6 +1,8 @@
 ---
 title: "CMIN2"
 description: "CMIN2 线路说明：中国移动国际（AS58807）的高等级国际线路，适合移动用户为主的访客；对应的 VPS 方案（附来源）。"
+categories: ["lines", "cmin2"]
+knowledge: "/knowledge/cmin2/"
 ---
 
 > 本页含推广链接，详见[推广披露](/disclosure/)。
