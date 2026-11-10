@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /go/
 Sitemap: {{ "sitemap.xml" | absURL }}
+Sitemap: {{ "en/sitemap.xml" | absURL }}

@@ -1,0 +1,5 @@
+<div class="post-actions">
+  <button type="button" class="btn-ghost" data-copy-url="{{ .Permalink }}">复制链接</button>
+  <a class="btn-ghost" href="https://twitter.com/intent/tweet?text={{ .Title | urlquery }}&url={{ .Permalink | urlquery }}" target="_blank" rel="noopener">分享到 X</a>
+</div>
+<script src="/js/post-actions.js" defer></script>

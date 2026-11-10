@@ -1,0 +1,13 @@
+{{- /* 传入 time.Time。零值或公元元年不显示，也不补一个日期。 */ -}}
+{{- if or (not .) (.IsZero) (le .Year 1) -}}
+{{- return "" -}}
+{{- end -}}
+{{- $fmt := site.Params.DateFormat -}}
+{{- if not $fmt -}}
+  {{- if eq site.Language.Lang "en" -}}
+    {{- $fmt = "January 2, 2006" -}}
+  {{- else -}}
+    {{- $fmt = "2006年1月2日" -}}
+  {{- end -}}
+{{- end -}}
+{{- return (.Format $fmt) -}}

@@ -1,11 +1,6 @@
 ---
-title: "工具"
-description: "实用工具"
-build:
-  render: never
-  list: never
-cascade:
-  build:
-    render: never
-    list: never
+title: "选购工具"
+description: "两个浏览器本地的粗算工具：配置下限，以及按本站线路页对照运营商。不是测速，也不是实时报价。"
 ---
+
+两个工具都在你的浏览器里计算，不上传输入。结果是下限或对照说明，不是购买保证。

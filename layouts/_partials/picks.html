@@ -1,0 +1,24 @@
+{{- $useC := dict "建站入门" "blue" "月付建站" "teal" "外贸独立站" "purple" "大陆优化线路" "red" "亚洲低延迟" "green" "开发测试" "slate" }}
+{{- $mono := dict "搬瓦工" "BWH" "RakSmart" "RS" "Vultr" "V" "RackNerd" "RN" }}
+<section class="home-sec band band-picks" id="picks">
+  <div class="sec-head"><span class="sec-ico" aria-hidden="true">选</span><div><h2>按预算和用途选</h2><p>价格均为官网核对价。这张表只保留已经核实的几条，完整目录在上面筛选。</p></div></div>
+  <div class="pk-list">
+  {{- range $i, $p := hugo.Data.picks }}
+    {{- $c := index $useC $p.use | default "slate" }}
+    {{- $priceNote := findRE "（[^）]*）" $p.price 1 }}{{ $price := replaceRE "（[^）]*）" "" $p.price }}
+    {{- $promo := and $priceNote (not (in $p.price "/小时")) }}
+    {{- $num := index (findRE `^\$[0-9.]+` $price 1) 0 | default $price }}{{ $unit := strings.TrimPrefix $num $price }}
+    {{- $rc := "gray" }}{{ if in $p.route "CN2 GIA" }}{{ $rc = "gold" }}{{ else if in $p.route "CN2" }}{{ $rc = "cn2" }}{{ else if in $p.route "BGP" }}{{ $rc = "bgp" }}{{ end }}
+    {{- $bc := "mid" }}{{ if hasPrefix $p.budget "极低" }}{{ $bc = "xlow" }}{{ else if hasPrefix $p.budget "低" }}{{ $bc = "low" }}{{ else if hasPrefix $p.budget "高" }}{{ $bc = "high" }}{{ else if hasPrefix $p.budget "按" }}{{ $bc = "hour" }}{{ end }}
+    <div class="pk pk-{{ $c }}{{ if $promo }} pk-hot{{ end }}" id="pick-{{ $i }}">
+      <div class="pk-use"><span class="use-chip">{{ $p.use }}</span><span class="bud bud-{{ $bc }}">{{ $p.budget }}</span></div>
+      <div class="pk-m"><span class="mono mono-{{ index $mono $p.merchant | default "X" | lower }}">{{ index $mono $p.merchant | default (substr $p.merchant 0 1) }}</span><div><b>{{ $p.merchant }}</b><small>{{ $p.plan }}</small>{{ with $p.case }}{{ with site.GetPage . }}<a class="case-chip" href="{{ .RelPermalink }}">有实测</a>{{ end }}{{ end }}</div></div>
+      <div class="pk-route"><span class="rt rt-{{ $rc }}">{{ $p.route }}</span></div>
+      <div class="pk-price"><span class="num">{{ $num }}</span><span class="unit">{{ $unit }}</span>{{ with $priceNote }}<span class="{{ if $promo }}hot-badge{{ else }}price-note{{ end }}">{{ index . 0 | replaceRE "[（）]" "" }}</span>{{ end }}</div>
+      <div class="pk-cta"><a class="go-btn" href="/go/{{ $p.slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ $p.cta | default (i18n "ctaPick") }}</a></div>
+    </div>
+  {{- end }}
+  </div>
+  <p class="src-note">价格于 2026年11月1日 在各家官网核对（搬瓦工产品目录、RakSmart 官方活动说明、Vultr 价格页），{{ i18n "ctaNote" }}。</p>
+  {{ partial "affiliate-notice.html" . }}
+</section>

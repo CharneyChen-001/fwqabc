@@ -59,7 +59,8 @@ hugo new content review/racknerd-2026-black-friday-review.md
 ## 首页数据
 
 - `data/promos.yaml`：首页“正在进行 / 即将开始”活动卡片（北京时间 start/end，过期自动隐藏；只填官方已核实活动）
-- `data/picks.yaml`：首页“按预算和用途选”对比表（use/budget/merchant/plan/price/route/slug）
+- `data/picks.yaml`：`/servers/` 上的“按预算和用途选”对比表（use/budget/merchant/plan/price/route/slug）
+- `python3 scripts/build-offers.py`：把各商家 `*_catalog.json` 合并成 `data/offers.json`（并复制到 `static/offers.json`），同时生成 `/servers/` 的商家、地区、线路页。未知字段保持空，不猜测；NameSilo 不进入比价。目录更新后要重跑这个脚本再构建。
 - `hugo.toml` 中 `params.telegram` 填 Telegram 频道链接后，首页与每篇文章底部显示订阅框；留空则隐藏
 
 ## 文章组件

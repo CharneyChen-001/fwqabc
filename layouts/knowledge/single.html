@@ -1,0 +1,28 @@
+{{- define "main" }}
+<article class="post-single knowledge-entry">
+  <header class="post-header post-band">
+    {{ partial "breadcrumbs.html" . }}
+    <div class="post-chips">
+      {{- with .Params.knowledge_label }}<span class="cat-chip">{{ . }}</span>{{ end }}
+      {{- range (.GetTerms "categories") }}<a class="tag-chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+    </div>
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+    <div class="post-meta">{{ partial "post_meta.html" . }}</div>
+    {{ partial "post-actions.html" . }}
+  </header>
+  <div class="knowledge-points">
+    <section><h2>先说结论</h2><p>{{ .Params.conclusion | default "待核实" }}</p></section>
+    <section><h2>适合谁</h2><p>{{ .Params.suitable | default "待核实" }}</p></section>
+    <section><h2>不要直接照做</h2><p>{{ .Params.not_for | default "待核实" }}</p></section>
+    <section><h2>怎么确认</h2><p>{{ .Params.how_to_test | default "待核实" }}</p></section>
+  </div>
+  {{- with .Params.source_url }}
+  <p class="knowledge-source">详细正文、方案和推广信息在 <a href="{{ . }}">原来的线路页</a>。本页不复制那段文字，线路页地址保持不变。</p>
+  {{- end }}
+  {{- if .Content }}
+  <div class="post-content md-content">{{ .Content }}</div>
+  {{- end }}
+  {{ partial "affiliate-notice.html" . }}
+</article>
+{{- end }}

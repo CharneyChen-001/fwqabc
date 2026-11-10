@@ -5,139 +5,98 @@
   {{- $end := time.AsTime (.end | default "2099-01-01T00:00:00+08:00") -}}
   {{- if gt $end.Unix $now }}{{ $promos = $promos | append . }}{{ end -}}
 {{- end -}}
+{{- $en := eq site.Language.Lang "en" -}}
 <div class="home-wrap"></div>
-<section class="hero hero-brand">
-  {{- $mc := len (site.GetPage "/merchants").Pages -}}
-  {{- $pages := where site.RegularPages "Section" "in" (slice "deals" "free" "review" "guides") -}}
-  {{- $last := time.AsTime "2000-01-01T00:00:00+08:00" -}}{{ range $pages }}{{ if .Lastmod.After $last }}{{ $last = .Lastmod }}{{ end }}{{ end -}}
-  {{- with site.Params.lastUpdated }}{{ $last = time.AsTime . }}{{ end -}}
-  <img class="hero-globe" src="/brand/hero-globe.webp" alt="" width="410" height="340" fetchpriority="high">
-  <div class="hero-txt">
-    <p class="hero-kicker">fwqabc.com · 出海ABC</p>
-    <h1>{{ site.Params.homeTitle }}</h1>
-    <p class="hero-sub">VPS优惠 · 线路科普 · 免费服务器指南</p>
-    <div class="hero-cta"><a class="hbtn hbtn-w" href="#deals">看双11优惠 →</a><a class="hbtn hbtn-o" href="/free/">免费服务器指南</a></div>
-    <ul class="hero-chips"><li>✓ 价格可核实</li><li>✓ 线路讲清楚</li><li>✓ 按预算直接给推荐</li></ul>
-    <ul class="hero-stats"><li><b>{{ $mc }}</b> 家商家已收录</li><li><b>{{ len $pages }}</b> 篇优惠与指南</li><li>最近更新 <b>{{ $last.Format "2006年1月2日" }}</b></li></ul>
-  </div>
-</section>
-<nav class="quick-pick" aria-label="按预算快速选">
-  <span class="qp-l">按预算选：</span>
-  {{- $seen := slice }}{{ range $i, $p := hugo.Data.picks }}{{ if not (in $seen $p.use) }}{{ $seen = $seen | append $p.use }}<a href="#pick-{{ $i }}">{{ $p.use }}<small>{{ $p.price | replaceRE "（.*）" "" }}</small></a>{{ end }}{{ end }}
-  <a href="/free/">免费服务器<small>0 元起步</small></a>
-</nav>
-<ul class="usp">
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 12.5l3.2 3L17 9"/></svg><div><b>价格可核实</b><span>每条标来源和核实日期</span></div></li>
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18l5-6 4 3 6-8 3 3"/></svg><div><b>线路讲清楚</b><span>回程线路按官方和 AS 信息标注，实测数据陆续更新</span></div></li>
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg><div><b>按预算直接给推荐</b><span>不堆参数，按用途和预算选</span></div></li>
-</ul>
-
-<a class="free-entry" href="/free/"><div><b>免费服务器 / 新用户赠金</b><br><span>甲骨文 Always Free 申请指南、各大云新用户赠金汇总，先免费练手再决定买不买</span></div><span class="hbtn hbtn-s">进入专栏</span></a>
-
-<section class="home-sec countdown" id="countdown">
-  <div class="cd"><div>双11 · 11/11 00:00 北京时间</div><b data-target="{{ site.Params.double11 | default "2026-11-11T00:00:00+08:00" }}">11/11 00:00</b></div>
-  <div class="cd"><div>黑五 · 11/25–11/30 北京时间</div><b data-target="{{ site.Params.blackFridayStart | default "2026-11-25T00:00:00+08:00" }}" data-end="{{ site.Params.blackFridayEnd | default "2026-11-30T23:59:59+08:00" }}">11/25–11/30</b></div>
-</section>
-
-<section class="home-sec band band-deals" id="deals">
-  <h2><span class="sec-ico ico-red" aria-hidden="true">惠</span>正在进行 / 即将开始 <a href="/deals/">全部优惠 »</a></h2>
-  <div class="promos">
-  {{- range $promos }}
-    {{- $s := time.AsTime .start }}{{ $e := cond (ne (.end | default "") "") (time.AsTime (.end | default "2099-01-01T00:00:00+08:00")) (time.AsTime "2099-01-01T00:00:00+08:00") }}
-    {{- if gt $e.Unix $now }}
-    <div class="promo" data-start="{{ $s.Format "2006-01-02T15:04:05-07:00" }}" data-end="{{ $e.Format "2006-01-02T15:04:05-07:00" }}">
-      {{- $slug := .slug }}{{ $l := index hugo.Data.links $slug }}{{ with $l.thumb }}<a class="promo-thumb" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank"><img src="{{ . }}" alt="{{ $l.thumb_alt }}" width="640" height="400" loading="lazy" decoding="async"></a>{{ else }}<a class="promo-thumb promo-ph" href="/go/{{ $slug }}/" rel="sponsored nofollow noopener" target="_blank" aria-hidden="true" tabindex="-1"><span>{{ .merchant }}</span></a>{{ end }}
-      <div class="promo-top"><span class="tag {{ if le $s.Unix $now }}live{{ else }}soon{{ end }}">{{ if le $s.Unix $now }}进行中{{ else }}即将开始{{ end }}</span>{{ with .badge }}<span class="badge">{{ . }}</span>{{ end }}</div>
-      <span class="t">{{ .merchant }}</span>
-      {{- with .price }}<span class="promo-price">{{ . }}</span>{{ end }}
-      <span class="promo-title">{{ .title }}</span>
-      {{- with .next }}<span class="promo-cd" data-cd="{{ . }}">开抢倒计时</span>{{ end }}
-      <small>{{ with .date_label }}{{ . }}{{ else }}{{ $s.Format "1/2 15:04" }}{{ with .end }} – {{ (time.AsTime .).Format "1/2 15:04" }}{{ else }} 起 · 长期{{ end }}（北京时间）{{ end }}</small>
-      {{- with .note }}<small class="promo-note">{{ . }}</small>{{ end }}
-      <a class="go-btn go-btn-lg" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去官方活动页 →</a>
-      <small class="cta-note">{{ i18n "ctaNote" }}{{ if .post }} · <a href="{{ .post }}">看规则与限制</a>{{ end }}</small>
-    </div>
-    {{- end }}
-  {{- end }}
-  </div>
-</section>
-
-<section class="home-sec band band-picks">
-  <div class="sec-head"><span class="sec-ico" aria-hidden="true">选</span><div><h2 id="picks">按预算和用途选</h2><p>价格均为官网核对价，点按钮直达官方页面</p></div></div>
-  {{- $useC := dict "建站入门" "blue" "月付建站" "teal" "外贸独立站" "purple" "大陆优化线路" "red" "亚洲低延迟" "green" "开发测试" "slate" }}
-  {{- $mono := dict "搬瓦工" "BWH" "RakSmart" "RS" "Vultr" "V" "RackNerd" "RN" }}
-  <div class="pk-list">
-  {{- range $i, $p := hugo.Data.picks }}
-    {{- $c := index $useC $p.use | default "slate" }}
-    {{- $priceNote := findRE "（[^）]*）" $p.price 1 }}{{ $price := replaceRE "（[^）]*）" "" $p.price }}
-    {{- $promo := and $priceNote (not (in $p.price "/小时")) }}
-    {{- $num := index (findRE `^\$[0-9.]+` $price 1) 0 | default $price }}{{ $unit := strings.TrimPrefix $num $price }}
-    {{- $rc := "gray" }}{{ if in $p.route "CN2 GIA" }}{{ $rc = "gold" }}{{ else if in $p.route "CN2" }}{{ $rc = "cn2" }}{{ else if in $p.route "BGP" }}{{ $rc = "bgp" }}{{ end }}
-    {{- $bc := "mid" }}{{ if hasPrefix $p.budget "极低" }}{{ $bc = "xlow" }}{{ else if hasPrefix $p.budget "低" }}{{ $bc = "low" }}{{ else if hasPrefix $p.budget "高" }}{{ $bc = "high" }}{{ else if hasPrefix $p.budget "按" }}{{ $bc = "hour" }}{{ end }}
-    <div class="pk pk-{{ $c }}{{ if $promo }} pk-hot{{ end }}" id="pick-{{ $i }}">
-      <div class="pk-use"><span class="use-chip">{{ $p.use }}</span><span class="bud bud-{{ $bc }}">{{ $p.budget }}</span></div>
-      <div class="pk-m"><span class="mono mono-{{ index $mono $p.merchant | default "X" | lower }}">{{ index $mono $p.merchant | default (substr $p.merchant 0 1) }}</span><div><b>{{ $p.merchant }}</b><small>{{ $p.plan }}</small>{{ with $p.case }}{{ with site.GetPage . }}<a class="case-chip" href="{{ .RelPermalink }}">✓ 有实测</a>{{ end }}{{ end }}</div></div>
-      <div class="pk-route"><span class="rt rt-{{ $rc }}">{{ $p.route }}</span></div>
-      <div class="pk-price"><span class="num">{{ $num }}</span><span class="unit">{{ $unit }}</span>{{ with $priceNote }}<span class="{{ if $promo }}hot-badge{{ else }}price-note{{ end }}">{{ index . 0 | replaceRE "[（）]" "" }}</span>{{ end }}</div>
-      <div class="pk-cta"><a class="go-btn {{ if $promo }}btn-hot{{ else }}btn-grad{{ end }}" href="/go/{{ $p.slug }}/" rel="sponsored nofollow noopener" target="_blank">{{ $p.cta | default (i18n "ctaPick") }} →</a></div>
-    </div>
-  {{- end }}
-  </div>
-  <p class="src-note">价格于 2026年11月1日 在各家官网核对（搬瓦工产品目录、RakSmart 官方活动说明、Vultr 价格页），{{ i18n "ctaNote" }}。</p>
-  {{ partial "affiliate-notice.html" . }}
-</section>
-
-{{- with first 1 (where site.RegularPages "Section" "cases") }}{{ with index . 0 }}{{ $c := .Params.case }}
-<section class="home-sec case-hl">
-  <a class="case-hl-img" href="{{ .RelPermalink }}"><img src="{{ .Params.cover_img }}" alt="{{ .Params.cover_alt }}" width="800" height="500" loading="lazy" decoding="async"></a>
-  <div class="case-hl-body">
-    <div class="case-hl-k"><span class="case-badge">低成本出海实测</span><span>{{ $c.machine_short }} · {{ $c.price }} · {{ $c.region_short }}</span></div>
-    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-    <div class="case-metrics sm">{{ range $c.metrics }}<div><b>{{ .v }}</b><span>{{ .k }}</span></div>{{ end }}</div>
-    <a class="go-btn" href="{{ .RelPermalink }}">看完整实测报告 →</a> <a class="case-more" href="/cases/">全部实测案例</a>
-  </div>
-</section>
-{{- end }}{{ end }}
-
-{{ partial "partners.html" (dict "compact" false) }}
-
-<section class="home-sec band band-latest">
-  <h2><span class="sec-ico ico-blue" aria-hidden="true">新</span>最新优惠 <a href="/deals/">更多 »</a></h2>
-  <ul class="short-list">
-  {{- range first 6 (where site.RegularPages "Section" "deals") }}
-    <li><a href="{{ .RelPermalink }}"><span>{{ .Title }}</span><small>{{ .Lastmod.Format "01-02" }}</small></a></li>
-  {{- else }}<li>暂无</li>{{ end }}
-  </ul>
-</section>
-
-<section class="home-sec band band-free">
-  <h2><span class="sec-ico ico-green" aria-hidden="true">免</span>免费服务器 / 新用户赠金 <a href="/free/">更多 »</a></h2>
-  <ul class="short-list">
-  {{- range first 5 (where site.RegularPages "Section" "free") }}
-    <li><a href="{{ .RelPermalink }}"><span>{{ .Title }}</span><small>{{ .Lastmod.Format "01-02" }}</small></a></li>
-  {{- else }}<li>暂无</li>{{ end }}
-  </ul>
-</section>
-
-{{ partial "tg-subscribe.html" . }}
-{{ partial "follow-box.html" . }}
-{{- range first 1 $promos }}
-<div class="sticky-cta sticky-home"{{ with .end }} data-promo-end="{{ . }}"{{ end }}><span>{{ .merchant }} {{ .price }}</span><a class="go-btn" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">去官方活动页</a></div>
+{{- if not $en }}
+<section class="hero hero-brand"><img class="hero-globe" src="/brand/hero-globe.webp" alt="" width="410" height="340" fetchpriority="high"><div class="hero-txt"><p class="hero-kicker">fwqabc.com · 出海ABC</p><h1>出海少花钱、少踩坑</h1><p class="hero-sub">出海ABC，免费帮中国出海的中小企业、个体户、源头工厂和原厂，把出海该花的钱、该办的事讲明白，少花钱、少踩坑。</p><ul class="hero-chips"><li>✓ 收录不收费</li><li>✓ 排序不售卖</li><li>✓ 修正不静默</li><li>✓ 没有核实不下结论</li></ul><p class="hero-sub">服务器与网络是出海成本地图里现在先讲清楚的一块：<b>出海服务器，少踩坑少花钱</b></p><div class="hero-cta"><a class="hbtn hbtn-w" href="{{ "/about/#map" | relLangURL }}">看完整出海成本地图 →</a><a class="hbtn hbtn-o" href="#promos">看双11服务器优惠</a></div><p class="hero-sub"><small>部分链接含推广佣金，会标明，不让你多付钱，也不换结论。</small></p></div></section>
+{{ partial "cost-map.html" . }}
 {{- end }}
+<section class="home-hero"{{ if not $en }} aria-label="搜索与筛选"{{ end }}>
+  {{- if $en }}
+  <p class="home-kicker">fwqabc.com · 出海ABC</p>
+  <h1>Server deals and buying guides</h1>
+  <p class="home-lead">Read the notes this site has already checked, then filter plans by region, line, and price. Checkout prices win. Empty fields were not guessed.</p>
+  {{- end }}
+  <form class="home-search" action="{{ "/search/" | relLangURL }}" method="get" role="search">
+    <label class="sr-only" for="home-q">{{ if $en }}Search{{ else }}搜索{{ end }}</label>
+    <input id="home-q" name="q" type="search" placeholder="{{ if $en }}Search providers, regions, lines, or pages{{ else }}搜索商家、地区、线路、优惠码或文章{{ end }}" autocomplete="off">
+    <button type="submit">{{ if $en }}Search{{ else }}搜索{{ end }}</button>
+  </form>
+  <div class="chip-block">
+    <p>{{ if $en }}By region{{ else }}按地区{{ end }}</p>
+    <div class="chip-row">
+      {{- $prefer := slice "hong-kong" "united-states" "japan" "singapore" "south-korea" "netherlands" "germany" "united-kingdom" }}
+      {{- $regions := hugo.Data.offers.facets.regions }}
+      {{- range $prefer }}
+        {{- $slug := . }}
+        {{- range $regions }}{{ if eq .slug $slug }}<a class="chip" href="{{ printf "/servers/regions/%s/" .slug | relLangURL }}">{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</a>{{ end }}{{ end }}
+      {{- end }}
+    </div>
+  </div>
+  <div class="chip-block">
+    <p>{{ if $en }}By line{{ else }}按线路{{ end }}</p>
+    <div class="chip-row">
+      {{- range hugo.Data.offers.facets.lines }}<a class="chip" href="{{ printf "/servers/lines/%s/" .slug | relLangURL }}">{{ partial "facet-name.html" (dict "slug" .slug "label" .label) }}</a>{{ end }}
+      <a class="chip" href="{{ "/routes/9929/" | relLangURL }}">AS9929</a>
+      <a class="chip" href="{{ "/routes/cmin2/" | relLangURL }}">CMIN2</a>
+      <a class="chip" href="{{ "/routes/" | relLangURL }}">{{ if $en }}Line notes{{ else }}线路说明{{ end }}</a>
+    </div>
+  </div>
+</section>
+
+{{- if $en }}
+{{ partial "cost-map.html" . }}
+{{- end }}
+<section class="home-sec">
+  <div class="sec-line"><h2>{{ if $en }}Latest notes{{ else }}最新文章{{ end }}</h2>{{ if not $en }}<a href="/deals/">浏览优惠</a>{{ end }}</div>
+  {{- if $en }}
+  <p class="src-note">Deal posts, the RFKEY test, and merchant catalogs are still published in Chinese. <a href="/deals/">Open the Chinese deal list</a>.</p>
+  {{- end }}
+  <div class="article-grid">
+    {{- $latest := where site.RegularPages "Section" "in" (slice "deals" "free" "cases" "knowledge" "tools") }}
+    {{- range first 6 $latest }}{{ partial "article-card.html" . }}{{ end }}
+  </div>
+</section>
+
+<section class="home-sec">
+  <div class="sec-line"><h2>{{ if $en }}Continue{{ else }}从这里继续{{ end }}</h2></div>
+  <div class="entry-grid">
+    <a href="{{ "/servers/" | relLangURL }}"><b>{{ if $en }}Compare plans{{ else }}服务器比价{{ end }}</b><span>{{ if $en }}Filter checked offers by region, line, and price{{ else }}按地区、线路、价格和库存筛选已核实套餐{{ end }}</span></a>
+    {{- if not $en }}<a href="/servers/#picks"><b>按预算和用途</b><span>几条已经核对过的入门方案</span></a>
+    <a href="/merchants/"><b>商家目录</b><span>按系列和机房查看原始目录</span></a>
+    <a href="/free/"><b>免费服务器</b><span>赠金和 Always Free 申请指南</span></a>
+    <a href="/cases/"><b>实测案例</b><span>自购机器上的访问记录</span></a>{{ end }}
+    <a href="{{ "/tools/server-sizing/" | relLangURL }}"><b>{{ if $en }}Configuration floor{{ else }}配置下限{{ end }}</b><span>{{ if $en }}A vCPU and RAM floor, not a benchmark{{ else }}经验下限，不是压测{{ end }}</span></a>
+    <a href="{{ "/tools/network-lines/" | relLangURL }}"><b>{{ if $en }}Line lookup{{ else }}线路对照{{ end }}</b><span>{{ if $en }}Match a carrier to the notes already on this site{{ else }}按本站线路页对照运营商{{ end }}</span></a>
+    <a href="{{ "/routes/" | relLangURL }}"><b>{{ if $en }}Line notes{{ else }}线路专题{{ end }}</b><span>CN2 GIA、9929、CMIN2</span></a>
+    <a href="{{ "/knowledge/" | relLangURL }}"><b>{{ if $en }}Knowledge{{ else }}知识库{{ end }}</b><span>{{ if $en }}Decide if a line fits before comparing plans{{ else }}先看适不适合，再去比价{{ end }}</span></a>
+  </div>
+</section>
+
+<section class="promo-lite" id="promos">
+  <div class="sec-line"><h2>{{ if $en }}Current offers{{ else }}近期活动{{ end }}</h2><a href="/deals/">{{ if $en }}Chinese deal posts{{ else }}全部优惠{{ end }}</a></div>
+  <div class="promo-lite-row">
+    <div class="cd-mini"><span>{{ if $en }}Singles' Day · 11/11 Beijing time{{ else }}双11 · 11/11 北京时间{{ end }}</span><b data-target="{{ site.Params.double11 | default "2026-11-11T00:00:00+08:00" }}">11/11</b></div>
+    <div class="cd-mini"><span>{{ if $en }}Black Friday · 11/25–11/30{{ else }}黑五 · 11/25–11/30{{ end }}</span><b data-target="{{ site.Params.blackFridayStart | default "2026-11-25T00:00:00+08:00" }}" data-end="{{ site.Params.blackFridayEnd | default "2026-11-30T23:59:59+08:00" }}">11/25</b></div>
+    {{- range first 2 $promos }}
+    <a class="promo-mini" href="/go/{{ .slug }}/" rel="sponsored nofollow noopener" target="_blank">
+      {{- if not $en }}{{ with .badge }}<span class="badge">{{ . }}</span>{{ end }}{{ end }}
+      <b>{{ .merchant }} {{ .price }}</b>
+      {{- if not $en }}<span>{{ .title }}</span>{{ end }}
+    </a>
+    {{- end }}
+  </div>
+</section>
 
 <script>
 (function(){
 function pd(v){if(!v)return NaN;var m=/^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})(?::(\d{2}))?(Z|([+-])(\d{2}):?(\d{2}))?$/.exec(String(v).trim());
 if(!m){var t=Date.parse(v);return isNaN(t)?NaN:t}
 var u=Date.UTC(+m[1],m[2]-1,+m[3],+m[4],+m[5],+(m[6]||0)),o=8*60;if(m[7]==='Z')o=0;else if(m[8])o=(m[8]==='-'?-1:1)*(m[9]*60+ +m[10]);return u-o*6e4}
-function cd(){document.querySelectorAll('#countdown b[data-target]').forEach(function(el){var t=pd(el.dataset.target),e=el.dataset.end?pd(el.dataset.end):NaN,n=Date.now();
+function cd(){document.querySelectorAll('.cd-mini b[data-target]').forEach(function(el){var t=pd(el.dataset.target),e=el.dataset.end?pd(el.dataset.end):NaN,n=Date.now();
 if(isNaN(t))return;var d=t-n;
-if(d<=0){el.textContent=(!isNaN(e)&&n<e)?'进行中':(!isNaN(e)?'已结束':'进行中');return}
-var D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24,M=Math.floor(d/6e4)%60,S=Math.floor(d/1e3)%60;el.textContent=D+'天 '+H+'时 '+M+'分 '+S+'秒'})}
-function pr(){var n=Date.now();document.querySelectorAll('.promo').forEach(function(el){var s=pd(el.dataset.start),e=pd(el.dataset.end),tag=el.querySelector('.tag');
-if(!isNaN(e)&&n>=e){el.style.display='none';return}
-if(!isNaN(s)&&n>=s){tag.className='tag live';tag.textContent='进行中'}})}
-function pc(){document.querySelectorAll('[data-cd]').forEach(function(el){var d=pd(el.dataset.cd)-Date.now();if(isNaN(d))return;if(d<=0){el.textContent='已开抢';return}el.textContent='距开抢 '+Math.floor(d/864e5)+'天 '+Math.floor(d/36e5)%24+'时 '+Math.floor(d/6e4)%60+'分'})}
-cd();pr();pc();setInterval(pc,30000);setInterval(cd,1000);setInterval(pr,60000)})();
+if(d<=0){el.textContent=(!isNaN(e)&&n<e)?'{{ if $en }}On now{{ else }}进行中{{ end }}':(!isNaN(e)?'{{ if $en }}Ended{{ else }}已结束{{ end }}':'{{ if $en }}On now{{ else }}进行中{{ end }}');return}
+var D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24;el.textContent=D+'{{ if $en }}d {{ else }}天 {{ end }}'+H+'{{ if $en }}h{{ else }}时{{ end }}'})}
+cd();setInterval(cd,1000)})();
 </script>
 {{- end }}

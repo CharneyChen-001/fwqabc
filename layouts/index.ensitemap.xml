@@ -1,0 +1,6 @@
+{{- $en := index (where hugo.Sites "Language.Lang" "en") 0 -}}
+{{- if and (eq site.Language.Lang "zh-cn") $en -}}
+{{- partial "sitemap-urlset.html" $en.Pages -}}
+{{- else -}}
+{{- partial "sitemap-urlset.html" site.Pages -}}
+{{- end -}}

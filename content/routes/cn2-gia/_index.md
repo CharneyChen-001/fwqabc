@@ -1,6 +1,8 @@
 ---
 title: "CN2 GIA"
 description: "CN2 GIA 线路说明：中国电信 CN2（AS4809）的高等级国际互联，适合面向国内访客的网站；对应的 VPS 方案与价格（附来源）。"
+categories: ["lines", "cn2-gia"]
+knowledge: "/knowledge/cn2-gia/"
 ---
 
 > 本页含推广链接，详见[推广披露](/disclosure/)。

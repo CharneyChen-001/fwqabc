@@ -20,6 +20,7 @@ merchant: "bandwagonhost"
 merchants: ["bandwagonhost"]
 routes: ["cn2-gia", "9929", "cmin2"]
 tags: ["优惠码", "搬瓦工"]
+categories: ["promotions", "cn2-gia", "as9929", "cmin2"]
 ---
 
 > 价格来自搬瓦工官网公开产品目录（[bandwagonhost.com/order/catalog.json](https://bandwagonhost.com/order/catalog.json)，官网 VPS Hosting 页面提供的“View all plans, prices and availability as JSON”链接），核对时间 2026-11-01（北京时间）。以结算页为准。

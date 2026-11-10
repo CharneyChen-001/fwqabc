@@ -1,0 +1,137 @@
+{{- $en := eq site.Language.Lang "en" -}}
+{{- $company := "/services/overseas-company/" | relLangURL -}}
+{{- $servers := "/servers/" | relLangURL -}}
+<div class="chuhai-about">
+<figure id="map" class="chuhai-map" role="img" aria-label="{{ if $en }}Where the costs of going overseas stack together{{ else }}中国企业出海成本地图：先立主体、再开门面、把货送出去、把钱收回来，认证与获客贯穿全程{{ end }}">
+<div class="cm-top"><img src="/brand/logo-128.png" alt="{{ if $en }}Chuhai ABC logo{{ else }}出海ABC Logo{{ end }}" width="56" height="56"><div class="cm-tt"><span class="cm-made">{{ if $en }}Chuhai ABC{{ else }}出海ABC 出品{{ end }}</span><span class="cm-title">{{ if $en }}Where these costs stack{{ else }}中国企业出海成本地图{{ end }}</span></div><div class="cm-side"><b>{{ if $en }}Spend less, miss fewer traps{{ else }}少花钱、少踩坑{{ end }}</b><span>fwqabc.com</span></div></div>
+<p class="cm-for">{{ if $en }}<b>For small businesses, individual sellers, source factories, and original-design brands:</b> going overseas is not just buying a server. These eight costs often stack together.{{ else }}<b>面向中小企业、个体户、源头工厂和原厂设计：</b>出海不是只买一台服务器，下面八笔钱常常叠在一起发生。{{ end }}</p>
+<div class="cm-cols">
+<div class="cm-col s1"><a class="cm-stage" href="{{ $company }}"><i>1</i><span>{{ if $en }}Set up the entity first{{ else }}先立主体{{ end }}<small>{{ if $en }}Once the contracting entity is in place, you can sign, collect payment, and file customs.{{ else }}合约主体定下来，后面才能签、收、报{{ end }}</small></span></a>
+<a class="cm-card cm-hot" href="{{ $company }}"><h4>{{ if $en }}Company registration{{ else }}注册公司与主体{{ end }}</h4><ul>
+{{- if $en }}
+<li>A contracting entity is what signs, gets paid, and files customs</li>
+<li>Mainland company: operations and export tax</li>
+<li>Hong Kong company: overseas contracts and payment</li>
+<li>Destination company: local compliance and a storefront</li>
+{{- else }}
+<li>合约主体才能签合同、收款、报关</li>
+<li>境内公司：经营和出口退税</li>
+<li>香港公司：海外签约和收款</li>
+<li>目的地公司：本地合规和开店</li>
+{{- end }}
+</ul><span class="cm-more">{{ if $en }}Learn more →{{ else }}了解详情 →{{ end }}</span></a>
+<div class="cm-card"><h4>{{ if $en }}Accounts and credentials{{ else }}账户与资质{{ end }}</h4><ul>
+{{- if $en }}
+<li>Business account and business collections</li>
+<li>Import-export rights and customs filing</li>
+<li>Account opening, annual filings, and bookkeeping</li>
+{{- else }}
+<li>对公账户和对公收款</li>
+<li>进出口权和海关备案</li>
+<li>开户、年审和代理记账</li>
+{{- end }}
+</ul><p class="cm-note">{{ if $en }}Pick the wrong entity and every later cost goes up.{{ else }}主体选错，后面每笔都更贵。{{ end }}</p></div></div>
+<div class="cm-col s2"><div class="cm-stage"><i>2</i><span>{{ if $en }}Open the storefront{{ else }}再开门面{{ end }}<small>{{ if $en }}So overseas customers can find you and the site loads.{{ else }}让国外客户找得到、打得开{{ end }}</small></span></div>
+<div class="cm-card"><h4>{{ if $en }}Website and independent store{{ else }}建站与独立站{{ end }}</h4><ul>
+{{- if $en }}
+<li>A brochure site or a shop</li>
+<li>Domain and company email</li>
+<li>Languages and currencies</li>
+<li>Upkeep after launch</li>
+{{- else }}
+<li>展示站还是卖货站</li>
+<li>域名和企业邮箱</li>
+<li>多语言、多币种</li>
+<li>上线后的维护</li>
+{{- end }}
+</ul></div>
+<a class="cm-card cm-hot" href="{{ $servers }}"><h4>{{ if $en }}Servers and network{{ else }}服务器与网络{{ end }}</h4><ul>
+{{- if $en }}
+<li>Why buy a machine overseas</li>
+<li>How to choose a location and a line</li>
+<li>How to check the price, the offer, and the renewal</li>
+<li>Who it fits, and who it does not</li>
+{{- else }}
+<li>为什么要买海外机器</li>
+<li>机房位置和线路怎么选</li>
+<li>价格、优惠和续费怎么核对</li>
+<li>谁适合、谁不适合</li>
+{{- end }}
+</ul><span class="cm-more">{{ if $en }}Learn more →{{ else }}了解详情 →{{ end }}</span></a></div>
+<div class="cm-col s3"><div class="cm-stage"><i>3</i><span>{{ if $en }}Ship the goods{{ else }}把货送出去{{ end }}<small>{{ if $en }}From the factory into the customer's hands.{{ else }}从工厂到海外客户手里{{ end }}</small></span></div>
+<div class="cm-card"><h4>{{ if $en }}Freight and logistics{{ else }}货代与物流{{ end }}</h4><ul>
+{{- if $en }}
+<li>First leg by sea, air, or courier</li>
+<li>Last mile and an overseas warehouse</li>
+<li>What direct mail and warehouse shipping each involve</li>
+<li>Why a return costs more</li>
+{{- else }}
+<li>头程海运 / 空运 / 快递</li>
+<li>尾程和海外仓</li>
+<li>直邮和仓发各花什么</li>
+<li>退货为什么更贵</li>
+{{- end }}
+</ul></div>
+<div class="cm-card"><h4>{{ if $en }}Export and import customs{{ else }}报关与清关{{ end }}</h4><ul>
+{{- if $en }}
+<li>China export declaration</li>
+<li>Destination customs clearance</li>
+<li>Invoice, packing list, certificate of origin</li>
+<li>Inspection and port charges</li>
+{{- else }}
+<li>中国出口报关</li>
+<li>目的国清关</li>
+<li>发票、箱单、原产地证</li>
+<li>查验和滞港费用</li>
+{{- end }}
+</ul></div></div>
+<div class="cm-col s4"><div class="cm-stage"><i>4</i><span>{{ if $en }}Get paid{{ else }}把钱收回来{{ end }}<small>{{ if $en }}After tax and fees, the profit is what remains.{{ else }}算清税和手续费，利润才是真的{{ end }}</small></span></div>
+<div class="cm-card"><h4>{{ if $en }}Tax and compliance{{ else }}税务与合规{{ end }}</h4><ul>
+{{- if $en }}
+<li>Export rebate or exemption</li>
+<li>Destination duty</li>
+<li>VAT and sales tax</li>
+<li>Low-value parcel rules are changing</li>
+{{- else }}
+<li>出口退税或免税</li>
+<li>目的国关税</li>
+<li>VAT 和销售税</li>
+<li>低价值包裹规则在变</li>
+{{- end }}
+</ul></div>
+<div class="cm-card"><h4>{{ if $en }}Payments and settlement{{ else }}收款与结汇{{ end }}</h4><ul>
+{{- if $en }}
+<li>Collection routes and fees</li>
+<li>Chargeback and freeze risk</li>
+<li>How funds are converted</li>
+<li>Exchange-rate moves can eat the profit</li>
+{{- else }}
+<li>收款通道和手续费</li>
+<li>拒付和冻结风险</li>
+<li>结汇路径</li>
+<li>汇率波动会吃掉利润</li>
+{{- end }}
+</ul></div></div>
+</div>
+<div class="cm-across"><div class="cm-al">{{ if $en }}Throughout{{ else }}贯穿<br>全程{{ end }}</div>
+<div class="cm-card"><h4>{{ if $en }}Certification and IP{{ else }}认证与知识产权{{ end }}</h4><ul>
+{{- if $en }}
+<li>Product certification and market access</li>
+<li>Trademark and patent: register before you list</li>
+{{- else }}
+<li>产品认证和目的国准入</li>
+<li>商标和专利，先注册再上架</li>
+{{- end }}
+</ul></div>
+<div class="cm-card"><h4>{{ if $en }}Customers and after-sales{{ else }}获客与售后{{ end }}</h4><ul>
+{{- if $en }}
+<li>Ads, marketplace commission, and content</li>
+<li>Support, returns, and reputation</li>
+{{- else }}
+<li>广告、平台佣金和内容获客</li>
+<li>客服、退换货和口碑维护</li>
+{{- end }}
+</ul></div></div>
+<div class="cm-bottom"><img src="/brand/logo-128.png" alt="" width="30" height="30"><b>出海ABC</b><em>{{ if $en }}notes{{ else }}出品{{ end }}</em><span>{{ if $en }}The costs and the steps, explained before you spend.{{ else }}免费把出海该花的钱、该办的事讲明白{{ end }}</span><span class="cm-url">fwqabc.com</span></div>
+</figure>
+</div>

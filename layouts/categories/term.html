@@ -1,0 +1,28 @@
+{{- define "main" }}
+<header class="page-header">
+  {{ partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+  <p class="src-note">共 {{ len .Pages }} 篇。这个分类只收录已经写明相关主题的页面。</p>
+</header>
+{{- $paginator := .Paginate .Pages }}
+{{- range $paginator.Pages }}
+<article class="post-entry card">
+  <div class="card-band"><span class="cat-chip">{{ .Section }}</span></div>
+  <header class="entry-header">
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  </header>
+  <div class="entry-content"><p>{{ .Description | default .Summary | plainify | truncate 140 }}</p></div>
+  {{- $when := partial "date-text.html" .Date -}}
+  {{- with $when }}<footer class="entry-footer">{{ . }}</footer>{{ end }}
+</article>
+{{- end }}
+{{- if gt $paginator.TotalPages 1 }}
+<nav class="pagination" aria-label="分页">
+  {{- if $paginator.HasPrev }}<a class="prev" href="{{ $paginator.Prev.URL }}">上一页</a>{{ end }}
+  <span>{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+  {{- if $paginator.HasNext }}<a class="next" href="{{ $paginator.Next.URL }}">下一页</a>{{ end }}
+</nav>
+{{- end }}
+<p class="src-note"><a href="/categories/">全部分类</a></p>
+{{- end }}

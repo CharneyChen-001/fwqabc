@@ -6,6 +6,7 @@ draft: false
 description: "2026 免费云服务器与新用户赠金汇总：Oracle Always Free、Google Cloud e2-micro 与 $300 试用金、AWS 新版 Free Plan（最多 $200 赠金、6 个月）、Azure 免费账户 $200 与 12 个月 B1s，以及 Vultr 新用户限时测试额度，每条标注官方来源与核实日期。"
 keywords: ["免费服务器", "免费云服务器 2026", "新用户赠金", "AWS Free Tier 2026", "谷歌云免费", "Azure 免费账户", "甲骨文免费"]
 tags: ["免费服务器", "赠金"]
+categories: ["free-vps"]
 merchants: ["vultr"]
 ---
 

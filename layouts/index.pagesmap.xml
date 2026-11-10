@@ -1,0 +1,8 @@
+{{- $skip := slice "deals" "free" "cases" "servers" "knowledge" -}}
+{{- $pages := slice -}}
+{{- range site.Pages -}}
+  {{- if and (not (in $skip .Section)) (ne .Kind "404") (not .Params.robotsNoIndex) -}}
+    {{- $pages = $pages | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- partial "sitemap-urlset.html" $pages -}}

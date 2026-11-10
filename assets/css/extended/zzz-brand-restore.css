@@ -1,0 +1,312 @@
+/* Art-only restore: brand colors, dark header/footer, hero. Does not change layout IA. */
+:root{
+  --brand:#F24615;
+  --accent:#C2380F;
+  --btn:#C2380F;
+  --btn-h:#9E2D0B;
+  --c-brand:#F24615;
+  --c-btn:#C2380F;
+  --color-primary:#F24615;
+  --color-primary-fg:#fff;
+  --promo:#F24615;
+  --amber:#F5A623;
+  --amber-ink:#8A5A00;
+  --info:#2F5D7C;
+}
+:root[data-theme=dark]{
+  --brand:#F24615;
+  --btn:#C2380F;
+  --btn-h:#E8400F;
+  --c-brand:#FF8A65;
+  --c-btn:#FF8A65;
+  --color-primary:#F24615;
+  --color-primary-fg:#fff;
+}
+
+.header{
+  background:linear-gradient(160deg,rgba(31,20,16,.96),rgba(58,26,14,.96))!important;
+  border-bottom:1px solid rgba(255,255,255,.06)!important;
+  box-shadow:0 2px 14px rgba(20,10,6,.25)!important;
+}
+.header .logo a,.header .logo a:hover{color:#fff!important}
+.header #menu a,.header .menu summary,.header .theme-toggle,.header #theme-toggle,.header #theme-toggle svg{
+  color:#E7D9D3!important;
+}
+.header #menu a:hover,.header #menu a:focus,.header #menu a:focus-visible,.header #menu a:active{
+  color:#fff!important;
+  background:rgba(255,255,255,.06)!important;
+}
+.header #menu a:hover::after{
+  content:"";
+  position:absolute;left:30%;right:30%;bottom:1px;height:2px;border-radius:2px;background:#F24615;
+}
+.header #menu a[aria-current=page],
+.header #menu a[aria-current=page]:hover,
+.header #menu a span.active{
+  color:#fff!important;
+  background:#F24615!important;
+  font-weight:700;
+  box-shadow:0 2px 8px rgba(242,70,21,.35);
+}
+.header .lang-switch{
+  color:#E7D9D3!important;
+  border-color:rgba(255,255,255,.22)!important;
+  background:transparent!important;
+}
+.header .lang-switch:hover,.header .lang-switch:focus,.header .lang-switch:focus-visible{
+  color:#fff!important;
+  background:rgba(255,255,255,.08)!important;
+}
+.header #theme-toggle:hover,.header #theme-toggle:hover svg{color:#fff!important;background:transparent!important}
+.brand-logo img{
+  width:40px;height:40px;border-radius:10px;
+  box-shadow:0 2px 6px rgba(194,56,15,.35);
+}
+
+.footer.site-footer,.site-footer{
+  background:linear-gradient(160deg,#1F1410,#3A1A0E)!important;
+  color:#e7d9d3!important;
+  border-top:none!important;
+}
+:root[data-theme=dark] .footer.site-footer,
+:root[data-theme=dark] .site-footer{
+  background:linear-gradient(160deg,#1F1410,#3A1A0E)!important;
+}
+.site-footer a{color:#e7d9d3!important}
+.site-footer a:hover{color:#fff!important;text-decoration:underline}
+.sf-col b{color:#fff!important}
+.sf-brand p,.sf-disc,.sf-copy{color:#c4b4ac!important}
+.sf-disc{border-top-color:rgba(255,255,255,.12)!important}
+
+.home-search button,.filter-reset,.offer-pager button,
+.go-btn,.hbtn-p,.btn-grad,.btn-hot{
+  background:#C2380F!important;
+  color:#fff!important;
+}
+.home-search button:hover,.go-btn:hover,.hbtn-p:hover,.btn-grad:hover,.btn-hot:hover{
+  background:#9E2D0B!important;
+}
+.chip:hover{border-color:#F24615;color:#C2380F!important}
+.badge,.hot-badge{background:#F24615!important;color:#fff!important}
+
+/* Keep new search/chips; hide duplicate title above them once the brand hero is present */
+.main:has(.hero-brand) .home-hero > .home-kicker,
+.main:has(.hero-brand) .home-hero > h1{display:none}
+.main:has(.hero-brand) .home-hero{padding-top:.6em;text-align:left}
+.hero.hero-brand{margin-top:14px}
+
+@media(max-width:720px){
+  .header #menu{background:#2a1a14!important;border-bottom-color:rgba(255,255,255,.08)!important}
+  .header #menu a{color:#E7D9D3!important}
+}
+
+/* Equal-height article cards with covers */
+.article-card img,.post-entry .entry-cover{
+  width:100%;height:160px;object-fit:cover;object-position:top;display:block;background:#f3eee8;
+}
+.post-entry.card{overflow:hidden}
+
+/* ——— Type hierarchy: ink vs body vs muted (warm neutrals, not extra brand colors) ——— */
+:root{
+  --ink:#1F1410;
+  --body:#4A423E;
+  --muted:#6B615C;
+}
+body,.main,.post-content,.entry-content{
+  color:var(--body);
+}
+.post-content,.main .post-content p,article .post-content{
+  line-height:1.8;
+}
+h1,.first-entry h1,.page-header h1,.post-title,.hero-brand h1,.hero-txt h1{
+  color:var(--ink)!important;
+  letter-spacing:-.025em;
+  font-weight:780;
+  line-height:1.22;
+}
+h2,.sec-line h2,.home-sec h2,.entry-header h2,.post-content h2{
+  color:var(--ink)!important;
+  letter-spacing:-.02em;
+  font-weight:750;
+  line-height:1.3;
+}
+h3,h4,.article-card h3,.post-content h3,.post-content h4{
+  color:var(--ink)!important;
+  letter-spacing:-.015em;
+  font-weight:720;
+  line-height:1.35;
+}
+.sec-line h2,.home-sec .sec-line h2{
+  font-size:1.42rem;
+  padding-left:12px;
+  border-left:3px solid #F24615;
+}
+.sec-line a{
+  color:#C2380F!important;
+  font-weight:650;
+  font-size:.88rem;
+}
+.sec-line a:hover{color:#9E2D0B!important;text-decoration:underline}
+
+.article-kicker{
+  color:#C2380F!important;
+  font-weight:650;
+  letter-spacing:.01em;
+}
+.post-meta,.entry-footer,.breadcrumbs{
+  color:var(--muted)!important;
+}
+.article-card h3{
+  font-size:1.08rem;
+  margin:0 0 8px;
+}
+.article-card .article-body > p:not(.article-kicker),
+.article-card p:not(.article-kicker){
+  color:var(--muted)!important;
+  font-size:.9rem;
+  line-height:1.6;
+}
+.entry-content,.post-entry .entry-content{
+  color:var(--muted)!important;
+}
+
+/* 从这里继续 */
+.entry-grid a{
+  padding:18px 18px 16px!important;
+  border-color:#eadfd8!important;
+  transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.entry-grid a:hover{
+  border-color:#F24615!important;
+  box-shadow:0 10px 24px rgba(31,20,16,.08);
+  transform:translateY(-2px);
+}
+.entry-grid b{
+  color:var(--ink)!important;
+  font-size:1.06rem;
+  font-weight:750;
+  letter-spacing:-.015em;
+  line-height:1.35;
+}
+.entry-grid span{
+  color:var(--muted)!important;
+  font-size:.88rem;
+  line-height:1.55;
+  font-weight:450;
+}
+
+/* ——— 近期活动: four cards, one system ——— */
+.promo-lite-row{gap:12px}
+.cd-mini,.promo-mini{
+  min-height:148px;
+  padding:16px!important;
+  gap:8px!important;
+  border:1px solid #eadfd8!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  box-shadow:0 1px 0 rgba(31,20,16,.04);
+  transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.cd-mini:hover,.promo-mini:hover{
+  border-color:#F24615!important;
+  box-shadow:0 10px 24px rgba(31,20,16,.08);
+  transform:translateY(-2px);
+}
+/* kicker: small orange pill, never a full-width bar */
+.cd-mini > span:first-child,
+.promo-mini > .badge{
+  display:inline-flex!important;
+  align-self:flex-start!important;
+  width:auto!important;
+  max-width:100%;
+  padding:3px 9px!important;
+  border-radius:999px!important;
+  background:#F24615!important;
+  color:#fff!important;
+  font-size:11px!important;
+  font-weight:700!important;
+  line-height:1.4!important;
+  letter-spacing:.02em;
+}
+.cd-mini b,.promo-mini b{
+  color:var(--ink)!important;
+  font-size:1.18rem!important;
+  font-weight:780!important;
+  letter-spacing:-.025em;
+  line-height:1.3;
+  margin-top:4px;
+}
+.promo-mini > span:not(.badge){
+  color:var(--muted)!important;
+  font-size:.84rem!important;
+  line-height:1.55!important;
+  font-weight:450!important;
+  background:transparent!important;
+}
+
+:root[data-theme=dark]{
+  --ink:#F4ECE7;
+  --body:#D5C8C1;
+  --muted:#B6A79E;
+}
+:root[data-theme=dark] .cd-mini,
+:root[data-theme=dark] .promo-mini,
+:root[data-theme=dark] .entry-grid a{
+  background:var(--entry)!important;
+  border-color:rgba(255,255,255,.1)!important;
+}
+
+/* ——— 统一转化组件：去官网核对并下单 + 含推广（20261106 trust） ——— */
+.cta-pair{display:inline-flex;flex-direction:column;align-items:center;gap:2px;vertical-align:middle;max-width:100%}
+.cta-pair>.go-btn{margin-bottom:0!important}
+.cta-pair:has(>.go-btn-lg),.pk-cta .cta-pair,.rec-item .cta-pair{display:flex;align-items:stretch;width:100%}
+.aff-tag{display:block;font-size:12px;line-height:1.4;color:#6B615C;font-weight:500;text-align:center;letter-spacing:.02em}
+.aff-tag::before{content:"ⓘ ";color:#C2380F}
+.aff-tag-inline{color:#C2380F;font-weight:600}
+.cta-note{color:#6B615C!important}
+.bwh-price .aff-tag{font-size:11px;margin-top:1px}
+.bwh-price .aff-tag::before{content:""}
+.merchant-catalog-product-links .aff-tag{text-align:left;margin-top:2px}
+.merchant-catalog-affiliates .aff-tag{align-self:center}
+.promo-mini .promo-go{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:6px;font-size:1em}
+.promo-mini .promo-btn{display:inline-block;background:#C2380F;color:#fff!important;font-weight:600;font-size:13px!important;padding:5px 12px;border-radius:8px}
+.promo-mini:hover .promo-btn{background:#9E2D0B}
+.promo-mini .promo-go .aff-tag{display:inline;font-size:12px!important;color:#6B615C!important}
+.sticky-cta .cta-pair{flex-shrink:0}
+.sticky-cta .aff-tag{font-size:11px}
+.offer-foot .cta-pair{margin-left:auto}
+.fit-box{border:1px solid #EADBD0;border-left:4px solid #F24615;background:#FBF6F2;border-radius:10px;padding:.9em 1.1em;margin:1.2em 0}
+.fit-box p{margin:.35em 0;color:#4A423E}
+.fit-box p strong{color:#1F1410}
+.fit-box .fit-meta{font-size:.85em;color:#6B615C}
+.fit-box .fit-meta a{color:#C2380F}
+.main:has(.hero-brand) .home-hero > .home-lead{display:none}
+.main:has(.hero-brand) .home-hero .chip-block p{text-align:center}
+/* 页脚品牌块：Logo+名称在上，品牌一句话在下，避免名称被挤成竖排压住正文 */
+.sf-brand{flex-direction:column;align-items:flex-start!important;gap:.6em}
+.sf-brand a{flex-shrink:0;white-space:nowrap}
+.sf-brand p{margin:0;line-height:1.7}
+.fit-box a{color:#C2380F!important;text-decoration:underline;text-underline-offset:2px}
+.bwh-price span,.bwh-price .aff-tag{text-decoration:none!important}
+.bwh-price .bwh-sep{font-style:normal}
+.bwh-price .bwh-go{font-weight:inherit;color:inherit}
+@media(max-width:720px){.bwh-price .bwh-sep{display:none}.bwh-price .bwh-go{display:block}}
+.bwh-price{text-decoration:none!important}
+.bwh-price span{text-align:center}
+.fit-meta-inline small{color:#6B615C}
+
+/* 20261106-uxfix: 搜索无套餐结果时隐藏区块 */
+.offer-hits[hidden]{display:none!important}
+.cta-hint{font-size:.88em;color:var(--secondary,#6b5e57);margin:.4em 0 1em}
+
+/* 页脚已改回官网深色。列链接用浅色，悬停变白；联系胶囊保持浅底深字。 */
+.footer.site-footer{background:linear-gradient(160deg,#1F1410,#3A1A0E)!important;color:#e7d9d3!important;border-top:none!important}
+.footer.site-footer .sf-col a,.footer.site-footer .sf-brand a,.footer.site-footer .sf-disc a,.footer.site-footer .sf-copy a{color:#e7d9d3!important}
+.footer.site-footer .sf-col a:hover,.footer.site-footer .sf-col a:focus,.footer.site-footer .sf-col a:focus-visible,.footer.site-footer .sf-col a:active,.footer.site-footer .sf-brand a:hover,.footer.site-footer .sf-brand a:focus,.footer.site-footer .sf-brand a:focus-visible,.footer.site-footer .sf-disc a:hover,.footer.site-footer .sf-disc a:focus,.footer.site-footer .sf-disc a:focus-visible{color:#fff!important}
+.footer.site-footer .sf-social a,.footer.site-footer .sf-social a:hover,.footer.site-footer .sf-social a:focus,.footer.site-footer .sf-social a:focus-visible,.footer.site-footer .sf-social a:active{color:#1F1410!important;background:#fff!important}
+.footer.site-footer .sf-social a:hover,.footer.site-footer .sf-social a:focus,.footer.site-footer .sf-social a:focus-visible{color:#C2380F!important}
+.chuhai-map a.cm-card,.chuhai-map a.cm-stage{text-decoration:none}
+.chuhai-map a.cm-card h4{color:#1F1410!important}
+.chuhai-map a.cm-card li{color:#4A423E!important}
+.chuhai-map a.cm-stage,.chuhai-map a.cm-stage small{color:#fff!important;text-decoration:none}
+.chuhai-map .s3 a.cm-stage,.chuhai-map .s3 a.cm-stage small{color:#2A1F1A!important}

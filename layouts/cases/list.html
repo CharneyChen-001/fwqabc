@@ -8,7 +8,7 @@
       <div class="case-chips"><span>{{ $c.machine_short }}</span><span>{{ $c.price }}</span><span>{{ $c.region_short }}</span></div>
       <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
       <div class="case-metrics sm">{{ range $c.metrics }}<div><b>{{ .v }}</b><span>{{ .k }}</span></div>{{ end }}</div>
-      <div class="case-foot"><small>{{ .Date.Format "2006-01-02" }}</small><a class="read-more" href="{{ .RelPermalink }}">看完整报告 →</a></div>
+      <div class="case-foot">{{ with partial "date-text.html" .Date }}<small>{{ . }}</small>{{ end }}<a class="read-more" href="{{ .RelPermalink }}">看完整报告 →</a></div>
     </div>
   </article>
 {{- else }}<p>暂无</p>{{ end }}

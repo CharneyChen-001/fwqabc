@@ -12,6 +12,7 @@ datacenters: ["硅谷", "香港"]
 deal_start: "2026-11-11"
 deal_end: "2026-11-30"
 tags: ["双11", "黑五", "秒杀", "RakSmart"]
+categories: ["promotions", "cn2-gia", "hong-kong"]
 ---
 
 > 本文为整理稿，价格与规则以 RakSmart 官方活动页结算页面为准。核实日期：2026-11-01（北京时间）。标注「待核实」的内容尚未在官方页面直接确认，请勿以此为准。

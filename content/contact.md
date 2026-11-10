@@ -11,3 +11,9 @@ ShowReadingTime: false
 {{< contactemail >}}
 
 纠错时请附上：文章链接、有误的内容、官方来源链接或截图。我们只按官方页面更新，不接受付费修改评价。
+
+咨询海外公司注册，请发邮件，主题写「咨询海外公司注册」，或扫下面的微信二维码。流程见[海外公司注册](/services/overseas-company/)。
+
+## 公开联系方式
+
+{{< contactchannels >}}

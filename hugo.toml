@@ -1,6 +1,7 @@
 baseURL = "https://fwqabc.com/"
 locale = "zh-cn"
 defaultContentLanguage = "zh-cn"
+defaultContentLanguageInSubdir = false
 hasCJKLanguage = true
 title = "fwqabc 出海ABC"
 theme = "PaperMod"
@@ -9,9 +10,30 @@ pagination.pagerSize = 10
 
 [taxonomies]
   tag = "tags"
+  category = "categories"
   merchant = "merchants"
   route = "routes"
   datacenter = "datacenters"
+
+[languages]
+  [languages.zh-cn]
+    label = "中文"
+    locale = "zh-CN"
+    weight = 1
+    contentDir = "content"
+    [languages.zh-cn.params]
+      homeTitle = "出海少花钱、少踩坑"
+      description = "出海ABC，免费帮中国出海的中小企业、个体户、源头工厂和原厂，把出海该花的钱、该办的事讲明白，少花钱、少踩坑。服务器与网络板块：国外服务器真实价格、线路科普与优惠汇总，价格以官网为准。"
+      DateFormat = "2006年1月2日"
+  [languages.en]
+    label = "English"
+    locale = "en"
+    weight = 2
+    contentDir = "content.en"
+    [languages.en.params]
+      homeTitle = "Server deals and buying guides"
+      description = "Chuhai ABC notes on VPS prices, lines, and offers that this site has already checked. Checkout prices win. Unverified fields stay empty."
+      DateFormat = "January 2, 2006"
 
 [permalinks]
   [permalinks.page]
@@ -32,8 +54,9 @@ pagination.pagerSize = 10
   ShowBreadCrumbs = true
   ShowReadingTime = true
   ShowToc = true
+  TocOpen = true
   ShowPostNavLinks = true
-  xHandle = ""       # X 账号（如 chuhaiabc，不带 @）；留空则不显示
+  xHandle = "chuhaiABC"       # X 账号，不带 @
   telegram = ""      # Telegram 频道链接，如 https://t.me/fwqabc；留空则不显示订阅框
   umami = ""          # Umami 统计脚本地址，如 https://analytics.example.com/script.js；留空=不启用
   umamiWebsiteId = ""
@@ -42,7 +65,59 @@ pagination.pagerSize = 10
   blackFridayEnd = "2026-11-30T23:59:59+08:00"
 
   DateFormat = "2006年1月2日"
-  contactEmail = ""   # 纠错/合作邮箱，如 hi@fwqabc.com；留空则不显示
+  contactEmail = "chuhaiABC@outlook.com"
+  wechatId = ""       # 没有文字微信号，不要编一个
+  wechatQr = "/images/contact/wechat.jpg"
+
+  # 公开联系方式。url 只填写从二维码解出的地址，或站长直接给出的地址。
+  [[params.contactChannels]]
+    id = "wechat"
+    label = "微信"
+    labelEn = "WeChat"
+    name = "出海ABC"
+    location = "四川成都"
+    image = "/images/contact/wechat.jpg"
+    url = "https://u.wechat.com/EGany6fx2zEcMun5hd6dfyI?s=4"
+  [[params.contactChannels]]
+    id = "xiaohongshu"
+    label = "小红书"
+    labelEn = "Xiaohongshu"
+    account = "49252418555"
+    note = "出海业务，少踩坑少花钱。"
+    image = "/images/contact/xiaohongshu.jpg"
+    url = "http://xhslink.com/m/7wEmOIwNvbM"
+  [[params.contactChannels]]
+    id = "douyin"
+    label = "抖音"
+    labelEn = "Douyin"
+    account = "95483002071"
+    image = "/images/contact/douyin.jpg"
+  [[params.contactChannels]]
+    id = "kuaishou"
+    label = "快手"
+    labelEn = "Kuaishou"
+    account = "5870408390"
+    image = "/images/contact/kuaishou.jpg"
+    url = "https://v.kuaishou.com/f/YguQNF1Z2"
+  [[params.contactChannels]]
+    id = "qq"
+    label = "QQ"
+    labelEn = "QQ"
+    account = "1619477225"
+    image = "/images/contact/qq.jpg"
+    url = "https://qm.qq.com/q/lPUJsLgH3G"
+  [[params.contactChannels]]
+    id = "x"
+    label = "X"
+    labelEn = "X"
+    account = "@chuhaiABC"
+    url = "https://x.com/chuhaiABC"
+  [[params.contactChannels]]
+    id = "email"
+    label = "邮箱"
+    labelEn = "Email"
+    account = "chuhaiABC@outlook.com"
+    url = "mailto:chuhaiABC@outlook.com"
   lastUpdated = ""    # 可选：首页“最近更新”日期覆盖；留空则取全站最新文章的 lastmod
 
   [params.label]
@@ -55,27 +130,152 @@ pagination.pagerSize = 10
     favicon32x32 = "/favicon-32x32.png"
     apple_touch_icon = "/apple-touch-icon.png"
     safari_pinned_tab = "/android-chrome-512x512.png"
-    theme_color = "#F24615"
+    theme_color = "#2f394c"
   [params.footer]
     text = "出海ABC —— 出海服务器，少踩坑少花钱。本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 [推广披露](/disclosure/)。价格以官网为准。"
 
+[outputs]
+  home = ["HTML", "RSS", "JSON", "feed", "postsmap", "serversmap", "knowledgemap", "pagesmap", "ensitemap"]
+
+[outputFormats]
+  [outputFormats.feed]
+    mediaType = "application/rss+xml"
+    baseName = "feed"
+    isPlainText = false
+    notAlternative = true
+  [outputFormats.postsmap]
+    mediaType = "application/xml"
+    baseName = "sitemap-posts"
+    isPlainText = false
+    notAlternative = true
+  [outputFormats.serversmap]
+    mediaType = "application/xml"
+    baseName = "sitemap-servers"
+    isPlainText = false
+    notAlternative = true
+  [outputFormats.knowledgemap]
+    mediaType = "application/xml"
+    baseName = "sitemap-knowledge"
+    isPlainText = false
+    notAlternative = true
+  [outputFormats.pagesmap]
+    mediaType = "application/xml"
+    baseName = "sitemap-pages"
+    isPlainText = false
+    notAlternative = true
+  [outputFormats.ensitemap]
+    mediaType = "application/xml"
+    baseName = "sitemap-en"
+    isPlainText = false
+    notAlternative = true
+
 [menus]
   [[menus.main]]
+    name = "文章"
+    identifier = "articles"
+    url = "/deals/"
+    weight = 10
+  [[menus.main]]
     name = "优惠促销"
+    identifier = "deals"
+    parent = "articles"
     url = "/deals/"
     weight = 10
   [[menus.main]]
     name = "免费服务器 / 赠金"
+    parent = "articles"
     url = "/free/"
-    weight = 15
+    weight = 20
+  [[menus.main]]
+    name = "实测案例"
+    parent = "articles"
+    url = "/cases/"
+    weight = 30
   [[menus.main]]
     name = "线路专题"
+    parent = "articles"
     url = "/routes/"
-    weight = 30
+    weight = 40
+  [[menus.main]]
+    name = "文章分类"
+    parent = "articles"
+    url = "/categories/"
+    weight = 50
+  [[menus.main]]
+    name = "知识库"
+    identifier = "knowledge"
+    url = "/knowledge/"
+    weight = 15
+  [[menus.main]]
+    name = "服务器比价"
+    identifier = "servers"
+    url = "/servers/"
+    weight = 20
   [[menus.main]]
     name = "商家目录"
     url = "/merchants/"
-    weight = 50
+    weight = 30
+  [[menus.main]]
+    name = "海外公司注册"
+    identifier = "company"
+    url = "/services/overseas-company/"
+    weight = 17
+  [[menus.main]]
+    name = "选购工具"
+    identifier = "tools"
+    url = "/tools/"
+    weight = 18
+  [[menus.main]]
+    name = "配置下限"
+    parent = "tools"
+    url = "/tools/server-sizing/"
+    weight = 10
+  [[menus.main]]
+    name = "线路对照"
+    parent = "tools"
+    url = "/tools/network-lines/"
+    weight = 20
+  [[menus.main]]
+    name = "搜索"
+    identifier = "search"
+    url = "/search/"
+    weight = 40
+
+  [[languages.en.menus.main]]
+    name = "Knowledge"
+    identifier = "knowledge"
+    url = "/knowledge/"
+    weight = 10
+  [[languages.en.menus.main]]
+    name = "Company registration"
+    identifier = "company"
+    url = "/en/services/overseas-company/"
+    weight = 12
+  [[languages.en.menus.main]]
+    name = "Tools"
+    identifier = "tools"
+    url = "/tools/"
+    weight = 15
+  [[languages.en.menus.main]]
+    name = "Configuration floor"
+    parent = "tools"
+    url = "/tools/server-sizing/"
+    weight = 10
+  [[languages.en.menus.main]]
+    name = "Line lookup"
+    parent = "tools"
+    url = "/tools/network-lines/"
+    weight = 20
+  [[languages.en.menus.main]]
+    name = "Compare plans"
+    identifier = "servers"
+    url = "/servers/"
+    weight = 20
+  [[languages.en.menus.main]]
+    name = "Search"
+    identifier = "search"
+    url = "/search/"
+    weight = 40
 
 [sitemap]
   changeFreq = "daily"
