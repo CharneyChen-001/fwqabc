@@ -1,6 +1,7 @@
 {{- /* 渲染 front matter 中的 faq 列表（与 head 中的 FAQPage 结构化数据同源，保证一致） */ -}}
 <div class="faq">
+{{- $en := eq site.Language.Lang "en" -}}
 {{- range .Page.Params.faq }}
-<details open><summary>Q：{{ .q }}</summary><p>A：{{ .a | markdownify }}</p></details>
+<details open><summary>{{ if $en }}Q. {{ else }}Q：{{ end }}{{ .q }}</summary><p>{{ if $en }}A. {{ else }}A：{{ end }}{{ .a | markdownify }}</p></details>
 {{- end }}
 </div>

@@ -19,6 +19,7 @@
             {{- if and (eq .Identifier "articles") (or (hasPrefix $here "/deals/") (hasPrefix $here "/free/") (hasPrefix $here "/cases/") (hasPrefix $here "/routes/") (hasPrefix $here "/categories/")) }}{{ $active = true }}{{ end }}
             {{- if and (eq .Identifier "knowledge") (hasPrefix $here "/knowledge/") }}{{ $active = true }}{{ end }}
             {{- if and (eq .Identifier "tools") (hasPrefix $here "/tools/") }}{{ $active = true }}{{ end }}
+            {{- if and (eq .Identifier "company") (or (hasPrefix $here "/services/") (hasPrefix $.RelPermalink "/services/")) }}{{ $active = true }}{{ end }}
             <li class="{{ if or .HasChildren (eq .Identifier "servers") }}has-sub{{ end }}">
                 {{- if or .HasChildren (eq .Identifier "servers") }}
                 <details>

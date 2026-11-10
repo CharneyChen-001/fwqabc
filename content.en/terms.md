@@ -10,6 +10,8 @@ ShowToc: true
 
 Chuhai ABC (fwqabc.com) organizes server deals, line notes, tests, and merchant catalogs. You buy on the merchant's own site. This site does not sell servers, does not take payment, and does not promise that a listed price is still available.
 
+Overseas company registration is not sold here. A cooperating provider does that work. This site introduces the service and passes on the inquiry. It does not collect the registration payment, and it does not accept ID uploads. See [company registration](/en/services/overseas-company/).
+
 ## Governing law
 
 These terms are interpreted and applied under the law of the People's Republic of China as it applies in mainland China. This page does not choose a court, an arbitration institution, or a place of arbitration. How a dispute would be resolved is not agreed here.

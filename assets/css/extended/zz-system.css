@@ -371,3 +371,20 @@ body {
   color: var(--fg); font-weight: 600; text-decoration: none;
 }
 .tool-result a:hover { border-color: var(--color-primary); }
+.home-steps a.promo-mini { border-color: var(--color-primary); }
+.service-cta { margin: 1.2em 0; padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--secondary-bg); }
+.service-cta p { margin: 0 0 .7em; }
+.service-cta-btn,
+.post-content .service-cta a.service-cta-btn,
+:root[data-theme="dark"] .post-content .service-cta a.service-cta-btn:not(.go-btn) {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 12px;
+  background: var(--color-primary); color: var(--color-primary-fg) !important; font-weight: 600; text-decoration: none;
+}
+.service-cta-btn:hover,
+.post-content .service-cta a.service-cta-btn:hover,
+:root[data-theme="dark"] .post-content .service-cta a.service-cta-btn:not(.go-btn):hover {
+  background: var(--btn-h); color: var(--color-primary-fg) !important;
+}
+.service-cta-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.service-cta img { display: block; width: 160px; height: auto; margin: 10px 0; border-radius: 12px; background: #fff; }
+.service-cta .service-note { margin: .2em 0 0; color: var(--muted-fg); }

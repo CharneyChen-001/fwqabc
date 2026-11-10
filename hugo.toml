@@ -66,6 +66,8 @@ pagination.pagerSize = 10
 
   DateFormat = "2006年1月2日"
   contactEmail = "chuhaiABC@outlook.com"
+  wechatId = ""       # 微信号；留空则海外公司注册页只显示邮箱，并说明联系后拉群
+  wechatQr = ""       # 微信二维码路径，如 /brand/wechat-qr.png；留空不显示图片
   lastUpdated = ""    # 可选：首页“最近更新”日期覆盖；留空则取全站最新文章的 lastmod
 
   [params.label]
@@ -164,6 +166,11 @@ pagination.pagerSize = 10
     url = "/merchants/"
     weight = 30
   [[menus.main]]
+    name = "海外公司注册"
+    identifier = "company"
+    url = "/services/overseas-company/"
+    weight = 17
+  [[menus.main]]
     name = "选购工具"
     identifier = "tools"
     url = "/tools/"
@@ -189,6 +196,11 @@ pagination.pagerSize = 10
     identifier = "knowledge"
     url = "/knowledge/"
     weight = 10
+  [[languages.en.menus.main]]
+    name = "Company registration"
+    identifier = "company"
+    url = "/en/services/overseas-company/"
+    weight = 12
   [[languages.en.menus.main]]
     name = "Tools"
     identifier = "tools"
