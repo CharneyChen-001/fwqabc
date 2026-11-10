@@ -22,8 +22,8 @@ pagination.pagerSize = 10
     weight = 1
     contentDir = "content"
     [languages.zh-cn.params]
-      homeTitle = "出海服务器，少踩坑少花钱"
-      description = "出海ABC旗下服务器指南：国外VPS真实价格、线路科普与优惠汇总，帮站长、外贸和出海新手少踩坑少花钱。价格以官网为准。"
+      homeTitle = "出海少花钱、少踩坑"
+      description = "出海ABC，免费帮中国出海的中小企业、个体户、源头工厂和原厂，把出海该花的钱、该办的事讲明白，少花钱、少踩坑。服务器与网络板块：国外服务器真实价格、线路科普与优惠汇总，价格以官网为准。"
       DateFormat = "2006年1月2日"
   [languages.en]
     label = "English"

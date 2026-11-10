@@ -15,6 +15,8 @@ faq:
     a: "Use the contact page, or the email published there. Include the page URL, the wrong statement, and an official source. The page is updated after the correction is checked."
 ---
 
+{{< costmap >}}
+
 **Chuhai ABC (fwqabc.com)** collects VPS deals, free-server notes, and line explainers so a reader can compare them. We do not sell servers.
 
 ## Editorial rules
