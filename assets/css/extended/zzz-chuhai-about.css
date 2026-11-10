@@ -98,3 +98,7 @@
 .chuhai-map a.cm-stage,.chuhai-map a.cm-stage small{color:#fff!important}
 .chuhai-map .s3 a.cm-stage,.chuhai-map .s3 a.cm-stage small{color:#2A1F1A!important}
 .post-content .chuhai-map a.cm-card{color:inherit!important}
+.chuhai-map a.cm-card.cm-hot{cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.chuhai-map a.cm-card.cm-hot:hover,.chuhai-map a.cm-card.cm-hot:focus-visible{transform:translateY(-2px);box-shadow:0 10px 24px rgba(194,56,15,.18);border-color:#9E2D0B}
+.chuhai-map a.cm-card.cm-hot:focus-visible{outline:2px solid #F24615;outline-offset:3px}
+.chuhai-map a.cm-card .cm-more{display:block;margin-top:auto;padding-top:8px;color:#C2380F!important;font-weight:700;font-size:14px}
