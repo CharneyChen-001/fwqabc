@@ -38,6 +38,193 @@
   </div>
 </section>
 
+<section class="journey" aria-labelledby="home-steps">
+  <h2 class="journey-intro" id="home-steps">{{ if $en }}For small businesses, individual sellers, source factories, and original-design brands: going overseas is not just buying a server. These eight costs often stack together.{{ else }}面向中小企业、个体户、源头工厂和原厂设计：出海不是只买一台服务器，下面八笔钱常常叠在一起发生。{{ end }}</h2>
+  <div class="journey-grid">
+    <div class="journey-col">
+      <a class="journey-head journey-head-1" href="{{ "/services/overseas-company/" | relLangURL }}">
+        <span class="journey-num">1</span>
+        <span class="journey-head-text"><b>{{ if $en }}Set up the entity first{{ else }}先立主体{{ end }}</b><small>{{ if $en }}Once the contracting entity is in place, you can sign, collect payment, and file customs.{{ else }}合约主体定下来，后面才能签、收、报{{ end }}</small></span>
+      </a>
+      <a class="journey-card" href="{{ "/services/overseas-company/" | relLangURL }}">
+        <b>{{ if $en }}Company registration{{ else }}注册公司与主体{{ end }}</b>
+        <ul>
+          {{- if $en }}
+          <li>A contracting entity is what signs, gets paid, and files customs</li>
+          <li>Mainland company: operations and export tax</li>
+          <li>Hong Kong company: overseas contracts and payment</li>
+          <li>Destination company: local compliance and a storefront</li>
+          {{- else }}
+          <li>合约主体才能签合同、收款、报关</li>
+          <li>境内公司：经营和出口退税</li>
+          <li>香港公司：海外签约和收款</li>
+          <li>目的地公司：本地合规和开店</li>
+          {{- end }}
+        </ul>
+      </a>
+      <div class="journey-card">
+        <b>{{ if $en }}Accounts and credentials{{ else }}账户与资质{{ end }}</b>
+        <ul>
+          {{- if $en }}
+          <li>Business account and business collections</li>
+          <li>Import-export rights and customs filing</li>
+          <li>Account opening, annual filings, and bookkeeping</li>
+          {{- else }}
+          <li>对公账户和对公收款</li>
+          <li>进出口权和海关备案</li>
+          <li>开户、年审和代理记账</li>
+          {{- end }}
+        </ul>
+        <p class="journey-warn">{{ if $en }}Pick the wrong entity and every later cost goes up.{{ else }}主体选错，后面每笔都更贵。{{ end }}</p>
+      </div>
+    </div>
+    <div class="journey-col">
+      <div class="journey-head journey-head-2">
+        <span class="journey-num">2</span>
+        <span class="journey-head-text"><b>{{ if $en }}Open the storefront{{ else }}再开门面{{ end }}</b><small>{{ if $en }}So overseas customers can find you and the site loads.{{ else }}让国外客户找到、打得开{{ end }}</small></span>
+      </div>
+      <div class="journey-card">
+        <b>{{ if $en }}Website and independent store{{ else }}建站与独立站{{ end }}</b>
+        <ul>
+          {{- if $en }}
+          <li>A brochure site or a shop</li>
+          <li>Domain and company email</li>
+          <li>Languages and currencies</li>
+          <li>Upkeep after launch</li>
+          {{- else }}
+          <li>展示站还是卖货站</li>
+          <li>域名和企业邮箱</li>
+          <li>多语言、多币种</li>
+          <li>上线后的维护</li>
+          {{- end }}
+        </ul>
+      </div>
+      <a class="journey-card journey-card-focus" href="{{ "/servers/" | relLangURL }}">
+        <span class="journey-badge">{{ if $en }}We'll cover this one in detail{{ else }}这一笔我们会讲细{{ end }}</span>
+        <b>{{ if $en }}Servers and network{{ else }}服务器与网络{{ end }}</b>
+        <ul>
+          {{- if $en }}
+          <li>Why buy a machine overseas</li>
+          <li>How to choose a location and a line</li>
+          <li>How to check the price, the offer, and the renewal</li>
+          <li>Who it fits, and who it does not</li>
+          {{- else }}
+          <li>为什么要买海外机器</li>
+          <li>机房位置和线路怎么选</li>
+          <li>价格、优惠和续费怎么核对</li>
+          <li>谁适合、谁不适合</li>
+          {{- end }}
+        </ul>
+      </a>
+    </div>
+    <div class="journey-col">
+      <div class="journey-head journey-head-3">
+        <span class="journey-num">3</span>
+        <span class="journey-head-text"><b>{{ if $en }}Ship the goods{{ else }}把货送出去{{ end }}</b><small>{{ if $en }}From the factory into the customer's hands.{{ else }}从工厂到海外客户手里{{ end }}</small></span>
+      </div>
+      <div class="journey-card">
+        <b>{{ if $en }}Freight and logistics{{ else }}货代与物流{{ end }}</b>
+        <ul>
+          {{- if $en }}
+          <li>First leg by sea, air, or courier</li>
+          <li>Last mile and an overseas warehouse</li>
+          <li>What direct mail and warehouse shipping each involve</li>
+          <li>Why a return costs more</li>
+          {{- else }}
+          <li>头程海运 / 空运 / 快递</li>
+          <li>尾程和海外仓</li>
+          <li>直邮和仓发各花什么</li>
+          <li>退货为什么更贵</li>
+          {{- end }}
+        </ul>
+      </div>
+      <div class="journey-card">
+        <b>{{ if $en }}Export and import customs{{ else }}报关与清关{{ end }}</b>
+        <ul>
+          {{- if $en }}
+          <li>China export declaration</li>
+          <li>Destination customs clearance</li>
+          <li>Invoice, packing list, certificate of origin</li>
+          <li>Inspection and port charges</li>
+          {{- else }}
+          <li>中国出口报关</li>
+          <li>目的国清关</li>
+          <li>发票、箱单、原产地证</li>
+          <li>查验和滞港费用</li>
+          {{- end }}
+        </ul>
+      </div>
+    </div>
+    <div class="journey-col">
+      <div class="journey-head journey-head-4">
+        <span class="journey-num">4</span>
+        <span class="journey-head-text"><b>{{ if $en }}Get paid{{ else }}把钱收回来{{ end }}</b><small>{{ if $en }}After tax and fees, the profit is what remains.{{ else }}算清税和手续费，利润才是真的{{ end }}</small></span>
+      </div>
+      <div class="journey-card">
+        <b>{{ if $en }}Tax and compliance{{ else }}税务与合规{{ end }}</b>
+        <ul>
+          {{- if $en }}
+          <li>Export rebate or exemption</li>
+          <li>Destination duty</li>
+          <li>VAT and sales tax</li>
+          <li>Low-value parcel rules are changing</li>
+          {{- else }}
+          <li>出口退税或免税</li>
+          <li>目的国关税</li>
+          <li>VAT 和销售税</li>
+          <li>低价值包裹规则在变</li>
+          {{- end }}
+        </ul>
+      </div>
+      <div class="journey-card">
+        <b>{{ if $en }}Payments and settlement{{ else }}收款与结汇{{ end }}</b>
+        <ul>
+          {{- if $en }}
+          <li>Collection routes and fees</li>
+          <li>Chargeback and freeze risk</li>
+          <li>How funds are converted</li>
+          <li>Exchange-rate moves can eat the profit</li>
+          {{- else }}
+          <li>收款通道和手续费</li>
+          <li>拒付和冻结风险</li>
+          <li>结汇路径</li>
+          <li>汇率波动会吃掉利润</li>
+          {{- end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="journey-span">
+    <div class="journey-span-label">{{ if $en }}Throughout{{ else }}贯穿全程{{ end }}</div>
+    <div class="journey-span-cards">
+      <div class="journey-card">
+        <b>{{ if $en }}Certification and IP{{ else }}认证与知识产权{{ end }}</b>
+        <ul>
+          {{- if $en }}
+          <li>Product certification and market access</li>
+          <li>Trademark and patent: register before you list</li>
+          {{- else }}
+          <li>产品认证和目的国准入</li>
+          <li>商标和专利，先注册再上架</li>
+          {{- end }}
+        </ul>
+      </div>
+      <div class="journey-card">
+        <b>{{ if $en }}Customers and after-sales{{ else }}获客与售后{{ end }}</b>
+        <ul>
+          {{- if $en }}
+          <li>Ads, marketplace commission, and content</li>
+          <li>Support, returns, and reputation</li>
+          {{- else }}
+          <li>广告、平台佣金和内容获客</li>
+          <li>客服、退换货和口碑维护</li>
+          {{- end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="home-sec">
   <div class="sec-line"><h2>{{ if $en }}Latest notes{{ else }}最新文章{{ end }}</h2>{{ if not $en }}<a href="/deals/">浏览优惠</a>{{ end }}</div>
   {{- if $en }}
@@ -46,33 +233,6 @@
   <div class="article-grid">
     {{- $latest := where site.RegularPages "Section" "in" (slice "deals" "free" "cases" "knowledge" "tools") }}
     {{- range first 6 $latest }}{{ partial "article-card.html" . }}{{ end }}
-  </div>
-</section>
-
-<section class="home-sec" aria-labelledby="home-steps">
-  <div class="sec-line"><h2 id="home-steps">{{ if $en }}Going overseas, in this order{{ else }}出海按这个顺序看{{ end }}</h2></div>
-  <p class="src-note">{{ if $en }}Step 1 is the only one this site explains. The later steps stay on the list so the order is clear.{{ else }}本站这一页只展开第一步。后面几步留在这里，是为了看清顺序。{{ end }}</p>
-  <div class="promo-lite-row home-steps">
-    <a class="promo-mini" href="{{ "/services/overseas-company/" | relLangURL }}">
-      <span>{{ if $en }}1 · Set up the entity{{ else }}1 · 先立主体{{ end }}</span>
-      <b>{{ if $en }}Register the company{{ else }}注册公司与主体{{ end }}</b>
-      <span>{{ if $en }}Contracts, payments, customs, and a storefront need an entity that can sign.{{ else }}合同、收款、报关和开店，都要先有能签字的主体。{{ end }}</span>
-    </a>
-    <div class="cd-mini">
-      <span>{{ if $en }}2 · Open the storefront{{ else }}2 · 再开门面{{ end }}</span>
-      <b>{{ if $en }}Site and shop{{ else }}建站与店铺{{ end }}</b>
-      <span>{{ if $en }}After the entity. Not covered on this page.{{ else }}主体定了再做。本页不展开。{{ end }}</span>
-    </div>
-    <div class="cd-mini">
-      <span>{{ if $en }}3 · Ship the goods{{ else }}3 · 把货送出去{{ end }}</span>
-      <b>{{ if $en }}Freight and customs{{ else }}物流与报关{{ end }}</b>
-      <span>{{ if $en }}Needs the entity and the paperwork. Not handled here.{{ else }}等主体和单证。这里不办理。{{ end }}</span>
-    </div>
-    <div class="cd-mini">
-      <span>{{ if $en }}4 · Get paid{{ else }}4 · 把钱收回来{{ end }}</span>
-      <b>{{ if $en }}Collect and settle{{ else }}收款与结算{{ end }}</b>
-      <span>{{ if $en }}Still depends on who can sign. Not handled here.{{ else }}同样先看谁能签字。这里不办理。{{ end }}</span>
-    </div>
   </div>
 </section>
 
