@@ -48,6 +48,7 @@
       <a href="{{ "feed.xml" | relLangURL }}">RSS</a>
     </nav>
   </div>
+  {{ partial "contact-channels.html" (dict "mode" "compact") }}
   <p class="sf-disc">{{ if $en }}Some links are affiliate links. We may earn a commission, and your price does not change. See the <a href="{{ "/disclosure/" | relLangURL }}">disclosure</a>. Checkout prices win.{{ else }}本站含推广链接，通过链接购买我们可能获得佣金，不影响你的价格，详见 <a href="/disclosure/">推广披露</a>。套餐价格以商家结算页为准。{{ end }}</p>
   <p class="sf-copy">&copy; {{ now.Year }} 出海ABC · fwqabc.com</p>
 </footer>

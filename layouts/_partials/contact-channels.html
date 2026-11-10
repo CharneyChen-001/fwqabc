@@ -1,0 +1,52 @@
+{{- $en := eq site.Language.Lang "en" -}}
+{{- $mode := .mode | default "full" -}}
+{{- if eq $mode "compact" -}}
+<nav class="sf-social" aria-label="{{ if $en }}Contact{{ else }}联系{{ end }}">
+  <b>{{ if $en }}Contact{{ else }}联系{{ end }}</b>
+  <div class="sf-social-row">
+    {{- range site.Params.contactChannels }}
+      {{- $label := .label -}}
+      {{- if $en }}{{ $label = .labelEn | default .label }}{{ end -}}
+      {{- if and (eq .id "wechat") .image }}
+      <div class="sf-wechat">
+        {{- if .url }}
+        <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ $label }}</a>
+        {{- else }}
+        <a href="{{ printf "/contact/#%s" .id | relLangURL }}">{{ $label }}</a>
+        {{- end }}
+        <span class="sf-wechat-pop"><img src="{{ .image }}" alt="{{ if $en }}WeChat QR for Chuhai ABC{{ else }}出海ABC 微信二维码{{ end }}" width="180" height="245"></span>
+      </div>
+      {{- else if .url }}
+      <a href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ $label }}</a>
+      {{- else }}
+      <a href="{{ printf "/contact/#%s" .id | relLangURL }}">{{ $label }}</a>
+      {{- end }}
+    {{- end }}
+  </div>
+</nav>
+{{- else -}}
+<div class="contact-grid">
+  {{- range site.Params.contactChannels }}
+  <section class="contact-card" id="{{ .id }}">
+    <h2>{{ if $en }}{{ .labelEn | default .label }}{{ else }}{{ .label }}{{ end }}</h2>
+    {{- with .name }}<p>{{ . }}</p>{{ end }}
+    {{- with .location }}<p>{{ . }}</p>{{ end }}
+    {{- with .account }}<p>{{ if $en }}ID {{ else }}账号 {{ end }}{{ . }}</p>{{ end }}
+    {{- with .note }}<p>{{ . }}</p>{{ end }}
+    {{- if eq .id "douyin" }}
+    <p>{{ if $en }}Scan the card with Douyin. There is no separate profile link.{{ else }}用抖音扫描这张卡片。没有单独的主页链接。{{ end }}</p>
+    {{- end }}
+    {{- $imgAlt := .label -}}
+    {{- if $en }}{{ $imgAlt = .labelEn | default .label }}{{ end -}}
+    {{- with .image }}
+    <img src="{{ . }}" alt="{{ $imgAlt }}" width="320" height="436" loading="lazy">
+    {{- end }}
+    {{- if hasPrefix .url "mailto:" }}
+    <p><a href="{{ .url }}">{{ if $en }}Send email{{ else }}发邮件{{ end }}</a></p>
+    {{- else if .url }}
+    <p><a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ if $en }}Open{{ else }}打开{{ end }}</a></p>
+    {{- end }}
+  </section>
+  {{- end }}
+</div>
+{{- end -}}

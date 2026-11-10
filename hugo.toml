@@ -56,7 +56,7 @@ pagination.pagerSize = 10
   ShowToc = true
   TocOpen = true
   ShowPostNavLinks = true
-  xHandle = ""       # X 账号（如 chuhaiabc，不带 @）；留空则不显示
+  xHandle = "chuhaiABC"       # X 账号，不带 @
   telegram = ""      # Telegram 频道链接，如 https://t.me/fwqabc；留空则不显示订阅框
   umami = ""          # Umami 统计脚本地址，如 https://analytics.example.com/script.js；留空=不启用
   umamiWebsiteId = ""
@@ -66,8 +66,58 @@ pagination.pagerSize = 10
 
   DateFormat = "2006年1月2日"
   contactEmail = "chuhaiABC@outlook.com"
-  wechatId = ""       # 微信号；留空则海外公司注册页只显示邮箱，并说明联系后拉群
-  wechatQr = ""       # 微信二维码路径，如 /brand/wechat-qr.png；留空不显示图片
+  wechatId = ""       # 没有文字微信号，不要编一个
+  wechatQr = "/images/contact/wechat.jpg"
+
+  # 公开联系方式。url 只填写从二维码解出的地址，或站长直接给出的地址。
+  [[params.contactChannels]]
+    id = "wechat"
+    label = "微信"
+    labelEn = "WeChat"
+    name = "出海ABC"
+    location = "四川成都"
+    image = "/images/contact/wechat.jpg"
+    url = "https://u.wechat.com/EGany6fx2zEcMun5hd6dfyI?s=4"
+  [[params.contactChannels]]
+    id = "xiaohongshu"
+    label = "小红书"
+    labelEn = "Xiaohongshu"
+    account = "49252418555"
+    note = "出海业务，少踩坑少花钱。"
+    image = "/images/contact/xiaohongshu.jpg"
+    url = "http://xhslink.com/m/7wEmOIwNvbM"
+  [[params.contactChannels]]
+    id = "douyin"
+    label = "抖音"
+    labelEn = "Douyin"
+    account = "95483002071"
+    image = "/images/contact/douyin.jpg"
+  [[params.contactChannels]]
+    id = "kuaishou"
+    label = "快手"
+    labelEn = "Kuaishou"
+    account = "5870408390"
+    image = "/images/contact/kuaishou.jpg"
+    url = "https://v.kuaishou.com/f/YguQNF1Z2"
+  [[params.contactChannels]]
+    id = "qq"
+    label = "QQ"
+    labelEn = "QQ"
+    account = "1619477225"
+    image = "/images/contact/qq.jpg"
+    url = "https://qm.qq.com/q/lPUJsLgH3G"
+  [[params.contactChannels]]
+    id = "x"
+    label = "X"
+    labelEn = "X"
+    account = "@chuhaiABC"
+    url = "https://x.com/chuhaiABC"
+  [[params.contactChannels]]
+    id = "email"
+    label = "邮箱"
+    labelEn = "Email"
+    account = "chuhaiABC@outlook.com"
+    url = "mailto:chuhaiABC@outlook.com"
   lastUpdated = ""    # 可选：首页“最近更新”日期覆盖；留空则取全站最新文章的 lastmod
 
   [params.label]

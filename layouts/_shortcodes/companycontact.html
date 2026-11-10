@@ -2,9 +2,14 @@
 {{- $en := eq site.Language.Lang "en" -}}
 {{- $subject := "咨询海外公司注册" -}}
 {{- if $en }}{{ $subject = "Overseas company registration" }}{{ end -}}
+{{- $wechat := dict -}}
+{{- range site.Params.contactChannels -}}
+  {{- if eq .id "wechat" }}{{ $wechat = . }}{{ end -}}
+{{- end -}}
+{{- $qr := site.Params.wechatQr | default $wechat.image -}}
 <div class="service-cta">
   {{- if $email }}
-  <p>{{ if $en }}Email is the contact that works today. Use the subject line “Overseas company registration”. After we see it, we open a WeChat group.{{ else }}目前能用的联系方式是邮件。主题请写「咨询海外公司注册」。我们看到后拉微信群。{{ end }}</p>
+  <p>{{ if $en }}Email still works. Use the subject line “Overseas company registration”. After we see it, we open a WeChat group.{{ else }}邮件仍然可用。主题请写「咨询海外公司注册」。我们看到后拉微信群。{{ end }}</p>
   <p><a class="service-cta-btn" href="mailto:{{ $email }}?subject={{ $subject | urlquery }}">{{ if $en }}Email about company registration{{ else }}邮件咨询海外公司注册{{ end }}</a></p>
   {{- else }}
   <p class="todo-note">{{ if $en }}No contact email is configured.{{ else }}联系邮箱还没配置。{{ end }}</p>
@@ -12,10 +17,10 @@
   {{- with site.Params.wechatId }}
   <p>{{ if $en }}WeChat:{{ else }}微信：{{ end }} {{ . }}</p>
   {{- end }}
-  {{- with site.Params.wechatQr }}
-  <p><img src="{{ . }}" alt="{{ if $en }}Chuhai ABC WeChat QR code{{ else }}出海ABC 微信二维码{{ end }}" width="160" height="160"></p>
-  {{- end }}
-  {{- if and (not site.Params.wechatId) (not site.Params.wechatQr) }}
-  <p class="service-note">{{ if $en }}The WeChat ID and QR code are not on the site yet. Email first. We create the WeChat group after that. The plan is confirmed in the group. Send documents in WeChat or by email, not by uploading them on this website.{{ else }}微信号和二维码还没放到站上。请先发邮件，我们再拉微信群。方案在群里确认。资料用微信或邮件提交，不要在这个网站上传证件。{{ end }}</p>
+  {{- with $qr }}
+  <p>{{ if $en }}WeChat{{ else }}微信{{ end }}{{ with $wechat.name }}：{{ . }}{{ end }}{{ with $wechat.location }}（{{ . }}）{{ end }}。{{ if $en }}Scan the card to add the account. There is no separate text WeChat ID.{{ else }}扫码添加。这里没有单独的文字微信号。{{ end }}</p>
+  <p><img src="{{ . }}" alt="{{ if $en }}WeChat QR for Chuhai ABC{{ else }}出海ABC 微信二维码{{ end }}" width="280" height="381"></p>
+  {{- else }}
+  <p class="service-note">{{ if $en }}The WeChat QR code is not on the site yet. Email first. We create the WeChat group after that. Send documents in WeChat or by email, not by uploading them on this website.{{ else }}微信二维码还没放到站上。请先发邮件，我们再拉微信群。资料用微信或邮件提交，不要在这个网站上传证件。{{ end }}</p>
   {{- end }}
 </div>

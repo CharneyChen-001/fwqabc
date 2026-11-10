@@ -182,14 +182,45 @@ body {
   border-top: 1px solid var(--border); text-align: left; font-size: .92em;
 }
 .site-footer a { color: var(--fg) !important; box-shadow: none !important; text-decoration: none; }
-.site-footer a:hover { text-decoration: underline; }
+/* 旧深色页脚把悬停写成 #fff。亮色页脚是白底，字会消失。 */
+.footer.site-footer a:hover,
+.footer.site-footer a:focus,
+.footer.site-footer a:focus-visible,
+.footer.site-footer a:active {
+  color: var(--fg) !important;
+  text-decoration: underline;
+}
+.footer.site-footer a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 .sf-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 1.5em; max-width: 1120px; margin: 0 auto; }
 .sf-brand a { display: flex; gap: .7em; align-items: center; font-size: 1.15em; }
 .sf-brand img { border-radius: 12px; }
 .sf-brand p, .sf-disc, .sf-copy { color: var(--muted-fg); }
 .sf-col { display: flex; flex-direction: column; gap: .4em; }
 .sf-col b { color: var(--fg); margin-bottom: .2em; }
+.sf-social { max-width: 1120px; margin: 1.2em auto 0; }
+.sf-social-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: .45em; }
+.sf-social-row > a,
+.sf-wechat > a {
+  display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px;
+  border: 1px solid var(--border); border-radius: 999px; background: var(--secondary-bg); font-weight: 700;
+}
+.sf-wechat { position: relative; }
+.sf-wechat-pop {
+  display: none; position: absolute; z-index: 6; left: 0; bottom: calc(100% + 8px);
+  padding: 8px; border: 1px solid var(--border); border-radius: 12px; background: #fff;
+  box-shadow: 0 12px 30px rgba(21, 27, 40, .12);
+}
+.sf-wechat:hover .sf-wechat-pop,
+.sf-wechat:focus-within .sf-wechat-pop { display: block; }
+.sf-wechat-pop img { display: block; width: 180px; height: auto; }
 .sf-disc, .sf-copy { max-width: 1120px; margin: 1.2em auto 0; }
+.contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 1.2em 0; }
+.contact-card { border: 1px solid var(--border); border-radius: 12px; background: var(--entry); padding: 14px 16px; }
+.contact-card h2 { margin: 0 0 .35em; font-size: 1.15rem; }
+.post-content .contact-card h2::before { display: none; }
+.contact-card p { margin: .35em 0; }
+.contact-card img { display: block; width: min(100%, 320px); height: auto; margin-top: 8px; border-radius: 12px; background: #fff; }
+@media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
 .sf-disc { padding-top: 1em; border-top: 1px solid var(--border); }
 @media (max-width: 800px) { .sf-grid { grid-template-columns: 1fr 1fr; } .sf-brand { grid-column: 1 / -1; } }
 
