@@ -46,7 +46,8 @@
         <span class="journey-num">1</span>
         <span class="journey-head-text"><b>{{ if $en }}Set up the entity first{{ else }}先立主体{{ end }}</b><small>{{ if $en }}Once the contracting entity is in place, you can sign, collect payment, and file customs.{{ else }}合约主体定下来，后面才能签、收、报{{ end }}</small></span>
       </a>
-      <a class="journey-card" href="{{ "/services/overseas-company/" | relLangURL }}">
+      <a class="journey-card journey-card-focus" href="{{ "/services/overseas-company/" | relLangURL }}">
+        <span class="journey-badge">{{ if $en }}We'll cover this one in detail{{ else }}这一笔我们会讲细{{ end }}</span>
         <b>{{ if $en }}Company registration{{ else }}注册公司与主体{{ end }}</b>
         <ul>
           {{- if $en }}
