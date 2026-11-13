@@ -206,7 +206,7 @@
       "storage_type": "SSD",
       "bandwidth_gb": 3000,
       "bandwidth_label": "出站 3 TB；入站不限量",
-      "port_mbps": null,
+      "port_mbps": 10000,
       "cpu_label": "",
       "spec_label": "1 个 IPv4；/64 IPv6；宿主机 10 Gbps 上联，非每台独享保证带宽",
       "official_url": "https://www.ethernetservers.com/vps-hosting",
@@ -215,9 +215,9 @@
         "https://www.ethernetservers.com/vps-hosting",
         "https://www.ethernetservers.com/terms"
       ],
-      "checked_on": "2026-11-01",
+      "checked_on": "2026-11-13",
       "availability": "官网目录展示，交付库存未实测",
-      "notes": "默认非托管，支持升级但不支持降级；每日异地备份提供最多 7 天还原点。出站 25 端口默认封锁，可申请审核。Windows 为 180 天评估版，至少需要 4 GB 套餐。",
+      "notes": "默认非托管，支持升级但不支持降级；每日异地备份提供最多 7 天还原点。出站 25 端口默认封锁，可申请审核。Windows 为 180 天评估版，至少需要 4 GB 套餐。 端口按官网记为 10 Gbps；规格说明为宿主机上联，非每台独享保证带宽。",
       "offers": [
         {
           "period": "monthly",
@@ -250,7 +250,7 @@
       "storage_type": "SSD",
       "bandwidth_gb": 5000,
       "bandwidth_label": "出站 5 TB；入站不限量",
-      "port_mbps": null,
+      "port_mbps": 10000,
       "cpu_label": "",
       "spec_label": "1 个 IPv4；/64 IPv6；宿主机 10 Gbps 上联，非每台独享保证带宽",
       "official_url": "https://www.ethernetservers.com/vps-hosting",
@@ -259,9 +259,9 @@
         "https://www.ethernetservers.com/vps-hosting",
         "https://www.ethernetservers.com/terms"
       ],
-      "checked_on": "2026-11-01",
+      "checked_on": "2026-11-13",
       "availability": "官网目录展示，交付库存未实测",
-      "notes": "默认非托管，支持升级但不支持降级；每日异地备份提供最多 7 天还原点。出站 25 端口默认封锁，可申请审核。Windows 为 180 天评估版，至少需要 4 GB 套餐。",
+      "notes": "默认非托管，支持升级但不支持降级；每日异地备份提供最多 7 天还原点。出站 25 端口默认封锁，可申请审核。Windows 为 180 天评估版，至少需要 4 GB 套餐。 端口按官网记为 10 Gbps；规格说明为宿主机上联，非每台独享保证带宽。",
       "offers": [
         {
           "period": "monthly",
@@ -294,7 +294,7 @@
       "storage_type": "SSD",
       "bandwidth_gb": 8000,
       "bandwidth_label": "出站 8 TB；入站不限量",
-      "port_mbps": null,
+      "port_mbps": 10000,
       "cpu_label": "",
       "spec_label": "1 个 IPv4；/64 IPv6；宿主机 10 Gbps 上联，非每台独享保证带宽",
       "official_url": "https://www.ethernetservers.com/vps-hosting",
@@ -303,9 +303,9 @@
         "https://www.ethernetservers.com/vps-hosting",
         "https://www.ethernetservers.com/terms"
       ],
-      "checked_on": "2026-11-01",
+      "checked_on": "2026-11-13",
       "availability": "官网目录展示，交付库存未实测",
-      "notes": "默认非托管，支持升级但不支持降级；每日异地备份提供最多 7 天还原点。出站 25 端口默认封锁，可申请审核。Windows 为 180 天评估版，至少需要 4 GB 套餐。",
+      "notes": "默认非托管，支持升级但不支持降级；每日异地备份提供最多 7 天还原点。出站 25 端口默认封锁，可申请审核。Windows 为 180 天评估版，至少需要 4 GB 套餐。 端口按官网记为 10 Gbps；规格说明为宿主机上联，非每台独享保证带宽。",
       "offers": [
         {
           "period": "monthly",
@@ -338,7 +338,7 @@
       "storage_type": "SSD",
       "bandwidth_gb": 12000,
       "bandwidth_label": "出站 12 TB；入站不限量",
-      "port_mbps": null,
+      "port_mbps": 10000,
       "cpu_label": "",
       "spec_label": "1 个 IPv4；/64 IPv6；宿主机 10 Gbps 上联，非每台独享保证带宽",
       "official_url": "https://www.ethernetservers.com/vps-hosting",
@@ -347,9 +347,9 @@
         "https://www.ethernetservers.com/vps-hosting",
         "https://www.ethernetservers.com/terms"
       ],
-      "checked_on": "2026-11-01",
+      "checked_on": "2026-11-13",
       "availability": "官网目录展示，交付库存未实测",
-      "notes": "默认非托管，支持升级但不支持降级；每日异地备份提供最多 7 天还原点。出站 25 端口默认封锁，可申请审核。Windows 为 180 天评估版，至少需要 4 GB 套餐。",
+      "notes": "默认非托管，支持升级但不支持降级；每日异地备份提供最多 7 天还原点。出站 25 端口默认封锁，可申请审核。Windows 为 180 天评估版，至少需要 4 GB 套餐。 端口按官网记为 10 Gbps；规格说明为宿主机上联，非每台独享保证带宽。",
       "offers": [
         {
           "period": "monthly",
@@ -382,7 +382,7 @@
       "storage_type": "SSD",
       "bandwidth_gb": 16000,
       "bandwidth_label": "出站 16 TB；入站不限量",
-      "port_mbps": null,
+      "port_mbps": 10000,
       "cpu_label": "",
       "spec_label": "1 个 IPv4；/64 IPv6；宿主机 10 Gbps 上联，非每台独享保证带宽",
       "official_url": "https://www.ethernetservers.com/vps-hosting",
@@ -391,9 +391,9 @@
         "https://www.ethernetservers.com/vps-hosting",
         "https://www.ethernetservers.com/terms"
       ],
-      "checked_on": "2026-11-01",
+      "checked_on": "2026-11-13",
       "availability": "官网目录展示，交付库存未实测",
-      "notes": "默认非托管，支持升级但不支持降级；每日异地备份提供最多 7 天还原点。出站 25 端口默认封锁，可申请审核。Windows 为 180 天评估版，至少需要 4 GB 套餐。",
+      "notes": "默认非托管，支持升级但不支持降级；每日异地备份提供最多 7 天还原点。出站 25 端口默认封锁，可申请审核。Windows 为 180 天评估版，至少需要 4 GB 套餐。 端口按官网记为 10 Gbps；规格说明为宿主机上联，非每台独享保证带宽。",
       "offers": [
         {
           "period": "monthly",
@@ -423,7 +423,7 @@
       "vcpu_count": null,
       "ram_mb": 16384,
       "storage_gb": null,
-      "storage_type": "SSD 或 HDD",
+      "storage_type": "256G SSD 或 1T HDD",
       "bandwidth_gb": null,
       "bandwidth_label": "不限流量",
       "port_mbps": 1000,
@@ -435,7 +435,7 @@
         "https://www.ethernetservers.com/dedicated-servers",
         "https://www.ethernetservers.com/terms"
       ],
-      "checked_on": "2026-11-01",
+      "checked_on": "2026-11-13",
       "availability": "官网目录展示，交付库存未实测",
       "notes": "默认非托管；20 Gbps DDoS 防护；IPMI 可申请。官网“8 CPU”未在此换算为物理核心数量；可按需求询问其他配置。",
       "offers": [
