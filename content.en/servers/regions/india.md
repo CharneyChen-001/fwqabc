@@ -1,7 +1,7 @@
 ---
 title: "India server plans"
-description: "255 offers whose catalog entry names India. Plans without a stated region are not included."
+description: "251 offers whose catalog entry names India. Plans without a stated region are not included."
 filter_region: "india"
-offer_count: 255
+offer_count: 251
 generated_by: build-offers.py
 ---
