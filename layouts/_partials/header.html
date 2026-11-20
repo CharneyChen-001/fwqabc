@@ -20,6 +20,7 @@
             {{- if and (eq .Identifier "knowledge") (hasPrefix $here "/knowledge/") }}{{ $active = true }}{{ end }}
             {{- if and (eq .Identifier "tools") (hasPrefix $here "/tools/") }}{{ $active = true }}{{ end }}
             {{- if and (eq .Identifier "company") (or (hasPrefix $here "/services/") (hasPrefix $.RelPermalink "/services/")) }}{{ $active = true }}{{ end }}
+            {{- if and (eq .Identifier "seogeo") (or (hasPrefix $here "/seo-geo/") (hasPrefix $.RelPermalink "/seo-geo/")) }}{{ $active = true }}{{ end }}
             <li class="{{ if or .HasChildren (eq .Identifier "servers") }}has-sub{{ end }}">
                 {{- if or .HasChildren (eq .Identifier "servers") }}
                 <details>

@@ -32,7 +32,7 @@
 {{- end }}
 </ul><p class="cm-note">{{ if $en }}Pick the wrong entity and every later cost goes up.{{ else }}主体选错，后面每笔都更贵。{{ end }}</p></div></div>
 <div class="cm-col s2"><div class="cm-stage"><i>2</i><span>{{ if $en }}Open the storefront{{ else }}再开门面{{ end }}<small>{{ if $en }}So overseas customers can find you and the site loads.{{ else }}让国外客户找得到、打得开{{ end }}</small></span></div>
-<div class="cm-card"><h4>{{ if $en }}Website and independent store{{ else }}建站与独立站{{ end }}</h4><ul>
+<a class="cm-card" href="{{ "/seo-geo/" | relLangURL }}"><h4>{{ if $en }}Website and independent store{{ else }}建站与独立站{{ end }}</h4><ul>
 {{- if $en }}
 <li>A brochure site or a shop</li>
 <li>Domain and company email</li>
@@ -44,7 +44,7 @@
 <li>多语言、多币种</li>
 <li>上线后的维护</li>
 {{- end }}
-</ul></div>
+</ul><span class="cm-more">{{ if $en }}Learn more →{{ else }}了解详情 →{{ end }}</span></a>
 <a class="cm-card cm-hot" href="{{ $servers }}"><h4>{{ if $en }}Servers and network{{ else }}服务器与网络{{ end }}</h4><ul>
 {{- if $en }}
 <li>Why buy a machine overseas</li>
@@ -123,7 +123,7 @@
 <li>商标和专利，先注册再上架</li>
 {{- end }}
 </ul></div>
-<div class="cm-card"><h4>{{ if $en }}Customers and after-sales{{ else }}获客与售后{{ end }}</h4><ul>
+<a class="cm-card" href="{{ "/seo-geo/" | relLangURL }}"><h4>{{ if $en }}Customers and after-sales{{ else }}获客与售后{{ end }}</h4><ul>
 {{- if $en }}
 <li>Ads, marketplace commission, and content</li>
 <li>Support, returns, and reputation</li>
@@ -131,7 +131,7 @@
 <li>广告、平台佣金和内容获客</li>
 <li>客服、退换货和口碑维护</li>
 {{- end }}
-</ul></div></div>
+</ul><span class="cm-more">{{ if $en }}Learn more →{{ else }}了解详情 →{{ end }}</span></a></div>
 <div class="cm-bottom"><img src="/brand/logo-128.png" alt="" width="30" height="30"><b>出海ABC</b><em>{{ if $en }}notes{{ else }}出品{{ end }}</em><span>{{ if $en }}The costs and the steps, explained before you spend.{{ else }}免费把出海该花的钱、该办的事讲明白{{ end }}</span><span class="cm-url">fwqabc.com</span></div>
 </figure>
 </div>
