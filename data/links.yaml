@@ -23,20 +23,19 @@ bandwagonhost-basic-4g-la2-monthly:
   aff_template: https://bandwagonhost.com/aff.php?aff={aff}&a=add&pid=46&billingcycle=monthly&configoption%5B10%5D=35
 
 raksmart:
-  cta: 查看 $1.99/月秒杀款
+  cta: 查看 VPS $2.99/月起
   landing: https://www.raksmart.com/activity/index/page/activitypage_25.html
-  aff: ""
-  # WHMCS 推广链接 billing.raksmart.com/whmcs/aff.php?aff=ID，只能落到默认首页；
-  # 能否带落地页（或使用联盟后台生成的 raksmart.com/cps/xxxx 活动短链）待核实，TODO 向 RakSmart 客服/后台确认
-  aff_template: https://billing.raksmart.com/whmcs/aff.php?aff={aff}
+  aff: "10061"
+  # 与线上 /go/raksmart 一致：aff.php?aff=10061&aff_rtype=affiliate
+  aff_template: https://billing.raksmart.com/whmcs/aff.php?aff={aff}&aff_rtype=affiliate
   thumb: /img/promos/raksmart-2026-double11.webp
   thumb_alt: RakSmart 官方 11.11 年度大促活动页截图
 
 racknerd:
-  cta: 查看 RackNerd 特价页
-  landing: https://www.racknerd.com/specials/
-  aff: ""
-  # 旧优惠文章保留官方普通入口；商家目录使用下方独立推广入口及已核实的产品深链。
+  cta: 查看 RackNerd 黑五页
+  landing: https://www.racknerd.com/BlackFriday/
+  aff: "21792"
+  # 与线上 /go/racknerd 一致。specials 现会转到 BlackFriday，跳转本身走 aff.php。
   aff_template: https://my.racknerd.com/aff.php?aff={aff}
 
 racknerd-standard:

@@ -1,7 +1,7 @@
 ---
 title: "Australia server plans"
-description: "257 offers whose catalog entry names Australia. Plans without a stated region are not included."
+description: "256 offers whose catalog entry names Australia. Plans without a stated region are not included."
 filter_region: "australia"
-offer_count: 257
+offer_count: 256
 generated_by: build-offers.py
 ---

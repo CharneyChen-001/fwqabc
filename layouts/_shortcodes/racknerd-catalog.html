@@ -6,7 +6,7 @@
     <p class="racknerd-meta">{{ .product_count }} 款推荐产品 · {{ .offer_count }} 条周期报价</p>
   </div>
   <p>{{ .scope_note }}价格单位为美元，下方价格为整个付款周期总价，库存与最终费用以官网配置页为准。</p>
-  <p class="racknerd-source">核对日期：<time datetime="{{ .checked_on }}">{{ .checked_on }}</time> · <a href="https://www.racknerd.com/specials/" target="_blank" rel="noopener">官方产品页面</a> · <a href="{{ "/disclosure/" | relURL }}">推广披露</a></p>
+  <p class="racknerd-source">核对日期：<time datetime="{{ .checked_on }}">{{ .checked_on }}</time> · <a href="https://www.racknerd.com/BlackFriday/" target="_blank" rel="noopener">官方产品页面</a> · <a href="{{ "/disclosure/" | relURL }}">推广披露</a></p>
   <div class="racknerd-link-note">推广链接只指定产品。进入官网后，请手动选择地区、操作系统及付款周期；下方报价不代表这些选项已经预选。</div>
   <nav class="racknerd-series-nav" aria-label="RackNerd 产品系列">
     {{- range .series }}<a href="#racknerd-{{ .id }}"><strong>{{ .label }}</strong><span>{{ .product_count }} 款产品</span></a>{{ end }}

@@ -3,7 +3,7 @@ title: "2026 双11 国外 VPS 优惠汇总（持续更新）"
 date: 2026-11-01T12:00:00+08:00
 lastmod: 2026-11-01T13:30:00+08:00
 draft: false
-description: "2026 双11 / 黑五国外 VPS 优惠汇总：RakSmart $1.99/月秒杀、搬瓦工方案与优惠码现状、RackNerd、Vultr、CloudCone、HostDare、GreenCloud、Hostinger 官方活动时间（北京时间）、价格与限制，每条注明来源与核对日期，持续更新。"
+description: "2026 双11 / 黑五国外 VPS 优惠汇总：RakSmart 活动页 VPS $2.99/月起、搬瓦工方案与优惠码现状、RackNerd 2026 黑五、Vultr、CloudCone 等。每条注明来源与核对日期。"
 keywords: ["2026 双11 VPS", "双11 VPS 优惠", "黑五 VPS", "RakSmart 双11", "搬瓦工 双11", "RackNerd 黑五", "Vultr 优惠码", "CloudCone", "HostDare"]
 merchants: ["raksmart", "bandwagonhost", "racknerd", "vultr"]
 routes: ["cn2-gia"]
@@ -13,39 +13,40 @@ tags: ["双11", "黑五", "优惠汇总"]
 categories: ["promotions", "cn2-gia"]
 ---
 
-> 持续更新。所有时间为**北京时间**；价格以商家结算页为准。每条都注明来源与核对日期，「尚未公布」表示截至核对日官方没有发布，公布后更新。最后核对：2026-11-01。
+> 持续更新。所有时间为**北京时间**；价格以商家结算页为准。每条都注明来源与核对日期。RackNerd 与 RakSmart 活动页核对到 2026-11-20，其余未改的条目仍是原先的核对日。
 
-**一句话结论：** 想低价囤一台练手机，等 RakSmart 11月11日 的 $1.99/月秒杀；要面向国内访客的稳定线路，选搬瓦工 CN2 GIA-E；按小时试用选 Vultr（新用户首充返赠）。
+**一句话结论：** RakSmart 活动页现在写的是 VPS from $2.99/month，11月11日那一波已经结束。要面向国内访客的稳定线路，选搬瓦工 CN2 GIA-E。年付低价可以看 RackNerd 已经上线的 2026 黑五页。按小时试用选 Vultr。
 
-{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" when="2026-11-11T00:00:00+08:00/2026-11-17T23:59:59+08:00,2026-11-25T00:00:00+08:00/2026-11-30T23:59:59+08:00" sticky="true" >}}
+{{< dealbox slug="raksmart" merchant="RakSmart 活动页" price="$2.99/月起" validity="黑五感恩周 11/25–11/30（北京时间）" limits="以活动页和结算页为准" when="2026-11-25T00:00:00+08:00/2026-11-30T23:59:59+08:00" sticky="true" >}}
 
 ## 总表
 
 | 商家 | 2026 双11/黑五状态 | 活动时间（北京时间） | 亮点 | 核对日期 |
 |---|---|---|---|---|
-| RakSmart | **已公布** | 10/15–11/30；秒杀 11/11–11/17、11/25–11/30 | VPS 秒杀 $1.99/月起 | 2026-11-01 |
+| RakSmart | **已公布** | 10/15–11/30；11/11–11/17 已结束；黑五周 11/25–11/30 | 活动页 VPS from $2.99/month | 2026-11-20 |
 | 搬瓦工 BandwagonHost | 尚未公布，公布后更新 | — | 常规方案原价，无可用优惠码 | 2026-11-01 |
-| RackNerd | 尚未公布，公布后更新 | — | 往年黑五年付价格通常较低 | 2026-11-01 |
+| RackNerd | **已上线** | 官网 Black Friday 2026 页 | 1 GB KVM $15.98/年 起 | 2026-11-20 |
 | Vultr | 无黑五专场；长期新用户优惠 | 长期 | 首充 1:1 返赠最高 $100 | 2026-11-01 |
 | CloudCone | 万圣节促销进行中（非双11专场） | 结束时间{{< tbc >}} | 洛杉矶 SSD VPS $20.25/年起，续费同价 | 2026-11-01 |
 | HostDare | 长期循环折扣（非双11专场） | {{< tbc >}} | 洛杉矶 25% 循环折扣 | 2026-11-01 |
 | GreenCloud | 官方表示**今年不做黑五** | 生日活动 10/26–10/31（UTC）已结束 | — | 2026-11-01 |
 | Hostinger | 黑五活动进行中{{< tbc >}} | 10/19–12/14{{< tbc >}} | KVM VPS 低至 7 折 | 2026-11-01 |
 
-## RakSmart：$1.99/月 VPS 秒杀
+## RakSmart：活动页现在是 VPS $2.99/月起
 
 **来源：** RakSmart 官方博客活动说明（[cn.raksmart.com/blog/?p=12652](https://cn.raksmart.com/blog/?p=12652)），核对 2026-11-01。详细规则见 [RakSmart 2026 双11 黑五活动详解](/deals/raksmart-2026-double11-black-friday/)。
 
-- 活动时间：10月15日 – 11月30日；双11大促周 11月11日 – 17日；黑五感恩周 11月25日 – 30日。
+- 活动时间：10月15日 – 11月30日。双11大促周 11月11日 – 17日已经结束。还没到的是黑五感恩周 11月25日 – 30日。
+- 2026-11-20 打开官方活动页，页面写的是 VPS from $2.99/month，没有看到 $1.99。下面表格是更早整理的秒杀档，不能当成今天活动页上的标价。
 - 每日开抢时间{{< tbc >}}（常规秒杀为北京时间 16:00 放库存，第三方转引）。
 
 | 机房 | 配置 | 硬盘 | 线路 | 带宽/流量 | 双11/黑五价 |
 |---|---|---|---|---|---|
 | 硅谷 | 2核 / 2G | 50G HDD | 国际 BGP | 5Gbps / 10TB | $1.99/月 |
-| 硅谷 | 2核 / 2G | 50G HDD | 大陆优化 VIP | 5Gbps / 3TB | $1.99/月 |
+| 硅谷 | 2核 / 2G | 50G HDD | 大陆优化线路 | 5Gbps / 3TB | $1.99/月 |
 | 香港 | 1核 / 1G | 50G HDD | 国际 BGP | 1Gbps / 3TB | $1.99/月 |
 | 硅谷 | 2核 / 2G | 50G HDD | 精品 CN2 | 1Gbps / 1TB | $3.99/月 |
-| 硅谷独服 | E3-1230 / 16G | 1T HDD | 大陆优化 VIP | 100Mbps / 不限 | $29.9/月 |
+| 硅谷独服 | E3-1230 / 16G | 1T HDD | 大陆优化线路 | 100Mbps / 不限 | $29.9/月 |
 
 {{< go "raksmart" >}}
 
@@ -72,8 +73,8 @@ categories: ["promotions", "cn2-gia"]
 
 ## RackNerd
 
-- 2026 双11/黑五：**尚未公布，公布后更新**（截至 2026-11-01 官网未见黑五页面）。
-- 参考：2025 年黑五 VPS 年付款 1G 内存约 $10.60/年起（第三方库存监控 [racknerdtracker.com](https://racknerdtracker.com/sales/black-friday) 记录，仅作历史参考，不代表今年价格）。
+- 2026 黑五页已经在线上：[racknerd.com/BlackFriday](https://www.racknerd.com/BlackFriday/)。2026-11-20 读到的年付 KVM：1 GB $15.98、2.5 GB $27.98、4 GB $47.98、6 GB $74.98、8 GB $94.98。同页还有共享、分销和四款独服，规格在[商家目录](/merchants/racknerd/)。
+- [racknerdtracker.com/sales/black-friday](https://racknerdtracker.com/sales/black-friday) 现在的标题是 RackNerd Black Friday 2026 Deals。它把 2025 年 1 GB 约 $10.60/年放在 Past Black Friday deals 里，那是往年记录，不是今年官网标价。
 
 {{< go "racknerd" >}}
 
@@ -100,9 +101,9 @@ categories: ["promotions", "cn2-gia"]
 
 ## 怎么选
 
-- **只看低价、能接受 HDD**：RakSmart 双11周 $1.99/月秒杀。
+- **只看低价、能接受 HDD**：先看 RakSmart 活动页现在的 VPS from $2.99/month，不要按已经结束的 $1.99 档下单。
 - **面向国内访客、要稳定线路**：搬瓦工 CN2 GIA-E，或等双11看是否出循环优惠码再年付。
-- **年付低价小鸡**：等 RackNerd 黑五款公布。
+- **年付低价小鸡**：RackNerd 2026 黑五页，1 GB 年付 $15.98。
 - **按小时计费做开发测试**：Vultr + 新用户返赠。
 
 ## 限制与坑
@@ -115,3 +116,4 @@ categories: ["promotions", "cn2-gia"]
 ## 更新日志
 
 - 2026-11-01：首次整理。核对 RakSmart 官方博客、搬瓦工官网产品目录、Vultr 官方优惠码页、CloudCone 官方促销页；搬瓦工、RackNerd、DMIT 双11/黑五尚未公布。
+- 2026-11-20：RackNerd 黑五页已上线，按官网改了年付价格。RakSmart 活动页改为 VPS from $2.99/month，11/11–11/17 已结束。搬瓦工优惠码和 DMIT 仍按原先核对日，这次没有改。

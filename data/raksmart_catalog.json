@@ -187,7 +187,7 @@
       "storage_gb": 200,
       "storage_type": "NVMe",
       "bandwidth_gb": null,
-      "bandwidth_label": "流量限制待确认",
+      "bandwidth_label": "不限流量",
       "port_mbps": 500,
       "cpu_label": "",
       "spec_label": "",
@@ -196,9 +196,9 @@
       "source_urls": [
         "https://www.raksmart.com/vps/introduction.html"
       ],
-      "checked_on": "2026-11-01",
+      "checked_on": "2026-11-20",
       "availability": "官网展示，交付库存未实测",
-      "notes": "内存按官网 GB 规格记录；HDD 与 NVMe 按具体套餐区分，不沿用页面通用宣传。",
+      "notes": "内存按官网 GB 规格记录；HDD 与 NVMe 按具体套餐区分，不沿用页面通用宣传。 2026-11-20 官网 VPS 页该档 Network 写 Unlimited。",
       "offers": [
         {
           "period": "monthly",
@@ -229,7 +229,7 @@
       "storage_gb": 200,
       "storage_type": "NVMe",
       "bandwidth_gb": null,
-      "bandwidth_label": "流量限制待确认",
+      "bandwidth_label": "不限流量",
       "port_mbps": 1000,
       "cpu_label": "",
       "spec_label": "",
@@ -238,9 +238,9 @@
       "source_urls": [
         "https://www.raksmart.com/vps/introduction.html"
       ],
-      "checked_on": "2026-11-01",
+      "checked_on": "2026-11-20",
       "availability": "官网展示，交付库存未实测",
-      "notes": "内存按官网 GB 规格记录；HDD 与 NVMe 按具体套餐区分，不沿用页面通用宣传。",
+      "notes": "内存按官网 GB 规格记录；HDD 与 NVMe 按具体套餐区分，不沿用页面通用宣传。 2026-11-20 官网 VPS 页该档 Network 写 Unlimited。",
       "offers": [
         {
           "period": "monthly",

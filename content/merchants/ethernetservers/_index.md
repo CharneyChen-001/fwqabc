@@ -28,4 +28,4 @@ Ethernet Servers 提供共享主机、KVM VPS、独立服务器和域名服务�
 
 推广计划对合格的共享主机、KVM VPS 和独服服务提供 20% 持续佣金，域名排除。最低提现 25 美元，可选 PayPal 或账户余额。官网的 10 美元联盟开通奖励不是购买者赠金，也不代表已经产生推荐成交。基础推广入口不预选产品、地区或周期；Cookie 有效期、佣金成熟期及产品直达推广归因尚未核实。
 
-来源：[共享主机](https://www.ethernetservers.com/shared-hosting)、[WordPress 主机](https://www.ethernetservers.com/wordpress-hosting)、[KVM VPS](https://www.ethernetservers.com/vps-hosting)、[独立服务器](https://www.ethernetservers.com/dedicated-servers)、[域名价格](https://www.ethernetservers.com/domain-names)、[联盟计划](https://www.ethernetservers.com/affiliates)、[服务条款](https://www.ethernetservers.com/terms)。
+来源：[共享主机](https://www.ethernetservers.com/shared-web-hosting-providers)、[WordPress 主机](https://www.ethernetservers.com/wordpress-hosting-services)、[KVM VPS](https://www.ethernetservers.com/vps-web-hosting-services)、[独立服务器](https://www.ethernetservers.com/dedicated-servers)、[域名价格](https://www.ethernetservers.com/domain-names)、[联盟计划](https://www.ethernetservers.com/affiliates)、[服务条款](https://www.ethernetservers.com/terms)。

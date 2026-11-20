@@ -127,7 +127,7 @@ sudo firewall-cmd --reload
 | **实例被回收** | 官方：连续 7 天内 CPU 第 95 百分位使用率 < 20%、网络使用率 < 20%、内存使用率 < 20%（仅 A1）的实例**可能被回收** | 不要开了不用；认真跑项目，或者干脆删掉 |
 | **试用期后机器没了** | 试用金开的付费资源到期回收；A1 总量超出免费额度会被禁用，30 天后删除 | 试用期结束前把 A1 总量控制在 2 OCPU / 12 GB 以内 |
 
-{{< cta slug="raksmart" text="开不出机、怕被回收？低价付费款更省心：RakSmart 双11 秒杀 $1.99/月起" >}}
+{{< cta slug="raksmart" text="开不出机、怕被回收？可以看 RakSmart 活动页，VPS $2.99/月起" >}}
 
 关于**升级为 Pay As You Go**：官方说明升级后 **Always Free 资源仍然免费**，只对超出部分计费，而且**升级后不能降级**（[官方 FAQ](https://www.oracle.com/cloud/free/faq/)）。经验分享{{< tbc >}}：有用户认为升级后开机更容易、账户也更不容易被清理，官方没有这样承诺。升级前务必设好预算提醒，避免误开付费资源。
 
@@ -149,7 +149,7 @@ sudo firewall-cmd --reload
 
 {{< dealbox slug="racknerd" merchant="RackNerd" price="黑五价格待公布" validity="以官网活动页为准" limits="美国机房为主 · 普通线路" >}}
 
-{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" when="2026-11-11T00:00:00+08:00/2026-11-17T23:59:59+08:00,2026-11-25T00:00:00+08:00/2026-11-30T23:59:59+08:00" >}}
+{{< dealbox slug="raksmart" merchant="RakSmart 活动页" price="$2.99/月起" validity="黑五感恩周 11/25–11/30（北京时间）" limits="以活动页和结算页为准" when="2026-11-25T00:00:00+08:00/2026-11-30T23:59:59+08:00" >}}
 
 {{< dealbox slug="bandwagonhost" merchant="搬瓦工 CN2 GIA-E" price="$89.99/季起" validity="常规方案，长期有效" limits="价格以结算页为准" >}}
 
