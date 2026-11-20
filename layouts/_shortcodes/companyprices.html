@@ -93,12 +93,59 @@
           <p class="co-k">{{ if $en }}Timing, reference{{ else }}时效（参考）{{ end }}</p>
           <p class="co-time">{{ .timeline_label }}</p>
         </div>
-        <p class="co-act"><a class="co-ask" href="mailto:{{ $email }}?subject={{ $subject | urlquery }}&amp;body={{ $ask | urlquery }}">{{ if $en }}Ask about this{{ else }}咨询这项{{ end }}</a></p>
+        <p class="co-act"><a class="co-ask" data-ask-name="{{ .name }}" href="mailto:{{ $email }}?subject={{ $subject | urlquery }}&amp;body={{ $ask | urlquery }}">{{ if $en }}Ask about this{{ else }}咨询这项{{ end }}</a></p>
       </article>
       {{- end }}
     </div>
   </section>
   {{- end }}
   {{- end }}
+{{- $wechatImg := site.Params.wechatQr -}}
+{{- range site.Params.contactChannels }}{{ if and (eq .id "wechat") .image }}{{ $wechatImg = .image }}{{ end }}{{ end -}}
+<div class="co-modal" data-co-modal hidden>
+  <div class="co-modal-backdrop" data-co-close></div>
+  <div class="co-dialog" role="dialog" aria-modal="true" aria-labelledby="co-modal-title" tabindex="-1">
+    <div class="co-dialog-bar">
+      <p class="co-modal-title" id="co-modal-title" data-prefix="{{ if $en }}Ask: {{ else }}咨询：{{ end }}" role="heading" aria-level="2">{{ if $en }}Ask{{ else }}咨询{{ end }}</p>
+      <button type="button" class="co-modal-x" data-co-close aria-label="{{ if $en }}Close{{ else }}关闭{{ end }}">×</button>
+    </div>
+    <div class="co-dialog-body">
+    <figure class="co-modal-wechat">
+      <img src="{{ $wechatImg }}" alt="{{ if $en }}WeChat QR for Chuhai ABC{{ else }}出海ABC 微信二维码{{ end }}" width="168" height="229">
+      <figcaption>{{ if $en }}Scan to add WeChat, and put the item in the note. There is no separate text WeChat ID.{{ else }}扫码添加微信，备注咨询项目。这里没有单独的文字微信号。{{ end }}</figcaption>
+    </figure>
+    {{- range site.Params.contactChannels }}
+      {{- if eq .id "x" }}
+      <p class="co-modal-xlink"><a href="{{ .url }}" target="_blank" rel="noopener noreferrer">X {{ .account }}</a></p>
+      {{- end }}
+    {{- end }}
+    <div class="co-modal-grid">
+      {{- range site.Params.contactChannels }}
+        {{- if not (in (slice "wechat" "x" "email") .id) }}
+        {{- $label := .label -}}
+        {{- if $en }}{{ $label = .labelEn | default .label }}{{ end -}}
+        {{- $chUrl := .url -}}
+        {{- $chAccount := .account -}}
+        <figure>
+          {{- with .image }}
+            {{- if $chUrl }}
+            <a href="{{ $chUrl }}" target="_blank" rel="noopener noreferrer"><img src="{{ . }}" alt="{{ $label }}" width="140" height="190"></a>
+            {{- else }}
+            <img src="{{ . }}" alt="{{ $label }}" width="140" height="190">
+            {{- end }}
+          {{- end }}
+          <figcaption><b>{{ $label }}</b>{{ with $chAccount }}<span>{{ . }}</span>{{ end }}</figcaption>
+        </figure>
+        {{- end }}
+      {{- end }}
+    </div>
+    <div class="co-modal-actions">
+      <a class="co-ask co-mail" data-co-mail href="mailto:{{ $email }}">{{ if $en }}Email about this{{ else }}发邮件咨询{{ end }}</a>
+      <button type="button" class="co-copy" data-co-copy data-email="{{ $email }}" data-copied="{{ if $en }}Copied{{ else }}已复制{{ end }}">{{ if $en }}Copy address{{ else }}复制邮箱{{ end }}</button>
+    </div>
+    <p class="co-copy-line"><span class="co-email">{{ $email }}</span> <span data-co-copy-status aria-live="polite"></span></p>
+    </div>
+  </div>
+</div>
 </div>
 <script src="{{ "js/company-prices.js" | relURL }}" defer></script>
