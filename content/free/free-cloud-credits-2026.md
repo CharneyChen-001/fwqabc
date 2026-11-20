@@ -69,7 +69,7 @@ merchants: ["vultr"]
 
 {{< dealbox slug="racknerd" merchant="RackNerd" price="黑五价格待公布" validity="以官网活动页为准" limits="美国机房为主 · 普通线路" >}}
 
-{{< dealbox slug="raksmart" merchant="RakSmart 双11秒杀" price="$1.99/月起" validity="11/11–11/17、11/25–11/30（北京时间）" limits="限量 · HDD · 不可叠加优惠券" when="2026-11-11T00:00:00+08:00/2026-11-17T23:59:59+08:00,2026-11-25T00:00:00+08:00/2026-11-30T23:59:59+08:00" >}}
+{{< dealbox slug="raksmart" merchant="RakSmart 活动页" price="$2.99/月起" validity="黑五感恩周 11/25–11/30（北京时间）" limits="以活动页和结算页为准" when="2026-11-25T00:00:00+08:00/2026-11-30T23:59:59+08:00" >}}
 
 {{< dealbox slug="bandwagonhost" merchant="搬瓦工 CN2 GIA-E" price="$89.99/季起" validity="常规方案，长期有效" limits="价格以结算页为准" >}}
 

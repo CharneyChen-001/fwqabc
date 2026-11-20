@@ -1,7 +1,7 @@
 ---
 title: "Chile server plans"
-description: "51 offers whose catalog entry names Chile. Plans without a stated region are not included."
+description: "45 offers whose catalog entry names Chile. Plans without a stated region are not included."
 filter_region: "chile"
-offer_count: 51
+offer_count: 45
 generated_by: build-offers.py
 ---

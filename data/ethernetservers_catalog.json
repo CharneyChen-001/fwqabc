@@ -16,11 +16,11 @@
   ],
   "source_urls": [
     "https://www.ethernetservers.com/",
-    "https://www.ethernetservers.com/shared-hosting",
-    "https://www.ethernetservers.com/vps-hosting",
+    "https://www.ethernetservers.com/shared-web-hosting-providers",
+    "https://www.ethernetservers.com/vps-web-hosting-services",
     "https://www.ethernetservers.com/dedicated-servers",
     "https://www.ethernetservers.com/domain-names",
-    "https://www.ethernetservers.com/wordpress-hosting",
+    "https://www.ethernetservers.com/wordpress-hosting-services",
     "https://www.ethernetservers.com/affiliates",
     "https://www.ethernetservers.com/terms"
   ],
@@ -74,11 +74,11 @@
       "port_mbps": null,
       "cpu_label": "",
       "spec_label": "5 个网站；不限邮箱；cPanel；免费 SSL",
-      "official_url": "https://www.ethernetservers.com/shared-hosting",
+      "official_url": "https://www.ethernetservers.com/shared-web-hosting-providers",
       "purchase_url": "",
       "source_urls": [
-        "https://www.ethernetservers.com/shared-hosting",
-        "https://www.ethernetservers.com/wordpress-hosting",
+        "https://www.ethernetservers.com/shared-web-hosting-providers",
+        "https://www.ethernetservers.com/wordpress-hosting-services",
         "https://www.ethernetservers.com/terms"
       ],
       "checked_on": "2026-11-01",
@@ -119,11 +119,11 @@
       "port_mbps": null,
       "cpu_label": "",
       "spec_label": "15 个网站；不限邮箱；cPanel；免费 SSL",
-      "official_url": "https://www.ethernetservers.com/shared-hosting",
+      "official_url": "https://www.ethernetservers.com/shared-web-hosting-providers",
       "purchase_url": "",
       "source_urls": [
-        "https://www.ethernetservers.com/shared-hosting",
-        "https://www.ethernetservers.com/wordpress-hosting",
+        "https://www.ethernetservers.com/shared-web-hosting-providers",
+        "https://www.ethernetservers.com/wordpress-hosting-services",
         "https://www.ethernetservers.com/terms"
       ],
       "checked_on": "2026-11-01",
@@ -164,11 +164,11 @@
       "port_mbps": null,
       "cpu_label": "",
       "spec_label": "不限网站数量；不限邮箱；cPanel；免费 SSL",
-      "official_url": "https://www.ethernetservers.com/shared-hosting",
+      "official_url": "https://www.ethernetservers.com/shared-web-hosting-providers",
       "purchase_url": "",
       "source_urls": [
-        "https://www.ethernetservers.com/shared-hosting",
-        "https://www.ethernetservers.com/wordpress-hosting",
+        "https://www.ethernetservers.com/shared-web-hosting-providers",
+        "https://www.ethernetservers.com/wordpress-hosting-services",
         "https://www.ethernetservers.com/terms"
       ],
       "checked_on": "2026-11-01",
@@ -209,10 +209,10 @@
       "port_mbps": 10000,
       "cpu_label": "",
       "spec_label": "1 个 IPv4；/64 IPv6；宿主机 10 Gbps 上联，非每台独享保证带宽",
-      "official_url": "https://www.ethernetservers.com/vps-hosting",
+      "official_url": "https://www.ethernetservers.com/vps-web-hosting-services",
       "purchase_url": "",
       "source_urls": [
-        "https://www.ethernetservers.com/vps-hosting",
+        "https://www.ethernetservers.com/vps-web-hosting-services",
         "https://www.ethernetservers.com/terms"
       ],
       "checked_on": "2026-11-13",
@@ -253,10 +253,10 @@
       "port_mbps": 10000,
       "cpu_label": "",
       "spec_label": "1 个 IPv4；/64 IPv6；宿主机 10 Gbps 上联，非每台独享保证带宽",
-      "official_url": "https://www.ethernetservers.com/vps-hosting",
+      "official_url": "https://www.ethernetservers.com/vps-web-hosting-services",
       "purchase_url": "",
       "source_urls": [
-        "https://www.ethernetservers.com/vps-hosting",
+        "https://www.ethernetservers.com/vps-web-hosting-services",
         "https://www.ethernetservers.com/terms"
       ],
       "checked_on": "2026-11-13",
@@ -297,10 +297,10 @@
       "port_mbps": 10000,
       "cpu_label": "",
       "spec_label": "1 个 IPv4；/64 IPv6；宿主机 10 Gbps 上联，非每台独享保证带宽",
-      "official_url": "https://www.ethernetservers.com/vps-hosting",
+      "official_url": "https://www.ethernetservers.com/vps-web-hosting-services",
       "purchase_url": "",
       "source_urls": [
-        "https://www.ethernetservers.com/vps-hosting",
+        "https://www.ethernetservers.com/vps-web-hosting-services",
         "https://www.ethernetservers.com/terms"
       ],
       "checked_on": "2026-11-13",
@@ -341,10 +341,10 @@
       "port_mbps": 10000,
       "cpu_label": "",
       "spec_label": "1 个 IPv4；/64 IPv6；宿主机 10 Gbps 上联，非每台独享保证带宽",
-      "official_url": "https://www.ethernetservers.com/vps-hosting",
+      "official_url": "https://www.ethernetservers.com/vps-web-hosting-services",
       "purchase_url": "",
       "source_urls": [
-        "https://www.ethernetservers.com/vps-hosting",
+        "https://www.ethernetservers.com/vps-web-hosting-services",
         "https://www.ethernetservers.com/terms"
       ],
       "checked_on": "2026-11-13",
@@ -385,10 +385,10 @@
       "port_mbps": 10000,
       "cpu_label": "",
       "spec_label": "1 个 IPv4；/64 IPv6；宿主机 10 Gbps 上联，非每台独享保证带宽",
-      "official_url": "https://www.ethernetservers.com/vps-hosting",
+      "official_url": "https://www.ethernetservers.com/vps-web-hosting-services",
       "purchase_url": "",
       "source_urls": [
-        "https://www.ethernetservers.com/vps-hosting",
+        "https://www.ethernetservers.com/vps-web-hosting-services",
         "https://www.ethernetservers.com/terms"
       ],
       "checked_on": "2026-11-13",
