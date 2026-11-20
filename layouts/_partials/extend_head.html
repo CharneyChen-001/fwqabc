@@ -3,6 +3,16 @@
 {{- end }}{{ end }}
 <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/inter-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+{{- if and (eq .Section "seo-geo") (or (eq .Kind "page") (eq .Kind "section")) }}
+{{- $home := site.Home.Permalink }}
+{{- $sec := site.GetPage "section" "seo-geo" }}
+{{- $published := "" }}
+{{- if and .Date (not .Date.IsZero) (gt .Date.Year 1) }}{{ $published = .Date.Format "2006-01-02" }}{{ end }}
+{{- $modified := $published }}
+{{- if and .Lastmod (not .Lastmod.IsZero) (gt .Lastmod.Year 1) }}{{ $modified = .Lastmod.Format "2006-01-02" }}{{ end }}
+<script type="application/ld+json">{{ $article := dict "@context" "https://schema.org" "@type" "Article" "headline" .Title "inLanguage" (site.Language.Locale | default site.Language.Lang) "mainEntityOfPage" .Permalink "author" (dict "@type" "Organization" "name" "出海ABC" "url" $home) "publisher" (dict "@type" "Organization" "name" "出海ABC" "url" $home) }}{{ with $published }}{{ $article = merge $article (dict "datePublished" .) }}{{ end }}{{ with $modified }}{{ $article = merge $article (dict "dateModified" .) }}{{ end }}{{ $article | jsonify | safeJS }}</script>
+<script type="application/ld+json">{{ $items := slice (dict "@type" "ListItem" "position" 1 "name" (cond (eq site.Language.Lang "en") "Home" "首页") "item" $home) }}{{ with $sec }}{{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" .Title "item" .Permalink) }}{{ end }}{{ if ne .RelPermalink ($sec.RelPermalink | default "") }}{{ $items = $items | append (dict "@type" "ListItem" "position" (len $items | add 1) "name" .Title "item" .Permalink) }}{{ end }}{{ dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items | jsonify | safeJS }}</script>
+{{- end }}
 {{- with .Params.faq }}
 <script type="application/ld+json">{{ $m := slice }}{{ range . }}{{ $m = $m | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" (.a | plainify))) }}{{ end }}{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $m | jsonify | safeJS }}</script>
 {{- end }}

@@ -216,6 +216,11 @@ pagination.pagerSize = 10
     url = "/merchants/"
     weight = 30
   [[menus.main]]
+    name = "SEO与GEO研究院"
+    identifier = "seogeo"
+    url = "/seo-geo/"
+    weight = 16
+  [[menus.main]]
     name = "海外公司注册"
     identifier = "company"
     url = "/services/overseas-company/"
@@ -246,6 +251,11 @@ pagination.pagerSize = 10
     identifier = "knowledge"
     url = "/knowledge/"
     weight = 10
+  [[languages.en.menus.main]]
+    name = "SEO & GEO"
+    identifier = "seogeo"
+    url = "/en/seo-geo/"
+    weight = 11
   [[languages.en.menus.main]]
     name = "Company registration"
     identifier = "company"
