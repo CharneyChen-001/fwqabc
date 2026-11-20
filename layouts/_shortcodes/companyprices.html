@@ -1,0 +1,151 @@
+{{- $data := hugo.Data.company_prices -}}
+{{- $en := eq site.Language.Lang "en" -}}
+{{- $email := site.Params.contactEmail -}}
+{{- $subject := "咨询海外公司注册" -}}
+{{- if $en }}{{ $subject = "Overseas company registration" }}{{ end -}}
+{{- $glabel := dict
+  "美国热门州" "US states, often asked"
+  "美国非热门州" "Other US states"
+  "美国其他业务" "Other US services"
+  "对公账户" "Business bank accounts"
+  "个人账户" "Personal bank accounts"
+  "美国报税" "US tax filing"
+  "欧洲" "Europe"
+  "加拿大" "Canada"
+  "亚洲及东南亚" "Asia and Southeast Asia"
+-}}
+{{- $slug := dict
+  "美国热门州" "us-hot"
+  "美国非热门州" "us-other"
+  "美国其他业务" "us-extra"
+  "对公账户" "biz-account"
+  "个人账户" "personal-account"
+  "美国报税" "us-tax"
+  "欧洲" "europe"
+  "加拿大" "canada"
+  "亚洲及东南亚" "asia"
+-}}
+<div class="co-prices" data-co-prices id="co-prices">
+  <div class="co-notice">
+    <p>{{ if $en }}Reference prices, checked 2026-11-20. They move. The quote in the WeChat group is the one that counts.{{ else }}价格为参考价，核对日期 2026-11-20，实时变动，以群内报价为准。{{ end }}</p>
+    <p>{{ if $en }}Timelines are working-day references. Official review decides. A “day” on this list means a working day, estimated as the expedited case, and is not a promise.{{ else }}时效为工作日参考，以官方审查为准。表里的「天」按工作日理解，按加急来估，不作承诺。{{ end }}</p>
+    <p>{{ if $en }}Prices do not include tax. An invoice is extra.{{ else }}价格不含税点，开票另计。{{ end }}</p>
+    <p>{{ if $en }}US and UK papers are PDF by default. Paper copies and a company chop are an extra ¥200.{{ else }}美国、英国的文件默认 PDF。纸质资料和公章另加 ¥200。{{ end }}</p>
+    <p>{{ if $en }}Notarization and similar charges follow the rate at the time. Ask in the group.{{ else }}公认证等杂费随当时的费率变，群里确认为准。{{ end }}</p>
+    <p>{{ if $en }}Annual maintenance, renewal, a change, and closure are not priced here unless that service is its own row. Otherwise, ask.{{ else }}年审、续费、变更、注销费用请咨询。下面没有单独列成一项的，不要把别的价格套上去。{{ end }}</p>
+    <p>{{ if $en }}You pay the cooperating provider directly. This site does not collect the payment, and it does not take ID uploads.{{ else }}款项你直接付给合作服务商。本站不代收，网页上也不收证件。{{ end }}</p>
+    {{- if $en }}<p>Names and descriptions stay in Chinese, the same wording as the quote sheet.</p>{{ end }}
+  </div>
+  <form class="servers-filters co-filters" data-co-form onsubmit="event.preventDefault()">
+    <label>{{ if $en }}Search{{ else }}搜索{{ end }}
+      <input data-co-q type="search" placeholder="{{ if $en }}Name or place{{ else }}名称、州、银行{{ end }}" autocomplete="off">
+    </label>
+    <label>{{ if $en }}Group{{ else }}分类{{ end }}
+      <select data-co-g>
+        <option value="">{{ if $en }}All groups{{ else }}全部分类{{ end }}</option>
+        {{- range $data.meta.groups }}
+        <option value="{{ . }}">{{ if $en }}{{ index $glabel . }}{{ else }}{{ . }}{{ end }}</option>
+        {{- end }}
+      </select>
+    </label>
+    <button type="button" class="filter-reset" data-co-reset>{{ if $en }}Reset{{ else }}重置{{ end }}</button>
+  </form>
+  <p class="co-stats">{{ if $en }}Showing{{ else }}当前显示{{ end }} <span data-co-count>{{ len $data.items }}</span> {{ if $en }}of{{ else }}/{{ end }} {{ len $data.items }}</p>
+  <p class="co-js-note">{{ if $en }}The filter runs in the browser. Without JavaScript, all rows stay on the page.{{ else }}筛选在浏览器里完成。不启用脚本时，下面列出全部项目。{{ end }}</p>
+  {{- range $g := $data.meta.groups }}
+  {{- $rows := where $data.items "group" $g }}
+  {{- if $rows }}
+  <section class="co-group" data-co-group id="co-{{ index $slug $g }}">
+    <p class="co-group-title" role="heading" aria-level="2">{{ if $en }}{{ index $glabel $g }}{{ else }}{{ $g }}{{ end }}</p>
+    {{- if eq $g "美国热门州" }}
+    <div class="co-us">
+      <p>{{ if $en }}For the US state rows below, the reference price includes, for the first year:{{ else }}下面美国各州注册的参考价，默认包含首年这些：{{ end }}</p>
+      <ul>
+        {{- range $data.meta.us_state_registration.includes }}<li>{{ . }}</li>{{ end }}
+      </ul>
+      <p>{{ if $en }}Documents people usually prepare:{{ else }}通常要准备的材料：{{ end }}</p>
+      <ul>
+        {{- range $data.meta.us_state_registration.documents }}<li>{{ . }}</li>{{ end }}
+      </ul>
+      <ul>
+        {{- range $data.meta.us_state_registration.notes }}<li>{{ . }}</li>{{ end }}
+      </ul>
+    </div>
+    {{- else if eq $g "美国非热门州" }}
+    <p class="co-us-again">{{ if $en }}Same first-year inclusion as the states above: state fee, registered agent, EIN, and mail for the first year.{{ else }}和上面的热门州一样：参考价默认包含首年州政府费用、首年代理、EIN、首年收信。{{ end }}</p>
+    {{- end }}
+    <div class="co-list">
+      {{- range $rows }}
+      {{- $ask := printf "我想咨询：%s" .name -}}
+      {{- if $en }}{{ $ask = printf "I'd like to ask about: %s" .name }}{{ end -}}
+      {{- $search := printf "%s %s %s %s %s" .group .name .description .price_label .timeline_label | replaceRE "\\s+" " " | lower -}}
+      <article class="co-card" data-co-item data-id="{{ .id }}" data-group="{{ .group }}" data-search="{{ $search }}">
+        <div class="co-main">
+          <p class="co-name" role="heading" aria-level="3">{{ .name }}</p>
+          {{- with .description }}<p class="co-desc">{{ . }}</p>{{ end }}
+          {{- if .bank }}
+          <p class="co-bank">{{ if $en }}Whether the account opens depends on the bank’s review. It is not guaranteed.{{ else }}能否开成取决于银行审查，不保证通过。{{ end }}</p>
+          {{- end }}
+        </div>
+        <div class="co-meta">
+          <p class="co-k">{{ if $en }}Reference price{{ else }}参考价{{ end }}</p>
+          <p class="co-price">{{ .price_label }}</p>
+          <p class="co-k">{{ if $en }}Timing, reference{{ else }}时效（参考）{{ end }}</p>
+          <p class="co-time">{{ .timeline_label }}</p>
+        </div>
+        <p class="co-act"><a class="co-ask" data-ask-name="{{ .name }}" href="mailto:{{ $email }}?subject={{ $subject | urlquery }}&amp;body={{ $ask | urlquery }}">{{ if $en }}Ask about this{{ else }}咨询这项{{ end }}</a></p>
+      </article>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+  {{- end }}
+{{- $wechatImg := site.Params.wechatQr -}}
+{{- range site.Params.contactChannels }}{{ if and (eq .id "wechat") .image }}{{ $wechatImg = .image }}{{ end }}{{ end -}}
+<div class="co-modal" data-co-modal hidden>
+  <div class="co-modal-backdrop" data-co-close></div>
+  <div class="co-dialog" role="dialog" aria-modal="true" aria-labelledby="co-modal-title" tabindex="-1">
+    <div class="co-dialog-bar">
+      <p class="co-modal-title" id="co-modal-title" data-prefix="{{ if $en }}Ask: {{ else }}咨询：{{ end }}" role="heading" aria-level="2">{{ if $en }}Ask{{ else }}咨询{{ end }}</p>
+      <button type="button" class="co-modal-x" data-co-close aria-label="{{ if $en }}Close{{ else }}关闭{{ end }}">×</button>
+    </div>
+    <div class="co-dialog-body">
+    <figure class="co-modal-wechat">
+      <img src="{{ $wechatImg }}" alt="{{ if $en }}WeChat QR for Chuhai ABC{{ else }}出海ABC 微信二维码{{ end }}" width="168" height="229">
+      <figcaption>{{ if $en }}Scan to add WeChat, and put the item in the note. There is no separate text WeChat ID.{{ else }}扫码添加微信，备注咨询项目。这里没有单独的文字微信号。{{ end }}</figcaption>
+    </figure>
+    {{- range site.Params.contactChannels }}
+      {{- if eq .id "x" }}
+      <p class="co-modal-xlink"><a href="{{ .url }}" target="_blank" rel="noopener noreferrer">X {{ .account }}</a></p>
+      {{- end }}
+    {{- end }}
+    <div class="co-modal-grid">
+      {{- range site.Params.contactChannels }}
+        {{- if not (in (slice "wechat" "x" "email") .id) }}
+        {{- $label := .label -}}
+        {{- if $en }}{{ $label = .labelEn | default .label }}{{ end -}}
+        {{- $chUrl := .url -}}
+        {{- $chAccount := .account -}}
+        <figure>
+          {{- with .image }}
+            {{- if $chUrl }}
+            <a href="{{ $chUrl }}" target="_blank" rel="noopener noreferrer"><img src="{{ . }}" alt="{{ $label }}" width="140" height="190"></a>
+            {{- else }}
+            <img src="{{ . }}" alt="{{ $label }}" width="140" height="190">
+            {{- end }}
+          {{- end }}
+          <figcaption><b>{{ $label }}</b>{{ with $chAccount }}<span>{{ . }}</span>{{ end }}</figcaption>
+        </figure>
+        {{- end }}
+      {{- end }}
+    </div>
+    <div class="co-modal-actions">
+      <a class="co-ask co-mail" data-co-mail href="mailto:{{ $email }}">{{ if $en }}Email about this{{ else }}发邮件咨询{{ end }}</a>
+      <button type="button" class="co-copy" data-co-copy data-email="{{ $email }}" data-copied="{{ if $en }}Copied{{ else }}已复制{{ end }}">{{ if $en }}Copy address{{ else }}复制邮箱{{ end }}</button>
+    </div>
+    <p class="co-copy-line"><span class="co-email">{{ $email }}</span> <span data-co-copy-status aria-live="polite"></span></p>
+    </div>
+  </div>
+</div>
+</div>
+<script src="{{ "js/company-prices.js" | relURL }}" defer></script>

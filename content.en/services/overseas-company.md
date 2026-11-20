@@ -1,6 +1,6 @@
 ---
 title: "Overseas company registration"
-description: "Step 1 of going overseas: set up a company so contracts, payments, customs, and a storefront have an entity that can sign. This page introduces the service. It does not quote figures or take payment."
+description: "Step 1 of going overseas: set up a company so contracts, payments, customs, and a storefront have an entity that can sign. Prices on this page are references, checked 2026-11-20. This site does not take payment."
 translationKey: overseas-company
 ShowToc: true
 ShowReadingTime: false
@@ -12,29 +12,33 @@ faq:
   - q: "Which state?"
     a: "People often ask about Wyoming, Delaware, California, Nevada, Florida, New York, and Texas. A New York LLC is generally not the one we suggest, because of the publication step. An INC, or another state, can be discussed instead. The group confirms the choice for your use. This page does not pick a state for you."
   - q: "Is EIN included?"
-    a: "A US company filing usually applies for an EIN at the same time. Whether a particular filing also covers other items is confirmed in the group. This page does not give figures."
+    a: "The reference price for a US state filing includes the first-year EIN. A standalone EIN is also listed. Whether a particular filing covers anything else is confirmed in the group."
   - q: "How do I pay?"
     a: "You pay the cooperating provider directly. This site does not collect the registration payment, and it does not take passport or ID uploads."
 ---
 
-Step 1 of going overseas is the entity. A small company, a sole proprietor, or a factory that sells its own goods needs a company that can sign before contracts, payments, customs, or a storefront. This page says which places you can ask about, what to prepare, and how the handoff works. Figures stay out of the page. They are confirmed in a WeChat group after you write to us.
+Step 1 of going overseas is the entity. A small company, a sole proprietor, or a factory that sells its own goods needs a company that can sign before contracts, payments, customs, or a storefront. This page says which places you can ask about, what to prepare, and how the handoff works. The figures below are references, checked 2026-11-20. The quote that counts is confirmed in a WeChat group after you write to us.
 
 This site introduces the service and passes on the inquiry. A cooperating provider does the registration. You pay that provider directly. The website does not accept a passport or an ID upload.
 
 {{< companycontact >}}
 
+## Reference prices
+
+{{< companyprices >}}
+
 ## United States
 
-LLC and INC filings are available in more than one state. People often ask about Wyoming, Delaware, Nevada, California, Florida, New York, Texas, Washington, Colorado, and Montana. Other states can be asked about. This page does not turn every state into a table.
+LLC and INC filings are available in more than one state. People often ask about Wyoming, Delaware, Nevada, California, Florida, New York, Texas, Washington, Colorado, and Montana. Other states are in the list above. A state that is not listed can be asked about in the group.
 
 These are usual points, not promises:
 
-- A US company filing usually applies for a federal EIN at the same time.
+- A US company filing usually applies for a federal EIN at the same time. The reference price is built that way.
 - A New York LLC is generally not suggested, because of the publication step. Ask about an INC, or about another state.
 - A name that includes words such as foundation, association, or alliance is usually possible in only some states, and has to be checked.
-- Some states later have a state tax, a franchise tax, a first annual report, or a publication step. This page does not give figures. The group does.
+- Some states later have a state tax, a franchise tax, a first annual report, or a publication step. Where the row mentions one, it is a reference. Annual maintenance, renewal, a change, and closure are quoted when you ask, unless that service is its own row.
 
-Related items you can ask about, without a catalog: annual maintenance, a change, a closure, EIN, ITIN, a registered agent, and a mailing address.
+You can also ask about annual maintenance, a change, a closure, EIN, ITIN, a registered agent, and a mailing address.
 
 ## United Kingdom and Europe
 
@@ -54,11 +58,11 @@ Ordinary companies in Ontario and British Columbia, and a federal company, can a
 
 ## Related items
 
-Directions only, not a product list:
+The reference list above is grouped. A short map:
 
 - Tax numbers: EIN and ITIN.
 - Address and agent: registered agent and a mailing address.
-- Banking: some business or personal accounts can be asked about. This page does not name a bank. Some routes pause. Ask what is open at the time.
+- Banking: the accounts named in the list can be asked about. Opening depends on the bank’s review and is not guaranteed. A bank that is not listed is not offered from this page.
 - US company tax filing, and sales permits.
 
 ## Documents to prepare
@@ -75,7 +79,7 @@ The website does not collect files. These are the papers people usually need:
 
 1. Email the address on this page.
 2. We create a WeChat group.
-3. The plan is confirmed in the group, and the quote is given there.
+3. The plan and the quote are confirmed in the group. Figures on this page are references.
 4. You send the documents the group asks for, by WeChat or email. Do not upload them on this website.
 5. The cooperating provider does the filing. You pay that provider directly.
 
@@ -83,7 +87,7 @@ The website does not collect files. These are the papers people usually need:
 
 ## Please read this
 
-The price and the pace are given in the group. The pace also depends on official review. This site makes no promise.
+Prices on this page are references, checked 2026-11-20. The group quote is the one that counts. The pace also depends on official review. This site makes no promise. Annual maintenance, renewal, a change, and closure are quoted when you ask, unless that service is its own row.
 
 The cooperating provider does the registration and the follow-up work. This site introduces the service and connects the inquiry. You pay the provider directly. This site does not collect customer payments, and it does not collect ID documents on the page.
 
