@@ -1,0 +1,39 @@
+.co-prices { margin: 1.2em 0 2em; }
+.co-notice { margin: 0 0 1em; padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--secondary-bg); }
+.co-notice p { margin: 0 0 .55em; }
+.co-notice p:last-child { margin-bottom: 0; }
+.co-prices .co-filters { align-items: end; }
+.co-stats, .co-js-note, .co-us-again { color: var(--muted-fg); }
+.co-us { margin: 0 0 12px; padding: 12px 14px; border: 1px dashed var(--border); border-radius: 12px; }
+.co-us p { margin: .2em 0 .4em; }
+.co-us ul, .co-prices .co-us ul { margin: 0 0 .7em; padding-left: 1.2em; }
+.co-list { display: grid; gap: 12px; }
+.co-card { display: grid; gap: 10px; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--entry); }
+.co-group-title { margin: 1.3em 0 .45em; font-size: 1.45rem; font-weight: 800; line-height: 1.3; color: var(--fg); }
+.co-name { margin: 0 0 .35em; font-size: 1.05rem; font-weight: 800; line-height: 1.35; color: var(--fg); }
+.co-desc, .co-price, .co-time { white-space: pre-line; margin: 0; }
+.co-desc { color: var(--fg); }
+.co-bank { margin: .55em 0 0; color: var(--color-primary); font-weight: 700; }
+.co-k { margin: 0; color: var(--muted-fg); font-size: .78rem; font-weight: 700; }
+.co-price { font-weight: 800; font-size: 1.05rem; }
+.co-time { margin-bottom: .2em; }
+.co-act { margin: 0; }
+.co-card[hidden], .co-group[hidden] { display: none !important; }
+.post-content .co-prices a.co-ask,
+:root[data-theme="dark"] .post-content .co-prices a.co-ask {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px;
+  border-radius: 12px; background: var(--color-primary); color: var(--color-primary-fg) !important;
+  font-weight: 700; text-decoration: none; box-shadow: none;
+}
+.post-content .co-prices a.co-ask:hover,
+:root[data-theme="dark"] .post-content .co-prices a.co-ask:hover {
+  background: var(--btn-h); color: var(--color-primary-fg) !important;
+}
+.post-content .co-prices a.co-ask:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+@media (min-width: 860px) {
+  .co-card { grid-template-columns: minmax(0, 1.5fr) minmax(180px, .8fr) auto; align-items: start; }
+  .co-act { align-self: center; }
+}
+@media (max-width: 859px) {
+  .post-content .co-prices a.co-ask { width: 100%; }
+}
